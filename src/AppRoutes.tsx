@@ -3,6 +3,7 @@ import { Suspense, lazy } from 'react'
 import App from "./App"
 import * as Page from "./pages"
 
+
 function AppRoutes() {
 
 
@@ -11,6 +12,7 @@ function AppRoutes() {
 			<Routes>
 				<Route path="/" element={<App />}>
 					<Route path="" element={<Page.Login />} />
+					<Route path="cadastro" element={<Page.Cadastro />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

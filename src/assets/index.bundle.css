@@ -48962,3 +48962,31 @@ html:not([data-theme=dark]) {
     border-radius: 0 !important;
   }
 }
+
+.my-wrapper {
+  /* Wrapper */
+}
+
+.my-wrapper input {
+  /* Input field */
+}
+
+.my-wrapper li > span:first-of-type {
+  /* Username */
+}
+
+.my-suggestion {
+  padding: 0.5rem 1rem
+}
+
+.my-suggestion:hover {
+  cursor: pointer;
+}
+
+.my-suggestion[data-active-email='true'] {
+  background-color: aliceblue;
+}
+
+.my-suggestion:focus {
+  outline: 1px solid var(--bs-secondary);
+}
