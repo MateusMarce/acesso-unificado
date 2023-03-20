@@ -43945,14 +43945,7 @@ code:not([class*=language-]) {
 }
 
 .indicator-progress {
-  display: none;
-}
-[data-kt-indicator=on] > .indicator-progress {
   display: inline-block;
-}
-
-[data-kt-indicator=on] > .indicator-label {
-  display: none;
 }
 
 .hover-elevate-up {
@@ -49006,7 +48999,7 @@ background: url(./images/view.svg) 0 0 no-repeat;
   outline: 1px solid var(--bs-secondary);
 }
 
-.login-password .form-control.is-invalid {
+.login-password  .form-control.is-invalid {
   background-image: none ;
 }
 .login-password .form-control.is-invalid .password-control {

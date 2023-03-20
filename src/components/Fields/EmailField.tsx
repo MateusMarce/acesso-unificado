@@ -19,13 +19,13 @@ export default function EmailField(props: any) {
     return (
         <Email
             classNames={{...myClassNames, 
-                wrapper:`btn-group w-100 position-relative ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`,
-                input: `form-control bg-white ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`
+                wrapper:`btn-group w-100 position-relative ${props.errors && props.touched ? 'is-invalid' : ''}`,
+                input: `form-control bg-transparent ${props.errors && props.touched ? 'is-invalid' : ''}`
             }}
             placement={'bottom'}
             baseList={baseList}
             refineList={baseList}
-            placeholder='Email ou CPF'
+            placeholder={props.placeholder}
             // onChange={(newValue:string)=>props.setFieldValue('user', newValue)} // or (newValue) => customSetter(newValue)
             // value={props.values.user}
             {...field}

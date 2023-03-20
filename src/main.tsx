@@ -7,12 +7,15 @@ import Routes from './AppRoutes'
 import './assets/index.bundle.css'
 import { CookiesProvider } from 'react-cookie'
 import { ToastContainer } from 'react-toastify';
+import { ThemeProvider } from './helpers/ThemeContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <CookiesProvider>
-      <Routes />
-      <ToastContainer />
-    </CookiesProvider>
+    <ThemeProvider>
+      <CookiesProvider>
+        <Routes />
+        <ToastContainer />
+      </CookiesProvider>
+    </ThemeProvider>
   </React.StrictMode>,
 )

@@ -6,7 +6,7 @@ export default function CpfField(props: any) {
     
     return (
       <>
-          <MaskedInput autoFocus showMask={false} guide={false} mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/,'-', /\d/, /\d/] } {...field} {...props} />
+          <MaskedInput autoFocus={props.autoFocus} showMask={false} guide={false} mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/,'-', /\d/, /\d/] } {...field} {...props} />
       </>
     );
     // return props.value.match(/[0-9]+/) ? (

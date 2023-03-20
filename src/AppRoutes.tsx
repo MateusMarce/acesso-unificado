@@ -9,12 +9,16 @@ function AppRoutes() {
 
 	return (
 		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<App />}>
-					<Route path="" element={<Page.Login />} />
-					<Route path="cadastro" element={<Page.Cadastro />} />
-				</Route>
-			</Routes>
+			<Suspense fallback={<div>Carregando...</div>}>
+				<Routes>
+					<Route path="/" element={<App />}>
+						<Route path="" element={<Page.Login />} />
+						<Route path="cadastro" element={<Page.Cadastro />} />
+						<Route path="esqueceu-senha" element={<Page.EsqueceuSenha />} />
+						<Route path="painel" element={<Page.Dashboard />} />
+					</Route>
+				</Routes>
+			</Suspense>
 		</BrowserRouter>
 	)
 }
