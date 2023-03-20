@@ -86,22 +86,22 @@ export default function Dash_Header() {
                     <div className="app-navbar flex-shrink-0">
 
                         {/* USER INTERFACE */}
-                        <div className="app-navbar-item ms-3" id="kt_header_user_menu_toggle">
+                        <div className="app-navbar-item ms-3 dropdown position-relative">
                             {/* USER */}
                             <div className="text-end d-none d-sm-flex flex-column justify-content-center me-3">
                                 <a href="../demo9/pages/user-profile/overview.html" className="text-white text-hover-primary fs-6 fw-bold">João Carlos</a>
                                 <span className="text-gray-600 fs-7 fw-semibold d-block">joao.rodrigues@satc.edu.br</span>
                             </div>
-                            <div className="cursor-pointer symbol symbol-35px symbol-md-40px show dropdown-menu" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                            <button type='button' className="cursor-pointer symbol symbol-35px symbol-md-40px p-0 border-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
                                 <img src={Avatar} alt="user" />
-                            </div>
-
-                            
-                            <div className="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
+                            </button>              
+                             
+                             {/* MENU */}
+                            <div className=" fw-semibold py-4 fs-6 w-275px dropdown-menu dropdown-menu-end top-75 end-0" aria-labelledby="dropdownMenuButton1">
                                 <div className="menu-item px-3">
                                     <div className="menu-content d-flex align-items-center px-3">
                                         <div className="symbol symbol-50px me-5">
-                                            <img alt="Logo" src="assets/media/avatars/avat_jota.jpg" />
+                                            <img alt="Logo" src={Avatar} />
                                         </div>
                                         <div className="d-flex flex-column">
                                             <div className="fw-bold d-flex align-items-center fs-5">João Carlos
@@ -130,8 +130,8 @@ export default function Dash_Header() {
 
                         </div>
 
-                        <div className="app-navbar-item ms-3">
-                            <a href="#" className="btn btn-icon btn-icon-white btn-active-color-primary btn-custom w-35px h-35px w-md-40px h-md-40px" data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                        <div className="app-navbar-item ms-3 dropdown">
+                            <button type='button' className="btn btn-icon btn-icon-white btn-active-color-primary btn-custom w-35px h-35px w-md-40px h-md-40px" data-bs-toggle='dropdown' id="dropdownMenuButton2" aria-expanded="false">
                                 <span className="svg-icon theme-light-show svg-icon-2">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11.9905 5.62598C10.7293 5.62574 9.49646 5.9995 8.44775 6.69997C7.39903 7.40045 6.58159 8.39619 6.09881 9.56126C5.61603 10.7263 5.48958 12.0084 5.73547 13.2453C5.98135 14.4823 6.58852 15.6185 7.48019 16.5104C8.37186 17.4022 9.50798 18.0096 10.7449 18.2557C11.9818 18.5019 13.2639 18.3757 14.429 17.8931C15.5942 17.4106 16.5901 16.5933 17.2908 15.5448C17.9915 14.4962 18.3655 13.2634 18.3655 12.0023C18.3637 10.3119 17.6916 8.69129 16.4964 7.49593C15.3013 6.30056 13.6808 5.62806 11.9905 5.62598Z" fill="currentColor" />
@@ -153,8 +153,8 @@ export default function Dash_Header() {
                                         <path d="M13.0379 7.47998C13.8688 7.47998 14.5446 8.15585 14.5446 8.98668C14.5446 9.26428 14.7693 9.48891 15.0469 9.48891C15.3245 9.48891 15.5491 9.26428 15.5491 8.98668C15.5491 8.15585 16.225 7.47998 17.0558 7.47998C17.3334 7.47998 17.558 7.25535 17.558 6.97775C17.558 6.70015 17.3334 6.47552 17.0558 6.47552C16.225 6.47552 15.5491 5.76616 15.5491 4.93534C15.5491 4.65774 15.3245 4.43311 15.0469 4.43311C14.7693 4.43311 14.5446 4.65774 14.5446 4.93534C14.5446 5.76616 13.8688 6.47552 13.0379 6.47552C12.7603 6.47552 12.5357 6.70015 12.5357 6.97775C12.5357 7.25535 12.7603 7.47998 13.0379 7.47998Z" fill="currentColor" />
                                     </svg>
                                 </span>
-                            </a>
-                            <div className="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-muted menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px" data-kt-menu="true" data-kt-element="theme-mode-menu">
+                            </button>
+                            <div className="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-muted menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px dropdown-menu dropdown-menu-end top-75 end-0" aria-labelledby="dropdownMenuButton1">
                                 <div className="menu-item px-3 my-0">
                                     <a href="#" className="menu-link px-3 py-2" data-kt-element="mode" data-kt-value="light">
                                         <span className="menu-icon" data-kt-element="icon">
@@ -190,20 +190,8 @@ export default function Dash_Header() {
                                         <span className="menu-title">Dark</span>
                                     </a>
                                 </div>
-                                
-                                    <a href="#" className="menu-link px-3 py-2" data-kt-element="mode" data-kt-value="system">
-                                        <span className="menu-icon" data-kt-element="icon">
-                                            <span className="svg-icon svg-icon-3">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.34375 3.9463V15.2178C1.34375 16.119 2.08105 16.8563 2.98219 16.8563H8.65093V19.4594H6.15702C5.38853 19.4594 4.75981 19.9617 4.75981 20.5757V21.6921H19.2403V20.5757C19.2403 19.9617 18.6116 19.4594 17.8431 19.4594H15.3492V16.8563H21.0179C21.919 16.8563 22.6562 16.119 22.6562 15.2178V3.9463C22.6562 3.04516 21.9189 2.30786 21.0179 2.30786H2.98219C2.08105 2.30786 1.34375 3.04516 1.34375 3.9463ZM12.9034 9.9016C13.241 9.98792 13.5597 10.1216 13.852 10.2949L15.0393 9.4353L15.9893 10.3853L15.1297 11.5727C15.303 11.865 15.4366 12.1837 15.523 12.5212L16.97 12.7528V13.4089H13.9851C13.9766 12.3198 13.0912 11.4394 12 11.4394C10.9089 11.4394 10.0235 12.3198 10.015 13.4089H7.03006V12.7528L8.47712 12.5211C8.56345 12.1836 8.69703 11.8649 8.87037 11.5727L8.0107 10.3853L8.96078 9.4353L10.148 10.2949C10.4404 10.1215 10.759 9.98788 11.0966 9.9016L11.3282 8.45467H12.6718L12.9034 9.9016ZM16.1353 7.93758C15.6779 7.93758 15.3071 7.56681 15.3071 7.1094C15.3071 6.652 15.6779 6.28122 16.1353 6.28122C16.5926 6.28122 16.9634 6.652 16.9634 7.1094C16.9634 7.56681 16.5926 7.93758 16.1353 7.93758ZM2.71385 14.0964V3.90518C2.71385 3.78023 2.81612 3.67796 2.94107 3.67796H21.0589C21.1839 3.67796 21.2861 3.78023 21.2861 3.90518V14.0964C15.0954 14.0964 8.90462 14.0964 2.71385 14.0964Z" fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                        </span>
-                                        <span className="menu-title">System</span>
-                                    </a>
-                                </div>
                             </div>
-                    </div>
+                        </div>
                     <div className="app-navbar-item ms-3">
                         <a href="index.html" className="btn btn-icon btn-icon-white btn-active-color-primary btn-custom w-35px h-35px w-md-40px h-md-40px">
                             <span className="svg-icon svg-icon-1">
@@ -214,6 +202,7 @@ export default function Dash_Header() {
                                 </svg>
                             </span>
                         </a>
+                    </div>
                     </div>
                     </div>
                 </div>

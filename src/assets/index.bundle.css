@@ -47327,7 +47327,7 @@ body,
     border-bottom: var(--kt-app-header-base-border-bottom);
   }
   :root {
-    --kt-app-header-height: 70px;
+    --kt-app-header-height: 80px;
     --kt-app-header-height-actual: 70px;
   }
   [data-kt-app-header-sticky=on] {
@@ -49004,4 +49004,12 @@ background: url(./images/view.svg) 0 0 no-repeat;
 }
 .login-password .form-control.is-invalid .password-control {
   fill: red;
+}
+.dropdown>button + .dropdown-menu {
+  display: none;
+  animation: menu-sub-dropdown-animation-fade-in 0.3s ease 1, menu-sub-dropdown-animation-move-up 0.3s ease 1;
+}
+.dropdown>button:hover + .dropdown-menu, .dropdown>button + .dropdown-menu:hover {
+  display: block;
+  
 }

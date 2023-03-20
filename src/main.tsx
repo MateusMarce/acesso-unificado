@@ -1,3 +1,4 @@
+import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css?v=1'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import "react-toastify/dist/ReactToastify.css";
