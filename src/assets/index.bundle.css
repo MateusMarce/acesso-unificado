@@ -48963,6 +48963,21 @@ html:not([data-theme=dark]) {
   }
 }
 
+/*OLHINHO*/
+.password-control {
+  position: absolute;
+  top: 11px;
+  right: 13px;
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  border: 0;
+  background: url(./images/no-view.svg) 0 0 no-repeat;
+}
+.password-control.view {
+background: url(./images/view.svg) 0 0 no-repeat;
+}
+
 .my-wrapper {
   /* Wrapper */
 }
@@ -48989,4 +49004,11 @@ html:not([data-theme=dark]) {
 
 .my-suggestion:focus {
   outline: 1px solid var(--bs-secondary);
+}
+
+.login-password .form-control.is-invalid {
+  background-image: none ;
+}
+.login-password .form-control.is-invalid .password-control {
+  fill: red;
 }

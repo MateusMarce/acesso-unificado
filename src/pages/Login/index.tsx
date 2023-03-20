@@ -72,8 +72,9 @@ export default function Login() {
                                             }
                                             <ErrorMessage name='user' component={'small'} className='invalid-feedback' />
                                         </div>
-                                        <div className="fv-row mb-3">
-                                            <Field type="password" placeholder="Password" name="password" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`}/>
+                                        <div className="fv-row mb-3 position-relative login-password">
+                                            <Field type="password" placeholder="Password" name="password" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`} />
+                                            <button className='password-control'></button>
                                             <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
                                         </div>
                                         <div className="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
