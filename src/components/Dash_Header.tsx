@@ -117,7 +117,8 @@ export default function Dash_Header() {
                             </button>              
                              
                              {/* MENU */}
-                            <div className=" fw-semibold py-4 fs-6 w-275px dropdown-menu dropdown-menu-end top-75 end-0" aria-labelledby="dropdownMenuButton1">
+                            <div className=" fw-semibold py-4 fs-6 w-275px dropdown-menu dropdown-menu-end top-100 end-0" aria-labelledby="dropdownMenuButton1">
+                                <div className="arrow"><i></i></div>
                                 <div className="menu-item px-3">
                                     <div className="menu-content d-flex align-items-center px-3">
                                         <div className="symbol symbol-50px me-5">

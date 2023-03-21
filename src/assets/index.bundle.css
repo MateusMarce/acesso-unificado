@@ -10,10 +10,56 @@
 :::::      xxx       data: 06/12/2022                 ::::: /*Atualização data: 06/12/2022
 :::::      xxx       fone: 48 9938.7996               ::::: /*Atualização data: 27/01/2023
 :::::    xxx                                          ::::: /*Atualização data: 31/01/2023
-:::::                                                 :::::
+:::::                                                 ::::: /*Atualização data: 21/03/2023
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 
-/*Inicio Jota dfgdf*/
+
+/*ATUALIZAÇÃO = 21/03/2023*/
+
+
+/*NEW AJUSTE AUTOMATICO DOS CARDS*/
+.cardAuto-1 .card .card-body .disabled {background-color: #5454540f!important;}
+.cardAuto-1 .card .card-body a {height: 166px;}
+.cardAuto-1 .card .card-body a .fig-card {}
+.cardAuto-1 .card .card-body a .tit-card {}
+.cardAuto-1 .card .card-body a .tit-card h3 {}
+.cardAuto-1 .card .card-body a .tit-card h4 {}
+
+.separaMoldeCards .row {}
+@media (max-width: 767px) {.card-body .col-J {display: none;}}
+@media (max-width: 1399px) {.disabled-Col {display: none;}}
+
+/*OLHINHO*/
+.password-control {position: absolute;top: 11px;right: 13px;display: inline-block;width: 21px;height: 21px;border: 0;background: url(./images/no-view.svg) 0 0 no-repeat;}
+.password-control.view {background: url(./images/view.svg) 0 0 no-repeat;}
+
+/*MENU mask DELAY*/
+.maskButton button {position: relative;}
+.maskButton button i {position: absolute;height: 20px;left: -6px;width: 50px;top: 40px;}
+
+.maskButton .dropdown-menu {} 
+.maskButton .dropdown-menu .arrow {
+    position: absolute;
+    top: -35px;
+    right: 0;
+    height: 50px;
+    width: 40px;
+    /* background-color: #fff; */
+}
+.maskButton .dropdown-menu .arrow i {
+    position: absolute;
+    top: 26px;
+    right: 15px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 10px solid #fff;
+}
+
+/*FIM NEWS*/
+
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -84,8 +130,6 @@
   --bs-code-color: #b93993;
   --bs-highlight-bg: #fff3cd;
 }
-
-
 
 .ico_Desenv {display: inline-block;}
 .frase_Desenv {font-size: 2rem;}
@@ -48956,21 +49000,6 @@ html:not([data-theme=dark]) {
   }
 }
 
-/*OLHINHO*/
-.password-control {
-  position: absolute;
-  top: 11px;
-  right: 13px;
-  display: inline-block;
-  width: 21px;
-  height: 21px;
-  border: 0;
-  background: url(./images/no-view.svg) 0 0 no-repeat;
-}
-.password-control.view {
-background: url(./images/view.svg) 0 0 no-repeat;
-}
-
 .my-wrapper {
   /* Wrapper */
 }
@@ -49016,3 +49045,7 @@ background: url(./images/view.svg) 0 0 no-repeat;
   display: block;
   
 }
+
+/*Teste anime*/
+.anima_J {background-color: red;animation-name: destaque;animation-duration: 0.5s;animation-iteration-count: infinite;}
+@keyframes destaque {0% {background-color: red;}50% {background-color: #FF7B22;}100% {background-color: red;}}
