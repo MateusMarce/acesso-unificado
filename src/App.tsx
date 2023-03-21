@@ -1,18 +1,10 @@
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import api from "./services/api";
 
 
 export default function App() {
-    const [cookies, setCookies, removeCookies] = useCookies(['login'])
-    const navigate = useNavigate()
-
-    useEffect(()=>{
-        if(!cookies.login) {
-            removeCookies('login')
-            navigate('/')
-        }
-    },[cookies])
 
     return (
         <>

@@ -25,3 +25,19 @@ export type ThemeContextType = {
     mode?:string;
     setMode?:Dispatch<SetStateAction<string>>
 }
+
+export type AcessosCardType = {
+    i_usuario: number,
+    nome: string
+    e_mail: string
+    cpf: string
+    tipo: string
+    i_empresa: string
+    nome_empresa: string
+    access_token: string
+    background_color: string
+    icone: string
+    titulo1: string
+    titulo2: string
+    liberar_acesso: boolean
+}

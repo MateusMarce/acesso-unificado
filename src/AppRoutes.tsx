@@ -2,10 +2,28 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Suspense, lazy } from 'react'
 import App from "./App"
 import * as Page from "./pages"
+import { useCookies } from "react-cookie"
+import api from "./services/api"
 
 
 function AppRoutes() {
+	const [cookies, , removeCookie] = useCookies(['login', 'user'])
 
+	if (cookies.login && cookies.login.access_token) {
+		api.defaults.headers.common['Authorization'] = `${cookies.login.token_type} ${cookies.login.access_token}`
+	  }
+	  api.interceptors.response.use(res => res, (err) => {
+		if (err.response.status == 401 && err.response.config.url != '/auth/login') {
+		  removeCookie('login', {
+			path: '/'
+		  })
+		  removeCookie('user', {
+			path: '/'
+		  })
+		  window.location.href = '/'
+		}
+		return Promise.reject(err);
+	  });
 
 	return (
 		<BrowserRouter>

@@ -1,8 +1,28 @@
 import LogoSatc2 from '../assets/images/logo_satc_2.svg'
 import Avatar from "../assets/images/avat_jota.jpg"
+import { useTheme } from '../helpers/ThemeContext'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
+import FixName from '../helpers/FixName'
+import { Link } from 'react-router-dom'
 
 export default function Dash_Header() {
+    const {mode, setMode} = useTheme()
+    const [cookie, setCookie, removeCookie] = useCookies(['theme', 'login', 'user'])
+    const navigate = useNavigate()
 
+    const handleTheme = (theme:string) => {
+        document.body.setAttribute('data-theme', theme)
+        setCookie('theme', theme)
+        if(setMode) setMode(theme)
+    }
+
+    const handleLogout = async () => {
+        // await api.post('/auth/logout')
+        removeCookie('login')
+        removeCookie('user')
+        navigate('/')
+    }
 
     return (
         <div id="kt_app_header" className="app-header">
@@ -29,10 +49,10 @@ export default function Dash_Header() {
                             {/* NAV MENU */}
                             <div className="menu menu-rounded menu-active-bg menu-state-primary menu-column menu-lg-row menu-title-gray-700 menu-icon-gray-700 menu-arrow-gray-700 menu-bullet-gray-700 my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
                                 <div className="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
-                                    <a className="menu-link py-3" href="home.php">
+                                    <Link className="menu-link py-3" to='/painel'>
                                         <span className="menu-title">Home</span>
                                         <span className="menu-arrow d-lg-none"></span>
-                                    </a>
+                                    </Link>
                                 </div>
                                 {/* <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" className="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                                     <span className="menu-link py-3">
@@ -83,14 +103,14 @@ export default function Dash_Header() {
                             </div>
                         </div>
                     </div>
-                    <div className="app-navbar flex-shrink-0">
+                    <div className="app-navbar flex-shrink-0 maskButton">
 
                         {/* USER INTERFACE */}
                         <div className="app-navbar-item ms-3 dropdown position-relative">
                             {/* USER */}
                             <div className="text-end d-none d-sm-flex flex-column justify-content-center me-3">
-                                <a href="../demo9/pages/user-profile/overview.html" className="text-white text-hover-primary fs-6 fw-bold">João Carlos</a>
-                                <span className="text-gray-600 fs-7 fw-semibold d-block">joao.rodrigues@satc.edu.br</span>
+                                <a href="../demo9/pages/user-profile/overview.html" className="text-white text-hover-primary fs-6 fw-bold">{FixName(cookie.user.nome)}</a>
+                                <span className="text-gray-600 fs-7 fw-semibold d-block">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                             </div>
                             <button type='button' className="cursor-pointer symbol symbol-35px symbol-md-40px p-0 border-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
                                 <img src={Avatar} alt="user" />
@@ -133,7 +153,8 @@ export default function Dash_Header() {
                         <div className="app-navbar-item ms-3 dropdown">
                             {/* BOTAO */}
                             <button type='button' className="btn btn-icon btn-icon-white btn-active-color-primary btn-custom w-35px h-35px w-md-40px h-md-40px" data-bs-toggle='dropdown' id="dropdownMenuButton2" aria-expanded="false">
-                                <span className="svg-icon theme-light-show svg-icon-2">
+                                {mode === 'light' ?
+                                <span className="svg-icon svg-icon-2">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M11.9905 5.62598C10.7293 5.62574 9.49646 5.9995 8.44775 6.69997C7.39903 7.40045 6.58159 8.39619 6.09881 9.56126C5.61603 10.7263 5.48958 12.0084 5.73547 13.2453C5.98135 14.4823 6.58852 15.6185 7.48019 16.5104C8.37186 17.4022 9.50798 18.0096 10.7449 18.2557C11.9818 18.5019 13.2639 18.3757 14.429 17.8931C15.5942 17.4106 16.5901 16.5933 17.2908 15.5448C17.9915 14.4962 18.3655 13.2634 18.3655 12.0023C18.3637 10.3119 17.6916 8.69129 16.4964 7.49593C15.3013 6.30056 13.6808 5.62806 11.9905 5.62598Z" fill="currentColor" />
                                         <path d="M22.1258 10.8771H20.627C20.3286 10.8771 20.0424 10.9956 19.8314 11.2066C19.6204 11.4176 19.5018 11.7038 19.5018 12.0023C19.5018 12.3007 19.6204 12.5869 19.8314 12.7979C20.0424 13.0089 20.3286 13.1274 20.627 13.1274H22.1258C22.4242 13.1274 22.7104 13.0089 22.9214 12.7979C23.1324 12.5869 23.2509 12.3007 23.2509 12.0023C23.2509 11.7038 23.1324 11.4176 22.9214 11.2066C22.7104 10.9956 22.4242 10.8771 22.1258 10.8771Z" fill="currentColor" />
@@ -146,7 +167,8 @@ export default function Dash_Header() {
                                         <path d="M5.09541 6.69715C5.19979 6.8017 5.32374 6.88466 5.4602 6.94128C5.59665 6.9979 5.74292 7.02708 5.89065 7.02714C6.03839 7.0272 6.18469 6.99815 6.32119 6.94164C6.45769 6.88514 6.58171 6.80228 6.68618 6.69782C6.79064 6.59336 6.87349 6.46933 6.93 6.33283C6.9865 6.19633 7.01556 6.05003 7.01549 5.9023C7.01543 5.75457 6.98625 5.60829 6.92963 5.47184C6.87301 5.33539 6.79005 5.21143 6.6855 5.10706L5.6247 4.04626C5.5204 3.94137 5.39643 3.8581 5.25989 3.80121C5.12335 3.74432 4.97692 3.71493 4.82901 3.71472C4.68109 3.71452 4.53458 3.7435 4.39789 3.80001C4.26119 3.85652 4.13699 3.93945 4.03239 4.04404C3.9278 4.14864 3.84487 4.27284 3.78836 4.40954C3.73185 4.54624 3.70287 4.69274 3.70308 4.84066C3.70329 4.98858 3.73268 5.135 3.78957 5.27154C3.84646 5.40808 3.92974 5.53205 4.03462 5.63635L5.09541 6.69715Z" fill="currentColor" />
                                     </svg>
                                 </span>
-                                <span className="svg-icon theme-dark-show svg-icon-2">
+                                :
+                                <span className="svg-icon svg-icon-2">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M19.0647 5.43757C19.3421 5.43757 19.567 5.21271 19.567 4.93534C19.567 4.65796 19.3421 4.43311 19.0647 4.43311C18.7874 4.43311 18.5625 4.65796 18.5625 4.93534C18.5625 5.21271 18.7874 5.43757 19.0647 5.43757Z" fill="currentColor" />
                                         <path d="M20.0692 9.48884C20.3466 9.48884 20.5714 9.26398 20.5714 8.98661C20.5714 8.70923 20.3466 8.48438 20.0692 8.48438C19.7918 8.48438 19.567 8.70923 19.567 8.98661C19.567 9.26398 19.7918 9.48884 20.0692 9.48884Z" fill="currentColor" />
@@ -154,12 +176,13 @@ export default function Dash_Header() {
                                         <path d="M13.0379 7.47998C13.8688 7.47998 14.5446 8.15585 14.5446 8.98668C14.5446 9.26428 14.7693 9.48891 15.0469 9.48891C15.3245 9.48891 15.5491 9.26428 15.5491 8.98668C15.5491 8.15585 16.225 7.47998 17.0558 7.47998C17.3334 7.47998 17.558 7.25535 17.558 6.97775C17.558 6.70015 17.3334 6.47552 17.0558 6.47552C16.225 6.47552 15.5491 5.76616 15.5491 4.93534C15.5491 4.65774 15.3245 4.43311 15.0469 4.43311C14.7693 4.43311 14.5446 4.65774 14.5446 4.93534C14.5446 5.76616 13.8688 6.47552 13.0379 6.47552C12.7603 6.47552 12.5357 6.70015 12.5357 6.97775C12.5357 7.25535 12.7603 7.47998 13.0379 7.47998Z" fill="currentColor" />
                                     </svg>
                                 </span>
+                                }
                             </button>
                             {/* MENU */}
                             <div className="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-muted menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px dropdown-menu dropdown-menu-end top-75 end-0" aria-labelledby="dropdownMenuButton1">
                                 <div className="menu-item px-3 my-0">
-                                    <button type='button' className="menu-link px-3 py-2 btn w-100">
-                                        <span className="menu-icon" data-kt-element="icon">
+                                    <button type='button' onClick={()=>handleTheme('light')} className="menu-link px-3 py-2 btn w-100">
+                                        <span className="menu-icon">
                                             <span className="svg-icon svg-icon-3">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M11.9905 5.62598C10.7293 5.62574 9.49646 5.9995 8.44775 6.69997C7.39903 7.40045 6.58159 8.39619 6.09881 9.56126C5.61603 10.7263 5.48958 12.0084 5.73547 13.2453C5.98135 14.4823 6.58852 15.6185 7.48019 16.5104C8.37186 17.4022 9.50798 18.0096 10.7449 18.2557C11.9818 18.5019 13.2639 18.3757 14.429 17.8931C15.5942 17.4106 16.5901 16.5933 17.2908 15.5448C17.9915 14.4962 18.3655 13.2634 18.3655 12.0023C18.3637 10.3119 17.6916 8.69129 16.4964 7.49593C15.3013 6.30056 13.6808 5.62806 11.9905 5.62598Z" fill="currentColor" />
@@ -178,8 +201,8 @@ export default function Dash_Header() {
                                     </button>
                                 </div>
                                 <div className="menu-item px-3 my-0">
-                                    <button className="menu-link px-3 py-2 btn w-100">
-                                        <span className="menu-icon" data-kt-element="icon">
+                                    <button type='button' onClick={()=>handleTheme('dark')} className="menu-link px-3 py-2 btn w-100">
+                                        <span className="menu-icon" >
                                             <span className="svg-icon svg-icon-3">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M19.0647 5.43757C19.3421 5.43757 19.567 5.21271 19.567 4.93534C19.567 4.65796 19.3421 4.43311 19.0647 4.43311C18.7874 4.43311 18.5625 4.65796 18.5625 4.93534C18.5625 5.21271 18.7874 5.43757 19.0647 5.43757Z" fill="currentColor" />
@@ -196,7 +219,7 @@ export default function Dash_Header() {
                         </div>
 
                         <div className="app-navbar-item ms-3">
-                            <button type='button' className="btn btn-icon btn-icon-white btn-active-color-primary btn-custom w-35px h-35px w-md-40px h-md-40px">
+                            <button type='button' onClick={handleLogout} className="btn btn-icon btn-icon-white btn-active-color-primary btn-custom w-35px h-35px w-md-40px h-md-40px">
                                 <span className="svg-icon svg-icon-1">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect opacity="0.3" width="12" height="2" rx="1" transform="matrix(-1 0 0 1 15.5 11)" fill="currentColor" />

@@ -1,22 +1,40 @@
-import { useCookies } from "react-cookie"
 import Dash_Header from "../../components/Dash_Header"
 import Dash_HeaderSecondary from "../../components/Dash_HeaderSecondary"
-import { useTheme } from "../../helpers/ThemeContext"
 
 import Dash_Footer from "../../components/Dash_Footer"
 import Dash_Card from "../../components/Dash_Card"
 import Dash_Slide from "../../components/Dash_Slide"
+import { useCookies } from "react-cookie"
+import { useEffect, useState } from "react"
+import api from "../../services/api"
+import { AcessosCardType } from "../../assets/types/type"
 
 export default function Dashboard() {
-    const {mode, setMode} = useTheme()
-    const [cookie, setCookie] = useCookies(['theme'])
+    const [cookies, setCookies] = useCookies(['user'])
+    const [acessos, setAcessos] = useState([] as AcessosCardType[])
 
-    const handleTheme = () => {
-        document.body.setAttribute('data-theme', mode === 'light' ? 'dark' : 'light')
-        setCookie('theme', mode === 'light' ? 'dark' : 'light')
-        if(setMode) setMode(mode === 'light' ? 'dark' : 'light')
-    }
-    return (
+    useEffect(()=>{
+        if(!cookies.user){
+            (async()=>{
+                try {
+                    let res = await api.get('/user/me')
+                    setCookies('user', res.data)
+                } catch (error) {
+                    
+                }
+            })()
+        }
+            (async()=>{
+                try {
+                    let res = await api.get('/user/acessos')
+                    setAcessos(res.data)
+                } catch (error) {
+                    
+                }
+            })()
+    },[])
+
+    return cookies.user && (
         <div className="d-flex flex-column flex-root app-root h-100" id="kt_app_root" >
 			<div className="app-page flex-column flex-column-fluid" id="kt_app_page">
                 <Dash_Header />  
@@ -37,7 +55,10 @@ export default function Dashboard() {
                                                 <div className="row g-5 g-lg-9">
 
                                                     {/* CARD */}
-                                                    <Dash_Card />
+                                                    {acessos.map((i:AcessosCardType, k:number)=>{
+
+                                                        return <Dash_Card item={i} k={k} />
+                                                    })}
 
                                                 </div>
                                             </div>

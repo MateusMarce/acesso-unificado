@@ -1,14 +1,15 @@
+import { Link } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
 import { FormikHelpers, FormikProps, FormikValues } from 'formik/dist/types'
+import * as Yup from 'yup'
+
+import { CadastroType } from '../../assets/types/type'
 import { Login_LeftBanner } from '../../components/Login_LeftBanner'
+import ChangePassword from '../../components/Buttons/ChangePassword'
 import CpfField from '../../components/Fields/CpfField'
 import EmailField from '../../components/Fields/EmailField'
-import api from '../../services/api'
 import validateRequest from '../../helpers/validateRequest'
-import { Link } from 'react-router-dom'
-import { CadastroType } from '../../assets/types/type'
-import ChangePassword from '../../components/Buttons/ChangePassword'
+import api from '../../services/api'
 
 const Schema = Yup.object().shape({
     cpf: Yup.string().required('Este campo é obrigatório.'),
@@ -34,6 +35,18 @@ export default function Cadastro() {
             
         }
         action.setSubmitting(false)
+    }
+    const handleChange =async (value:any, setFieldValue:any) => {
+        let cpf = value.replaceAll('.','').replace('-','')
+        setFieldValue('cpf', cpf)
+        try {
+            if(cpf.length === 11){
+                let res = await api.get(`/cadastro/checkcpf?cpf=${cpf}`)
+                validateRequest(res.data)
+            }
+        } catch (error) {
+            validateRequest(error)
+        }
     }
     
     return (
@@ -67,7 +80,7 @@ export default function Cadastro() {
                                             <span className="w-175px text-gray-700 fw-semibold fs-7">Ou insira os dados</span>
                                         </div>
                                         <div className="fv-row mb-3">
-                                            <CpfField autoFocus={false} type="text" value={props.values.cpf} placeholder="CPF" name="cpf" autoComplete='off' className={`form-control bg-transparent ${props.errors.cpf && props.touched.cpf ? 'is-invalid' : ''}`}/> 
+                                            <CpfField autoFocus={false} onChange={(t:any)=>handleChange(t.target.value, props.setFieldValue)} type="text" value={props.values.cpf} placeholder="CPF" name="cpf" autoComplete='off' className={`form-control bg-transparent ${props.errors.cpf && props.touched.cpf ? 'is-invalid' : ''}`}/> 
                                             <ErrorMessage name='cpf' component={'small'} className='invalid-feedback' />
                                         </div>
                                         <div className="fv-row mb-3">

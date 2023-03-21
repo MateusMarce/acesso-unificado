@@ -16,7 +16,7 @@ export default function validateRequest(props:any) {
                 toast.info(props.response.data.error, {autoClose:4000, pauseOnFocusLoss:false, pauseOnHover:false, theme:theme==='light'?'light':'dark'})
                 break;
             case 422:
-                toast.error('Preencha todos os dados!', {autoClose:3000, pauseOnFocusLoss:false, pauseOnHover:false, theme:theme==='light'?'light':'dark'})
+                toast.error(props.response.data.error, {autoClose:3000, pauseOnFocusLoss:false, pauseOnHover:false, theme:theme==='light'?'light':'dark'})
                 break;
             case 500:
                 toast.error('Ocorreu um erro por parte do servidor!', {autoClose:3000, pauseOnFocusLoss:false, pauseOnHover:false, theme:theme==='light'?'light':'dark'})
