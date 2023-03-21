@@ -117,16 +117,16 @@ export default function Dash_Header() {
                             </button>              
                              
                              {/* MENU */}
-                            <div className=" fw-semibold py-4 fs-6 w-275px dropdown-menu dropdown-menu-end top-75 end-0" aria-labelledby="dropdownMenuButton1">
+                            <div className=" fw-semibold py-4 fs-6 w-auto dropdown-menu dropdown-menu-end top-75 end-0" aria-labelledby="dropdownMenuButton1">
                                 <div className="menu-item px-3">
                                     <div className="menu-content d-flex align-items-center px-3">
                                         <div className="symbol symbol-50px me-5">
                                             <img alt="Logo" src={Avatar} />
                                         </div>
                                         <div className="d-flex flex-column">
-                                            <div className="fw-bold d-flex align-items-center fs-5">João Carlos
+                                            <div className="fw-bold d-flex align-items-center fs-5">{cookie.user.first_name}
                                             <span className="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Designer</span></div>
-                                            <a href="mailto:joao.rodrigues@satc.edu.br" className="fw-semibold text-muted text-hover-primary fs-7">joao.rodrigues@satc.edu.br</a>
+                                            <span className="fw-semibold text-muted fs-7">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -141,10 +141,6 @@ export default function Dash_Header() {
                                             <span className="badge badge-light-danger badge-circle fw-bold fs-7">2</span>
                                         </span>
                                     </a>
-                                </div>
-                                <div className="separator my-2"></div>
-                                <div className="menu-item px-5">
-                                    <a href="index.html" className="menu-link px-5">Sair</a>
                                 </div>
                             </div>
                         </div>
