@@ -47141,7 +47141,7 @@ a:hover {
 
 :root,
 [data-theme=light] {
-  --kt-app-bg-color: #FBF6F0;
+  --kt-app-bg-color: #ebebeb;
   --kt-app-blank-bg-color: #ffffff;
   --kt-app-header-sticky-bg-color: #ffffff;
   --kt-app-header-sticky-bg-color-mobile: #ffffff;
