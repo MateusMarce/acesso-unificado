@@ -40,9 +40,9 @@ export default function Dash_Header() {
                                     </svg>
                                 </span>
                             </button>
-                            <a href="index.html" className="d-flex align-items-center">
+                            <Link to='/' className="d-flex align-items-center">
                                 <img alt="Logo" src={LogoSatc2} className="h-45px" />
-                            </a>
+                            </Link>
                         </div>
 
                         <div className="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true" data-kt-swapper-mode="{default: 'append', lg: 'prepend'}" data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
@@ -219,6 +219,7 @@ export default function Dash_Header() {
                         </div>
 
                         <div className="app-navbar-item ms-3">
+                            {/* BOTAO SAIR */}
                             <button type='button' onClick={handleLogout} className="btn btn-icon btn-icon-white btn-active-color-primary btn-custom w-35px h-35px w-md-40px h-md-40px">
                                 <span className="svg-icon svg-icon-1">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -14,6 +14,7 @@ export default function Dashboard() {
     const [acessos, setAcessos] = useState([] as AcessosCardType[])
 
     useEffect(()=>{
+        // GET USUARIO LOGADO
         if(!cookies.user){
             (async()=>{
                 try {
@@ -24,23 +25,28 @@ export default function Dashboard() {
                 }
             })()
         }
-            (async()=>{
-                try {
-                    let res = await api.get('/user/acessos')
-                    setAcessos(res.data)
-                } catch (error) {
-                    
-                }
-            })()
+        
+        // GET CARDS
+        (async()=>{
+            try {
+                let res = await api.get('/user/acessos')
+                setAcessos(res.data)
+            } catch (error) {
+                
+            }
+        })()
     },[])
 
     return cookies.user && (
         <div className="d-flex flex-column flex-root app-root h-100" id="kt_app_root" >
+
+            {/* HEADER */}
 			<div className="app-page flex-column flex-column-fluid" id="kt_app_page">
                 <Dash_Header />  
                 <Dash_HeaderSecondary />
             </div>
 
+            {/* BODY */}
             <div className="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
                 <div className="app-container container-xxl d-flex flex-row flex-column-fluid">
                     <div className="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -55,18 +61,16 @@ export default function Dashboard() {
                                                 <div className="row g-5 g-lg-9">
 
                                                     {/* CARD */}
-                                                    {acessos.map((i:AcessosCardType, k:number)=>{
-
-                                                        return <Dash_Card item={i} k={k} />
-                                                    })}
+                                                    {acessos.map((i:AcessosCardType, k:number)=>(
+                                                        <Dash_Card item={i} k={k} key={k} />
+                                                    ))}
 
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
 
-                                    {/* SLIDE */}
+                                    {/* SLIDER */}
                                     <div className="col-xxl-6 mb-5 mb-xl-10">
                                         <Dash_Slide />
                                     </div>

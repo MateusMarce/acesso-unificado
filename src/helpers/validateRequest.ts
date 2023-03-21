@@ -2,7 +2,7 @@ import { toast } from 'react-toastify'
 
 export default function validateRequest(props:any) {
     const theme = document.body.getAttribute('data-theme')
-    if(props.status == 200) toast.success(props.data.message ? props.data.message : 'Conectado com sucesso!', {autoClose:3000, pauseOnFocusLoss:false, pauseOnHover:false, theme:theme==='light'?'light':'dark'})
+    if(props.status == 200) toast.success(props.data.message, {autoClose:3000, pauseOnFocusLoss:false, pauseOnHover:false, theme:theme==='light'?'light':'dark'})
 
     if(props.response) {
         switch (props.response.status) {

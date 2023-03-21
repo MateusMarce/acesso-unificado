@@ -18,7 +18,7 @@ const Schema = Yup.object().shape({
 })
 
 export default function Login() {
-    const [, setCookies] = useCookies(['login'])
+    const [cookies, setCookies] = useCookies(['login', 'user'])
     const navigate = useNavigate()
 
 
@@ -37,7 +37,7 @@ export default function Login() {
         //requisiçao
         try {
             let res = await api.post('/auth/login', value)
-            setCookies('login', res.data, {path:'/'})
+            setCookies('login', res.data.content, {path:'/'})
             navigate('/painel')
             validateRequest(res)
             
@@ -74,38 +74,51 @@ export default function Login() {
                                         </div>
                                         </div>
                                         <div className="separator separator-content my-14">
-                                            <span className="w-175px text-gray-700 fw-semibold fs-7">Ou insira os dados</span>
+                                            <span className="w-175px text-gray-700 fw-semibold fs-7">Ou {!cookies.login && !cookies.user ? "insira os dados" : "acesse o painel"}</span>
                                         </div>
-                                        <div className="fv-row mb-8">
-                                            {props.values.user && props.values.user.match(/[0-9]+/) ?
-                                                <CpfField autoFocus={true} type="text" value={props.values.user} placeholder="Email ou CPF" name="user" className={`form-control bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
-                                                :
-                                                // <Field type="text" placeholder="Email ou CPF" name="user" autoComplete='off' className={`form-control bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
-                                                <EmailField name='user' placeholder='E-mail ou CPF' onChange={(newValue:string)=>props.setFieldValue('user', newValue)}  values={props.values} errors={props.errors.user} touched={props.touched.user} setFieldValue={props.setFieldValue} />
-                                            }
-                                            <ErrorMessage name='user' component={'small'} className='invalid-feedback' />
-                                        </div>
-                                        <div className="fv-row mb-3 position-relative login-password">
-                                            {/* <Field type={passwordType} placeholder="Senha" name="password" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`} /> */}
-                                            <ChangePassword 
-                                                name='password'
-                                                placeholder='Senha'
-                                                errors={props.errors.password}
-                                                touched={props.touched.password}
-                                            />
-                                            <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
-                                        </div>
-                                        <div className="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
-                                            <div></div><Link to='/esqueceu-senha' className="link-success">Esqueceu a senha?</Link>
-                                        </div>   
+
+                                        {/* LOGIN FORM */}
+                                        {!cookies.login && !cookies.user &&
+                                            <>
+                                                <div className="fv-row mb-8">
+                                                    {props.values.user && props.values.user.match(/[0-9]+/) ?
+                                                        <CpfField autoFocus={true} type="text" value={props.values.user} placeholder="Email ou CPF" name="user" className={`form-control bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
+                                                        :
+                                                        // <Field type="text" placeholder="Email ou CPF" name="user" autoComplete='off' className={`form-control bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
+                                                        <EmailField name='user' placeholder='E-mail ou CPF' onChange={(newValue:string)=>props.setFieldValue('user', newValue)}  values={props.values} errors={props.errors.user} touched={props.touched.user} setFieldValue={props.setFieldValue} />
+                                                    }
+                                                    <ErrorMessage name='user' component={'small'} className='invalid-feedback' />
+                                                </div>
+                                                <div className="fv-row mb-3 position-relative login-password">
+                                                    {/* <Field type={passwordType} placeholder="Senha" name="password" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`} /> */}
+                                                    <ChangePassword 
+                                                        name='password'
+                                                        placeholder='Senha'
+                                                        errors={props.errors.password}
+                                                        touched={props.touched.password}
+                                                    />
+                                                    <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
+                                                </div>
+                                                <div className="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
+                                                    <div></div><Link to='/esqueceu-senha' className="link-success">Esqueceu a senha?</Link>
+                                                </div>
+                                            </>
+                                        }
                                         <div className="d-grid mb-10">
-                                            <button type="submit" id="kt_sign_in_submit" className="btn btn-success">
-                                                {props.isSubmitting ?
-                                                    <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                                    :
-                                                    <span className="indicator-label">Entrar</span>
-                                                }
-                                            </button>
+                                            {/* BUTTON */}
+                                            {cookies.login && cookies.user ?
+                                                <Link to='/painel' className="btn btn-success">
+                                                    Entrar
+                                                </Link>
+                                            :
+                                                <button type="submit" id="kt_sign_in_submit" className="btn btn-success">
+                                                    {props.isSubmitting ?
+                                                        <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                        :
+                                                        <span className="indicator-label">Entrar</span>
+                                                    }
+                                                </button>
+                                            }
                                         </div>
                                         <div className="text-gray-700 text-center fw-semibold fs-6"><a href="home.php" className="link-success">Política de Privacidade</a></div>
                                     </Form>
@@ -115,7 +128,7 @@ export default function Login() {
                         </div>
                     </div>      
                     <div className="d-flex flex-center flex-wrap px-5">
-                        <div className="text-gray-700 text-center fw-semibold fs-6">2023 &copy; <a href="#" className="link-success">TI SATC</a></div>
+                        <div className="text-gray-700 text-center fw-semibold fs-6 d-flex gap-1">2023 &copy; <div className="link-success m-0">TI SATC</div></div>
                     </div>
                 </div>
             </div>

@@ -48991,8 +48991,11 @@ background: url(./images/view.svg) 0 0 no-repeat;
   cursor: pointer;
 }
 
-.my-suggestion[data-active-email='true'] {
+[data-theme=light] .my-suggestion[data-active-email='true'] {
   background-color: aliceblue;
+}
+[data-theme=dark] .my-suggestion[data-active-email='true'] {
+  background-color: #212e48;
 }
 
 .my-suggestion:focus {

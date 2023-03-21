@@ -13,7 +13,8 @@ function AppRoutes() {
 		api.defaults.headers.common['Authorization'] = `${cookies.login.token_type} ${cookies.login.access_token}`
 	  }
 	  api.interceptors.response.use(res => res, (err) => {
-		if (err.response.status == 401 && err.response.config.url != '/auth/login') {
+		
+		if (err.response.status == 401 && err.response.config.url != '/user/me') {
 		  removeCookie('login', {
 			path: '/'
 		  })

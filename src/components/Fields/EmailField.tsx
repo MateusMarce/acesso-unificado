@@ -1,7 +1,9 @@
 import { Email } from "@smastrom/react-email-autocomplete";
 import { Field, useField } from "formik";
+import { useCookies } from "react-cookie";
 
 export default function EmailField(props: any) {
+    const [cookie] = useCookies(['theme'])
     const [field] = useField(props.name);
     const baseList = [
         'satc.edu.br',
@@ -11,9 +13,9 @@ export default function EmailField(props: any) {
     ]
     const myClassNames = {
         dropdown: 'dropdown-menu d-block w-100 top-100 position-absolute shadow-md',
-        suggestion: 'my-suggestion',
+        suggestion: `my-suggestion`,
         username: 'w-auto pe-0 text-gray-700',
-        domain: 'ps-0 fw-bold'
+        domain: 'ps-0 fw-bold text-gray-900'
       };
     
     return (
