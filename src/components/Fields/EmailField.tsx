@@ -15,7 +15,7 @@ export default function EmailField(props: any) {
         dropdown: 'dropdown-menu d-block w-100 top-100 position-absolute shadow-md',
         suggestion: `my-suggestion`,
         username: 'w-auto pe-0 text-gray-700',
-        domain: 'ps-0 fw-bold text-gray-900'
+        domain: 'ps-0 fw-bold text-gray-700'
       };
     
     return (
