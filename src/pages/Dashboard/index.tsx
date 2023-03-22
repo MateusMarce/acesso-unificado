@@ -19,7 +19,7 @@ export default function Dashboard() {
             (async()=>{
                 try {
                     let res = await api.get('/user/me')
-                    setCookies('user', res.data)
+                    setCookies('user', res.data, {path:'/'})
                 } catch (error) {
                     
                 }

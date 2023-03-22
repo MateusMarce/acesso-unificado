@@ -1,27 +1,39 @@
 import ColaboradorSvg from "../assets/images/colaborador-icon.svg"
 import { AcessosCardType } from "../assets/types/type"
+import api from "../services/api"
 
 type Function = {
     item: AcessosCardType
     k:number
 }
 
+
+
 export default function Dash_Card({item, k}:Function) {
 
+    const handleOpenLink = async (link:string, acesso:string) => {
 
+        try {
+            await api.post('/user/acesso', {
+                logs_acesso:acesso
+            })
+            window.open(link, '_self')
+        } catch (error) {
+            
+        }
+    }
 
     if(item.dropdown === 'false') {return (
         <div className="col-4 col-J cardAuto-1">
             <div className="card card-shadow">
                 <div className="card-body p-0">
-                    <a href={item.access_token} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color} cardButHover`}>
+                    <a onClick={()=>handleOpenLink(item.access_token, item.logs_acesso)} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color} cardButHover`}>
                         <span className="fig-card">
                             <img src={ColaboradorSvg} alt="" />
                         </span>
                         <div className="tit-card">
                             <h3>{item.titulo1}</h3>
                             <h4>{item.titulo2}</h4>
-                            <h4>{item.qtde_acessos}</h4>
                         </div>
                     </a>
                 </div>
@@ -55,7 +67,7 @@ export default function Dash_Card({item, k}:Function) {
                 </button>              
                 <ul className={`dropdown-menu dropdown-menu-top w-100 h-100 top-100 ${item.background_color}`} aria-labelledby="dropdownMenuButton1">
                     {item.logins?.map((i,k)=>(
-                        <li key={k}><a className="dropdown-item" href={i.access_token}>{i.nome_abrev}</a></li>
+                        <li key={k}><a className="dropdown-item" onClick={()=>handleOpenLink(i.access_token, i.logs_acesso)}>{i.nome_abrev}</a></li>
                     ))}
                 </ul>
             </div>

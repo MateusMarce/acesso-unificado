@@ -39,6 +39,7 @@ export type AcessosCardType = {
     icone: string
     titulo1: string
     titulo2: string
+    logs_acesso:string
     liberar_acesso: boolean
     qtde_acessos:number
     dropdown:string
