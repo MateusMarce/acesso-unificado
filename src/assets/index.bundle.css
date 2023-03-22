@@ -18,7 +18,109 @@
 
 
 /*teste*/
-.separaMoldeCards .card-body ul.dropdown-menu {top: 0!important;transform: inherit!important;}
+.separaMoldeCards .card-body ul.dropdown-menu {
+  top: 0px!important;transform: inherit!important;
+  padding: 0px;
+/*  animation-name: example;
+  animation-duration: 0.3s;*/
+}
+
+/*@keyframes example {
+  0%   {opacity: 0;}
+  100% {opacity: 1;}
+}
+0% {
+  opacity: 0;
+  transform: rotateX(-90deg);
+}
+50% {
+  transform: rotateX(-20deg);
+}
+100% {
+  opacity: 1;
+  transform: rotateX(0deg);
+}
+
+*/
+
+.separaMoldeCards .card-body ul.dropdown-menu {
+  perspective: 1000px;
+}
+
+.separaMoldeCards .card-body ul.dropdown-menu span li {
+  transform-origin: top center;
+  opacity: 0;
+}
+
+.separaMoldeCards .card-body ul.dropdown-menu span li:nth-child(1) {
+  animation-name: anime-2;
+  animation-duration: 300ms;
+  animation-delay: -150ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+.separaMoldeCards .card-body ul.dropdown-menu span li:nth-child(2) {
+  animation-name: anime-2;
+  animation-duration: 300ms;
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+.separaMoldeCards .card-body ul.dropdown-menu span li:nth-child(3) {
+  animation-name: anime-2;
+  animation-duration: 300ms;
+  animation-delay: 150ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes anime-2 {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+  50% {
+    transform: rotateX(-20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+
+
+.separaMoldeCards .card-body ul.dropdown-menu span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.separaMoldeCards .card-body ul.dropdown-menu span li {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.separaMoldeCards .card-body ul.dropdown-menu span li a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: #0000003b;
+    border: solid 1px;
+    border-color: #ffffff26;
+    -webkit-transition: all .4s ease-out;
+    -moz-transition: all .4s ease-out;
+    -ms-transition: all .4s ease-out;
+    -o-transition: all .4s ease-out;
+    transition: all .4s ease-out;
+}
+.separaMoldeCards .card-body ul.dropdown-menu span li a:hover {
+  background-color: #0000001a;
+}
 
 /*NEW AJUSTE AUTOMATICO DOS CARDS*/
 .cardAuto-1 .card .card-body .disabled {background-color: #5454540f!important;}
@@ -169,7 +271,7 @@
 .fig-card {}
 .fig-card img {width: 50px;}
 
-.cardlink-color-01 {background-color: #96bf47!important;}
+.cardlink-color-01 {background-color: #89c11e!important;}
 .cardlink-color-02 {background-color: #20ba8b!important;}
 .cardlink-color-03 {background-color: #3da7ee!important;}
 .cardlink-color-04 {background-color: #884dcd!important;}
