@@ -26,7 +26,7 @@
 .cardAuto-1 .card .card-body a .tit-card h4 {}
 
 .separaMoldeCards .row {}
-@media (max-width: 767px) {.card-body .col-J {display: none;}}
+@media (max-width: 767px) {.card-body .col-J {width:50%;}}
 @media (max-width: 1399px) {.disabled-Col {display: none;}}
 
 /*OLHINHO*/
@@ -40,21 +40,21 @@
 .maskButton .dropdown-menu {} 
 .maskButton .dropdown-menu .arrow {
     position: absolute;
-    top: -35px;
+    top: -20px;
     right: 0;
-    height: 50px;
+    height: 25px;
     width: 40px;
     /* background-color: #fff; */
 }
 .maskButton .dropdown-menu .arrow i {
     position: absolute;
-    top: 26px;
+    top: 10px;
     right: 15px;
     width: 0;
     height: 0;
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
-    border-bottom: 10px solid #fff;
+    border-bottom: 10px solid var(--kt-app-bg-color-arrow) !important;
 }
 
 /*FIM NEWS*/
@@ -47185,6 +47185,7 @@ a:hover {
 
 :root,
 [data-theme=light] {
+  --kt-app-bg-color-arrow: #fff;
   --kt-app-bg-color: #ebebeb;
   --kt-app-blank-bg-color: #ffffff;
   --kt-app-header-sticky-bg-color: #ffffff;
@@ -47197,6 +47198,7 @@ a:hover {
 }
 
 [data-theme=dark] {
+  --kt-app-bg-color-arrow: #1e1e2d;
   --kt-app-bg-color: #151521;
   --kt-app-blank-bg-color: #151521;
   --kt-app-header-sticky-bg-color: #1e1e2d;
@@ -49049,3 +49051,17 @@ html:not([data-theme=dark]) {
 /*Teste anime*/
 .anima_J {background-color: red;animation-name: destaque;animation-duration: 0.5s;animation-iteration-count: infinite;}
 @keyframes destaque {0% {background-color: red;}50% {background-color: #FF7B22;}100% {background-color: red;}}
+
+
+
+/*@media (min-width: 992px) {
+.app-header {
+    flex-direction: column;
+    height: calc(var(--kt-app-header-primary-height) + var(--kt-app-header-secondary-height, 0px));
+}
+}
+
+
+data-kt-app-header-stacked="true"
+
+*/

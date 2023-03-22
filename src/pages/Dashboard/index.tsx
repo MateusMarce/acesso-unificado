@@ -42,8 +42,10 @@ export default function Dashboard() {
 
             {/* HEADER */}
 			<div className="app-page flex-column flex-column-fluid" id="kt_app_page">
-                <Dash_Header />  
-                <Dash_HeaderSecondary />
+                <div id="kt_app_header" className="app-header">
+                    <Dash_Header />  
+                    <Dash_HeaderSecondary />
+                </div>
             </div>
 
             {/* BODY */}

@@ -25,7 +25,7 @@ export default function Dash_Header() {
     }
 
     return (
-        <div id="kt_app_header" className="app-header">
+
                     
             <div className="app-header-primary w-100" data-kt-sticky="true" data-kt-sticky-name="app-header-primary-sticky" data-kt-sticky-offset="{default: 'false', lg: '300px'}">
                 <div className="app-container container-xxl d-flex align-items-stretch justify-content-between">
@@ -109,7 +109,7 @@ export default function Dash_Header() {
                         <div className="app-navbar-item ms-3 dropdown position-relative">
                             {/* USER */}
                             <div className="text-end d-none d-sm-flex flex-column justify-content-center me-3">
-                                <a href="../demo9/pages/user-profile/overview.html" className="text-white text-hover-primary fs-6 fw-bold">{FixName(cookie.user.nome)}</a>
+                                <a href="#" className="text-white text-hover-primary fs-6 fw-bold">{FixName(cookie.user.nome)}</a>
                                 <span className="text-gray-600 fs-7 fw-semibold d-block">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                             </div>
                             <button type='button' className="cursor-pointer symbol symbol-35px symbol-md-40px p-0 border-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
@@ -117,17 +117,17 @@ export default function Dash_Header() {
                             </button>              
                              
                              {/* MENU */}
-                            <div className=" fw-semibold py-4 fs-6 w-275px dropdown-menu dropdown-menu-end top-100 end-0" aria-labelledby="dropdownMenuButton1">
-                                <div className="arrow"><i></i></div>
+                            <div className=" fw-semibold py-4 fs-6 w-auto dropdown-menu dropdown-menu-end top-100 end-0" aria-labelledby="dropdownMenuButton1">
+                                <div className="arrow"><i></i></div>{/*seta*/}
                                 <div className="menu-item px-3">
                                     <div className="menu-content d-flex align-items-center px-3">
                                         <div className="symbol symbol-50px me-5">
                                             <img alt="Logo" src={Avatar} />
                                         </div>
                                         <div className="d-flex flex-column">
-                                            <div className="fw-bold d-flex align-items-center fs-5">João Carlos
+                                            <div className="fw-bold d-flex align-items-center fs-5">{cookie.user.first_name}
                                             <span className="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Designer</span></div>
-                                            <a href="mailto:joao.rodrigues@satc.edu.br" className="fw-semibold text-muted text-hover-primary fs-7">joao.rodrigues@satc.edu.br</a>
+                                            <span className="fw-semibold text-muted fs-7">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -142,10 +142,6 @@ export default function Dash_Header() {
                                             <span className="badge badge-light-danger badge-circle fw-bold fs-7">2</span>
                                         </span>
                                     </a>
-                                </div>
-                                <div className="separator my-2"></div>
-                                <div className="menu-item px-5">
-                                    <a href="index.html" className="menu-link px-5">Sair</a>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +176,8 @@ export default function Dash_Header() {
                                 }
                             </button>
                             {/* MENU */}
-                            <div className="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-muted menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px dropdown-menu dropdown-menu-end top-75 end-0" aria-labelledby="dropdownMenuButton1">
+                            <div className="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-muted menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px dropdown-menu dropdown-menu-end top-100 end-0" aria-labelledby="dropdownMenuButton1">
+                                <div className="arrow"><i></i></div>{/*seta*/}
                                 <div className="menu-item px-3 my-0">
                                     <button type='button' onClick={()=>handleTheme('light')} className="menu-link px-3 py-2 btn w-100">
                                         <span className="menu-icon">
@@ -234,6 +231,5 @@ export default function Dash_Header() {
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
