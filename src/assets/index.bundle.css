@@ -17,85 +17,57 @@
 /*ATUALIZAÇÃO = 21/03/2023*/
 
 
-/*teste*/
+/*Avatar de Login no Menu */
+.round-container {
+/*    width: 3rem!important;
+    height: 3rem;*/
+    border-radius: 19%!important;
+    margin: 8px 8px;
+    overflow: hidden;
+    border: solid 0px #565656;
+    position: relative;
+    filter: brightness(1.3) contrast(1.2);
+}
+
+.round-container.med-3 {width: 3rem;height: 3rem;}
+.round-container.med-4 {width: 4rem;height: 4rem;}
+.round-container.med-xl {width: 8rem;height: 8rem;}
+
+.round-container img {
+    width: initial;
+    max-width: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: inherit;
+}
+
+/*ANIMA CARD DROPDOWN*/
 .separaMoldeCards .card-body ul.dropdown-menu {
-  top: 0px!important;transform: inherit!important;
+  top: 0px!important;
+  transform: inherit!important;
   padding: 0px;
 /*  animation-name: example;
   animation-duration: 0.3s;*/
 }
-
-/*@keyframes example {
-  0%   {opacity: 0;}
-  100% {opacity: 1;}
-}
-0% {
-  opacity: 0;
-  transform: rotateX(-90deg);
-}
-50% {
-  transform: rotateX(-20deg);
-}
-100% {
-  opacity: 1;
-  transform: rotateX(0deg);
-}
-
-*/
-
-.separaMoldeCards .card-body ul.dropdown-menu {
-  perspective: 1000px;
-}
-
-.separaMoldeCards .card-body ul.dropdown-menu span li {
-  transform-origin: top center;
-  opacity: 0;
-}
-
-.separaMoldeCards .card-body ul.dropdown-menu span li:nth-child(1) {
-  animation-name: anime-2;
-  animation-duration: 300ms;
-  animation-delay: -150ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
-}
-.separaMoldeCards .card-body ul.dropdown-menu span li:nth-child(2) {
-  animation-name: anime-2;
-  animation-duration: 300ms;
-  animation-delay: 0ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
-}
-.separaMoldeCards .card-body ul.dropdown-menu span li:nth-child(3) {
-  animation-name: anime-2;
-  animation-duration: 300ms;
-  animation-delay: 150ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
-}
+.separaMoldeCards .card-body ul.dropdown-menu {perspective: 1000px;}
+.separaMoldeCards .card-body ul.dropdown-menu span li {transform-origin: top center;opacity: 0;}
+.separaMoldeCards .card-body ul.dropdown-menu span li:nth-child(1) {animation-name: anime-2;animation-duration: 300ms;animation-delay: -150ms;animation-fill-mode: forwards;animation-timing-function: ease-in-out;}
+.separaMoldeCards .card-body ul.dropdown-menu span li:nth-child(2) {animation-name: anime-2;animation-duration: 300ms;animation-delay: 0ms;animation-fill-mode: forwards;animation-timing-function: ease-in-out;}
+.separaMoldeCards .card-body ul.dropdown-menu span li:nth-child(3) {animation-name: anime-2;animation-duration: 300ms;animation-delay: 150ms;animation-fill-mode: forwards;animation-timing-function: ease-in-out;}
 
 @keyframes anime-2 {
-  0% {
-    opacity: 0;
-    transform: rotateX(-90deg);
-  }
-  50% {
-    transform: rotateX(-20deg);
-  }
-  100% {
-    opacity: 1;
-    transform: rotateX(0deg);
-  }
+  0% {opacity: 0;transform: rotateX(-90deg);}
+  50% {transform: rotateX(-20deg);}
+  100% {opacity: 1;transform: rotateX(0deg);}
 }
-
-
 .separaMoldeCards .card-body ul.dropdown-menu span {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
 }
-
 .separaMoldeCards .card-body ul.dropdown-menu span li {
     height: 100%;
     display: flex;

@@ -108,7 +108,7 @@ export default function Dash_Header() {
                                 <a href="#" className="text-white text-hover-primary fs-6 fw-bold">{FixName(cookie.user.nome)}</a>
                                 <span className="text-gray-600 fs-7 fw-semibold d-block">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                             </div>
-                            <button type='button' className="cursor-pointer symbol symbol-35px symbol-md-40px p-0 border-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
+                            <button type='button' className="cursor-pointer round-container med-3 p-0 border-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
                                 <img src={cookie.user.avatar} alt="user" />
                             </button>              
                              
@@ -117,7 +117,7 @@ export default function Dash_Header() {
                                 <div className="arrow"><i></i></div>{/*seta*/}
                                 <div className="menu-item px-3">
                                     <div className="menu-content d-flex align-items-center px-3">
-                                        <div className="symbol symbol-50px me-5">
+                                        <div className="round-container med-4 me-5">
                                         <img src={cookie.user.avatar} alt="user" />
                                         </div>
                                         <div className="d-flex flex-column">
