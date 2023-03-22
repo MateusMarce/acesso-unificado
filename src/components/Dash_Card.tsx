@@ -10,8 +10,7 @@ export default function Dash_Card({item, k}:Function) {
 
 
 
-
-    return (
+    if(item.dropdown === 'false') {return (
         <div className="col-4 col-J cardAuto-1">
             <div className="card card-shadow">
                 <div className="card-body p-0">
@@ -22,10 +21,45 @@ export default function Dash_Card({item, k}:Function) {
                         <div className="tit-card">
                             <h3>{item.titulo1}</h3>
                             <h4>{item.titulo2}</h4>
+                            <h4>{item.qtde_acessos}</h4>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
+    )} else return (
+        <div className="col-4 col-J cardAuto-1">
+            <div className="card card-shadow btn-group dropup">
+                {/* <button type="button" className="border-0 rounded card-body p-0" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
+                    <div className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color} cardButHover`}>
+                        <span className="fig-card">
+                            <img src={ColaboradorSvg} alt="" />
+                        </span>
+                        <div className="tit-card">
+                            <h3>{item.titulo1}</h3>
+                            <h4>{item.titulo2}</h4>
+                        </div>
+                    </div>
+                </button> */}
+                <button type='button' className="cursor-pointer symbol symbol-35px symbol-md-40px p-0 border-0 outline-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
+                    <div className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color} cardButHover`}>
+                        <span className="fig-card">
+                            <img src={ColaboradorSvg} alt="" />
+                        </span>
+                        <div className="tit-card">
+                            <h3>{item.titulo1}</h3>
+                            <h4>{item.titulo2}</h4>
+                            {/* <h4>{item.qtde_acessos}</h4> */}
+                        </div>
+                    </div>
+                </button>              
+                <ul className={`dropdown-menu dropdown-menu-top w-100 h-100 top-100 ${item.background_color}`} aria-labelledby="dropdownMenuButton1">
+                    {item.logins?.map((i,k)=>(
+                        <li key={k}><a className="dropdown-item" href={i.access_token}>{i.nome_abrev}</a></li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+
     )
 }
