@@ -8,8 +8,12 @@ import { useCookies } from "react-cookie"
 import { useEffect, useState } from "react"
 import api from "../../services/api"
 import { AcessosCardType } from "../../assets/types/type"
+import { Perfil_TopInfo } from "../../components/Perfil_TopInfo"
+import { Perfil_InfoForm } from "../../components/Perfil_InfoForm"
+import { Link } from "react-router-dom"
+import { Perfil_PasswordForm } from "../../components/Perfil_PasswordForm"
 
-export default function Dashboard() {
+export default function Perfil() {
     const [cookies, setCookies] = useCookies(['user'])
     const [acessos, setAcessos] = useState([] as AcessosCardType[])
 
@@ -52,32 +56,35 @@ export default function Dashboard() {
                 <div className="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
                     <div className="app-container container-xxl d-flex flex-row flex-column-fluid">
                         <div className="app-main flex-column flex-row-fluid" id="kt_app_main">
-                            <div className="d-flex flex-column flex-column-fluid">
-                                <div id="kt_app_content" className="app-content flex-column-fluid separaMoldeCards">
-                                    <div className="row g-5 g-xxl-10">
-                                        <div className="col-xxl-6 mb-xxl-10">
-                                            <div className="card card-reset mb-5 mb-xl-10">
-                                                <div className="card-body p-0">
-                                                    <div className="row g-5 g-lg-9">
-                                                        {/* CARD */}
-                                                        {acessos.map((i:AcessosCardType, k:number)=>(
-                                                            <Dash_Card item={i} k={k} key={k} />
-                                                        ))}
 
-                                                    </div>
-                                                </div>
+                            <div className="d-flex flex-column flex-column-fluid">          
+                                <div id="kt_app_toolbar" className="app-toolbar  py-3 py-lg-6 ">
+                                    <div className="d-flex flex-grow-1 flex-stack flex-wrap gap-2 mb-n10" id="kt_toolbar">
+                                        <div className="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
+                                            <h1 className="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Minha conta</h1>
+                                        </div>
+                                        <div className="d-flex align-items-center pt-4 pb-7 pt-lg-1 pb-lg-2">
+                                            <div>
+                                                <Link to='/painel' className="btn btn-sm btn-light" id="kt_drawer_chat_toggle">Voltar</Link>
                                             </div>
                                         </div>
-                                        {/* SLIDER */}
-                                        <div className="col-xxl-6 mb-5 mb-xl-10">
-                                            <Dash_Slide />
-                                        </div>
                                     </div>
+                                </div>
+
+                                <div id="kt_app_content" className="app-content flex-column-fluid ">
+                                    {/* INFORMACOES DO USUARIO COM BANNER */}
+                                    <Perfil_TopInfo />
+
+                                    {/* FORM DO USUARIO */}
+                                    <Perfil_InfoForm />
+
+                                    {/* FORM DA SENHA */}
+                                    <Perfil_PasswordForm />
                                 </div>
                             </div>
                         </div>
                     </div>
-    			</div>
+                </div>
             </div>
             <Dash_Footer />
 		</div>

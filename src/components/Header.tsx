@@ -129,7 +129,7 @@ export default function Dash_Header() {
                                 </div>
                                 <div className="separator my-2"></div>
                                 <div className="menu-item px-5">
-                                    <a href="minha_conta.php" className="menu-link px-5">Minha conta</a>
+                                    <Link to='/perfil' className="menu-link px-5">Minha conta</Link>
                                 </div>
                                 <div className="menu-item px-5">
                                     <a href="#" className="menu-link px-5">
