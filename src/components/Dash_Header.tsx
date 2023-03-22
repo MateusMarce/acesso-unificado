@@ -25,8 +25,7 @@ export default function Dash_Header() {
     }
 
     return (
-
-                    
+            /* ::::: MENU PRIMARY ::::: */
             <div className="app-header-primary w-100" data-kt-sticky="true" data-kt-sticky-name="app-header-primary-sticky" data-kt-sticky-offset="{default: 'false', lg: '300px'}">
                 <div className="app-container container-xxl d-flex align-items-stretch justify-content-between">
                     <div className="d-flex flex-grow-1 flex-lg-grow-0">
@@ -59,11 +58,9 @@ export default function Dash_Header() {
                                         <span className="menu-title">Central de Privacidade</span>
                                         <span className="menu-arrow d-lg-none"></span>
                                     </span>
-
                                     
                                     <div className="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-225px">
 
-                                        
                                         <div className="menu-item">
                                             <a className="menu-link py-3" href="#" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                                                 <span className="menu-icon">
@@ -78,7 +75,6 @@ export default function Dash_Header() {
                                             </a>
                                         </div>
 
-                                        
                                         <div className="menu-item">
                                             <a className="menu-link py-3" href="#" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                                                 <span className="menu-icon">
