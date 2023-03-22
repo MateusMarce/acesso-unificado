@@ -40,4 +40,13 @@ export type AcessosCardType = {
     titulo1: string
     titulo2: string
     liberar_acesso: boolean
+    qtde_acessos:number
+    dropdown:string
+    logins:[{
+        i_empresa: string
+        nome_empresa: string
+        nome_abrev: string
+        logs_acesso: string
+        access_token: string
+    }]
 }
