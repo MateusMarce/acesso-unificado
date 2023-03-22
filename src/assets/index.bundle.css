@@ -17,6 +17,9 @@
 /*ATUALIZAÇÃO = 21/03/2023*/
 
 
+/*teste*/
+.separaMoldeCards .card-body ul.dropdown-menu {top: 0!important;transform: inherit!important;}
+
 /*NEW AJUSTE AUTOMATICO DOS CARDS*/
 .cardAuto-1 .card .card-body .disabled {background-color: #5454540f!important;}
 .cardAuto-1 .card .card-body a {height: 166px;}

@@ -46,44 +46,39 @@ export default function Dashboard() {
                     <Dash_Header />  
                     <Dash_HeaderSecondary />
                 </div>
-            </div>
+            {/*</div>*/}
 
-            {/* BODY */}
-            <div className="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
-                <div className="app-container container-xxl d-flex flex-row flex-column-fluid">
-                    <div className="app-main flex-column flex-row-fluid" id="kt_app_main">
+                {/* BODY */}
+                <div className="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+                    <div className="app-container container-xxl d-flex flex-row flex-column-fluid">
+                        <div className="app-main flex-column flex-row-fluid" id="kt_app_main">
+                            <div className="d-flex flex-column flex-column-fluid">
+                                <div id="kt_app_content" className="app-content flex-column-fluid separaMoldeCards">
+                                    <div className="row g-5 g-xxl-10">
+                                        <div className="col-xxl-6 mb-xxl-10">
+                                            <div className="card card-reset mb-5 mb-xl-10">
+                                                <div className="card-body p-0">
+                                                    <div className="row g-5 g-lg-9">
+                                                        {/* CARD */}
+                                                        {acessos.map((i:AcessosCardType, k:number)=>(
+                                                            <Dash_Card item={i} k={k} key={k} />
+                                                        ))}
 
-                        <div className="d-flex flex-column flex-column-fluid">
-                            <div id="kt_app_content" className="app-content flex-column-fluid separaMoldeCards">
-
-                                <div className="row g-5 g-xxl-10">
-                                    <div className="col-xxl-6 mb-xxl-10">
-                                        <div className="card card-reset mb-5 mb-xl-10">
-                                            <div className="card-body p-0">
-                                                <div className="row g-5 g-lg-9">
-
-                                                    {/* CARD */}
-                                                    {acessos.map((i:AcessosCardType, k:number)=>(
-                                                        <Dash_Card item={i} k={k} key={k} />
-                                                    ))}
-
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    {/* SLIDER */}
-                                    <div className="col-xxl-6 mb-5 mb-xl-10">
-                                        <Dash_Slide />
+                                        {/* SLIDER */}
+                                        <div className="col-xxl-6 mb-5 mb-xl-10">
+                                            <Dash_Slide />
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
-                </div>
-			</div>
+    			</div>
+            </div>
             <Dash_Footer />
 		</div>
     )
