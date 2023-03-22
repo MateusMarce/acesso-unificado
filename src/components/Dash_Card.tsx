@@ -66,9 +66,11 @@ export default function Dash_Card({item, k}:Function) {
                     </div>
                 </button>              
                 <ul className={`dropdown-menu dropdown-menu-top w-100 h-100 top-100 ${item.background_color}`} aria-labelledby="dropdownMenuButton1">
+                    <span>
                     {item.logins?.map((i,k)=>(
                         <li key={k}><a className="dropdown-item" onClick={()=>handleOpenLink(i.access_token, i.logs_acesso)}>{i.nome_abrev}</a></li>
                     ))}
+                    </span>
                 </ul>
             </div>
         </div>
