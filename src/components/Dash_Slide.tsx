@@ -19,16 +19,16 @@ export default function Dash_Slide() {
 							<div className="carousel-caption d-none d-md-block">
 								<h4>23 de março de 2023</h4>
 								<h5>Bem-vindo ao Acesso Unificado</h5>
-								<h6>Esse será seu novo hub de acessos para todos os portais disponíveis.</h6>
+								<h6>Esse será seu novo hub de acessos para todos os portais disponíveis da sua conta.</h6>
 							</div>
 						</div>
 						<div className="carousel-item">
-							<img src={Slide2} className="d-block w-100" alt="..." />
+							<img src={Slide1} className="d-block w-100" alt="..." />
 							<div className="gradientPhoto"></div>
 							<div className="carousel-caption d-none d-md-block">
 								<h4>23 de março de 2023</h4>
-								<h5>Bem-vindo ao Acesso Unificado</h5>
-								<h6>Esse será seu novo hub de acessos para todos os portais disponíveis.</h6>
+								<h5>Chegou o acesso <i>All-in-one</i></h5>
+								<h6>Venha usufruir desse novo portal de acessos agora mesmo. <i>"Essa nova ferramenta vai facilitar seu dia a dia em 10 vezes." - Equipe TI SATC</i></h6>
 							</div>
 						</div>
 					</div>

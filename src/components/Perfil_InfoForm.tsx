@@ -1,6 +1,9 @@
-import { ErrorMessage, Field, Form, Formik } from "formik"
+import { ErrorMessage, Field, Form, Formik, FormikValues } from "formik"
 import { useCookies } from "react-cookie"
 import * as Yup from 'yup'
+import validateRequest from "../helpers/validateRequest"
+import api from "../services/api"
+import FoneField from "./Fields/FoneField"
 
 const FormSchema = Yup.object().shape({
     name:Yup.string().required('Este campo é obrigatório.'),
@@ -10,7 +13,20 @@ const FormSchema = Yup.object().shape({
 
 export const Perfil_InfoForm = () => {
     const [cookie] = useCookies(['user'])
-
+    
+    const handleSubmit = async (value:FormikValues) => {
+        const fone = value.telefone.replace('(','').replace(')','').replace('-','').replaceAll('_','').replace(' ','')
+        try {
+            let res = await api.post('/user/update', {
+                nome:value.nome,
+                email:value.email,
+                telefone:fone
+            })
+            validateRequest(res)
+        } catch (error) {
+            validateRequest(error)
+        }
+    }
     return (
         <div className="card mb-5 mb-xl-10 shadow-sm">
             <div className="card-header border-0">
@@ -27,7 +43,7 @@ export const Perfil_InfoForm = () => {
                     }}
                     enableReinitialize
                     validationSchema={FormSchema}
-                    onSubmit={()=>{}}
+                    onSubmit={handleSubmit}
                 >
                     {(props)=>(
                         <Form>
@@ -49,7 +65,8 @@ export const Perfil_InfoForm = () => {
                                 <div className="row">
                                     <label className="col-lg-4 col-form-label  fw-semibold fs-6">Telefone</label>
                                     <div className="col-lg-8 fv-row fv-plugins-icon-container">
-                                        <Field name='telefone' className={`form-control form-control-lg mb-3 mb-lg-0 ${(props.errors.telefone && props.touched.telefone) && 'is-invalid'}`} />
+                                        {/* <Field name='telefone' className={`form-control form-control-lg mb-3 mb-lg-0 ${(props.errors.telefone && props.touched.telefone) && 'is-invalid'}`} /> */}
+                                        <FoneField value={props.values.telefone} className={`form-control form-control-lg mb-3 mb-lg-0 ${(props.errors.telefone && props.touched.telefone) ? 'is-invalid' : ''}`} type="text" name="telefone" />
                                         <ErrorMessage name="telefone" component='small' className='invalid-feedback' />
                                     </div>
                                 </div>

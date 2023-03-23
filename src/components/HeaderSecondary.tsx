@@ -3,9 +3,10 @@ import EmailSvg from '../assets/images/email-icon.svg'
 import MsnSVG from '../assets/images/msn-icon.svg'
 import Nercu from '../assets/images/nercu-icon.svg'
 import Treinas from '../assets/images/treinas-icon.svg'
+import { useCookies } from 'react-cookie'
 
 export default function Dash_HeaderSecondary() {
-
+    const [cookies] = useCookies(['user'])
 
     return (
         <div className="app-header-secondary">
@@ -29,8 +30,12 @@ export default function Dash_HeaderSecondary() {
                         </div>
                     </div>
                     <div className="d-flex flex-stack">
-                        <a href="#" className="buti buticolor_1"><img src={Nercu} alt="" /></a>
-                        <a href="#" className="buti buticolor_1"><img src={Treinas} alt="" /></a>
+                        {(cookies.user.link_nercu != '' || cookies.user.link_treinas != '') &&
+                            <>
+                                <a href={cookies.user.link_nercu} className="buti buticolor_1"><img src={Nercu} alt="" /></a>
+                                <a href={cookies.user.link_treinas} target='_blank' className="buti buticolor_1"><img src={Treinas} alt="" /></a>
+                            </>
+                        }
                     </div>
                 </div>
             </div>

@@ -55,3 +55,8 @@ export type AcessosCardType = {
         access_token: string
     }]
 }
+
+export type DependentesType = {
+    i_aluno:number
+    nome:string
+}
