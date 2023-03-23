@@ -26,12 +26,12 @@
     overflow: hidden;
     border: solid 0px #565656;
     position: relative;
-    filter: brightness(1.3) contrast(1.2);
+    filter: brightness(1) contrast(1);
 }
 
 .round-container.med-3 {width: 3rem;height: 3rem;}
 .round-container.med-4 {width: 4rem;height: 4rem;}
-.round-container.med-xl {width: 8rem;height: 8rem;}
+.round-container.med-xl {width: 12rem;height: 12rem;}
 
 .round-container img {
     width: initial;

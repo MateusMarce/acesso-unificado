@@ -35,21 +35,21 @@ export const Perfil_InfoForm = () => {
                                 <div className="row mb-6">
                                     <label className="col-lg-4 col-form-label fw-semibold fs-6">Nome completo</label>
                                     <div className="col-lg-8 fv-row">
-                                        <Field name='name' className={`form-control form-control-lg form-control-solid mb-3 mb-lg-0 ${(props.errors.name && props.touched.name) && 'is-invalid'}`} />
+                                        <Field name='name' className={`form-control form-control-lg mb-3 mb-lg-0 ${(props.errors.name && props.touched.name) && 'is-invalid'}`} />
                                         <ErrorMessage name="name" component='small' className='invalid-feedback' />
                                     </div>
                                 </div>
                                 <div className="row mb-6">
                                     <label className="col-lg-4 col-form-label fw-semibold fs-6">E-mail</label>
                                     <div className="col-lg-8 fv-row">
-                                        <Field name='email' className={`form-control form-control-lg form-control-solid mb-3 mb-lg-0 ${(props.errors.email && props.touched.email) && 'is-invalid'}`} />
+                                        <Field name='email' className={`form-control form-control-lg mb-3 mb-lg-0 ${(props.errors.email && props.touched.email) && 'is-invalid'}`} />
                                         <ErrorMessage name="email" component='small' className='invalid-feedback' />
                                     </div>
                                 </div>
                                 <div className="row">
                                     <label className="col-lg-4 col-form-label  fw-semibold fs-6">Telefone</label>
                                     <div className="col-lg-8 fv-row fv-plugins-icon-container">
-                                        <Field name='telefone' className={`form-control form-control-lg form-control-solid mb-3 mb-lg-0 ${(props.errors.telefone && props.touched.telefone) && 'is-invalid'}`} />
+                                        <Field name='telefone' className={`form-control form-control-lg mb-3 mb-lg-0 ${(props.errors.telefone && props.touched.telefone) && 'is-invalid'}`} />
                                         <ErrorMessage name="telefone" component='small' className='invalid-feedback' />
                                     </div>
                                 </div>

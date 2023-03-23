@@ -17,18 +17,18 @@ export default function Dash_Slide() {
 							<img src={Slide2} className="d-block w-100" alt="..." />
 							<div className="gradientPhoto"></div>
 							<div className="carousel-caption d-none d-md-block">
-								<h4>16 de março de 2023</h4>
-								<h5>Lorem ipsum dolor sit amet</h5>
-								<h6>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
+								<h4>23 de março de 2023</h4>
+								<h5>Bem-vindo ao Acesso Unificado</h5>
+								<h6>Esse será seu novo hub de acessos para todos os portais disponíveis.</h6>
 							</div>
 						</div>
 						<div className="carousel-item">
-							<img src={Slide1} className="d-block w-100" alt="..." />
+							<img src={Slide2} className="d-block w-100" alt="..." />
 							<div className="gradientPhoto"></div>
 							<div className="carousel-caption d-none d-md-block">
-								<h4>16 de março de 2023</h4>
-								<h5>Lorem ipsum dolor sit amet</h5>
-								<h6>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
+								<h4>23 de março de 2023</h4>
+								<h5>Bem-vindo ao Acesso Unificado</h5>
+								<h6>Esse será seu novo hub de acessos para todos os portais disponíveis.</h6>
 							</div>
 						</div>
 					</div>

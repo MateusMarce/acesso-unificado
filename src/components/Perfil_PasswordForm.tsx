@@ -33,30 +33,39 @@ export const Perfil_PasswordForm = () => {
                     {(props)=>(
                         <Form>
                             <div className="card-body border-top p-9">
-                                <div className="row mb-6">
+                                <div className="row mb-6 me-1">
                                     <label className="col-lg-4 col-form-label fw-semibold fs-6">Senha antiga</label>
-                                    <div className="col-lg-8 fv-row">
-                                        <Field name='senha_antiga' className={`form-control form-control-lg form-control-solid mb-3 mb-lg-0 ${(props.errors.senha_antiga && props.touched.senha_antiga) && 'is-invalid'}`} />
-                                        <ErrorMessage name="senha_antiga" component='small' className='invalid-feedback' />
+                                    <div className="pe-0 col-lg-8 position-relative login-password">
                                         <ChangePassword
                                             name='senha_antiga'
-                                            placeholder='Senha'
+                                            placeholder=''
                                             errors={props.errors.senha_antiga}
                                             touched={props.touched.senha_antiga}
                                         />
+                                        <ErrorMessage name="senha_antiga" component='small' className='invalid-feedback' />
                                     </div>
                                 </div>
-                                <div className="row mb-6">
+                                <div className="row mb-6 me-1">
                                     <label className="col-lg-4 col-form-label fw-semibold fs-6">Nova senha</label>
-                                    <div className="col-lg-8 fv-row">
-                                        <Field name='senha_nova' className={`form-control form-control-lg form-control-solid mb-3 mb-lg-0 ${(props.errors.senha_nova && props.touched.senha_nova) && 'is-invalid'}`} />
+                                    <div className="pe-0 col-lg-8 position-relative login-password">
+                                        <ChangePassword
+                                            name='senha_nova'
+                                            placeholder=''
+                                            errors={props.errors.senha_nova}
+                                            touched={props.touched.senha_nova}
+                                        />
                                         <ErrorMessage name="senha_nova" component='small' className='invalid-feedback' />
                                     </div>
                                 </div>
-                                <div className="row">
+                                <div className="row me-1">
                                     <label className="col-lg-4 col-form-label  fw-semibold fs-6">Confirmar senha</label>
-                                    <div className="col-lg-8 fv-row fv-plugins-icon-container">
-                                        <Field name='senha_nova_confirmar' className={`form-control form-control-lg form-control-solid mb-3 mb-lg-0 ${(props.errors.senha_nova_confirmar && props.touched.senha_nova_confirmar) && 'is-invalid'}`} />
+                                    <div className="pe-0 col-lg-8 position-relative login-password">
+                                        <ChangePassword
+                                            name='senha_nova_confirmar'
+                                            placeholder=''
+                                            errors={props.errors.senha_nova_confirmar}
+                                            touched={props.touched.senha_nova_confirmar}
+                                        />
                                         <ErrorMessage name="senha_nova_confirmar" component='small' className='invalid-feedback' />
                                     </div>
                                 </div>
