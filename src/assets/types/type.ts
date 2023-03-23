@@ -37,6 +37,7 @@ export type AcessosCardType = {
     cpf: string
     tipo: string
     i_empresa: string
+    classe:string
     nome_empresa: string
     access_token: string
     background_color: string
