@@ -89,6 +89,7 @@
     justify-content: center;
     font-size: 1.2rem;
     font-weight: 700;
+    color: white;
     background-color: #0000003b;
     border: solid 1px;
     border-color: #ffffff26;
@@ -48744,7 +48745,7 @@ body,
     background-color: var(--kt-app-aside-base-bg-color-mobile);
     box-shadow: var(--kt-app-aside-base-box-shadow-mobile);
     border-left: var(--kt-app-aside-base-border-start-mobile);
-    order-right: var(--kt-app-aside-base-border-end-mobile);
+    border-right: var(--kt-app-aside-base-border-end-mobile);
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 0px;
