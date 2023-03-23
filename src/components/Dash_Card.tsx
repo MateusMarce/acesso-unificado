@@ -34,7 +34,7 @@ export default function Dash_Card({item, k}:Function) {
                 <div className="card-body p-0">
                     <a onClick={()=>handleOpenLink(item.access_token, item.logs_acesso)} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
                         <span className="fig-card">
-                            <img src={`${window.location.origin}/src/assets/images/${item.icone}`} alt="" />
+                            <img src={`${window.location.origin}${window.location.pathname}assets/${item.icone}`} alt="" />
                         </span>
                         <div className="tit-card">
                             <h3>{item.titulo1}</h3>
