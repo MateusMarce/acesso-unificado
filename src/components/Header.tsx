@@ -40,7 +40,7 @@ export default function Dash_Header() {
                                     </svg>
                                 </span>
                             </button>
-                            <Link to='/' className="d-flex align-items-center">
+                            <Link to='/' className="d-flex align-items-center" title="Página inicial">
                                 <img alt="Logo" src={LogoSatc2} className="h-45px" />
                             </Link>
                         </div>
@@ -216,7 +216,7 @@ export default function Dash_Header() {
 
                         <div className="app-navbar-item ms-3">
                             {/* BOTAO SAIR */}
-                            <button type='button' onClick={handleLogout} className="btn btn-icon btn-icon-white btn-active-color-primary btn-custom w-35px h-35px w-md-40px h-md-40px">
+                            <button type='button' title="Sair" onClick={handleLogout} className="btn btn-icon btn-icon-white btn-active-color-primary btn-custom w-35px h-35px w-md-40px h-md-40px">
                                 <span className="svg-icon svg-icon-1">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect opacity="0.3" width="12" height="2" rx="1" transform="matrix(-1 0 0 1 15.5 11)" fill="currentColor" />

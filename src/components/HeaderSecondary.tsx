@@ -15,15 +15,15 @@ export default function Dash_HeaderSecondary() {
                     <div className="d-flex flex-stack me-5">
                         <span className="text-white fw-bold fs-5 me-3 me-lg-6">Canais:</span>
                         <div className="d-flex gap-1 gap-lg-2">
-                            <a href="ramais.php" className="custom-link rounded px-lg-4 py-lg-2 d-flex flex-center">
+                            <a href="#" className="custom-link rounded px-lg-4 py-lg-2 d-flex flex-center" title="Em desenvolvimento">
                                 <img src={FoneSvg} className="w-20px" alt="" />
                                 <span className="d-none d-lg-inline text-gray-600 fw-bold text-hover-primary fs-5 ps-3">Ramais</span>
                             </a>
-                            <a href="#" className="custom-link rounded px-lg-4 py-lg-2 d-flex flex-center">
+                            <a href="#" className="custom-link rounded px-lg-4 py-lg-2 d-flex flex-center" title="Em desenvolvimento">
                                 <img src={EmailSvg} className="w-20px" alt="" />
                                 <span className="d-none d-lg-inline text-gray-600 fw-bold text-hover-primary fs-5 ps-3">E-mail</span>
                             </a>
-                            <a href="#" className="custom-link rounded px-lg-4 py-lg-2 d-flex flex-center">
+                            <a href="#" className="custom-link rounded px-lg-4 py-lg-2 d-flex flex-center" title="Em desenvolvimento">
                                 <img src={MsnSVG} className="w-20px" alt="" />
                                 <span className="d-none d-lg-inline text-gray-600 fw-bold text-hover-primary fs-5 ps-3">Chat online</span>
                             </a>

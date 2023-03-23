@@ -104,7 +104,7 @@
 
 /*NEW AJUSTE AUTOMATICO DOS CARDS*/
 .cardAuto-1 .card .card-body .disabled {background-color: #5454540f!important;}
-.cardAuto-1 .card .card-body a {height: 166px;}
+.cardAuto-1 .card .card-body a {min-height: 156px;}
 .cardAuto-1 .card .card-body a .fig-card {}
 .cardAuto-1 .card .card-body a .tit-card {}
 .cardAuto-1 .card .card-body a .tit-card h3 {}
@@ -119,24 +119,8 @@
 .maskButton button i {position: absolute;height: 20px;left: -6px;width: 50px;top: 40px;}
 
 .maskButton .dropdown-menu {} 
-.maskButton .dropdown-menu .arrow {
-    position: absolute;
-    top: -20px;
-    right: 0;
-    height: 25px;
-    width: 40px;
-    /* background-color: #fff; */
-}
-.maskButton .dropdown-menu .arrow i {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    width: 0;
-    height: 0;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-bottom: 10px solid var(--kt-app-bg-color-arrow) !important;
-}
+.maskButton .dropdown-menu .arrow {position: absolute;top: -27px;right: 0;height: 29px;width: 100px;/* background-color: #fff; */}
+.maskButton .dropdown-menu .arrow i {position: absolute;top: 17px;right: 15px;width: 0;height: 0;border-left: 7px solid transparent;border-right: 7px solid transparent;border-bottom: 10px solid var(--kt-app-bg-color-arrow) !important;}
 
 /*FIM NEWS*/
 
@@ -28214,7 +28198,7 @@ textarea.form-control-lg {
   --kt-input-disabled-color: ;
   --kt-input-disabled-border-color: #E4E6EF;
   --kt-input-color: #5E6278;
-  --kt-input-border-color: #E4E6EF;
+  --kt-input-border-color: #92929254;  /*border campos*/
   --kt-input-focus-bg: #ffffff;
   --kt-input-focus-border-color: #B5B5C3;
   --kt-input-focus-color: #5E6278;
@@ -47264,7 +47248,7 @@ a:hover {
 [data-theme=light] {
   --kt-app-bg-color-arrow: #fff;
   --kt-app-bg-color: #ebebeb;
-  --kt-app-blank-bg-color: #ffffff;
+  --kt-app-blank-bg-color: #e9ecef;
   --kt-app-header-sticky-bg-color: #ffffff;
   --kt-app-header-sticky-bg-color-mobile: #ffffff;
   --kt-app-header-primary-base-bg-color: #181C32;
