@@ -12,9 +12,10 @@ type Function = {
 export default function Dash_Card({item, k}:Function) {
 
     const handleOpenLink = async (link:string, acesso:string) => {
-
+        console.log(link);
+        
         try {
-            if(item.access_token){
+            if(link){
                 await api.post('/user/acesso', {
                     logs_acesso:acesso
                 })
@@ -55,7 +56,7 @@ export default function Dash_Card({item, k}:Function) {
                         </div>
                     </div>
                 </button> */}
-                <button type='button' className="cursor-pointer symbol symbol-35px symbol-md-40px p-0 border-0 outline-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
+                <button type='button' className="cursor-pointer symbol symbol-35px symbol-md-40px p-0 border-0 outline-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="true">
                     <div className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
                         <span className="fig-card">
                             <img src={`${window.location.origin}/src/assets/images/${item.icone}`} alt="" />
