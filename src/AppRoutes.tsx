@@ -1,11 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { HashRouter as BrowserRouter, Route, Routes } from "react-router-dom"
 import { Suspense, lazy, useEffect } from 'react'
 import App from "./App"
 import * as Page from "./pages"
 import { useCookies } from "react-cookie"
 import api from "./services/api"
 
-
+console.log('jahbsdkjabhdasdsadadadadadas');
 function AppRoutes() {
 	const [cookies, , removeCookie] = useCookies(['login', 'user'])
 

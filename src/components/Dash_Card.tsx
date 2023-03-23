@@ -25,6 +25,8 @@ export default function Dash_Card({item, k}:Function) {
             
         }
     }
+    console.log(window.location);
+    
 
     if(item.dropdown === 'false') {return (
         <div className={`${item.classe} col-J cardAuto-1`}>
