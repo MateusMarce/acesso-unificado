@@ -55,7 +55,7 @@ export const Perfil_InfoForm = () => {
                                 </div>
                             </div>
                             <div className="card-footer d-flex justify-content-end py-6 px-9">
-                                <button type="submit" className="btn btn-primary" id="kt_account_profile_details_submit">Salvar Alterações</button>
+                                <button type="submit" className="btn btn-primary">Salvar Alterações</button>
                             </div>
                         </Form>
                     )}

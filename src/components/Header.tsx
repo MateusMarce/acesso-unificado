@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import FixName from '../helpers/FixName'
 import { Link } from 'react-router-dom'
+import Dash_Modal from './Dash_Modal'
 
 export default function Dash_Header() {
     const {mode, setMode} = useTheme()
@@ -25,7 +26,7 @@ export default function Dash_Header() {
     }
 
     return (
-            /* ::::: MENU PRIMARY ::::: */
+        <section>
             <div className="app-header-primary w-100" data-kt-sticky="true" data-kt-sticky-name="app-header-primary-sticky" data-kt-sticky-offset="{default: 'false', lg: '300px'}">
                 <div className="app-container container-xxl d-flex align-items-stretch justify-content-between">
                     <div className="d-flex flex-grow-1 flex-lg-grow-0">
@@ -92,7 +93,7 @@ export default function Dash_Header() {
                                 </div> */}
                                 <div className="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                                     <span className="menu-link py-3">
-                                        <span className="menu-title" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Ajuda</span>
+                                        <span className="menu-title" data-bs-toggle="modal" data-bs-target="#exampleModal">Ajuda</span>
                                         <span className="menu-arrow d-lg-none"></span>
                                     </span>
                                 </div>
@@ -228,5 +229,7 @@ export default function Dash_Header() {
                     </div>
                 </div>
             </div>
+            <Dash_Modal />
+        </section>
     )
 }

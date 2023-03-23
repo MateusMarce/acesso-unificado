@@ -25,6 +25,10 @@ export type ThemeContextType = {
     mode?:string;
     setMode?:Dispatch<SetStateAction<string>>
 }
+export type ModalContextType = {
+    show?:boolean;
+    setShow?:Dispatch<SetStateAction<boolean>>
+}
 
 export type AcessosCardType = {
     i_usuario: number,
