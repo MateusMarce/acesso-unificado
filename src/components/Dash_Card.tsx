@@ -24,7 +24,7 @@ export default function Dash_Card({item, k}:Function) {
     }
 
     if(item.dropdown === 'false') {return (
-        <div className="col-4 col-J cardAuto-1">
+        <div className={`${item.classe} col-J cardAuto-1`}>
             <div className="card card-shadow">
                 <div className="card-body p-0">
                     <a onClick={()=>handleOpenLink(item.access_token, item.logs_acesso)} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color} cardButHover`}>
@@ -40,7 +40,7 @@ export default function Dash_Card({item, k}:Function) {
             </div>
         </div>
     )} else return (
-        <div className="col-4 col-J cardAuto-1">
+        <div className={`${item.classe} col-J cardAuto-1`}>
             <div className="card card-shadow btn-group dropup">
                 {/* <button type="button" className="border-0 rounded card-body p-0" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
                     <div className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color} cardButHover`}>
