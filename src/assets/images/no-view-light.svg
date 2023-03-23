@@ -10,7 +10,7 @@
    viewBox="0 0 20 20"
    version="1.1"
    id="svg4"
-   sodipodi:docname="no-view.svg"
+   sodipodi:docname="no-view-light.svg"
    inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)">
   <metadata
      id="metadata10">
@@ -20,6 +20,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -49,6 +50,6 @@
      inkscape:document-rotation="0" />
   <path
      id="path875"
-     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#000000;stop-opacity:1;opacity:1"
+     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#000000;stop-opacity:1;opacity:1"
      d="M 18.105469 8.2226562 A 1.0124201 1.0124201 0 0 0 17.330078 8.6445312 C 15.021691 11.86097 12.723526 13.497961 10.457031 13.603516 C 8.1905367 13.709071 5.5901326 12.31715 2.6015625 8.6484375 A 1.0124201 1.0124201 0 0 0 1.1757812 8.5019531 A 1.0124201 1.0124201 0 0 0 1.03125 9.9257812 C 1.8308652 10.907374 2.6294022 11.763864 3.4257812 12.494141 L 2.0292969 13.855469 A 0.88586998 0.88586998 0 0 0 2.0136719 15.109375 A 0.88586998 0.88586998 0 0 0 3.2675781 15.125 L 4.8066406 13.623047 C 5.5492333 14.168431 6.2907949 14.612737 7.03125 14.935547 L 6.1523438 17.228516 A 0.88586998 0.88586998 0 0 0 6.6601562 18.373047 A 0.88586998 0.88586998 0 0 0 7.8046875 17.863281 L 8.7285156 15.458984 C 9.3365178 15.583495 9.9437541 15.655224 10.550781 15.626953 C 10.890414 15.611136 11.223701 15.562072 11.554688 15.5 L 12.421875 17.759766 A 0.88586998 0.88586998 0 0 0 13.566406 18.269531 A 0.88586998 0.88586998 0 0 0 14.076172 17.125 L 13.246094 14.962891 C 14.018429 14.625417 14.766734 14.164104 15.492188 13.589844 L 17.064453 15.125 A 0.88586998 0.88586998 0 0 0 18.318359 15.109375 A 0.88586998 0.88586998 0 0 0 18.302734 13.855469 L 16.814453 12.404297 C 17.557392 11.651767 18.278685 10.795853 18.974609 9.8261719 A 1.0124201 1.0124201 0 0 0 18.742188 8.4121094 A 1.0124201 1.0124201 0 0 0 18.189453 8.2226562 A 1.0124201 1.0124201 0 0 0 18.105469 8.2226562 z " />
 </svg>

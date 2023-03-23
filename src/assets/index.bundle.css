@@ -13,9 +13,16 @@
 :::::                                                 ::::: /*Atualização data: 21/03/2023
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 
-
 /*ATUALIZAÇÃO = 21/03/2023*/
 
+
+/*OLHINHO*/
+[data-theme=light] .password-control {position: absolute;top: 11px;right: 13px;display: inline-block;width: 21px;height: 21px;border: 0;background: url(./images/no-view.svg) 0 0 no-repeat;}
+[data-theme=light] .password-control.view {background: url(./images/view.svg) 0 0 no-repeat;}
+
+/*OLHINHO*/
+[data-theme=dark] .password-control {position: absolute;top: 11px;right: 13px;display: inline-block;width: 21px;height: 21px;border: 0;background: url(./images/no-view-light.svg) 0 0 no-repeat;}
+[data-theme=dark] .password-control.view {background: url(./images/view-light.svg) 0 0 no-repeat;}
 
 /*Avatar de Login no Menu */
 .round-container {
@@ -35,6 +42,7 @@
 
 .round-container img {
     width: initial;
+    border: 0!important;
     max-width: none;
     position: absolute;
     top: 0;
@@ -105,10 +113,6 @@
 .separaMoldeCards .row {}
 @media (max-width: 767px) {.card-body .col-J {width:50%;}}
 @media (max-width: 1399px) {.disabled-Col {display: none;}}
-
-/*OLHINHO*/
-.password-control {position: absolute;top: 11px;right: 13px;display: inline-block;width: 21px;height: 21px;border: 0;background: url(./images/no-view.svg) 0 0 no-repeat;}
-.password-control.view {background: url(./images/view.svg) 0 0 no-repeat;}
 
 /*MENU mask DELAY*/
 .maskButton button {position: relative;}
@@ -301,11 +305,7 @@
 }
 /*teste fim*/
 
-
-
-
 .posRelative {position: relative;}
-
 .cardAniver {max-height: 340px!important;}
 
 .buti {margin: 0 5px 0 5px;padding: 10px;border-radius: 4px;background: #ffffff0d;transition: all 0.3s;}
@@ -49141,4 +49141,12 @@ html:not([data-theme=dark]) {
 
 data-kt-app-header-stacked="true"
 
+*/
+
+/*
+ESTUDANDO AINDA...
+
+[data-theme=dark] {
+  --jc-view-light: background: url(./images/view-light.svg) 0 0 no-repeat;
+}
 */
