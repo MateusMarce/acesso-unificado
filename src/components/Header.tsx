@@ -131,14 +131,15 @@ export default function Dash_Header() {
                                 <div className="menu-item px-5">
                                     <Link to='/perfil' className="menu-link px-5">Minha conta</Link>
                                 </div>
-                                <div className="menu-item px-5">
+                                {/* NOTIFICACAO */}
+                                {/* <div className="menu-item px-5">
                                     <a href="#" className="menu-link px-5">
                                         <span className="menu-text">Notificações</span>
                                         <span className="menu-badge">
                                             <span className="badge badge-light-danger badge-circle fw-bold fs-7">2</span>
                                         </span>
                                     </a>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
