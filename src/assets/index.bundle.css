@@ -105,7 +105,7 @@
 
 /*NEW AJUSTE AUTOMATICO DOS CARDS*/
 .cardAuto-1 .card .card-body .disabled {background-color: #5454540f!important;}
-.cardAuto-1 .card .card-body a {min-height: 156px;}
+.cardAuto-1 .card .card-body a {min-height: 166px;}
 .cardAuto-1 .card .card-body a .fig-card {}
 .cardAuto-1 .card .card-body a .tit-card {}
 .cardAuto-1 .card .card-body a .tit-card h3 {}
