@@ -36,7 +36,7 @@ export default function Dash_Card({item, k}:Function) {
         <div className={`${item.classe} col-J cardAuto-1`}>
             <div className="card card-shadow">
                 <div className="card-body p-0 ">
-                    <a onClick={()=>handleOpenLink(item.access_token, item.logs_acesso)} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
+                    <a onClick={()=>handleOpenLink(item.access_token, item.logs_acesso)} className={`btn btn-active-color-primary p-11 text-start w-100 ${item.background_color}`}>
                         {loading &&
                             <div className="w-100 start-0 d-flex justify-content-center position-absolute" style={{zIndex:1}}>
                                 <img className="w-auto h-100" src={Gif} alt="" />
@@ -70,7 +70,7 @@ export default function Dash_Card({item, k}:Function) {
                     </div>
                 </button> */}
                 <button type='button' className="cursor-pointer symbol symbol-35px symbol-md-40px p-0 border-0 outline-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="true">
-                    <div className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
+                    <div className={`btn btn-active-color-primary p-11 text-start w-100 ${item.background_color}`}>
                         <span className="fig-card">
                             <img src={item.icone}  alt="" />
                         </span>

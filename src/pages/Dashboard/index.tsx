@@ -54,11 +54,11 @@ export default function Dashboard() {
                         <div className="app-main flex-column flex-row-fluid" id="kt_app_main">
                             <div className="d-flex flex-column flex-column-fluid">
                                 <div id="kt_app_content" className="app-content flex-column-fluid separaMoldeCards">
-                                    <div className="row g-5 g-xxl-10">
+                                    <div className="row g-3 g-xxl-12">
                                         <div className="col-xxl-6 mb-xxl-10">
                                             <div className="card card-reset mb-5 mb-xl-10">
                                                 <div className="card-body p-0">
-                                                    <div className="row g-5 g-lg-9">
+                                                    <div className="row g-3 g-lg-3">
                                                         {/* CARD */}
                                                         {acessos.map((i:AcessosCardType, k:number)=>(
                                                             <Dash_Card item={i} k={k} key={k} />

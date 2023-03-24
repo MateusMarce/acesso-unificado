@@ -12,9 +12,13 @@ export const Perfil_TopInfo = () => {
             </div>
             <div className="card-body mt-n19">
                 <div className="m-0">
-                    <div className="d-flex flex-stack align-items-end pb-4 mt-n19">
+                    <div className="d-flex flex-stack align-items-end pb-4 mt-n19 avatarPerfil">
+                        {/*<div className="round-container med-xl symbol-fixed position-relative mt-n3">
+                            <span className="inicialNome fs-md-5x">F</span>
+                        </div>*/}
                         <div className="round-container med-xl symbol-fixed position-relative mt-n3">
-                            <img src={cookies.user.avatar} alt="image" className="border border-white border-4" style={{borderRadius: 20}} />
+                            <span className="inicialNome fs-md-5x">F</span>
+                            <img src={cookies.user.avatar} alt="image" className="border border-white border-4"/>
                         </div>
                     </div>
                     <div className="d-flex flex-stack flex-wrap align-items-end">
@@ -22,9 +26,9 @@ export const Perfil_TopInfo = () => {
                             <div className="d-flex align-items-center mb-2">
                                 <div className="text-gray-800 fs-2 fw-bolder me-1">{FixName(cookies.user.nome)}</div> 
                             </div>
-                            <span className="fw-bold text-gray-600 fs-6 mb-2 d-block">
+                            {/*<span className="fw-bold text-gray-600 fs-6 mb-2 d-block">
                                 Equipe TI SATC
-                            </span>                      
+                            </span>*/}                      
                             <div className="d-flex align-items-center flex-wrap fw-semibold fs-7 pe-2">
                                 <a href={`mailto:${cookies.user.email}`} className="d-flex align-items-center text-primary text-hover-primary">
                                     {cookies.user.email}

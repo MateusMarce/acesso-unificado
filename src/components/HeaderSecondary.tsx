@@ -1,6 +1,6 @@
 import FoneSvg from '../assets/images/fone-icon.svg'
 import EmailSvg from '../assets/images/email-icon.svg'
-import MsnSVG from '../assets/images/msn-icon.svg'
+import MsnSVG from '../assets/images/icon-book.svg'
 import Nercu from '../assets/images/nercu-icon.svg'
 import Treinas from '../assets/images/treinas-icon.svg'
 import { useCookies } from 'react-cookie'
