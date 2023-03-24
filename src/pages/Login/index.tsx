@@ -18,7 +18,7 @@ const Schema = Yup.object().shape({
 })
 
 export default function Login() {
-    const [cookies, setCookies] = useCookies(['login', 'user'])
+    const [cookies, setCookies, removeCookies] = useCookies(['login', 'user'])
     const navigate = useNavigate()
 
 
@@ -47,6 +47,10 @@ export default function Login() {
         }
         
         action.setSubmitting(false)
+    }
+    const handleLogout = () => {
+        removeCookies('user')
+        removeCookies('login')
     }
     
     return (
@@ -107,9 +111,14 @@ export default function Login() {
                                         <div className="d-grid mb-10">
                                             {/* BUTTON */}
                                             {cookies.login && cookies.user ?
-                                                <Link to='/painel' className="btn btn-success">
-                                                    Entrar
-                                                </Link>
+                                                <>
+                                                    <Link to='/painel' className="btn btn-success mb-4">
+                                                        Entrar
+                                                    </Link>
+                                                    <button type='button' onClick={handleLogout} className="btn btn-light">
+                                                        Sair da conta
+                                                    </button>
+                                                </>
                                             :
                                                 <button type="submit" id="kt_sign_in_submit" className="btn btn-success">
                                                     {props.isSubmitting ?
@@ -120,7 +129,7 @@ export default function Login() {
                                                 </button>
                                             }
                                         </div>
-                                        <div className="text-gray-700 text-center fw-semibold fs-6"><a href="home.php" className="link-success">Política de Privacidade</a></div>
+                                        <div className="text-gray-700 text-center fw-semibold fs-6"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
                                     </Form>
                                 )}
 
@@ -128,7 +137,7 @@ export default function Login() {
                         </div>
                     </div>      
                     <div className="d-flex flex-center flex-wrap px-5">
-                        <div className="text-gray-700 text-center fw-semibold fs-6 d-flex gap-1">2023 &copy; <div className="link-success m-0">TI SATC</div></div>
+                        <div className="text-gray-700 text-center fw-semibold fs-6 d-flex gap-1">{new Date().getFullYear()} &copy; <div className="link-success m-0">TI SATC</div></div>
                     </div>
                 </div>
             </div>
