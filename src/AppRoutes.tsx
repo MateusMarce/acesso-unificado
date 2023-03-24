@@ -4,6 +4,7 @@ import App from "./App"
 import * as Page from "./pages"
 import { useCookies } from "react-cookie"
 import api from "./services/api"
+import { toast } from "react-toastify"
 
 function AppRoutes() {
 	const [cookies, , removeCookie] = useCookies(['login', 'user'])
@@ -13,15 +14,12 @@ function AppRoutes() {
 	}
 	useEffect(()=>{
 		api.interceptors.response.use(res => res, (err) => {
-			console.log(err);
+			console.log(err.response.config.url);
 			
-			if (err.response.status == 401 && err.response.config.url != '/user/me') {
-				removeCookie('login', {
-					path: '/'
-				})
-				removeCookie('user', {
-					path: '/'
-				})
+			if (err.response.status == 401 && err.response.config.url != '/auth/login' && err.response.config.url != '/user/me') {
+				removeCookie('login')
+				removeCookie('user')
+				toast.error('Sua sessão expirou.', {autoClose:2000})
 				window.location.href = '/'
 			}
 			return Promise.reject(err);

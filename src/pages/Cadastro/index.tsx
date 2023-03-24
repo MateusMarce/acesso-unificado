@@ -120,7 +120,7 @@ export default function Cadastro() {
                                                 }
                                             </button>
                                         </div>
-                                        <div className="text-gray-700 text-center fw-semibold fs-6"><a href="home.php" className="link-success">Política de Privacidade</a></div>
+                                        <div className="text-gray-700 text-center fw-semibold fs-6"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
                                     </Form>
                                 )}
 
@@ -128,7 +128,7 @@ export default function Cadastro() {
                         </div>
                     </div>      
                     <div className="d-flex flex-center flex-wrap px-5">
-                        <div className="text-gray-700 text-center fw-semibold fs-6">2023 &copy; <a href="#" className="link-success">TI SATC</a></div>
+                        <div className="text-gray-700 text-center fw-semibold fs-6">{new Date().getFullYear()} &copy; <a href="#" className="link-success">TI SATC</a></div>
                     </div>
                 </div>
             </div>

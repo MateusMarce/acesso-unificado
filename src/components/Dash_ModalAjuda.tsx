@@ -1,10 +1,10 @@
 import Icon from "../assets/images/ico_desenv.svg"
 
-export default function Dash_Modal() {
+export default function Dash_ModalAjuda() {
 
 
     return (
-        <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="modalAjuda" tabIndex={-1} aria-labelledby="modalAjuda" aria-hidden="true">
 			<div className="modal-dialog modal-dialog-centered mw-900px">
 				<div className="modal-content">
 					<div className="modal-header">

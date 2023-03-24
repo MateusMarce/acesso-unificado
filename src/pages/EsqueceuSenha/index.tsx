@@ -81,7 +81,7 @@ export default function EsqueceuSenha() {
                                                 }
                                             </button>
                                         </div>
-                                        <div className="text-gray-700 text-center fw-semibold fs-6"><a href="home.php" className="link-success">Política de Privacidade</a></div>
+                                        <div className="text-gray-700 text-center fw-semibold fs-6"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
                                     </Form>
                                 )}
 

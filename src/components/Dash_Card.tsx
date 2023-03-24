@@ -20,7 +20,7 @@ export default function Dash_Card({item, k}:Function) {
                 await api.post('/user/acesso', {
                     logs_acesso:acesso
                 })
-                window.open(link, '_target')
+                window.open(link, '_self')
                 
                 setTimeout(async()=>{
                     setLoading(false)

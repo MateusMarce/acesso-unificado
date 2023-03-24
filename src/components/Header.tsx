@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import FixName from '../helpers/FixName'
 import { Link } from 'react-router-dom'
-import Dash_Modal from './Dash_Modal'
+import Dash_ModalAjuda from './Dash_ModalAjuda'
 
 export default function Dash_Header() {
     const {mode, setMode} = useTheme()
@@ -91,9 +91,9 @@ export default function Dash_Header() {
                                         </div>
                                     </div>
                                 </div> */}
-                                <div className="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
+                                <div className="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2" data-bs-toggle="modal" data-bs-target="#modalAjuda">
                                     <span className="menu-link py-3">
-                                        <span className="menu-title" data-bs-toggle="modal" data-bs-target="#exampleModal">Ajuda</span>
+                                        <span className="menu-title" >Ajuda</span>
                                         <span className="menu-arrow d-lg-none"></span>
                                     </span>
                                 </div>
@@ -124,15 +124,15 @@ export default function Dash_Header() {
                                         <img src={cookie.user.avatar} alt="user" />
                                         </div>
                                         <div className="d-flex flex-column">
-                                            <div className="fw-bold d-flex align-items-center fs-5">{cookie.user.first_name}
-                                            <span className="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Designer</span></div>
+                                            <div className="fw-bold d-flex align-items-center fs-5">{cookie.user.first_name}</div>
+                                            {/* <span className="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Designer</span></div> */}
                                             <span className="fw-semibold text-muted fs-7">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="separator my-2"></div>
                                 <div className="menu-item px-5">
-                                    <Link to='/perfil' className="menu-link px-5">Minha conta</Link>
+                                    <Link to='/perfil' className="menu-link px-5">Meu perfil</Link>
                                 </div>
                                 {/* NOTIFICACAO */}
                                 {/* <div className="menu-item px-5">
@@ -231,7 +231,7 @@ export default function Dash_Header() {
                     </div>
                 </div>
             </div>
-            <Dash_Modal />
+            <Dash_ModalAjuda />
         </section>
     )
 }
