@@ -5,7 +5,6 @@ import * as Page from "./pages"
 import { useCookies } from "react-cookie"
 import api from "./services/api"
 
-console.log('jahbsdkjabhdasdsadadadadadas');
 function AppRoutes() {
 	const [cookies, , removeCookie] = useCookies(['login', 'user'])
 

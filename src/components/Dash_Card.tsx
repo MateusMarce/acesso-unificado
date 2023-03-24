@@ -1,6 +1,7 @@
-
+import { useState } from "react"
 import { AcessosCardType } from "../assets/types/type"
 import api from "../services/api"
+import Gif from "../assets/images/load_satc.gif"
 
 type Function = {
     item: AcessosCardType
@@ -10,16 +11,20 @@ type Function = {
 
 
 export default function Dash_Card({item, k}:Function) {
+    const [loading, setLoading] = useState<boolean>(false)
 
     const handleOpenLink = async (link:string, acesso:string) => {
-        console.log(link);
-        
+        setLoading(true)
         try {
             if(link){
                 await api.post('/user/acesso', {
                     logs_acesso:acesso
                 })
-                window.open(link, '_self')
+                window.open(link, '_target')
+                
+                setTimeout(async()=>{
+                    setLoading(false)
+                }, 1000)
             }
         } catch (error) {
             
@@ -30,14 +35,21 @@ export default function Dash_Card({item, k}:Function) {
     if(item.dropdown === 'false') {return (
         <div className={`${item.classe} col-J cardAuto-1`}>
             <div className="card card-shadow">
-                <div className="card-body p-0">
+                <div className="card-body p-0 ">
                     <a onClick={()=>handleOpenLink(item.access_token, item.logs_acesso)} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
-                        <span className="fig-card">
-                            <img src={item.icone} alt="" />
-                        </span>
-                        <div className="tit-card">
-                            <h3>{item.titulo1}</h3>
-                            <h4>{item.titulo2}</h4>
+                        {loading &&
+                            <div className="w-100 start-0 d-flex justify-content-center position-absolute" style={{zIndex:1}}>
+                                <img className="w-auto h-100" src={Gif} alt="" />
+                            </div>
+                        }
+                        <div className="loading-card">
+                            <span className="fig-card">
+                                <img src={item.icone} alt="" />
+                            </span>
+                            <div className="tit-card">
+                                <h3>{item.titulo1}</h3>
+                                <h4>{item.titulo2}</h4>
+                            </div>
                         </div>
                     </a>
                 </div>

@@ -10,9 +10,6 @@ import { CookiesProvider } from 'react-cookie'
 import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from './helpers/ThemeContext';
 
-console.log('jahbsdkjabhd');
-
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider>

@@ -49115,6 +49115,16 @@ html:not([data-theme=dark]) {
 @keyframes destaque {0% {background-color: red;}50% {background-color: #FF7B22;}100% {background-color: red;}}
 
 
+/* carregando card ao clicar */
+.card-body .loading-card {
+  filter: blur(0);
+  transition: filter ease-in-out 300ms;
+}
+.card-body div+.loading-card {
+  filter: blur(2px);
+  transition: filter ease-in-out 200ms;
+}
+
 
 /*@media (min-width: 992px) {
 .app-header {

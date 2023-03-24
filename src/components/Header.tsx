@@ -106,7 +106,7 @@ export default function Dash_Header() {
                         <div className="app-navbar-item ms-3 dropdown position-relative">
                             {/* USER */}
                             <div className="text-end d-none d-sm-flex flex-column justify-content-center me-3">
-                                <a href="#" className="text-white text-hover-primary fs-6 fw-bold">{FixName(cookie.user.nome)}</a>
+                                <Link to='/perfil' className="text-white text-hover-primary fs-6 fw-bold">{FixName(cookie.user.nome)}</Link>
                                 <span className="text-gray-600 fs-7 fw-semibold d-block">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                             </div>
                             <button type='button' className="cursor-pointer round-container med-3 p-0 border-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
@@ -193,7 +193,7 @@ export default function Dash_Header() {
                                                 </svg>
                                             </span>
                                         </span>
-                                        <span className="menu-title">Light</span>
+                                        <span className="menu-title">Claro</span>
                                     </button>
                                 </div>
                                 <div className="menu-item px-3 my-0">
@@ -208,7 +208,7 @@ export default function Dash_Header() {
                                                 </svg>
                                             </span>
                                         </span>
-                                        <span className="menu-title">Dark</span>
+                                        <span className="menu-title">Escuro</span>
                                     </button>
                                 </div>
                             </div>
