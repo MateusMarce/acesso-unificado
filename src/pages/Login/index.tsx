@@ -37,7 +37,7 @@ export default function Login() {
         //requisiçao
         try {
             let res = await api.post('/auth/login', value)
-            setCookies('login', res.data.content, {path:'/'})
+            setCookies('login', res.data.content)
             navigate('/painel')
             validateRequest(res)
             
