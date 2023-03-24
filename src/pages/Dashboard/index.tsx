@@ -13,6 +13,15 @@ export default function Dashboard() {
     const [cookies, setCookies] = useCookies(['user'])
     const [acessos, setAcessos] = useState([] as AcessosCardType[])
 
+    const getCards = async () => {
+        try {
+            let res = await api.get('/user/acessos')
+            setAcessos(res.data)
+        } catch (error) {
+            
+        }
+    }
+
     useEffect(()=>{
         // GET USUARIO LOGADO
         if(!cookies.user){
@@ -27,14 +36,8 @@ export default function Dashboard() {
         }
         
         // GET CARDS
-        (async()=>{
-            try {
-                let res = await api.get('/user/acessos')
-                setAcessos(res.data)
-            } catch (error) {
-                
-            }
-        })()
+        getCards()
+
     },[])
 
     return cookies.user && (
@@ -61,7 +64,7 @@ export default function Dashboard() {
                                                     <div className="row g-5 g-lg-9">
                                                         {/* CARD */}
                                                         {acessos.map((i:AcessosCardType, k:number)=>(
-                                                            <Dash_Card item={i} k={k} key={k} />
+                                                            <Dash_Card item={i} k={k} key={k} getCards={()=>getCards()} />
                                                         ))}
 
                                                     </div>
