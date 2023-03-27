@@ -6,10 +6,12 @@ import { useNavigate } from 'react-router-dom'
 import FixName from '../helpers/FixName'
 import { Link } from 'react-router-dom'
 import Dash_ModalAjuda from './Dash_ModalAjuda'
+import { useState } from 'react'
 
 export default function Dash_Header() {
+    const [showImage, setShowImage] = useState<boolean>(true)
     const {mode, setMode} = useTheme()
-    const [cookie, setCookie, removeCookie] = useCookies(['theme', 'login', 'user'])
+    const [cookie, setCookie, removeCookie] = useCookies(['theme', 'login', 'user', 'image'])
     const navigate = useNavigate()
 
     const handleTheme = (theme:string) => {
@@ -22,6 +24,7 @@ export default function Dash_Header() {
         // await api.post('/auth/logout')
         removeCookie('login')
         removeCookie('user')
+        removeCookie('image')
         navigate('/')
     }
 
@@ -110,8 +113,10 @@ export default function Dash_Header() {
                                 <span className="text-gray-600 fs-7 fw-semibold d-block">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                             </div>
                             <button type='button' className="cursor-pointer round-container med-3 p-0 border-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
-                                <span className="inicialNome">F</span>
-                                <img src={cookie.user.avatar} alt="user" />
+                                <span className="inicialNome">{cookie.user.nome.charAt(0)}</span>
+                                {cookie.image === 'true' &&
+                                    <img src={cookie.user.avatar} alt="user" />
+                                }
                             </button>              
                              
                              {/* MENU */}
@@ -120,8 +125,10 @@ export default function Dash_Header() {
                                 <div className="menu-item px-3">
                                     <div className="menu-content d-flex align-items-center px-3 avatarPerfil">
                                         <div className="round-container med-4 me-5">
-                                        <span className="inicialNome fs-md-2x">F</span>
-                                        <img src={cookie.user.avatar} alt="user" />
+                                            <span className="inicialNome fs-md-2x">{cookie.user.nome.charAt(0)}</span>
+                                            {cookie.image === 'true' &&
+                                                <img src={cookie.user.avatar} alt="user" />
+                                            }
                                         </div>
                                         <div className="d-flex flex-column">
                                             <div className="fw-bold d-flex align-items-center fs-5">{cookie.user.first_name}</div>
