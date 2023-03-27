@@ -15,13 +15,33 @@
 
 /*ATUALIZAÇÃO = 21/03/2023*/
 
-
 /*PERFIL*/
-/*.avatarPerfil div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}*/
+.avatarPerfil {
+    justify-content: flex-start;
+}
+
+.avatarPerfil .boxer {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 15px;
+}
+.avatarPerfil .ocultar {}
+
+.avatarPerfil div.boxer img {
+    width: initial;
+    border: 0!important;
+    max-width: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: inherit;
+}
+.avatarPerfil span.btn {
+
+}
+
 .avatarPerfil div span.inicialNome, .avatarPerfil span.inicialNome {
     width: 100%;
     height: 100%;
@@ -35,8 +55,21 @@
     justify-content: center;
 }
 
-.avatarPerfil div img {}
+.avatarPerfil div span.closeAvatar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 9999999;
+}
+.avatarPerfil div span.closeAvatar button {
+    background: #000;
+}
 
+@media (max-width: 768px) {
+  .avatarPerfil div span.inicialNome {
+      font-size: calc(1.625rem + 9.5vw) !important;
+  }
+}
 
 /*OLHINHO*/
 [data-theme=light] .password-control {position: absolute;top: 11px;right: 13px;display: inline-block;width: 21px;height: 21px;border: 0;background: url(./images/no-view.svg) 0 0 no-repeat;}

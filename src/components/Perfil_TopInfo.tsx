@@ -2,7 +2,6 @@ import { useCookies } from "react-cookie"
 import FixName from "../helpers/FixName"
 import Banner from "../assets/images/bk_minha_conta.jpg"
 
-
 export const Perfil_TopInfo = () => {
     const [cookies] = useCookies(['user'])
 
@@ -12,15 +11,17 @@ export const Perfil_TopInfo = () => {
             </div>
             <div className="card-body mt-n19">
                 <div className="m-0">
-                    <div className="d-flex flex-stack align-items-end pb-4 mt-n19 avatarPerfil">
-                        {/*<div className="round-container med-xl symbol-fixed position-relative mt-n3">
-                            <span className="inicialNome fs-md-5x">F</span>
-                        </div>*/}
-                        <div className="round-container med-xl symbol-fixed position-relative mt-n3">
+
+                    <div class="d-flex align-items-end pb-4 mt-n19 avatarPerfil">
+                        <div class="boxer position-relative mt-n3">
                             <span className="inicialNome fs-md-5x">F</span>
                             <img src={cookies.user.avatar} alt="image" className="border border-white border-4"/>
                         </div>
+                        <span class="ocultar">
+                        <a href="#" title="Ocultar foto" class="btn btn-outline btn-outline-dashed btn-outline-danger btn-active-light-danger fs-8 py-1 px-2 ms-3">Ocultar</a>
+                        </span>
                     </div>
+
                     <div className="d-flex flex-stack flex-wrap align-items-end">
                         <div className="d-flex flex-column">
                             <div className="d-flex align-items-center mb-2">
