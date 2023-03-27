@@ -61,3 +61,16 @@ export type DependentesType = {
     i_aluno:number
     nome:string
 }
+
+export type RamaisType = {
+    ramais: [
+        {
+            ramal: number,
+            nome_ramal:string
+            lista_usuarios:string
+            ativo: "S" | "N"
+        }
+    ],
+    i_unidade:string
+    nome_unidade:string
+}

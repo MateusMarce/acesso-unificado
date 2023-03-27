@@ -1,6 +1,7 @@
 import { useCookies } from "react-cookie"
 import FixName from "../helpers/FixName"
 import Banner from "../assets/images/bk_minha_conta.jpg"
+import { EditTextarea } from "react-edit-text"
 
 
 export const Perfil_TopInfo = () => {
@@ -22,8 +23,14 @@ export const Perfil_TopInfo = () => {
                             <div className="d-flex align-items-center mb-2">
                                 <div className="text-gray-800 fs-2 fw-bolder me-1">{FixName(cookies.user.nome)}</div> 
                             </div>
-                            <span className="fw-bold text-gray-600 fs-6 mb-2 d-block">
-                                Equipe TI SATC
+                            <span className="fw-bold text-gray-600 fs-6 d-block w-100">
+                                {/* Equipe TI SATC */}
+                                <EditTextarea
+                                    placeholder="Escreva sua bio."
+                                    rows={2}
+                                    className="m-0"
+                                    inputClassName="w-100"
+                                />
                             </span>                      
                             <div className="d-flex align-items-center flex-wrap fw-semibold fs-7 pe-2">
                                 <a href={`mailto:${cookies.user.email}`} className="d-flex align-items-center text-primary text-hover-primary">
