@@ -11,6 +11,7 @@ import { useState } from 'react'
 import { LoginType } from '../../assets/types/type'
 import ChangePassword from '../../components/Buttons/ChangePassword'
 import { useCookies } from 'react-cookie'
+import { toast } from 'react-toastify'
 
 const Schema = Yup.object().shape({
     user: Yup.string().required('Este campo é obrigatório.'),
@@ -18,7 +19,7 @@ const Schema = Yup.object().shape({
 })
 
 export default function Login() {
-    const [cookies, setCookies, removeCookies] = useCookies(['login', 'user'])
+    const [cookies, setCookies, removeCookies] = useCookies(['login', 'user', 'AcceptCookies', 'theme'])
     const navigate = useNavigate()
 
 
@@ -36,10 +37,14 @@ export default function Login() {
 
         //requisiçao
         try {
-            let res = await api.post('/auth/login', value)
-            setCookies('login', res.data.content)
-            navigate('/painel')
-            validateRequest(res)
+            if(cookies.AcceptCookies === 'true'){
+                let res = await api.post('/auth/login', value)
+                setCookies('login', res.data.content)
+                navigate('/painel')
+                validateRequest(res)
+            } else {
+                toast.error('O site não irá funcionar sem os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
+            }
             
         } catch (error) {
             validateRequest(error)

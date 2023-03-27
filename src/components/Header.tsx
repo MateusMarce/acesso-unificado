@@ -24,6 +24,7 @@ export default function Dash_Header() {
         // await api.post('/auth/logout')
         removeCookie('login')
         removeCookie('user')
+        removeCookie('image')
         navigate('/')
     }
 
