@@ -79,7 +79,7 @@ export default function Perfil() {
 
                                 <div id="kt_app_content" className="app-content flex-column-fluid ">
                                     {/* INFORMACOES DO USUARIO COM BANNER */}
-                                    <Perfil_TopInfo />
+                                    <Perfil_TopInfo dep={dep.length} />
 
                                     {/* FORM DO USUARIO */}
                                     <Perfil_InfoForm />
