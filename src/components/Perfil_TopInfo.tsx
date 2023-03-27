@@ -24,7 +24,7 @@ export const Perfil_TopInfo = ({dep}:any) => {
 
                     <div className="d-flex align-items-end pb-4 mt-n19 avatarPerfil">
                         <div className="boxer position-relative mt-n3">
-                            <span className="inicialNome fs-md-5x">{cookies.user.nome.charAt(0)}</span>
+                            <span className="inicialNome fs-md-5hx">{cookies.user.nome.charAt(0)}</span>
                             {cookies.image === 'true' &&
                                 <img src={cookies.user.avatar} alt="image" className="border border-white border-4"/>
                             }

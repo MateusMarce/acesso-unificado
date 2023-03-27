@@ -113,7 +113,7 @@ export default function Dash_Header() {
                                 <span className="text-gray-600 fs-7 fw-semibold d-block">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                             </div>
                             <button type='button' className="cursor-pointer round-container med-3 p-0 border-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
-                                <span className="inicialNome">{cookie.user.nome.charAt(0)}</span>
+                                <span className="inicialNome fs-md-2">{cookie.user.nome.charAt(0)}</span>
                                 {cookie.image === 'true' &&
                                     <img src={cookie.user.avatar} alt="user" />
                                 }
@@ -125,7 +125,7 @@ export default function Dash_Header() {
                                 <div className="menu-item px-3">
                                     <div className="menu-content d-flex align-items-center px-3 avatarPerfil">
                                         <div className="round-container med-4 me-5">
-                                            <span className="inicialNome fs-md-2x">{cookie.user.nome.charAt(0)}</span>
+                                            <span className="inicialNome fs-md-2hx">{cookie.user.nome.charAt(0)}</span>
                                             {cookie.image === 'true' &&
                                                 <img src={cookie.user.avatar} alt="user" />
                                             }
