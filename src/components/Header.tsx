@@ -195,7 +195,7 @@ export default function Dash_Header() {
                                                 </svg>
                                             </span>
                                         </span>
-                                        <span className="menu-title">Tema claro</span>
+                                        <span className="menu-title nowrap-J">Tema claro</span>
                                     </button>
                                 </div>
                                 <div className="menu-item px-3 my-0">
@@ -210,7 +210,7 @@ export default function Dash_Header() {
                                                 </svg>
                                             </span>
                                         </span>
-                                        <span className="menu-title">Tema escuro</span>
+                                        <span className="menu-title nowrap-J">Tema escuro</span>
                                     </button>
                                 </div>
                             </div>

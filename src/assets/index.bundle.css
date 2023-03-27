@@ -71,6 +71,10 @@
   }
 }
 
+.nowrap-J {
+  white-space: nowrap;
+}
+
 /*OLHINHO*/
 [data-theme=light] .password-control {position: absolute;top: 11px;right: 13px;display: inline-block;width: 21px;height: 21px;border: 0;background: url(./images/no-view.svg) 0 0 no-repeat;}
 [data-theme=light] .password-control.view {background: url(./images/view.svg) 0 0 no-repeat;}
