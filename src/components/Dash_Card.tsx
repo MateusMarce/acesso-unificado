@@ -6,15 +6,17 @@ import Gif from "../assets/images/load_satc.gif"
 type Function = {
     item: AcessosCardType
     k:number
+    getCards:()=>any
 }
 
 
 
-export default function Dash_Card({item, k}:Function) {
+export default function Dash_Card({item, k, getCards}:Function) {
     const [loading, setLoading] = useState<boolean>(false)
 
     const handleOpenLink = async (link:string, acesso:string) => {
         setLoading(true)
+        getCards()
         try {
             if(link){
                 await api.post('/user/acesso', {
