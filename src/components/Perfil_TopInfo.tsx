@@ -1,6 +1,7 @@
 import { useCookies } from "react-cookie"
 import FixName from "../helpers/FixName"
 import Banner from "../assets/images/bk_minha_conta.jpg"
+import { EditTextarea } from "react-edit-text"
 
 export const Perfil_TopInfo = () => {
     const [cookies] = useCookies(['user'])
@@ -12,13 +13,13 @@ export const Perfil_TopInfo = () => {
             <div className="card-body mt-n19">
                 <div className="m-0">
 
-                    <div class="d-flex align-items-end pb-4 mt-n19 avatarPerfil">
-                        <div class="boxer position-relative mt-n3">
+                    <div className="d-flex align-items-end pb-4 mt-n19 avatarPerfil">
+                        <div className="boxer position-relative mt-n3">
                             <span className="inicialNome fs-md-5x">F</span>
                             <img src={cookies.user.avatar} alt="image" className="border border-white border-4"/>
                         </div>
-                        <span class="ocultar">
-                        <a href="#" title="Ocultar foto" class="btn btn-outline btn-outline-dashed btn-outline-danger btn-active-light-danger fs-8 py-1 px-2 ms-3">Ocultar</a>
+                        <span className="ocultar">
+                        <a href="#" title="Ocultar foto" className="btn btn-outline btn-outline-dashed btn-outline-danger btn-active-light-danger fs-8 py-1 px-2 ms-3">Ocultar</a>
                         </span>
                     </div>
 
@@ -27,9 +28,15 @@ export const Perfil_TopInfo = () => {
                             <div className="d-flex align-items-center mb-2">
                                 <div className="text-gray-800 fs-2 fw-bolder me-1">{FixName(cookies.user.nome)}</div> 
                             </div>
-                            {/*<span className="fw-bold text-gray-600 fs-6 mb-2 d-block">
-                                Equipe TI SATC
-                            </span>*/}                      
+                            <span className="fw-bold text-gray-600 fs-6 d-block w-100">
+                                {/* Equipe TI SATC */}
+                                <EditTextarea
+                                    placeholder="Escreva sua bio."
+                                    rows={2}
+                                    className="m-0"
+                                    inputClassName="w-100"
+                                />
+                            </span>
                             <div className="d-flex align-items-center flex-wrap fw-semibold fs-7 pe-2">
                                 <a href={`mailto:${cookies.user.email}`} className="d-flex align-items-center text-primary text-hover-primary">
                                     {cookies.user.email}

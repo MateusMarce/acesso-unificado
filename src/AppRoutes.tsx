@@ -36,6 +36,7 @@ function AppRoutes() {
 						<Route path="esqueceu-senha" element={<Page.EsqueceuSenha />} />
 						<Route path="painel" element={<Page.Dashboard />} />
 						<Route path="perfil" element={<Page.Perfil />} />
+						<Route path="ramais" element={<Page.Ramais />} />
 					</Route>
 				</Routes>
 			</Suspense>
