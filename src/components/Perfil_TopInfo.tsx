@@ -11,7 +11,7 @@ export const Perfil_TopInfo = ({dep}:any) => {
     const [cookies, setCookies] = useCookies(['user', 'image'])
     const [showImage, setShowImage] = useState<boolean>(cookies.user.ocultar_foto === "S"?false:true)
     const [edit, setEdit] = useState<boolean>(false)
-    const [text, setText] = useState<string>('')
+    const [text, setText] = useState<string>(cookies.user.bio || '')
 
 
     const handleHideImage = async () => {
@@ -33,6 +33,7 @@ export const Perfil_TopInfo = ({dep}:any) => {
                 await api.post('/user/updateBio', {
                     bio:text
                 })
+                setCookies('user', {...cookies.user, bio:text})
             } catch (error) {
                 validateRequest(error)
             }
