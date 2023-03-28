@@ -27,24 +27,29 @@ export default function Ramais() {
 
     const handleSearch = (value: string) => {
         let search = value ? value.toLowerCase().trim().replaceAll('.','').replaceAll('-','') : ''
-        let list
+        let list: RamaisType[]
         
         if(!search) {
             list = ramaisLista
         } else {
-            list = ramaisLista.filter(c => (c.nome_unidade) ? c.nome_unidade.toLowerCase().indexOf(search) > -1 || 
+            list = ramaisLista.filter(c => (c && c.nome_unidade) ? c.nome_unidade.toLowerCase().indexOf(search) > -1 || 
                 c.i_unidade.replaceAll('.','').replaceAll('-','').indexOf(search) > -1
             : false)
             
             if(list.length == 0){
-                list = ramaisLista.filter(itens=>{
-                    let res = itens.ramais.filter(ramal=>(ramal.ramal) ? ramal.ramal.toString().indexOf(search) > -1 : false)
-                    if(res.length>=1) {
-                        return res
-                    } else {
-                        return false
+                // let lista = ramaisLista.map(itens=>{
+                //     return itens.ramais.filter(ramal=>(ramal.ramal) ? ramal.ramal.toString().indexOf(search) > -1 : false)
+                // }).filter(i=> {return i.length > 0})
+
+                list = ramaisLista.map(i => {
+                    let res = i.ramais.filter((ramal: any)=> ramal.ramal ? ramal.ramal.toString().indexOf(search) > -1 : false)
+                    if(res.length > 0 && res != undefined ) {
+                        console.log(res);
+                        return {...i, ramais: res}
                     }
-                })
+                    // return res
+                }).filter(Boolean)
+                
                 
             }
         }
@@ -104,7 +109,7 @@ export default function Ramais() {
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody className="fs-6 fw-semibold text-gray-600">
-                                                                            {i.ramais && i.ramais.map((item, j)=>(
+                                                                            {i.ramais && i.ramais.map((item:any, j:number)=>(
                                                                                 <tr key={j} className="odd">
                                                                                     <td className="text-primary">{item.ramal}</td>
                                                                                     <td>{item.nome_ramal}

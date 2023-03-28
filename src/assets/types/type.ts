@@ -69,8 +69,8 @@ export type RamaisType = {
             nome_ramal:string
             lista_usuarios:string
             ativo: "S" | "N"
-        }
+        } | any
     ],
     i_unidade:string
     nome_unidade:string
-}
+} | any

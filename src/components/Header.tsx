@@ -114,7 +114,7 @@ export default function Dash_Header() {
                             </div>
                             <button type='button' className="cursor-pointer round-container med-3 p-0 border-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
                                 <span className="inicialNome">{cookie.user.nome.charAt(0)}</span>
-                                {cookie.image === 'true' &&
+                                {(cookie.user.avatar != '' || cookie.image === "true") &&
                                     <img src={cookie.user.avatar} alt="user" />
                                 }
                             </button>              
@@ -126,7 +126,7 @@ export default function Dash_Header() {
                                     <div className="menu-content d-flex align-items-center px-3 avatarPerfil">
                                         <div className="round-container med-4 me-5">
                                             <span className="inicialNome fs-md-2x">{cookie.user.nome.charAt(0)}</span>
-                                            {cookie.image === 'true' &&
+                                            {(cookie.user.avatar != '' || cookie.image === "true") &&
                                                 <img src={cookie.user.avatar} alt="user" />
                                             }
                                         </div>

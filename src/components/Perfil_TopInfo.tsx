@@ -25,12 +25,16 @@ export const Perfil_TopInfo = ({dep}:any) => {
                     <div className="d-flex align-items-end pb-4 mt-n19 avatarPerfil">
                         <div className="boxer position-relative mt-n3">
                             <span className="inicialNome fs-md-5x">{cookies.user.nome.charAt(0)}</span>
-                            {cookies.image === 'true' &&
+                            {(cookies.user.avatar != '' || cookies.image === "true") &&
                                 <img src={cookies.user.avatar} alt="image" className="border border-white border-4"/>
                             }
                         </div>
                         <span className="ocultar">
-                            <button onClick={handleHideImage} title="Ocultar foto" className="btn btn-outline btn-outline-dashed btn-outline-danger btn-active-light-danger fs-8 py-1 px-2 ms-3">Ocultar</button>
+                            {cookies.image === "true" ?
+                                <button onClick={handleHideImage} title="Ocultar foto" className="btn btn-outline btn-outline-dashed btn-outline-danger btn-active-light-danger fs-8 py-1 px-2 ms-3">Ocultar</button>
+                                :
+                                <button onClick={handleHideImage} title="Ocultar foto" className="btn btn-outline btn-outline-dashed btn-outline-success btn-active-light-success fs-8 py-1 px-2 ms-3">Mostrar</button>
+                            }
                         </span>
                     </div>
 
