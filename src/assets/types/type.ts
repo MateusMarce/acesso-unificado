@@ -74,3 +74,16 @@ export type RamaisType = {
     i_unidade:string
     nome_unidade:string
 } | any
+
+export type SlidesType = {
+    id: number,
+    titulo: string
+    resumo: string
+    url: string
+    imagem: string
+    dt_inicio_publicacao: string
+    dt_fim_publicacao: string
+    usuario: string
+    publico_alvo: string
+    dt_sistema: string
+}
