@@ -10,7 +10,7 @@ import api from "../../services/api"
 import { AcessosCardType } from "../../assets/types/type"
 
 export default function Dashboard() {
-    const [cookies, setCookies] = useCookies(['user'])
+    const [cookies, setCookies] = useCookies(['user', 'image'])
     const [acessos, setAcessos] = useState([] as AcessosCardType[])
 
     const getCards = async () => {
@@ -29,6 +29,7 @@ export default function Dashboard() {
                 try {
                     let res = await api.get('/user/me')
                     setCookies('user', res.data)
+                    setCookies('image', res.data.ocultar_foto === "S" ? 'false' : 'true')
                 } catch (error) {
                     
                 }
