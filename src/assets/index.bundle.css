@@ -15,6 +15,21 @@
 
 /*ATUALIZAÇÃO = 21/03/2023*/
 
+
+/*CAROUSSEL*/
+.carousel.slide {} 
+.carousel.slide .carousel-inner {} 
+.carousel.slide .carousel-inner .carousel-item {} 
+.carousel.slide .carousel-inner .carousel-item img {
+/*    width: initial;
+    border: 0!important;
+    max-width: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: inherit;*/
+}
 /*PERFIL*/
 .avatarPerfil {
     justify-content: flex-start;
@@ -45,14 +60,16 @@
 .avatarPerfil div span.inicialNome, .avatarPerfil span.inicialNome {
     width: 100%;
     height: 100%;
-    background: #2196F3;
-    color: white;
-/*    font-size: 1.3rem;*/
+    color: var(--kt-text-dark) !important;
+    font-weight: 700;
+    /*font-size: 6.0rem;*/
     text-align: center;
     display: flex;
     align-items: center;
     margin: auto;
     justify-content: center;
+    background: rgb(1 106 180);
+    background: radial-gradient(circle, rgb(0 237 213) 0%, rgb(1 106 180) 100%);
 }
 
 .avatarPerfil div span.closeAvatar {
