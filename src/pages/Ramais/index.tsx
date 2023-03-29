@@ -103,7 +103,7 @@ export default function Ramais() {
                                                                     <table className="table align-middle table-row-dashed gy-5 dataTable no-footer" id="kt_table_customers_payment">
                                                                         <thead className="border-bottom border-gray-200 fs-7 fw-bold">
                                                                             <tr className="text-start text-gray-900 text-uppercase gs-0">
-                                                                                <th className="min-w-100px sorting">{i.i_unidade}</th>
+                                                                                <th className="max-w-100px sorting">{i.i_unidade}</th>
                                                                                 <th className="sorting">{i.nome_unidade}</th>
                                                                                 <th className="text-end min-w-100px pe-4 sorting_disabled">Status</th>
                                                                             </tr>

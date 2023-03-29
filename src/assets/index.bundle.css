@@ -16,19 +16,59 @@
 /*ATUALIZAÇÃO = 21/03/2023*/
 
 
+.separaMoldeCards .col-J {animation-name: card;position: relative;animation-timing-function: cubic-bezier(0.18, 0.89, 0.02, 1.28);}
+
+/*Anima Card - teste*/
+.separaMoldeCards .col-J:nth-child(1) {animation-duration: 0.4s;}
+.separaMoldeCards .col-J:nth-child(2) {animation-duration: 0.6s;}
+.separaMoldeCards .col-J:nth-child(3) {animation-duration: 0.8s;}
+.separaMoldeCards .col-J:nth-child(4) {animation-duration: 1.0s;}
+.separaMoldeCards .col-J:nth-child(5) {animation-duration: 1.2s;}
+.separaMoldeCards .col-J:nth-child(6) {animation-duration: 1.4s;}
+.separaMoldeCards .col-J:nth-child(7) {animation-duration: 1.6s;}
+.separaMoldeCards .col-J:nth-child(8) {animation-duration: 1.8s;}
+.separaMoldeCards .col-J:nth-child(9) {animation-duration: 2.0s;}
+.separaMoldeCards .col-J:nth-child(10) {animation-duration: 2.2s;}
+.separaMoldeCards .col-J:nth-child(11) {animation-duration: 2.4s;}
+.separaMoldeCards .col-J:nth-child(12) {animation-duration: 2.6s;}
+
+@keyframes card {
+  0%   {opacity: 0; left:0px; top:65px;}
+  95%  {opacity: 0.8; left:0px; top:0px;}
+  100%  {opacity: 1; left:0px; top:0px;}
+}
+
+.separaMoldeCards .card-slide {animation-name: card-2;position: relative;animation-duration: 1.0s;animation-timing-function: cubic-bezier(0, 0, 0, 0.98);}
+@keyframes card-2 {
+  0%   {opacity: 0; left:60px; top:0px;filter: brightness(4.0);filter: grayscale(100%);}
+  100%  {opacity: 1; left:0px; top:0px;filter: brightness(1.0);filter: grayscale(0%);}
+}
+
+/*::::Corresções:::: */
+.max-w-100px {width: 100px !important;} /*Deixa a tabela do meio justificada para direita*/
+
 /*CAROUSSEL*/
 .carousel.slide {} 
-.carousel.slide .carousel-inner {} 
-.carousel.slide .carousel-inner .carousel-item {} 
+.carousel.slide .carousel-inner .imgbanner {
+    position: relative;
+    height: auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.carousel-item.active, .carousel-item-next, .carousel-item-prev {
+    display: grid!important;
+} 
+.carousel.slide .carousel-inner .carousel-item {height: 366px;} 
 .carousel.slide .carousel-inner .carousel-item img {
-/*    width: initial;
+    width: initial;
     border: 0!important;
     max-width: none;
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    height: inherit;*/
+    height: inherit;
 }
 /*PERFIL*/
 .avatarPerfil {
