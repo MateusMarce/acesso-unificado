@@ -9,14 +9,14 @@ import { toast } from "react-toastify"
 
 export const Perfil_TopInfo = ({dep}:any) => {
     const [cookies, setCookies] = useCookies(['user', 'image'])
-    const [showImage, setShowImage] = useState<boolean>(cookies.user.ocultar_foto === "S"?false:true)
+    const [showImage, setShowImage] = useState<boolean>(cookies.image === 'true'? true : false)
     const [edit, setEdit] = useState<boolean>(false)
     const [text, setText] = useState<string>(cookies.user.bio || '')
 
 
     const handleHideImage = async () => {
         setShowImage(!showImage)
-        setCookies('image', !showImage)
+        setCookies('image', !showImage, {path:'/acesso-unificado'})
         try {
             await api.post('/user/updateBio', {
                 ocultar_foto:showImage?'S':'N'
@@ -54,13 +54,13 @@ export const Perfil_TopInfo = ({dep}:any) => {
                     <div className="d-flex align-items-end pb-4 mt-n19 avatarPerfil">
                         <div className="boxer position-relative mt-n3">
                             <span className="inicialNome fs-md-5x">{cookies.user.nome.charAt(0)}</span>
-                            {showImage &&
+                            {cookies.image === 'true' &&
                                 <img src={cookies.user.avatar} alt="image" className="border border-white border-4"/>
                             }
                         </div>
                         <span className="ocultar">
                             {cookies.user.avatar != '' &&
-                                <button onClick={handleHideImage} title="Ocultar foto" className={`btn btn-outline btn-outline-dashed ${showImage?' btn-outline-danger btn-active-light-danger': 'btn-active-light-success btn-outline-success '}  btn-active-light-danger fs-8 py-1 px-2 ms-3`}>{showImage ? 'Ocultar':'Mostrar'}</button>
+                                <button onClick={handleHideImage} title="Ocultar foto" className={`btn btn-outline btn-outline-dashed ${cookies.image === 'true' ? 'btn-outline-danger btn-active-light-danger': 'btn-active-light-success btn-outline-success '}  btn-active-light-danger fs-8 py-1 px-2 ms-3`}>{cookies.image === 'true' ? 'Ocultar':'Mostrar'}</button>
                             }
                         </span>
                     </div>

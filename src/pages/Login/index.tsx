@@ -76,15 +76,32 @@ export default function Login() {
                                 
                                 {(props:FormikProps<LoginType>) => (
                                     <Form className='form w-100'>
-                                        <div className="text-center mb-11">
-                                        <h1 className="text-dark fw-bolder mb-3">Acesso Unificado</h1>
-                                        <div className="text-gray-700 fw-semibold fs-6">
-                                            Primeiro acesso? <Link to='cadastro' className="link-success">Faça o seu cadastro</Link>
-                                        </div>
-                                        </div>
-                                        <div className="separator separator-content my-14">
-                                            <span className="w-175px text-gray-700 fw-semibold fs-7">Ou {!cookies.login && !cookies.user ? "insira os dados" : "acesse o painel"}</span>
-                                        </div>
+                                            {cookies.login && cookies.user ? 
+                                                <>
+                                                    <div className="text-center mb-11">
+                                                        <h1 className="text-dark fw-bolder mb-3">Acesso Unificado</h1>
+                                                        <div className="text-gray-700 fw-semibold fs-6">
+                                                            Você já está conectado.
+                                                        </div>
+                                                    </div>
+                                                    <div className="separator separator-content border-dark my-14">
+                                                        <span className="w-175px text-gray-700 fw-semibold fs-7">{cookies.user.email}</span>
+                                                    </div>
+                                                </>
+                                                :
+                                                <>
+                                                    <div className="text-center mb-11">
+                                                        <h1 className="text-dark fw-bolder mb-3">Acesso Unificado</h1>
+                                                        <div className="text-gray-700 fw-semibold fs-6">
+                                                            Primeiro acesso? <Link to='cadastro' className="link-success">Faça o seu cadastro</Link>
+                                                        </div>
+                                                    </div>
+                                                    <div className="separator separator-content border-dark my-14">
+                                                        <span className="w-175px text-gray-700 fw-semibold fs-7">Ou {!cookies.login && !cookies.user ? "insira os dados" : "acesse o painel"}</span>
+                                                    </div>
+                                                </>
+
+                                            }
 
                                         {/* LOGIN FORM */}
                                         {!cookies.login && !cookies.user &&

@@ -1,5 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import { useCookies } from "react-cookie"
+import { toast } from "react-toastify"
 import * as Yup from 'yup'
 import ChangePassword from "./Buttons/ChangePassword"
 
@@ -16,7 +17,7 @@ export const Perfil_PasswordForm = () => {
         <div className="card mb-5 mb-xl-10 shadow-sm">
             <div className="card-header border-0">
                 <div className="card-title m-0">
-                    <h3 className="fw-bold m-0">Alterar senha</h3>
+                    <h3 className="fw-bold m-0">Alterar senha <small>| Em desenvolvimento</small></h3>
                 </div>
             </div>
             <div>
@@ -28,7 +29,7 @@ export const Perfil_PasswordForm = () => {
                     }}
                     validationSchema={FormSchema}
                     enableReinitialize
-                    onSubmit={()=>{}}
+                    onSubmit={()=>{toast.warning('Ainda estamos desenvolvendo, desculpe o transtorno.', {autoClose:3000})}}
                 >
                     {(props)=>(
                         <Form>

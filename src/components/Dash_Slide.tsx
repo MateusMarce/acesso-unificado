@@ -3,18 +3,22 @@ import Slide1 from "../assets/images/img_slide_01.jpg"
 import { useEffect, useState } from "react"
 import api from "../services/api"
 import { SlidesType } from "../assets/types/type"
+import validateRequest from "../helpers/validateRequest"
 
 export default function Dash_Slide() {
 	const [slides, setSlides] = useState([] as SlidesType[])
 
 	useEffect(()=>{
 		(async () => {
-			let res = await api.get('/auth/noticias')
-			setSlides(res.data)
+			try {
+				let res = await api.get('/auth/noticias')
+				setSlides(res.data)
+			} catch (error) {
+				validateRequest(error)
+			}
 		})()
 	},[])
 
-	console.log(slides);
 	
 
     return (

@@ -18,11 +18,12 @@ export const Perfil_InfoForm = () => {
         const fone = value.telefone.replace('(','').replace(')','').replace('-','').replaceAll('_','').replace(' ','')
         try {
             let res = await api.post('/user/update', {
-                nome:value.nome,
+                nome:value.name,
                 email:value.email,
                 telefone:fone
             })
             validateRequest(res)
+            
         } catch (error) {
             validateRequest(error)
         }
