@@ -7,11 +7,14 @@ import EmailField from '../../components/Fields/EmailField'
 import api from '../../services/api'
 import validateRequest from '../../helpers/validateRequest'
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { LoginType } from '../../assets/types/type'
 import ChangePassword from '../../components/Buttons/ChangePassword'
 import { useCookies } from 'react-cookie'
 import { toast } from 'react-toastify'
+import {getCookieConsentValue, resetCookieConsentValue} from "react-cookie-consent";
+import FixName from '../../helpers/FixName'
+
 
 const Schema = Yup.object().shape({
     user: Yup.string().required('Este campo é obrigatório.'),
@@ -19,8 +22,9 @@ const Schema = Yup.object().shape({
 })
 
 export default function Login() {
-    const [cookies, setCookies, removeCookies] = useCookies(['login', 'user', 'AcceptCookies', 'theme'])
+    const [cookies, setCookies, removeCookies] = useCookies(['login', 'user', 'consent', 'theme'])
     const navigate = useNavigate()
+    
 
 
     const handleSubmit = async (values:FormikValues, action:FormikHelpers<LoginType>) => {
@@ -36,8 +40,9 @@ export default function Login() {
         const value = {user: user_new, password:values.password}
 
         //requisiçao
+        let consent = document.getElementById('consent-btn')
         try {
-            if(cookies.AcceptCookies === 'true'){
+            if(!consent){
                 let res = await api.post('/auth/login', value)
                 setCookies('login', res.data.content)
                 navigate('/painel')
@@ -57,6 +62,7 @@ export default function Login() {
         removeCookies('user')
         removeCookies('login')
     }
+    
     
     return (
         <div className="d-flex flex-column flex-root h-100" id="kt_app_root">
@@ -79,10 +85,9 @@ export default function Login() {
                                             {cookies.login && cookies.user ? 
                                                 <>
                                                     <div className="text-center mb-11">
-                                                        <h1 className="text-dark fw-bolder mb-3">Acesso Unificado</h1>
-                                                        <div className="text-gray-700 fw-semibold fs-6">
-                                                            Você já está conectado.
-                                                        </div>
+                                                        <h1 className="text-dark fw-bolder mb-3">
+                                                            Você já está conectado
+                                                        </h1>
                                                     </div>
                                                     <div className="separator separator-content border-dark my-14">
                                                         <span className="w-175px text-gray-700 fw-semibold fs-7">{cookies.user.email}</span>
@@ -135,7 +140,7 @@ export default function Login() {
                                             {cookies.login && cookies.user ?
                                                 <>
                                                     <Link to='/painel' className="btn btn-success mb-4">
-                                                        Entrar
+                                                        Entrar como {cookies.user.first_name}
                                                     </Link>
                                                     <button type='button' onClick={handleLogout} className="btn btn-light">
                                                         Sair da conta

@@ -57,7 +57,7 @@ export default function EsqueceuSenha() {
                                             Lembrou da senha? <Link to='/' className="link-success">Entre na sua conta</Link>
                                         </div>
                                         </div>
-                                        <div className="separator separator-content my-14">
+                                        <div className="separator separator-content border-dark my-14">
                                             <span className="w-175px text-gray-700 fw-semibold fs-7">Ou insira os dados</span>
                                         </div>
                                         <div className="fv-row mb-8">
