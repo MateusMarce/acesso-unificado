@@ -2,6 +2,7 @@ import { useState } from "react"
 import { AcessosCardType } from "../assets/types/type"
 import api from "../services/api"
 import Gif from "../assets/images/load_satc.gif"
+import validateRequest from "../helpers/validateRequest"
 
 type Function = {
     item: AcessosCardType
@@ -29,7 +30,7 @@ export default function Dash_Card({item, k, getCards}:Function) {
                 }, 1000)
             }
         } catch (error) {
-            
+            validateRequest(error)
         }
     }
     

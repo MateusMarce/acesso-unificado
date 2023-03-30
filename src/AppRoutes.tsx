@@ -20,7 +20,7 @@ function AppRoutes() {
 				removeCookie('login')
 				removeCookie('user')
 				toast.error('Sua sessão expirou.', {autoClose:2000})
-				window.location.href = '/'
+				window.location.href = '/acesso-unificado/#/'
 			}
 			return Promise.reject(err);
 		});

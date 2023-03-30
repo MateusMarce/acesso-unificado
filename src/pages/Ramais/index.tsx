@@ -42,9 +42,9 @@ export default function Ramais() {
                 // }).filter(i=> {return i.length > 0})
 
                 list = ramaisLista.map(i => {
-                    let res = i.ramais.filter((ramal: any)=> ramal.ramal ? ramal.ramal.toString().indexOf(search) > -1 : false)
+                    let res = i.ramais.filter((ramal: any)=> ramal.ramal ? ramal.ramal.toString().indexOf(search) > -1 || ramal.lista_usuarios.toLowerCase().indexOf(search) > -1 : false)
+                    console.log(res);
                     if(res.length > 0 && res != undefined ) {
-                        console.log(res);
                         return {...i, ramais: res}
                     }
                     // return res

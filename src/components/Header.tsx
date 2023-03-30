@@ -112,7 +112,7 @@ export default function Dash_Header() {
                                 <Link to='/perfil' className="text-white text-hover-primary fs-6 fw-bold">{FixName(cookie.user.nome)}</Link>
                                 <span className="text-gray-600 fs-7 fw-semibold d-block">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                             </div>
-                            <button type='button' className="cursor-pointer round-container med-3 p-0 border-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="false">
+                            <button type='button' className="cursor-pointer round-container med-3 p-0 border-0"  id="dropdownMenuButton1" aria-expanded="false">
                                 <span className="inicialNome">{cookie.user.nome.charAt(0)}</span>
                                 {cookie.image === "true" &&
                                     <img src={cookie.user.avatar} alt="user" />
@@ -156,7 +156,7 @@ export default function Dash_Header() {
                         {/* THEME INTERFACE */}
                         <div className="app-navbar-item ms-3 dropdown">
                             {/* BOTAO */}
-                            <button type='button' className="btn btn-icon btn-icon-white btn-active-color-primary btn-custom w-35px h-35px w-md-40px h-md-40px" data-bs-toggle='dropdown' id="dropdownMenuButton2" aria-expanded="false">
+                            <button type='button' className="btn btn-icon btn-icon-white btn-active-color-primary btn-custom w-35px h-35px w-md-40px h-md-40px" id="dropdownMenuButton2" aria-expanded="false">
                                 {mode === 'light' ?
                                     <span className="svg-icon svg-icon-2">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -183,7 +183,7 @@ export default function Dash_Header() {
                                 }
                             </button>
                             {/* MENU */}
-                            <div className="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-muted menu-active-bg menu-state-color fw-semibold py-4 fs-base w-150px dropdown-menu dropdown-menu-end top-100 end-0" aria-labelledby="dropdownMenuButton1">
+                            <div className="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 menu-icon-muted menu-active-bg menu-state-color fw-semibold py-4 fs-base w-auto dropdown-menu dropdown-menu-end top-100 end-0" aria-labelledby="dropdownMenuButton1">
                                 <div className="arrow"><i></i></div>{/*seta*/}
                                 <div className="menu-item px-3 my-0">
                                     <button type='button' onClick={()=>handleTheme('light')} className="menu-link px-3 py-2 btn w-100">
