@@ -33,19 +33,22 @@ export default function Dash_Card({item, k, getCards}:Function) {
         }
     }
     
-
     if(item.dropdown === 'false') {return (
         <div className={`${item.classe} col-J cardAuto-1`}>
             <div className="card card-shadow h-100">
                 <div className="card-body p-0 ">
                     <a onClick={()=>handleOpenLink(item.access_token, item.logs_acesso)} className={`btn btn-active-color-primary p-11 text-start w-100 ${item.background_color}`}>
                         {loading &&
-                            <div className="w-100 start-0 d-flex justify-content-center position-absolute" style={{zIndex:1}}>
-                                <img className="w-auto h-100" src={Gif} alt="" />
+                            // <div className="w-100 start-0 d-flex justify-content-center position-absolute" style={{zIndex:1}}>
+                            //     <img className="w-auto h-100" src={Gif} alt="" />
+                            // </div>
+                            <div className="d-flex justify-content-center" style={{zIndex:1}}>
+                                <div className="boxLoading"><span class="loader-18"></span></div>
                             </div>
                         }
                         <div className="loading-card">
                             <span className="fig-card">
+                                {/*<div className="boxLoading"><span class="loader-18"></span></div>*/} {/*testanto view loading*/}
                                 <img src={item.icone} alt="" />
                             </span>
                             <div className="tit-card">
