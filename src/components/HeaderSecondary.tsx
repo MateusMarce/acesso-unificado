@@ -34,8 +34,8 @@ export default function Dash_HeaderSecondary() {
                         <div className="d-flex flex-stack">
                             {(cookies.user.link_nercu != '' || cookies.user.link_treinas != '') &&
                                 <>
-                                    <a href={cookies.user.link_nercu} className="buti buticolor_1"><img src={Nercu} alt="" /></a>
-                                    <a href={cookies.user.link_treinas} target='_blank' className="buti buticolor_1"><img src={Treinas} alt="" /></a>
+                                    <a href={cookies.user.link_nercu} className="buti buticolor_1 icoN" title="Nercu"><img src={Nercu} alt="" /></a>
+                                    <a href={cookies.user.link_treinas} target='_blank' className="buti buticolor_1 icoT" title="Treinas"><img src={Treinas} alt="" /></a>
                                 </>
                             }
                         </div>
