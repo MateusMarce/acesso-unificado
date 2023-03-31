@@ -15,10 +15,11 @@
 
 /*ATUALIZAÇÃO = 21/03/2023*/
 
-/* ::: Anima Icone NERCU ::: */
-.app-header-secondary .icoN, .app-header-secondary .icoT {padding: 0;border: 0!important;overflow: hidden;}
+
 
 @media (max-width: 600px) {
+  /* ::: Anima Icone NERCU ::: */
+  .app-header-secondary .icoN, .app-header-secondary .icoT {padding: 0;border: 0!important;overflow: hidden;}
   .app-header-secondary .icoN {width: 27px;}
   .app-header-secondary .icoN img {transition: 1.3s;transform: translateX(0px);}
   .app-header-secondary .icoN:hover img, .app-header-secondary .icoN:focus img {transition: 1.5s;transform: translateX(-71px);}
@@ -366,7 +367,7 @@
 .cardlink-color-06 {background-color: #e66737!important;}
 .cardlink-color-07 {background-color: #d4aa00!important;}
 
-.opHover:hover {opacity: 0.85;}
+.opHover:hover {opacity: 0.9;}
 
 /*teste*/
 .cardButHover {
