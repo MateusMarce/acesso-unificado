@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage, FormikBag } from 'formik'
+import { Formik, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { FormikHelpers, FormikProps, FormikValues } from 'formik/dist/types'
 import { Login_LeftBanner } from '../../components/Login_LeftBanner'
@@ -7,13 +7,10 @@ import EmailField from '../../components/Fields/EmailField'
 import api from '../../services/api'
 import validateRequest from '../../helpers/validateRequest'
 import { Link, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 import { LoginType } from '../../assets/types/type'
 import ChangePassword from '../../components/Buttons/ChangePassword'
 import { useCookies } from 'react-cookie'
 import { toast } from 'react-toastify'
-import {getCookieConsentValue, resetCookieConsentValue} from "react-cookie-consent";
-import FixName from '../../helpers/FixName'
 
 
 const Schema = Yup.object().shape({
