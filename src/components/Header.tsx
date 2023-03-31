@@ -12,14 +12,14 @@ import api from '../services/api'
 export default function Dash_Header() {
     const [comunicadoQtd, setComunicadoQtd] = useState<number>()
     const {mode, setMode} = useTheme()
-    const [cookie, setCookie, removeCookie] = useCookies(['theme', 'login', 'user', 'image'])
+    const [cookie, setCookie, removeCookie] = useCookies(['theme', 'login', 'user', 'image', 'comunicados'])
     const navigate = useNavigate()
 
 
     useEffect(()=>{
         (async () => {
             let res = await api.get('/user/leitura-comunicado')
-            setComunicadoQtd(res.data)
+            setCookie('comunicados', res.data)
         })()
     },[])
 
@@ -150,8 +150,8 @@ export default function Dash_Header() {
                                 <div className="menu-item px-5">
                                     <Link to='/comunicados' className="menu-link px-5 d-flex gap-3">
                                         Meus Comunicados
-                                        {comunicadoQtd &&
-                                            <div className='badge badge-danger border border-danger rounded-pill p-1 px-2' style={{outline:'3px solid #f1416c69'}}>{comunicadoQtd}</div>
+                                        {cookie.comunicados &&
+                                            <div className='badge badge-danger border border-danger rounded-pill p-1 px-2' style={{outline:'3px solid #f1416c69'}}>{cookie.comunicados}</div>
                                         }
                                     </Link>
                                     

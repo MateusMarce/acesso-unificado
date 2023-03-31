@@ -18,7 +18,9 @@ export default function Comunicados_Modal({item}:ThisProps) {
 			<div className="modal-dialog modal-dialog-centered mw-900px">
 				<div className="modal-content">
 					<div className="modal-header">
-						<h2>Comunicado</h2>
+					<div className="d-flex flex-column">
+									<span className="frase_Desenv">{item.titulo}</span>
+								</div>
 
 						{/* MODAL CLOSE BUTTON */}
 						<div className="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -33,11 +35,9 @@ export default function Comunicados_Modal({item}:ThisProps) {
 					<div className="modal-body py-lg-10 px-lg-10">
 						<div className="stepper stepper-pills stepper-column d-flex flex-column flex-xl-row flex-row-fluid" id="kt_modal_create_app_stepper">
 							<div className="flex-row-fluid py-lg-5 px-lg-15">
-								<div className="d-flex flex-column mb-5 border-bottom border-bottom-gray-500 pb-4">
+								
 									<small className="text-start">{date} | {item.usuario}</small>
-									<span className="frase_Desenv">{item.titulo}</span>
-								</div>
-								<div className="mb-5" dangerouslySetInnerHTML={{__html: item.conteudo}} />
+								<div className="mb-5 mt-5" dangerouslySetInnerHTML={{__html: item.conteudo}} />
 								{item.link &&
 									<a href={item.link}>Link: {item.link}</a>
 								}

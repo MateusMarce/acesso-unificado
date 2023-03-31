@@ -11,12 +11,14 @@ import Comunicados_Modal from "../../components/Comunicados_Modal"
 export default function Comunicados() {
     const [comunicados, setComunicados] = useState([] as ComunicadosType[])
     const [item, setItem] = useState({} as ComunicadosType)
-    
+    const [cookie, setCookie, removeCookie] = useCookies(['comunicados'])
     
     const getCom = async()=>{
         try {
             let res = await api.get('/user/comunicados')
+            let res2 = await api.get('/user/leitura-comunicado')
             setComunicados(res.data)
+            setCookie('comunicados', res2.data)
         } catch (error) {
             
         }
@@ -24,10 +26,12 @@ export default function Comunicados() {
 
     useEffect(()=>{
         // GET LISTA COMUNICADOS
-        getCom()
+        (async () => {
+            getCom()
+        })()
 
     },[])
-
+    
     const handleOpen = async (item:ComunicadosType) => {
         setItem(item)
         try {
