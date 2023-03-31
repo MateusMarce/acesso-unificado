@@ -31,9 +31,11 @@ export default function Comunicados() {
     const handleOpen = async (item:ComunicadosType) => {
         setItem(item)
         try {
-            await api.post('/user/leitura-comunicado', {
-                id_comunicado:item.id
-            })
+            if(item.leitura === 'N'){
+                await api.post('/user/leitura-comunicado', {
+                    id_comunicado:item.id
+                })
+            }
         } catch (error) {
             
         }
