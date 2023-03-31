@@ -37,6 +37,9 @@ function AppRoutes() {
 						<Route path="painel" element={<Page.Dashboard />} />
 						<Route path="perfil" element={<Page.Perfil />} />
 						<Route path="ramais" element={<Page.Ramais />} />
+						<Route path="comunicados" element={<Page.Comunicados />} >
+							
+						</Route>
 					</Route>
 				</Routes>
 			</Suspense>

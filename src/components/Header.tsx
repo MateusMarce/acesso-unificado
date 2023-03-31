@@ -6,13 +6,22 @@ import { useNavigate } from 'react-router-dom'
 import FixName from '../helpers/FixName'
 import { Link } from 'react-router-dom'
 import Dash_ModalAjuda from './Dash_ModalAjuda'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import api from '../services/api'
 
 export default function Dash_Header() {
-    const [showImage, setShowImage] = useState<boolean>(true)
+    const [comunicadoQtd, setComunicadoQtd] = useState<number>()
     const {mode, setMode} = useTheme()
     const [cookie, setCookie, removeCookie] = useCookies(['theme', 'login', 'user', 'image'])
     const navigate = useNavigate()
+
+
+    useEffect(()=>{
+        (async () => {
+            let res = await api.get('/user/leitura-comunicado')
+            setComunicadoQtd(res.data)
+        })
+    },[])
 
     const handleTheme = (theme:string) => {
         document.body.setAttribute('data-theme', theme)
@@ -139,7 +148,16 @@ export default function Dash_Header() {
                                 </div>
                                 <div className="separator my-2"></div>
                                 <div className="menu-item px-5">
-                                    <Link to='/perfil' className="menu-link px-5">Meu perfil</Link>
+                                    <Link to='/comunicados' className="menu-link px-5 d-flex gap-3">
+                                        Meus Comunicados
+                                        {comunicadoQtd &&
+                                            <div className='badge badge-danger border border-danger rounded-pill p-1 px-2' style={{outline:'3px solid #f1416c69'}}>{comunicadoQtd}</div>
+                                        }
+                                    </Link>
+                                    
+                                </div>
+                                <div className="menu-item px-5">
+                                    <Link to='/perfil' className="menu-link px-5">Meu Perfil</Link>
                                 </div>
                                 {/* NOTIFICACAO */}
                                 {/* <div className="menu-item px-5">
