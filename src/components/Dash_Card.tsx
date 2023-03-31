@@ -44,7 +44,7 @@ export default function Dash_Card({item, k, getCards}:Function) {
                             //     <img className="w-auto h-100" src={Gif} alt="" />
                             // </div>
                             <div className="d-flex justify-content-center" style={{zIndex:1}}>
-                                <div className="boxLoading"><span class="loader-18"></span></div>
+                                <div className="boxLoading"><span className="loader-18"></span></div>
                             </div>
                         }
                         <div className="loading-card">

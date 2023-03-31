@@ -20,7 +20,7 @@ export default function Dash_Header() {
         (async () => {
             let res = await api.get('/user/leitura-comunicado')
             setComunicadoQtd(res.data)
-        })
+        })()
     },[])
 
     const handleTheme = (theme:string) => {
