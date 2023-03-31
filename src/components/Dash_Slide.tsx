@@ -11,15 +11,13 @@ export default function Dash_Slide() {
 	useEffect(()=>{
 		(async () => {
 			try {
-				let res = await api.get('/auth/noticias')
+				let res = await api.get('/user/noticias')
 				setSlides(res.data)
 			} catch (error) {
 				validateRequest(error)
 			}
 		})()
 	},[])
-
-	
 
     return (
         <div className="card-slide card border-0 mb-5 mb-xl-11" data-theme="light">
