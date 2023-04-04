@@ -32,7 +32,7 @@ function AppRoutes() {
 				<Routes>
 					<Route path="/" element={<App />}>
 						<Route path="" element={<Page.Login />} />
-						<Route path="cadastro" element={<Page.Cadastro />} />
+						<Route path="cadastro/:cpf?" element={<Page.Cadastro />} />
 						<Route path="esqueceu-senha" element={<Page.EsqueceuSenha />} />
 						<Route path="painel" element={<Page.Dashboard />} />
 						<Route path="perfil" element={<Page.Perfil />} />

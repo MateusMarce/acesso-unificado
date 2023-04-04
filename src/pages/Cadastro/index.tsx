@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { FormikHelpers, FormikProps, FormikValues } from 'formik/dist/types'
 import * as Yup from 'yup'
@@ -20,7 +20,7 @@ const Schema = Yup.object().shape({
 })
 
 export default function Cadastro() {
-    
+    const {cpf} = useParams()
 
     const handleSubmit = async (values:FormikValues, action:FormikHelpers<CadastroType>) => {
         action.setSubmitting(true)
@@ -58,7 +58,7 @@ export default function Cadastro() {
                         <div className="w-lg-500px p-10">
                             <Formik
                                 initialValues={{
-                                    cpf:'',
+                                    cpf:cpf||'',
                                     nome:'',
                                     email:'',
                                     password:'',
@@ -66,6 +66,7 @@ export default function Cadastro() {
                                 }}
                                 validationSchema={Schema}
                                 onSubmit={handleSubmit}
+                                enableReinitialize
                             >
                                 
                                 {(props:FormikProps<CadastroType>) => (
@@ -84,12 +85,12 @@ export default function Cadastro() {
                                             <ErrorMessage name='cpf' component={'small'} className='invalid-feedback' />
                                         </div>
                                         <div className="fv-row mb-3">
-                                            <Field type="text" placeholder="Nome" name="nome" autoComplete='off' className={`form-control bg-transparent ${props.errors.nome && props.touched.nome && 'is-invalid'}`}/>
-                                            <ErrorMessage name='nome' component={'small'} className='invalid-feedback' />
-                                        </div>
-                                        <div className="fv-row mb-8">
                                             <EmailField name='email' placeholder='E-mail' onChange={(newValue:string)=>props.setFieldValue('email', newValue)}  values={props.values} errors={props.errors.email} touched={props.touched.email} setFieldValue={props.setFieldValue} />
                                             <ErrorMessage name='email' component={'small'} className='invalid-feedback' />
+                                        </div>
+                                        <div className="fv-row mb-8">
+                                            <Field type="text" placeholder="Nome" name="nome" autoComplete='off' className={`form-control bg-transparent ${props.errors.nome && props.touched.nome && 'is-invalid'}`}/>
+                                            <ErrorMessage name='nome' component={'small'} className='invalid-feedback' />
                                         </div>
                                         <div className="fv-row mb-3 login-password position-relative">
                                             {/* <Field type="password" placeholder="Senha" name="password" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`}/> */}

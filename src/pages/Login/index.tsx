@@ -48,8 +48,11 @@ export default function Login() {
                 toast.error('O site não irá funcionar sem os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
             }
             
-        } catch (error) {
+        } catch (error:any) {
             validateRequest(error)
+            if(error.response.status == 406){
+                navigate(`/cadastro/${user_new}`)
+            }
             
         }
         
@@ -128,7 +131,7 @@ export default function Login() {
                                                     <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
                                                 </div>
                                                 <div className="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
-                                                    <div></div><Link to='/esqueceu-senha' className="link-success">Esqueceu a senha?</Link>
+                                                    {/* <div></div><Link to='/esqueceu-senha' className="link-success">Esqueceu a senha?</Link> */}
                                                 </div>
                                             </>
                                         }
