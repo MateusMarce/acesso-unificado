@@ -17,12 +17,97 @@
 
 
 
+.maskButton .avatarPerfil .badge {
+    height: 20px;
+    width: 20px;
+    display: block;
+    text-align: center;
+    line-height: 18px;
+    padding: 0!important;
+}
+
+.avatarPerfil .avatarComuniki {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+.avatarPerfil .avatarComuniki .inicialNome {
+    font-size: 1.5rem!important;
+}
+.avatarPerfil .inicialNome.fs-md-2x {
+    font-size: 1.8rem!important;
+}
+
+.avatarPerfil button {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+}
+.avatarPerfil .comuniki {
+    height: 13px;
+    width: 13px;
+    position: absolute;
+    background-color: var(--kt-danger);
+    display: block;
+    text-align: center;
+    line-height: 18px;
+    padding: 0!important;
+    top: -2px;
+    right: -4px;
+    z-index: 9;
+    border-radius: 20px;
+}
+
+
+/*.btn {
+  width: 6.4rem;
+  line-height: 6.4rem;
+  background: #fff;
+  border-radius: 50%;
+  text-align: center;
+  margin: 1.6rem;
+  font-size: 0.8rem;
+  border: none;
+  padding: 0;
+  position: relative;
+  outline: none;
+}
+
+.btn--shockwave.is-active {
+  -webkit-animation: shockwaveJump 1s ease-out infinite;
+          animation: shockwaveJump 1s ease-out infinite;
+}
+.btn--shockwave.is-active:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  -webkit-animation: shockwave 1s 0.65s ease-out infinite;
+          animation: shockwave 1s 0.65s ease-out infinite;
+}
+.btn--shockwave.is-active:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  -webkit-animation: shockwave 1s 0.5s ease-out infinite;
+          animation: shockwave 1s 0.5s ease-out infinite;
+}*/
+
+
 @media (max-width: 600px) {
   /* ::: Anima Icone NERCU ::: */
   .app-header-secondary .icoN, .app-header-secondary .icoT {padding: 0;border: 0!important;overflow: hidden;}
-  .app-header-secondary .icoN {width: 27px;}
+/*  .app-header-secondary .icoN {width: 27px;}
   .app-header-secondary .icoN img {transition: 1.3s;transform: translateX(0px);}
-  .app-header-secondary .icoN:hover img, .app-header-secondary .icoN:focus img {transition: 1.5s;transform: translateX(-71px);}
+  .app-header-secondary .icoN:hover img, .app-header-secondary .icoN:focus img {transition: 1.5s;transform: translateX(-71px);}*/
   .app-header-secondary .icoT {width: 25px;animation-name: ico-t;}
   .app-header-secondary .icoT img {transition: 1.3s;transform: translateX(0px);}
   .app-header-secondary .icoT:hover img, .app-header-secondary .icoT:focus img {transition: 1.5s;transform: translateX(-71px);}
@@ -357,7 +442,7 @@
 .tit-card h3, .tit-card h4 {color: #fff!important;}
 
 .fig-card {}
-.fig-card img {width: 50px;}
+.fig-card img {width: 65px;}
 
 .cardlink-color-01 {background-color: #ea0000!important;} /*::: Unisatc :::*/
 .cardlink-color-02 {background-color: #1ab4f0!important;} /*::: Portal do ALuno :::*/
@@ -28224,7 +28309,8 @@ textarea.form-control-lg {
   --kt-success: #50cd89;
   --kt-info: #7239ea;
   --kt-warning: #ffc700;
-  --kt-danger: #f1416c;
+  --kt-danger: #FF212E;
+  --kt-danger2: red;
   --kt-dark: #181C32;
   --kt-primary-active: #0098da;
   --kt-secondary-active: #B5B5C3;
@@ -44156,6 +44242,10 @@ code:not([class*=language-]) {
 .badge-danger {
   color: var(--kt-danger-inverse);
   background-color: var(--kt-danger);
+}
+.badge-danger2 {
+  color: var(--kt-danger-inverse);
+  background-color: var(--kt-danger2);
 }
 .badge-danger.badge-outline {
   border: 1px solid var(--kt-danger);

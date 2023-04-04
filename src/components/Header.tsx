@@ -52,7 +52,7 @@ export default function Dash_Header() {
                                     </svg>
                                 </span>
                             </button>
-                            <Link to='/' className="d-flex align-items-center" title="Página inicial">
+                            <Link to='/painel' className="d-flex align-items-center" title="Página inicial">
                                 <img alt="Logo" src={LogoSatc2} className="h-45px" />
                             </Link>
                         </div>
@@ -60,12 +60,12 @@ export default function Dash_Header() {
                         <div className="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true" data-kt-swapper-mode="{default: 'append', lg: 'prepend'}" data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
                             {/* NAV MENU */}
                             <div className="menu menu-rounded menu-active-bg menu-state-primary menu-column menu-lg-row menu-title-gray-700 menu-icon-gray-700 menu-arrow-gray-700 menu-bullet-gray-700 my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
-                                <div className="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
+                                {/*<div className="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                                     <Link className="menu-link py-3" to='/painel'>
                                         <span className="menu-title">Home</span>
                                         <span className="menu-arrow d-lg-none"></span>
                                     </Link>
-                                </div>
+                                </div>*/}
                                 {/* <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" className="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                                     <span className="menu-link py-3">
                                         <span className="menu-title">Central de Privacidade</span>
@@ -103,12 +103,12 @@ export default function Dash_Header() {
                                         </div>
                                     </div>
                                 </div> */}
-                                <div className="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2" data-bs-toggle="modal" data-bs-target="#modalAjuda">
+                                {/*<div className="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2" data-bs-toggle="modal" data-bs-target="#modalAjuda">
                                     <span className="menu-link py-3">
                                         <span className="menu-title" >Ajuda</span>
                                         <span className="menu-arrow d-lg-none"></span>
                                     </span>
-                                </div>
+                                </div>*/}
                             </div>
                         </div>
                     </div>
@@ -121,13 +121,15 @@ export default function Dash_Header() {
                                 <Link to='/perfil' className="text-white text-hover-primary fs-6 fw-bold">{FixName(cookie.user.nome)}</Link>
                                 <span className="text-gray-600 fs-7 fw-semibold d-block">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                             </div>
-                            <button type='button' className="cursor-pointer round-container med-3 p-0 border-0"  id="dropdownMenuButton1" aria-expanded="false">
-                                <span className="inicialNome">{cookie.user.nome.charAt(0)}</span>
-                                {cookie.image === "true" &&
-                                    <img src={cookie.user.avatar} alt="user" />
-                                }
-                            </button>              
-                             
+                                <button type='button' className="cursor-pointer med-3 p-0 border-0" id="dropdownMenuButton1" aria-expanded="false">
+                                    <span className="comuniki"></span>
+                                    <div className="avatarComuniki round-container w-35px h-35px w-md-40px h-md-40px">
+                                    <span className="inicialNome">{cookie.user.nome.charAt(0)}</span>
+                                    {cookie.image === "true" &&
+                                        <img src={cookie.user.avatar} alt="user" />
+                                    }
+                                    </div>
+                                </button>
                              {/* MENU */}
                             <div className=" fw-semibold py-4 fs-6 w-auto dropdown-menu dropdown-menu-end top-100 end-0" aria-labelledby="dropdownMenuButton1">
                                 <div className="arrow"><i></i></div>{/*seta*/}

@@ -23,7 +23,7 @@ export default function Dash_HeaderSecondary() {
                                 </Link>
                                 <a href='https://fs.satc.edu.br/adfs/ls/?cbcxt=&popupui=&vv=&mkt=&lc=&wfresh=&wa=wsignin1.0&wtrealm=urn:federation:MicrosoftOnline&wctx=bk%3D1421950828%26LoginOptions%3D3' target={'_blank'} className="custom-link rounded px-lg-4 py-lg-2 d-flex flex-center cursor-pointer">
                                     <img src={EmailSvg} className="w-20px" alt="" />
-                                    <span className="d-none d-lg-inline text-gray-600 fw-bold text-hover-primary fs-5 ps-3">Webmail</span>
+                                    <span className="d-none d-lg-inline text-gray-600 fw-bold text-hover-primary fs-5 ps-3">E-mail SATC</span>
                                 </a>
                                 <a href='http://biblioteca.satc.edu.br/' target='_blank' className="custom-link rounded px-lg-4 py-lg-2 d-flex flex-center cursor-pointer">
                                     <img src={MsnSVG} className="w-20px" alt="" />
