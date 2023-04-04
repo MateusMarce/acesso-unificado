@@ -31,6 +31,7 @@
     margin: 0;
     padding: 0;
 }
+
 .avatarPerfil .avatarComuniki .inicialNome {
     font-size: 1.5rem!important;
 }
@@ -57,7 +58,41 @@
     right: -4px;
     z-index: 9;
     border-radius: 20px;
+    -webkit-animation: shockwave 0.9s 0.65s ease-out infinite;
+    animation: shockwave 0.9s 0.65s ease-out infinite;
 }
+
+@keyframes shockwave {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.05);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.0);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.05);
+    opacity: 0.8;
+  }
+}
+
+/*@-webkit-keyframes shockwave {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.15);
+  }
+  95% {
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0), inset 0 0 30px rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: scale(2.25);
+  }
+}*/
+
 
 
 /*.btn {
@@ -196,7 +231,8 @@
 .avatarPerfil div span.inicialNome, .avatarPerfil span.inicialNome {
     width: 100%;
     height: 100%;
-    color: var(--kt-text-dark) !important;
+    color: var(--kt-text-white) !important;
+    /*color: var(--kt-text-dark) !important;*/
     font-weight: 700;
     /*font-size: 6.0rem;*/
     text-align: center;
@@ -465,7 +501,7 @@
     background: #333;
     overflow: hidden;
     transition: 0.6s!important;
-    filter: saturate(0.7);
+    filter: saturate(0.9);
 }
 .cardButHover:hover {
   filter: saturate(1.3);
