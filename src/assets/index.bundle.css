@@ -359,13 +359,19 @@
 .fig-card {}
 .fig-card img {width: 50px;}
 
-.cardlink-color-01 {background-color: #89c11e!important;}
-.cardlink-color-02 {background-color: #20ba8b!important;}
-.cardlink-color-03 {background-color: #3da7ee!important;}
-.cardlink-color-04 {background-color: #884dcd!important;}
-.cardlink-color-05 {background-color: #f2416c!important;}
-.cardlink-color-06 {background-color: #e66737!important;}
-.cardlink-color-07 {background-color: #d4aa00!important;}
+.cardlink-color-01 {background-color: #ea0000!important;} /*::: Unisatc :::*/
+.cardlink-color-02 {background-color: #1ab4f0!important;} /*::: Portal do ALuno :::*/
+.cardlink-color-03 {background-color: #0178bb!important;} /*::: Cursos Livres :::*/
+.cardlink-color-04 {background-color: #20ba9e!important;} /*::: Escola de Talentos :::*/
+.cardlink-color-05 {background-color: #8264b9!important;} /*::: Idiomas :::*/
+.cardlink-color-06 {background-color: #008040!important;} /*::: SATC Digital :::*/
+.cardlink-color-07 {background-color: #51a901!important;} /*::: Colaborador :::*/
+.cardlink-color-08 {background-color: #feaa00!important;} /*::: Professor :::*/
+.cardlink-color-09 {background-color: #3340a6!important;} /*::: Responsável :::*/
+.cardlink-color-10 {background-color: #ed2a7c!important;} /*::: Atendimento :::*/
+.cardlink-color-11 {background-color: #e96917!important;} /*::: Egressos :::*/
+.cardlink-color-12 {background-color: #b24000!important;} /*::: Laboratório :::*/
+.cardlink-color-13 {background-color: #993600!important;} /*::: NMA :::*/
 
 .opHover:hover {opacity: 0.9;}
 
