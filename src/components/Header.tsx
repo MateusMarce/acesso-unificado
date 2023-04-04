@@ -122,12 +122,14 @@ export default function Dash_Header() {
                                 <span className="text-gray-600 fs-7 fw-semibold d-block">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                             </div>
                                 <button type='button' className="cursor-pointer med-3 p-0 border-0" id="dropdownMenuButton1" aria-expanded="false">
-                                    <span className="comuniki"></span>
-                                    <div className="avatarComuniki round-container w-35px h-35px w-md-40px h-md-40px">
-                                    <span className="inicialNome">{cookie.user.nome.charAt(0)}</span>
-                                    {cookie.image === "true" &&
-                                        <img src={cookie.user.avatar} alt="user" />
+                                    {cookie.comunicados &&
+                                        <span className="comuniki"></span>
                                     }
+                                    <div className="avatarComuniki round-container w-35px h-35px w-md-40px h-md-40px">
+                                        <span className="inicialNome">{cookie.user.nome.charAt(0)}</span>
+                                        {cookie.image === "true" &&
+                                            <img src={cookie.user.avatar} alt="user" />
+                                        }
                                     </div>
                                 </button>
                              {/* MENU */}
