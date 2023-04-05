@@ -10,6 +10,7 @@ import CpfField from '../../components/Fields/CpfField'
 import EmailField from '../../components/Fields/EmailField'
 import validateRequest from '../../helpers/validateRequest'
 import api from '../../services/api'
+import PasswordStrengthBar from 'react-password-strength-bar'
 
 const Schema = Yup.object().shape({
     cpf: Yup.string().required('Este campo é obrigatório.'),
@@ -104,6 +105,13 @@ export default function Cadastro() {
                                                 placeholder='Senha'
                                                 errors={props.errors.password}
                                                 touched={props.touched.password}
+                                            />
+                                            <PasswordStrengthBar 
+                                                password={props.values.password} 
+                                                className='w-100'
+                                                scoreWords={['Fraco', 'Bom', 'Ótimo', 'Excelente']}
+                                                minLength={5}
+                                                shortScoreWord='Muito curto'
                                             />
                                             <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
                                         </div>
