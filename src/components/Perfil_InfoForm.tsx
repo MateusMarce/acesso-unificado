@@ -22,7 +22,7 @@ export const Perfil_InfoForm = () => {
                 email:value.email,
                 telefone:fone
             })
-            setCookie('user', {...cookie.user, telefone:fone})
+            setCookie('user', {...cookie.user, telefone:fone, nome:value.name, email:value.email})
             validateRequest(res)
             
         } catch (error) {
