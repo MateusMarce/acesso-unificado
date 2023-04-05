@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import api from "../../services/api"
 import { AcessosCardType, ComunicadosType, DependentesType, RamaisType } from "../../assets/types/type"
 import Comunicados_Modal from "../../components/Comunicados_Modal"
+import { Link } from "react-router-dom"
 
 export default function Comunicados() {
     const [comunicados, setComunicados] = useState([] as ComunicadosType[])
@@ -65,7 +66,7 @@ export default function Comunicados() {
                             <div className="d-flex flex-column flex-column-fluid">
                             
                                 <div id="kt_app_toolbar" className="app-toolbar  py-3 py-lg-6 ">
-                                    <div className="d-flex flex-grow-1 flex-stack flex-wrap gap-2 mb-n10" id="kt_toolbar">
+                                    <div className="d-flex align-items-center flex-grow-1 flex-stack flex-wrap gap-2 mb-n10" id="kt_toolbar">
                                         <div className="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
                                             <h1 className="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Lista de Comunicados</h1>
                                             {/* <ol className="breadcrumb breadcrumb-separatorless text-muted fs-6 fw-semibold pt-lg-3">
@@ -73,6 +74,7 @@ export default function Comunicados() {
                                                 <li className="breadcrumb-item"><span className="text-primary">213</span></li>
                                             </ol> */}
                                         </div>
+                                        <Link to={'/painel'} className="btn btn-sm btn-light m-0">Voltar</Link>
                                     </div>
                                 </div>
 

@@ -106,14 +106,16 @@ export default function Cadastro() {
                                                 errors={props.errors.password}
                                                 touched={props.touched.password}
                                             />
-                                            <PasswordStrengthBar 
-                                                password={props.values.password} 
-                                                className='w-100'
-                                                scoreWords={['Fraco', 'Bom', 'Ótimo', 'Excelente']}
-                                                minLength={5}
-                                                shortScoreWord='Muito curto'
-                                            />
                                             <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
+                                            {props.values.password &&
+                                                <PasswordStrengthBar 
+                                                    password={props.values.password} 
+                                                    className='w-100'
+                                                    scoreWords={['Péssimo', 'Fraco', 'Bom', 'Ótimo', 'Excelente']}
+                                                    minLength={5}
+                                                    shortScoreWord='Muito curto'
+                                                />
+                                            }
                                         </div>
                                         <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-8 login-password position-relative">
                                             {/* <Field type="password" placeholder="Confirmar senha" name="password_confirmation" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`}/> */}

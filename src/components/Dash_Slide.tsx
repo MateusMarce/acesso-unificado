@@ -36,7 +36,9 @@ export default function Dash_Slide() {
 								<div className="gradientPhoto"></div>
 								<div className="carousel-caption d-md-block">
 									<h4>23 de março de 2023</h4>
-									<a href={i.url} target={"_blank"} className="fs-1 fw-bold text-white text-hover-primary">{i.titulo}</a>
+									<a href={i.url} target={"_blank"} className="fs-1 fw-bold text-white text-hover-primary">
+										<p style={{textOverflow:'ellipsis', overflow:'hidden', whiteSpace:'nowrap'}} title={i.titulo}>{i.titulo}</p>
+									</a>
 									<h6>{i.resumo}</h6>
 								</div>
 							</div>
