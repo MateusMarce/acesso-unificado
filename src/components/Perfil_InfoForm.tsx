@@ -12,7 +12,7 @@ const FormSchema = Yup.object().shape({
 })
 
 export const Perfil_InfoForm = () => {
-    const [cookie] = useCookies(['user'])
+    const [cookie, setCookie] = useCookies(['user'])
     
     const handleSubmit = async (value:FormikValues) => {
         const fone = value.telefone.replace('(','').replace(')','').replace('-','').replaceAll('_','').replace(' ','')
@@ -22,6 +22,7 @@ export const Perfil_InfoForm = () => {
                 email:value.email,
                 telefone:fone
             })
+            setCookie('user', {...cookie.user, telefone:fone, nome:value.name, email:value.email})
             validateRequest(res)
             
         } catch (error) {

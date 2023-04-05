@@ -73,7 +73,6 @@ export default function Comunicados() {
                                                 <li className="breadcrumb-item"><span className="text-primary">213</span></li>
                                             </ol> */}
                                         </div>
-                                        <h5 className="m-0 text-gray-500 fw-light">Quantidade: {comunicados.length}</h5>
                                     </div>
                                 </div>
 

@@ -45,6 +45,9 @@ export default function Cadastro() {
             if(cpf.length === 11){
                 let res = await api.get(`/cadastro/checkcpf?cpf=${cpf}`)
                 validateRequest(res.data)
+                setFieldValue('email', res.data.colaborador.e_mail)
+                setFieldValue('nome', res.data.colaborador.nome)
+
             }
         } catch (error) {
             validateRequest(error)

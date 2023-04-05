@@ -41,7 +41,7 @@ export default function Login() {
         try {
             if(!consent){
                 let res = await api.post('/auth/login', value)
-                setCookies('login', res.data.content)
+                setCookies('login', res.data.content, {path:'/acesso-unificado'})
                 navigate('/painel')
                 validateRequest(res)
             } else {

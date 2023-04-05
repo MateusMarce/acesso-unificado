@@ -15,7 +15,9 @@ export const Perfil_TopInfo = ({dep}:any) => {
 
 
     const handleHideImage = async () => {
+        
         setShowImage(!showImage)
+        console.log(showImage);
         setCookies('image', !showImage, {path:'/acesso-unificado'})
         try {
             await api.post('/user/updateBio', {
