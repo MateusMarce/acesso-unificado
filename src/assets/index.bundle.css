@@ -46,27 +46,30 @@
   background: transparent;
   border: 0;
 }
-
+ 
 .avatarPerfil .comuniki {
-    height: 13px;
-    width: 13px;
+    height: 20px;
+    width: 20px;
+    color: white;
     position: absolute;
     background-color: var(--kt-danger);
     display: block;
     text-align: center;
     line-height: 18px;
     padding: 0!important;
-    top: -2px;
-    right: -4px;
+    top: -5px;
+    right: -6px;
     z-index: 9;
     border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     -webkit-animation: shockwave 1.2s 0.65s ease-out infinite;
     animation: shockwave 1.2s 0.65s ease-out infinite;
-
     outline: solid 0px;
     outline-color: #ff8307cf;
 }
-
+ 
 @keyframes shockwave {
   0% {
     transform: scale(0.8);
@@ -359,6 +362,7 @@
 }
 
 /*NEW AJUSTE AUTOMATICO DOS CARDS*/
+.cardAuto-1 {min-height: 176px;}
 .cardAuto-1 .card .card-body .disabled {background-color: #5454540f!important;}
 /*.cardAuto-1 .card .card-body a, .cardAuto-1 .card button {min-height: 166px;}*/
 .cardAuto-1 .card .card-body a .fig-card {}
@@ -47593,6 +47597,12 @@ body,
 .app-blank {
   background-color: var(--kt-app-blank-bg-color);
   height: 100%;
+  /*background: url(./images/background_01.svg);*/
+}
+
+.app-blank .h-100 {
+    background: url(/src/assets/images/background_01.svg);   /*new*/
+    background-size: cover;
 }
 
 [data-kt-app-reset-transition=true] * {
