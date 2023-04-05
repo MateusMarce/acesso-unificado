@@ -123,7 +123,7 @@ export default function Dash_Header() {
                             </div>
                                 <button type='button' className="cursor-pointer med-3 p-0 border-0" id="dropdownMenuButton1" aria-expanded="false">
                                     {cookie.comunicados &&
-                                        <span className="comuniki"></span>
+                                        <span className="comuniki">{cookie.comunicados}</span>
                                     }
                                     <div className="avatarComuniki round-container w-35px h-35px w-md-40px h-md-40px">
                                         <span className="inicialNome">{cookie.user.nome.charAt(0)}</span>
