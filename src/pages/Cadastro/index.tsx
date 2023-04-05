@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { FormikHelpers, FormikProps, FormikValues } from 'formik/dist/types'
 import * as Yup from 'yup'
@@ -21,6 +21,7 @@ const Schema = Yup.object().shape({
 
 export default function Cadastro() {
     const {cpf} = useParams()
+    const navigate = useNavigate()
 
     const handleSubmit = async (values:FormikValues, action:FormikHelpers<CadastroType>) => {
         action.setSubmitting(true)
@@ -29,6 +30,7 @@ export default function Cadastro() {
         try {
             let res = await api.post('/cadastro/createuser', values)
             validateRequest(res)
+            navigate(`/${values.cpf}`)
             
         } catch (error) {
             validateRequest(error)

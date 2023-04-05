@@ -31,7 +31,7 @@ function AppRoutes() {
 			<Suspense fallback={<div>Carregando...</div>}>
 				<Routes>
 					<Route path="/" element={<App />}>
-						<Route path="" element={<Page.Login />} />
+						<Route path=":cpf?" element={<Page.Login />} />
 						<Route path="cadastro/:cpf?" element={<Page.Cadastro />} />
 						<Route path="esqueceu-senha" element={<Page.EsqueceuSenha />} />
 						<Route path="painel" element={<Page.Dashboard />} />

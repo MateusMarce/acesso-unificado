@@ -6,7 +6,7 @@ import CpfField from '../../components/Fields/CpfField'
 import EmailField from '../../components/Fields/EmailField'
 import api from '../../services/api'
 import validateRequest from '../../helpers/validateRequest'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { LoginType } from '../../assets/types/type'
 import ChangePassword from '../../components/Buttons/ChangePassword'
 import { useCookies } from 'react-cookie'
@@ -21,7 +21,7 @@ const Schema = Yup.object().shape({
 export default function Login() {
     const [cookies, setCookies, removeCookies] = useCookies(['login', 'user', 'consent', 'theme'])
     const navigate = useNavigate()
-    
+    const {cpf} = useParams()    
 
 
     const handleSubmit = async (values:FormikValues, action:FormikHelpers<LoginType>) => {
@@ -73,11 +73,12 @@ export default function Login() {
                         <div className="w-lg-500px p-10">
                             <Formik
                                 initialValues={{
-                                    user:'',
+                                    user:cpf||'',
                                     password:''
                                 }}
                                 validationSchema={Schema}
                                 onSubmit={handleSubmit}
+                                enableReinitialize
                             >
                                 
                                 {(props:FormikProps<LoginType>) => (
