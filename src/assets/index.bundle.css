@@ -16,6 +16,7 @@
 /*ATUALIZAÇÃO = 21/03/2023*/
 
 
+.modal-body .stepper.stepper-pills img {width: 100%!important; display: block; height: auto!important;}
 
 .maskButton .avatarPerfil .badge {
     height: 20px;
@@ -45,6 +46,7 @@
   background: transparent;
   border: 0;
 }
+
 .avatarPerfil .comuniki {
     height: 13px;
     width: 13px;
@@ -58,25 +60,30 @@
     right: -4px;
     z-index: 9;
     border-radius: 20px;
-    -webkit-animation: shockwave 0.9s 0.65s ease-out infinite;
-    animation: shockwave 0.9s 0.65s ease-out infinite;
+    -webkit-animation: shockwave 1.2s 0.65s ease-out infinite;
+    animation: shockwave 1.2s 0.65s ease-out infinite;
+
+    outline: solid 0px;
+    outline-color: #ff8307cf;
 }
 
 @keyframes shockwave {
   0% {
-    transform: scale(0.9);
+    transform: scale(0.8);
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.05);
-    opacity: 0.8;
+    opacity: 0.9;
   }
   50% {
-    transform: scale(1.0);
+    transform: scale(0.8);
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.05);
     opacity: 1;
   }
   100% {
-    transform: scale(0.9);
+    transform: scale(0.8);
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.05);
-    opacity: 0.8;
+    opacity: 0.9;
+    outline: solid 11px;
+    outline-color: transparent;
   }
 }
 
