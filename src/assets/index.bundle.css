@@ -47600,7 +47600,7 @@ body,
   /*background: url(./images/background_01.svg);*/
 }
 
-.app-blank .h-100 {
+.app-blank > div[id=root] {
     background: url(/src/assets/images/background_01.svg);   /*new*/
     background-size: cover;
 }

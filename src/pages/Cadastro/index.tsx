@@ -91,7 +91,7 @@ export default function Cadastro() {
                                             <ErrorMessage name='cpf' component={'small'} className='invalid-feedback' />
                                         </div>
                                         <div className="fv-row mb-3">
-                                            <EmailField name='email' placeholder='E-mail' onChange={(newValue:string)=>props.setFieldValue('email', newValue)}  values={props.values} errors={props.errors.email} touched={props.touched.email} setFieldValue={props.setFieldValue} />
+                                            <EmailField autoComplete='off' name='email' type='email' placeholder='E-mail' onChange={(newValue:string)=>props.setFieldValue('email', newValue)}  values={props.values} errors={props.errors.email} touched={props.touched.email} setFieldValue={props.setFieldValue} />
                                             <ErrorMessage name='email' component={'small'} className='invalid-feedback' />
                                         </div>
                                         <div className="fv-row mb-8">

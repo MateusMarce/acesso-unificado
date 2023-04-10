@@ -73,7 +73,7 @@ export const Perfil_TopInfo = ({dep}:any) => {
                                 <div className="text-gray-800 fs-2 fw-bolder me-1">{FixName(cookies.user.nome)}</div> 
                             </div>
                             <span className="fw-bold text-gray-600 fs-6 w-500px h-100">
-                                {/* Equipe TI SATC */}
+                                {/* BIO */}
                                 <EditTextarea
                                     placeholder="Clique aqui para escrever sua bio"
                                     rows={3}
