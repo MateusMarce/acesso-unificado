@@ -1,5 +1,4 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
-import { useCookies } from "react-cookie"
 import { toast } from "react-toastify"
 import * as Yup from 'yup'
 import ChangePassword from "./Buttons/ChangePassword"
@@ -11,7 +10,6 @@ const FormSchema = Yup.object().shape({
 })
 
 export const Perfil_PasswordForm = () => {
-    const [cookie] = useCookies(['user'])
 
     return (
         <div className="card mb-5 mb-xl-10 shadow-sm">

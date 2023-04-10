@@ -1,9 +1,7 @@
 import { Email } from "@smastrom/react-email-autocomplete";
-import { Field, useField } from "formik";
-import { useCookies } from "react-cookie";
+import { useField } from "formik";
 
 export default function EmailField(props: any) {
-    const [cookie] = useCookies(['theme'])
     const [field] = useField(props.name);
     const baseList = [
         'satc.edu.br',
@@ -28,8 +26,6 @@ export default function EmailField(props: any) {
             baseList={baseList}
             refineList={baseList}
             placeholder={props.placeholder}
-            // onChange={(newValue:string)=>props.setFieldValue('user', newValue)} // or (newValue) => customSetter(newValue)
-            // value={props.values.user}
             {...field}
             {...props}
         />

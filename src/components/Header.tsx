@@ -1,16 +1,14 @@
 import LogoSatc2 from '../assets/images/logo_satc_2.svg'
-import Avatar from "../assets/images/avat_jota.jpg"
 import { useTheme } from '../helpers/ThemeContext'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import FixName from '../helpers/FixName'
 import { Link } from 'react-router-dom'
 import Dash_ModalAjuda from './Dash_ModalAjuda'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import api from '../services/api'
 
 export default function Dash_Header() {
-    const [comunicadoQtd, setComunicadoQtd] = useState<number>()
     const {mode, setMode} = useTheme()
     const [cookie, setCookie, removeCookie] = useCookies(['theme', 'login', 'user', 'image', 'comunicados'])
     const navigate = useNavigate()
@@ -145,7 +143,6 @@ export default function Dash_Header() {
                                         </div>
                                         <div className="d-flex flex-column">
                                             <div className="fw-bold d-flex align-items-center fs-5">{cookie.user.first_name}</div>
-                                            {/* <span className="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Designer</span></div> */}
                                             <span className="fw-semibold text-muted fs-7">{cookie.user.email || 'usuario@satc.edu.br'}</span>
                                         </div>
                                     </div>

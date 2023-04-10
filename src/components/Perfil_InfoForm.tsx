@@ -67,7 +67,6 @@ export const Perfil_InfoForm = () => {
                                 <div className="row">
                                     <label className="col-lg-4 col-form-label  fw-semibold fs-6">Telefone</label>
                                     <div className="col-lg-8 fv-row fv-plugins-icon-container">
-                                        {/* <Field name='telefone' className={`form-control form-control-lg mb-3 mb-lg-0 ${(props.errors.telefone && props.touched.telefone) && 'is-invalid'}`} /> */}
                                         <FoneField value={props.values.telefone} className={`form-control form-control-lg mb-3 mb-lg-0 ${(props.errors.telefone && props.touched.telefone) ? 'is-invalid' : ''}`} type="text" name="telefone" />
                                         <ErrorMessage name="telefone" component='small' className='invalid-feedback' />
                                     </div>

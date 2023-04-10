@@ -2,10 +2,9 @@ import Dash_Header from "../../components/Header"
 import Dash_HeaderSecondary from "../../components/HeaderSecondary"
 
 import Dash_Footer from "../../components/Dash_Footer"
-import { useCookies } from "react-cookie"
 import { useEffect, useState } from "react"
 import api from "../../services/api"
-import { AcessosCardType, DependentesType, RamaisType } from "../../assets/types/type"
+import { RamaisType } from "../../assets/types/type"
 
 export default function Ramais() {
     const [ramaisLista, setRamaisLista] = useState([] as RamaisType[])
@@ -37,17 +36,12 @@ export default function Ramais() {
             : false)
             
             if(list.length == 0){
-                // let lista = ramaisLista.map(itens=>{
-                //     return itens.ramais.filter(ramal=>(ramal.ramal) ? ramal.ramal.toString().indexOf(search) > -1 : false)
-                // }).filter(i=> {return i.length > 0})
-
                 list = ramaisLista.map(i => {
                     let res = i.ramais.filter((ramal: any)=> ramal.ramal ? ramal.ramal.toString().indexOf(search) > -1 || ramal.lista_usuarios.toLowerCase().indexOf(search) > -1 : false)
                     console.log(res);
                     if(res.length > 0 && res != undefined ) {
                         return {...i, ramais: res}
                     }
-                    // return res
                 }).filter(Boolean)
                 
                 
@@ -78,10 +72,6 @@ export default function Ramais() {
                                     <div className="d-flex flex-grow-1 flex-stack flex-wrap gap-2 mb-n10" id="kt_toolbar">
                                         <div className="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
                                             <h1 className="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Lista de Ramais</h1>
-                                            {/* <ol className="breadcrumb breadcrumb-separatorless text-muted fs-6 fw-semibold pt-lg-3">
-                                                <li className="breadcrumb-item text-muted">Total de Ramais:</li>
-                                                <li className="breadcrumb-item"><span className="text-primary">213</span></li>
-                                            </ol> */}
                                         </div>
                                         <div className="d-flex align-items-center pt-4 pb-7 pt-lg-1 pb-lg-2">
                                             <input type="text" onChange={t=>handleSearch(t.target.value)} className="form-control" placeholder="Filtrar Ramal ou Unidade"/>

@@ -1,18 +1,7 @@
-import { useEffect, useState } from "react"
-import { DependentesType } from "../assets/types/type"
 import FixName from "../helpers/FixName"
-import api from "../services/api"
 
 
 export const Perfil_Dependentes = ({ item }:any) => {
-    const [dep, setDep] = useState([] as DependentesType[])
-
-    useEffect(()=>{
-        (async () => {
-            let res = await api.get('/user/dependentes')
-            setDep(res.data)
-        })()
-    },[])
 
     return (                
         <tr className="odd">

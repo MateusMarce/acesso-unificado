@@ -22,7 +22,6 @@ const Schema = Yup.object().shape({
 
 export default function Login() {
     const [cookie, setCookie] = useState<boolean>()
-    const [showCookie, setShowCookie] = useState<'true' | 'false'>("true")
     const [cookies, setCookies, removeCookies] = useCookies(['login', 'user', 'consent', 'theme'])
     const navigate = useNavigate()
     const {cpf} = useParams()    

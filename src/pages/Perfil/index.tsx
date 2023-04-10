@@ -7,7 +7,7 @@ import Dash_Slide from "../../components/Dash_Slide"
 import { useCookies } from "react-cookie"
 import { useEffect, useState } from "react"
 import api from "../../services/api"
-import { AcessosCardType, DependentesType } from "../../assets/types/type"
+import { DependentesType } from "../../assets/types/type"
 import { Perfil_TopInfo } from "../../components/Perfil_TopInfo"
 import { Perfil_InfoForm } from "../../components/Perfil_InfoForm"
 import { Link } from "react-router-dom"
@@ -16,7 +16,6 @@ import { Perfil_Dependentes } from "../../components/Perfil_Dependentes"
 
 export default function Perfil() {
     const [cookies, setCookies] = useCookies(['user'])
-    const [acessos, setAcessos] = useState([] as AcessosCardType[])
     const [dep, setDep] = useState([] as DependentesType[])
 
     useEffect(()=>{
@@ -35,8 +34,6 @@ export default function Perfil() {
         // GET CARDS E DEPENDENTES
         (async()=>{
             try {
-                let res = await api.get('/user/acessos')
-                setAcessos(res.data)
                 let resDep = await api.get('/user/dependentes')
                 setDep(resDep.data)
             } catch (error) {

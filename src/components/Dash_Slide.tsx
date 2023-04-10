@@ -1,5 +1,3 @@
-import Slide2 from "../assets/images/img_slide_02.jpg"
-import Slide1 from "../assets/images/img_slide_01.jpg"
 import { useEffect, useState } from "react"
 import api from "../services/api"
 import { SlidesType } from "../assets/types/type"
@@ -28,7 +26,7 @@ export default function Dash_Slide() {
 							<button key={k} type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={k} className={k == 0 ? 'active' : ''} aria-current={k === 0 ? 'true' : 'false'} aria-label={`Slide ${k+1}`}></button>
 						))}
 					</div>
-					<div className="carousel-inner">
+					<div className="carousel-inner rounded">
 						{slides.map((i, k)=>(
 							<div key={k} className={`carousel-item ${k === 0 && 'active'}`}>
 								
@@ -43,15 +41,6 @@ export default function Dash_Slide() {
 								</div>
 							</div>
 						))}
-						{/* <div className="carousel-item">
-							<img src={Slide1} className="d-block w-100" alt="..." />
-							<div className="gradientPhoto"></div>
-							<div className="carousel-caption d-none d-md-block">
-								<h4>23 de março de 2023</h4>
-								<h5>Chegou o acesso <i>All-in-one</i></h5>
-								<h6>Venha usufruir desse novo portal de acessos agora mesmo. <i>"Essa nova ferramenta vai facilitar seu dia a dia em 10 vezes." - Equipe TI SATC</i></h6>
-							</div>
-						</div> */}
 					</div>
 					<button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
 						<span className="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -99,7 +99,6 @@ export default function Cadastro() {
                                             <ErrorMessage name='nome' component={'small'} className='invalid-feedback' />
                                         </div>
                                         <div className="fv-row mb-3 login-password position-relative">
-                                            {/* <Field type="password" placeholder="Senha" name="password" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`}/> */}
                                             <ChangePassword 
                                                 name='password'
                                                 placeholder='Senha'
@@ -118,7 +117,6 @@ export default function Cadastro() {
                                             }
                                         </div>
                                         <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-8 login-password position-relative">
-                                            {/* <Field type="password" placeholder="Confirmar senha" name="password_confirmation" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`}/> */}
                                             <ChangePassword 
                                                 name='password_confirmation'
                                                 placeholder='Confirmar senha'

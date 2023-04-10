@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { AcessosCardType } from "../assets/types/type"
 import api from "../services/api"
-import Gif from "../assets/images/load_satc.gif"
 import validateRequest from "../helpers/validateRequest"
 
 type Function = {
@@ -40,16 +39,12 @@ export default function Dash_Card({item, k, getCards}:Function) {
                 <div className="card-body p-0 ">
                     <a onClick={()=>handleOpenLink(item.access_token, item.logs_acesso)} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
                         {loading &&
-                            // <div className="w-100 start-0 d-flex justify-content-center position-absolute" style={{zIndex:1}}>
-                            //     <img className="w-auto h-100" src={Gif} alt="" />
-                            // </div>
                             <div className="d-flex justify-content-center" style={{zIndex:1}}>
                                 <div className="boxLoading"><span className="loader-18"></span></div>
                             </div>
                         }
                         <div className="loading-card">
                             <span className="fig-card">
-                                {/*<div className="boxLoading"><span class="loader-18"></span></div>*/} {/*testanto view loading*/}
                                 <img src={item.icone} alt="" />
                             </span>
                             <div className="tit-card">
@@ -64,17 +59,6 @@ export default function Dash_Card({item, k, getCards}:Function) {
     )} else return (
         <div className={`${item.classe} col-J cardAuto-1`}>
             <div className="card card-shadow btn-group dropup">
-                {/* <button type="button" className="border-0 rounded card-body p-0" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
-                    <div className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color} cardButHover`}>
-                        <span className="fig-card">
-                            <img src={ColaboradorSvg} alt="" />
-                        </span>
-                        <div className="tit-card">
-                            <h3>{item.titulo1}</h3>
-                            <h4>{item.titulo2}</h4>
-                        </div>
-                    </div>
-                </button> */}
                 <button type='button' className="cursor-pointer symbol symbol-35px symbol-md-40px p-0 border-0 outline-0" data-bs-toggle='dropdown' id="dropdownMenuButton1" aria-expanded="true">
                     <div className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
                         <span className="fig-card">
@@ -83,7 +67,6 @@ export default function Dash_Card({item, k, getCards}:Function) {
                         <div className="tit-card">
                             <h3>{item.titulo1}</h3>
                             <h4>{item.titulo2}</h4>
-                            {/* <h4>{item.qtde_acessos}</h4> */}
                         </div>
                     </div>
                 </button>              

@@ -1,4 +1,3 @@
-import CookieConsent from "react-cookie-consent";
 import { Outlet } from "react-router-dom";
 
 

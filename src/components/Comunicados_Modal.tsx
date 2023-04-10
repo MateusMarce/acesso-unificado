@@ -1,4 +1,3 @@
-import Icon from "../assets/images/ico_desenv.svg"
 import { ComunicadosType } from "../assets/types/type"
 
 export type ThisProps = {
