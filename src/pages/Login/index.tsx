@@ -127,7 +127,7 @@ export default function Login() {
                                                     <>
                                                         <div className="fv-row mb-8">
                                                             {props.values.user && props.values.user.match(/[0-9]+/) ?
-                                                                <CpfField autoFocus={true} type="text" value={props.values.user} placeholder="Email ou CPF" name="user" className={`form-control bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
+                                                                <CpfField autoFocus={true} type="text" value={props.values.user} placeholder="Email ou CPF" name="user" className={`form-control form-control-lg bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
                                                                 :
                                                                 // <Field type="text" placeholder="Email ou CPF" name="user" autoComplete='off' className={`form-control bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
                                                                 <EmailField name='user' placeholder='E-mail ou CPF' onChange={(newValue:string)=>props.setFieldValue('user', newValue)}  values={props.values} errors={props.errors.user} touched={props.touched.user} setFieldValue={props.setFieldValue} />

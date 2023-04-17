@@ -11,8 +11,13 @@ export type CadastroType = {
     cpf:string,
     nome:string,
     email:string,
-    password:string,
+    password_old:string
+    senha_atual:string,
     password_confirmation:string
+    valor:string
+    campo:number
+    aluno:boolean
+    colaborador:boolean
 }
 export type ChangePasswordType = {
     name:string
@@ -101,3 +106,54 @@ export type SlidesType = {
     publico_alvo: string
     dt_sistema: string
 }
+
+export type AlumniDadosType = 
+    {
+        justificativa: string
+        niveis: [
+            {
+                id: number,
+                i_empresa: string
+                nome: string
+            }
+        ],
+        areas: [
+            {
+                id: number,
+                nome: string
+            }
+        ],
+        id_egresso: string
+        matriculas: [
+            {
+                i_empresa: string
+                i_curso: string
+                nome_curso: string
+                i_aluno: string
+                semestre: string
+                isTecnico: string
+                id_nivel: string
+                ordem: string
+            }
+        ],
+        i_curso: string
+        nome_curso: string
+        id_nivel: string
+        isAluno: 5,
+        curso: {
+            i_curso: string
+            nome: string
+        },
+        retorno: number,
+        dados_retorno: {
+            alert: string
+            icon: string
+            txt: string
+        }
+}
+
+export type AlumniSalariosType = [
+    [
+        string
+    ]
+]

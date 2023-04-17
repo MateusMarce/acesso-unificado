@@ -54312,3 +54312,37 @@ section:hover {
     transform: skew(-4deg);
   }
 }
+
+
+
+/* Esconde o input */
+input[type='file'] {
+  display: none
+}
+/*    .uib-typeahead-match{
+    padding: 5px 10px;
+}*/
+
+.titPerguntas {
+  font-weight: bold;
+  font-size: 1.15rem;
+}
+.valida_campos_radio{
+    border: 1px solid #f1416c !important;
+    border-radius:4px;
+    padding:10px 3px;
+}
+
+.invalid-feedback-radio {
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: .925rem;
+    color: #f1416c;
+}
+
+.alert-form-alumni{
+    padding:1.5em !important;
+}
+.alert-form-alumni h3{
+    margin-bottom: 0rem !important;
+}

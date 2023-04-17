@@ -5,33 +5,116 @@ import * as Yup from 'yup'
 
 import { CadastroType } from '../../assets/types/type'
 import { Login_LeftBanner } from '../../components/Login_LeftBanner'
-import ChangePassword from '../../components/Buttons/ChangePassword'
 import CpfField from '../../components/Fields/CpfField'
-import EmailField from '../../components/Fields/EmailField'
 import validateRequest from '../../helpers/validateRequest'
 import api from '../../services/api'
+import { useState, useEffect } from 'react'
+import Cadastro_FormColaborador from '../../components/Cadastro_FormColaborador'
+import Cadastro_FormAluno from '../../components/Cadastro_FormAluno'
+import { toast } from 'react-toastify'
+import ChangePassword from '../../components/Buttons/ChangePassword'
 import PasswordStrengthBar from 'react-password-strength-bar'
 
-const Schema = Yup.object().shape({
-    cpf: Yup.string().required('Este campo é obrigatório.'),
-    nome: Yup.string().required('Este campo é obrigatório.'),
-    email: Yup.string().required('Este campo é obrigatório.').email('Digite um e-mail válido.'),
-    password: Yup.string().required('Este campo é obrigatório.').min(5, 'A senha deve conter 5 caractéres.'),
-    password_confirmation: Yup.string().required('Este campo é obrigatório.').min(5, 'A senha deve conter 5 caractéres.').oneOf([Yup.ref('password')], 'As senhas não são iguais.'),
-})
 
 export default function Cadastro() {
+    const [dados, setDados] = useState<any>({})
+    const [colaborador, setColaborador] = useState<boolean>(false)
+    const [aluno, setAluno] = useState<boolean>(false)
+    const [senha, setSenha] = useState<boolean>(false)
+    const [alunoEmail, setAlunoEmail] = useState<string>('')
+    const [cpfVal, setCpfVal] = useState<string>('')
+    const Schema = Yup.object().shape({
+        aluno:Yup.boolean(),
+        colaborador:Yup.boolean(),
+        cpf: Yup.string().required('Este campo é obrigatório.'),
+        password_old: Yup.string().min(5, 'A senha deve conter 5 caractéres.'),
+        senha_atual: Yup.string().min(5, 'A senha deve conter 5 caractéres.').when('colaborador', 
+        (val, schema) => {
+            if(val[0] === true){
+                return schema.required('Este campo é obrigatório.')
+            } else {
+                return schema.notRequired()
+            }
+        }),
+        password_confirmation: Yup.string().min(5, 'A senha deve conter 5 caractéres.').oneOf([Yup.ref('password_old')], 'As senhas não são iguais.'),
+        email: Yup.string().email('Digite um e-mail válido.').when('aluno', 
+        (val, schema)=> {
+            if(val[0] === true){
+                return schema.required('Este campo é obrigatório.')
+            } else {
+                return schema.notRequired()
+            }
+        }),
+        valor: Yup.string().when('aluno', 
+        (val, schema) => {
+            if(val[0] === true){
+                return schema.required('Este campo é obrigatório.')
+            } else {
+                return schema.notRequired()
+            }
+        }),
+        campo: Yup.number().when('aluno', 
+        (val, schema) => {
+            if(val[0] === true){
+                return schema.required('Este campo é obrigatório.')
+            } else {
+                return schema.notRequired()
+            }
+        }),
+    })
     const {cpf} = useParams()
     const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(cpf) {
+            setCpfVal(cpf)
+            handleChange(cpf)
+        }
+    },[])
 
     const handleSubmit = async (values:FormikValues, action:FormikHelpers<CadastroType>) => {
         action.setSubmitting(true)
 
         //requisiçao
         try {
-            let res = await api.post('/cadastro/createuser', values)
-            validateRequest(res)
-            navigate(`/${values.cpf}`)
+            let val = {...values}
+            delete val.aluno
+            delete val.colaborador
+
+            if(aluno){
+                delete val.password_old
+                delete val.password_confirmation
+                if(!senha){
+                    let res = await api.get(`/cadastro/confirm?campo=${val.campo}&cpf=${val.cpf}&valor=${val.valor}&email=${val.email}`)
+                    validateRequest(res)
+                    if(res.status === 200) {
+                        setSenha(true)
+                    }
+                } else {
+                    delete val.senha_atual
+                    let res = await api.post('/cadastro/createuser', {...val, nome: dados.nome, password: values.password_old})
+                    validateRequest(res)
+                    navigate(`/${val.cpf}`)
+                }
+            } else if(colaborador) {
+                val = {...val, nome:dados.nome, usuario:dados.e_mail, password:val.password_old}
+                delete val.valor
+                delete val.campo
+                delete val.password_old
+                delete val.password_confirmation
+                delete val.email
+                try {
+                    let res = await api.post('/cadastro/updatepassAD', val)
+                    validateRequest(res)
+                    navigate(`/${val.cpf}`)
+                    
+                } catch (error) {
+                    console.log(error);
+                    validateRequest(error)
+                    
+                }
+            }
+            
             
         } catch (error) {
             validateRequest(error)
@@ -39,16 +122,32 @@ export default function Cadastro() {
         }
         action.setSubmitting(false)
     }
-    const handleChange =async (value:any, setFieldValue:any) => {
+    const handleChange = async (value:any, setFieldValue?:any) => {
         let cpf = value.replaceAll('.','').replace('-','')
-        setFieldValue('cpf', cpf)
+        console.log(value);
+        
+        setCpfVal(cpf)
+        if(setFieldValue) setFieldValue('cpf', cpf)
+        setSenha(false)
         try {
             if(cpf.length === 11){
                 let res = await api.get(`/cadastro/checkcpf?cpf=${cpf}`)
+                setDados(res.data)
                 validateRequest(res.data)
-                setFieldValue('email', res.data.colaborador.e_mail)
-                setFieldValue('nome', res.data.colaborador.nome)
-
+                if(res.data.tipo === "colaborador") {
+                    setColaborador(true)
+                    setAluno(false)
+                    toast.success(`Identificamos que você é um ${res.data.tipo}. Preencha os campos seguintes.`)
+                }
+                if(res.data.tipo === "aluno" || res.data.tipo === "responsavel") {
+                    toast.success(`Identificamos que você é um ${res.data.tipo}. Preencha os campos seguintes.`)
+                    setAluno(true)
+                    setColaborador(false)
+                    setAlunoEmail(res.data.email_verificar)
+                }
+                // setFieldValue('email', res.data.colaborador.e_mail)
+                // setFieldValue('nome', res.data.colaborador.nome)
+                
             }
         } catch (error) {
             validateRequest(error)
@@ -64,79 +163,113 @@ export default function Cadastro() {
                         <div className="w-lg-500px p-10">
                             <Formik
                                 initialValues={{
-                                    cpf:cpf||'',
+                                    aluno:aluno,
+                                    colaborador:colaborador,
+                                    cpf: cpfVal || '',
                                     nome:'',
                                     email:'',
-                                    password:'',
-                                    password_confirmation:''
+                                    password_old:'',
+                                    senha_atual:'',
+                                    password_confirmation:'',
+                                    valor:'',
+                                    campo:0
                                 }}
                                 validationSchema={Schema}
                                 onSubmit={handleSubmit}
                                 enableReinitialize
                             >
                                 
-                                {(props:FormikProps<CadastroType>) => (
+                                {(props:FormikProps<CadastroType>) => {
+                                    // console.log(props.errors);
+                                    
+                                    return(
                                     <Form className='form w-100'>
                                         <div className="text-center mb-11">
-                                        <h1 className="text-dark fw-bolder mb-3">Acesso Unificado</h1>
-                                        <div className="text-gray-700 fw-semibold fs-6">
-                                            Já tem cadastro? <Link to="/" className="link-success">Entre na sua conta</Link>
-                                        </div>
+                                            <h1 className="text-dark fw-bolder mb-3">Acesso Unificado</h1>
+                                            <div className="text-gray-700 fw-semibold fs-6">
+                                                Já tem cadastro? <Link to="/" className="link-success">Entre na sua conta</Link>
+                                            </div>
                                         </div>
                                         <div className="separator separator-content border-dark my-14">
                                             <span className="w-175px text-gray-700 fw-semibold fs-7">Ou insira os dados</span>
                                         </div>
+
                                         <div className="fv-row mb-3">
-                                            <CpfField autoFocus={false} onChange={(t:any)=>handleChange(t.target.value, props.setFieldValue)} type="text" value={props.values.cpf} placeholder="CPF" name="cpf" autoComplete='off' className={`form-control bg-transparent ${props.errors.cpf && props.touched.cpf ? 'is-invalid' : ''}`}/> 
+                                            <CpfField autoFocus={false} onChange={(t:any)=>handleChange(t.target.value, props.setFieldValue)} type="text" value={cpfVal} placeholder="CPF" name="cpf" autoComplete='off' className={`form-control form-control-lg bg-transparent ${props.errors.cpf && props.touched.cpf ? 'is-invalid' : ''}`}/> 
                                             <ErrorMessage name='cpf' component={'small'} className='invalid-feedback' />
                                         </div>
-                                        <div className="fv-row mb-3">
-                                            <EmailField autoComplete='off' name='email' type='email' placeholder='E-mail' onChange={(newValue:string)=>props.setFieldValue('email', newValue)}  values={props.values} errors={props.errors.email} touched={props.touched.email} setFieldValue={props.setFieldValue} />
-                                            <ErrorMessage name='email' component={'small'} className='invalid-feedback' />
-                                        </div>
-                                        <div className="fv-row mb-8">
-                                            <Field type="text" placeholder="Nome" name="nome" autoComplete='off' className={`form-control bg-transparent ${props.errors.nome && props.touched.nome && 'is-invalid'}`}/>
-                                            <ErrorMessage name='nome' component={'small'} className='invalid-feedback' />
-                                        </div>
-                                        <div className="fv-row mb-3 login-password position-relative">
-                                            <ChangePassword 
-                                                name='password'
-                                                placeholder='Senha'
-                                                errors={props.errors.password}
-                                                touched={props.touched.password}
-                                            />
-                                            <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
-                                            {props.values.password &&
-                                                <PasswordStrengthBar 
-                                                    password={props.values.password} 
-                                                    className='w-100'
-                                                    scoreWords={['Péssimo', 'Fraco', 'Bom', 'Ótimo', 'Excelente']}
-                                                    minLength={5}
-                                                    shortScoreWord='Muito curto'
+
+
+                                        {aluno &&
+                                            <>
+                                                <Cadastro_FormAluno
+                                                    errors={props.errors.valor}
+                                                    touched={props.touched.valor}
+                                                    errors_email={props.errors.email} 
+                                                    touched_email={props.touched.email}
+                                                    email={alunoEmail}
+                                                    setFieldValue={props.setFieldValue}
                                                 />
-                                            }
-                                        </div>
-                                        <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-8 login-password position-relative">
-                                            <ChangePassword 
-                                                name='password_confirmation'
-                                                placeholder='Confirmar senha'
-                                                errors={props.errors.password_confirmation}
-                                                touched={props.touched.password_confirmation}
-                                            />
-                                            <ErrorMessage name='password_confirmation' component={'small'} className='invalid-feedback' />
-                                        </div>
-                                        <div className="d-grid mb-10">
-                                            <button type="submit" id="kt_sign_in_submit" className="btn btn-success">
-                                                {props.isSubmitting ?
-                                                    <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                                    :
-                                                    <span className="indicator-label">Cadastrar</span>
+                                                {senha &&
+                                                    <>
+                                                        <div className="fv-row mb-3 login-password position-relative">
+                                                            <ChangePassword 
+                                                                name='password_old'
+                                                                placeholder='Senha nova'
+                                                                errors={props.errors.senha_atual}
+                                                                touched={props.touched.senha_atual}
+                                                            />
+                                                            <ErrorMessage name='senha_atual' component={'small'} className='invalid-feedback' />
+                                                            {props.values.senha_atual &&
+                                                                <PasswordStrengthBar 
+                                                                    password={props.values.senha_atual} 
+                                                                    className='w-100'
+                                                                    scoreWords={['Ruim', 'Fraca', 'Boa', 'Ótima', 'Excelente']}
+                                                                    minLength={5}
+                                                                    shortScoreWord='Muito curto'
+                                                                />
+                                                            }
+                                                        </div>
+                                                        <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-8 login-password position-relative">
+                                                            <ChangePassword 
+                                                                name='password_confirmation'
+                                                                placeholder='Confirmar senha'
+                                                                errors={props.errors.password_confirmation}
+                                                                touched={props.touched.password_confirmation}
+                                                            />
+                                                            <ErrorMessage name='password_confirmation' component={'small'} className='invalid-feedback' />
+                                                        </div>
+                                                    </>
                                                 }
-                                            </button>
-                                        </div>
-                                        <div className="text-gray-700 text-center fw-semibold fs-6"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
+                                            </>
+                                        }
+                                        {colaborador &&
+                                            <Cadastro_FormColaborador
+                                                values={props.values.password_old} 
+                                                errors={props.errors.password_old} 
+                                                touched={props.touched.password_old}
+                                                errors_conf={props.errors.password_confirmation} 
+                                                touched_conf={props.touched.password_confirmation}
+                                                errors_old={props.errors.senha_atual} 
+                                                touched_old={props.touched.senha_atual} 
+                                            />
+                                        }
+
+                                        
+                                        {(aluno || colaborador) &&
+                                            <div className="d-grid mt-8">
+                                                <button type={'button'} onClick={()=>props.submitForm()} id="kt_sign_in_submit" className="btn btn-success">
+                                                    {props.isSubmitting ?
+                                                        <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                        :
+                                                        <span className="indicator-label">Cadastrar</span>
+                                                    }
+                                                </button>
+                                            </div>
+                                        }
+                                        <div className="text-gray-700 text-center fw-semibold fs-6 mt-10"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
                                     </Form>
-                                )}
+                                )}}
 
                             </Formik>
                         </div>

@@ -11,7 +11,7 @@ export default function ChangePassword({name, errors, touched, placeholder}:Chan
 
     return (
         <>
-            <Field type={passwordType} placeholder={placeholder} name={name} autoComplete='off' className={`form-control bg-transparent ${errors && touched && 'is-invalid'}`} />
+            <Field type={passwordType} placeholder={placeholder} name={name} autoComplete='off' className={`form-control form-control-lg bg-transparent ${errors && touched && 'is-invalid'}`} />
             <button onClick={handleChangePasswordVisibility} type='button' className={`password-control ${passwordType === 'text' && 'view'}`}></button>
         </>
     )

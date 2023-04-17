@@ -20,7 +20,7 @@ export default function EmailField(props: any) {
         <Email
             classNames={{...myClassNames, 
                 wrapper:`btn-group w-100 position-relative ${props.errors && props.touched ? 'is-invalid' : ''}`,
-                input: `form-control bg-transparent ${props.errors && props.touched ? 'is-invalid' : ''}`
+                input: `form-control form-control-lg bg-transparent ${props.errors && props.touched ? 'is-invalid' : ''}`
             }}
             placement={'bottom'}
             baseList={baseList}

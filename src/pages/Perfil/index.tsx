@@ -64,7 +64,7 @@ export default function Perfil() {
                                 <div id="kt_app_toolbar" className="app-toolbar  py-3 py-lg-6 ">
                                     <div className="d-flex flex-grow-1 flex-stack flex-wrap gap-2 mb-n10" id="kt_toolbar">
                                         <div className="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
-                                            <h1 className="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Minha conta</h1>
+                                            <h1 className="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Minha Conta</h1>
                                         </div>
                                         <div className="d-flex align-items-center pt-4 pb-7 pt-lg-1 pb-lg-2">
                                             <div>

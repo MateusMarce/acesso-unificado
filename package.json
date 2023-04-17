@@ -1,6 +1,6 @@
 {
   "name": "acesso-unificado",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,6 +16,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "formik": "^2.2.9",
+    "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
     "react-cookie-consent": "^8.0.1",
@@ -23,11 +24,13 @@
     "react-edit-text": "^5.1.0",
     "react-password-strength-bar": "^0.4.1",
     "react-router-dom": "^6.9.0",
+    "react-select": "^5.7.2",
     "react-text-mask": "^5.5.0",
     "react-toastify": "^9.1.1",
     "yup": "^1.0.2"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.7",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/react-edit-text": "^5.0.1",

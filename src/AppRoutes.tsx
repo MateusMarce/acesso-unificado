@@ -14,8 +14,6 @@ function AppRoutes() {
 	}
 	useEffect(()=>{
 		api.interceptors.response.use(res => res, (err) => {
-			console.log(err.response.config.url);
-			
 			if (err.response.status == 401 && (err.response.config.url != '/auth/login' || err.response.config.url != '/user/me' || err.response.config.url != '/user/acessos')) {
 				removeCookie('login')
 				removeCookie('user')
@@ -37,9 +35,8 @@ function AppRoutes() {
 						<Route path="painel" element={<Page.Dashboard />} />
 						<Route path="perfil" element={<Page.Perfil />} />
 						<Route path="ramais" element={<Page.Ramais />} />
-						<Route path="comunicados" element={<Page.Comunicados />} >
-							
-						</Route>
+						<Route path="alumni" element={<Page.Alumni />} />
+						<Route path="comunicados" element={<Page.Comunicados />} />
 					</Route>
 				</Routes>
 			</Suspense>
