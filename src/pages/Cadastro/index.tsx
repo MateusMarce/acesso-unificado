@@ -18,13 +18,15 @@ import { useCookies } from 'react-cookie'
 
 
 export default function Cadastro() {
-    const [cookies, setCookies, removeCookies] = useCookies(['consent', 'login', 'theme'])
+    const [cookies, setCookies] = useCookies(['consent', 'login', 'theme'])
     const [dados, setDados] = useState<any>({})
     const [colaborador, setColaborador] = useState<boolean>(false)
     const [aluno, setAluno] = useState<boolean>(false)
     const [senha, setSenha] = useState<boolean>(false)
     const [alunoEmail, setAlunoEmail] = useState<string>('')
     const [cpfVal, setCpfVal] = useState<string>('')
+    const [value, setValue] = useState('')
+    const [campo, setCampo] = useState(0)
     const Schema = Yup.object().shape({
         aluno:Yup.boolean(),
         colaborador:Yup.boolean(),
@@ -69,7 +71,7 @@ export default function Cadastro() {
     let consent = document.getElementById('consent-btn')
 
     useEffect(()=>{
-        if(cpf) {
+        if(cpf && !cpf.includes('@')) {
             setCpfVal(cpf)
             handleChange(cpf)
         }
@@ -129,6 +131,8 @@ export default function Cadastro() {
                 delete val.password_confirmation
                 delete val.email
                 try {
+                    console.log(val);
+                    
                     let res = await api.post('/cadastro/updatepassAD', val)
                     validateRequest(res)
                     //LOGA COM O USUARIO DPS DE CADASTRAR
@@ -158,7 +162,6 @@ export default function Cadastro() {
     }
     const handleChange = async (value:any, setFieldValue?:any) => {
         let cpf = value.replaceAll('.','').replace('-','')
-        console.log(value);
         
         setCpfVal(cpf)
         if(setFieldValue) setFieldValue('cpf', cpf)
@@ -178,14 +181,31 @@ export default function Cadastro() {
                     setAluno(true)
                     setColaborador(false)
                     setAlunoEmail(res.data.email_verificar)
-                }
-                // setFieldValue('email', res.data.colaborador.e_mail)
-                // setFieldValue('nome', res.data.colaborador.nome)
-                
+                    VerificarDataAleatorio()
+                }                
             }
         } catch (error) {
             validateRequest(error)
         }
+    }
+    const VerificarDataAleatorio = () => {
+        const v = Math.floor(Math.random() * 3)
+        const date_conf = [
+            {
+                id:1,
+                title:'dia'
+            },
+            {
+                id:2,
+                title:'mês'
+            },
+            {
+                id:3,
+                title:'ano'
+            },
+        ]
+        setCampo(date_conf[v].id)
+        setValue(date_conf[v]?.title)
     }
     
     return (
@@ -206,7 +226,7 @@ export default function Cadastro() {
                                     senha_atual:'',
                                     password_confirmation:'',
                                     valor:'',
-                                    campo:0
+                                    campo:campo
                                 }}
                                 validationSchema={Schema}
                                 onSubmit={handleSubmit}
@@ -214,7 +234,7 @@ export default function Cadastro() {
                             >
                                 
                                 {(props:FormikProps<CadastroType>) => {
-                                    // console.log(props.errors);
+                                    // console.log(props.values.campo);
                                     
                                     return(
                                     <Form className='form w-100'>
@@ -232,7 +252,6 @@ export default function Cadastro() {
                                             <CpfField autoFocus={false} onChange={(t:any)=>handleChange(t.target.value, props.setFieldValue)} type="text" value={cpfVal} placeholder="CPF" name="cpf" autoComplete='off' className={`form-control form-control-lg bg-transparent ${props.errors.cpf && props.touched.cpf ? 'is-invalid' : ''}`}/> 
                                             <ErrorMessage name='cpf' component={'small'} className='invalid-feedback' />
                                         </div>
-                                        <div className='visually-hidden'>{props.values.campo}</div>
                                         {aluno &&
                                             <>
                                                 <Cadastro_FormAluno
@@ -242,6 +261,7 @@ export default function Cadastro() {
                                                     touched_email={props.touched.email}
                                                     email={alunoEmail}
                                                     setFieldValue={props.setFieldValue}
+                                                    value={value}
                                                 />
                                                 {senha &&
                                                     <>

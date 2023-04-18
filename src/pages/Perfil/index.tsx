@@ -10,13 +10,15 @@ import api from "../../services/api"
 import { DependentesType } from "../../assets/types/type"
 import { Perfil_TopInfo } from "../../components/Perfil_TopInfo"
 import { Perfil_InfoForm } from "../../components/Perfil_InfoForm"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Perfil_PasswordForm } from "../../components/Perfil_PasswordForm"
 import { Perfil_Dependentes } from "../../components/Perfil_Dependentes"
+import { toast } from "react-toastify"
 
 export default function Perfil() {
-    const [cookies, setCookies] = useCookies(['user'])
+    const [cookies, setCookies, removeCookies] = useCookies(['user', 'login'])
     const [dep, setDep] = useState([] as DependentesType[])
+    const navigate = useNavigate()
 
     useEffect(()=>{
         // GET USUARIO LOGADO
@@ -24,11 +26,29 @@ export default function Perfil() {
             (async()=>{
                 try {
                     let res = await api.get('/user/me')
-                    setCookies('user', res.data, {path:'/'})
+                    console.log(cookies.login);
+                    if(!cookies.login.access_token){
+                        removeCookies('user')
+                        removeCookies('login')
+                        navigate('/')
+                    } else {
+                        setCookies('user', res.data, {path:'/'})
+        
+                    }
                 } catch (error) {
                     
                 }
             })()
+        } else {
+            api.interceptors.response.use(res => res, (err) => {
+                if (err.response.status == 401 && (err.response.config.url == '/user/leitura-comunicado')) {
+                    removeCookies('login')
+                    removeCookies('user')
+                    toast.error('Sua sessão expirou.', {autoClose:2000})
+                    window.location.href = '/acesso-unificado/#/'
+                }
+                return Promise.reject(err);
+            });
         }
         
         // GET CARDS E DEPENDENTES

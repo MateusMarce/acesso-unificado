@@ -22,7 +22,7 @@ function AppRoutes() {
 			}
 			return Promise.reject(err);
 		});
-	},[location])
+	},[location.pathname])
 
 	return (
 		<BrowserRouter>
