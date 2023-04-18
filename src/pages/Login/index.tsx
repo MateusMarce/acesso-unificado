@@ -21,8 +21,8 @@ const Schema = Yup.object().shape({
 })
 
 export default function Login() {
-    const [cookie, setCookie] = useState<boolean>()
     const [cookies, setCookies, removeCookies] = useCookies(['login', 'user', 'consent', 'theme'])
+    const [cookie, setCookie] = useState<boolean>()
     const navigate = useNavigate()
     const {cpf} = useParams()    
     let consent = document.getElementById('consent-btn')
@@ -42,7 +42,9 @@ export default function Login() {
 
         //requisiçao
         try {
-            if(!consent || cookies.consent === 'false'){
+            console.log(cookies.consent);
+            
+            if(cookie || cookies.consent === 'true'){
                 let res = await api.post('/auth/login', value)
                 setCookies('login', res.data.content, {path:'/acesso-unificado'})
                 navigate('/painel')
@@ -154,34 +156,34 @@ export default function Login() {
                                         <div className="d-grid mb-10">
                                             {/* BUTTON */}
                                             {cookie !== false ?
-                                            <>
-                                                {cookies.login && cookies.user ?
-                                                    <>
-                                                        <button onClick={handleNavigate} className="btn btn-success mb-4">
-                                                            Entrar como {cookies.user.first_name} 
+                                                <>
+                                                    {cookies.login && cookies.user ?
+                                                        <>
+                                                            <button onClick={handleNavigate} className="btn btn-success mb-4">
+                                                                Entrar como {cookies.user.first_name} 
+                                                            </button>
+                                                            <button type='button' onClick={handleLogout} className="btn btn-light">
+                                                                Sair da conta
+                                                            </button>
+                                                        </>
+                                                    :
+                                                        <button type="submit" id="kt_sign_in_submit" className="btn btn-success">
+                                                            {props.isSubmitting ?
+                                                                <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                                :
+                                                                <span className="indicator-label">Entrar</span>
+                                                            }
                                                         </button>
-                                                        <button type='button' onClick={handleLogout} className="btn btn-light">
-                                                            Sair da conta
-                                                        </button>
-                                                    </>
+                                                    }
+                                                </>
                                                 :
-                                                    <button type="submit" id="kt_sign_in_submit" className="btn btn-success">
-                                                        {props.isSubmitting ?
-                                                            <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                                            :
-                                                            <span className="indicator-label">Entrar</span>
-                                                        }
+                                                <>
+                                                    <h4 className='w-100 text-center mb-5'>Você precisa aceitar os cookies para continuar.</h4>
+                                                    <button type='button' onClick={()=>{setCookies('consent','true', {path:'/'}); setCookie(true)}} className="btn btn-success">
+                                                        Aceitar
                                                     </button>
-                                                }
-                                            </>
-                                            :
-                                            <>
-                                            <h4 className='w-100 text-center mb-5'>Você precisa aceitar os cookies para continuar.</h4>
-                                            <button type='button' onClick={()=>{setCookies('consent','true', {path:'/'}); setCookie(true)}} className="btn btn-success">
-                                                Aceitar
-                                            </button>
-                                            </>
-                                        }
+                                                </>
+                                            }
                                         </div>
                                         <div className="text-gray-700 text-center fw-semibold fs-6"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
                                     </Form>
@@ -209,6 +211,7 @@ export default function Login() {
                 declineButtonClasses="btn btn-dark border border-dark bg-transparent text-white rounded"
                 declineCookieValue='false'
                 onDecline={()=>setCookie(false)}
+                onAccept={()=>setCookie(true)}
                 cookieName="consent"
                 expires={150}
             >

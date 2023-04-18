@@ -14,9 +14,11 @@ import Cadastro_FormAluno from '../../components/Cadastro_FormAluno'
 import { toast } from 'react-toastify'
 import ChangePassword from '../../components/Buttons/ChangePassword'
 import PasswordStrengthBar from 'react-password-strength-bar'
+import { useCookies } from 'react-cookie'
 
 
 export default function Cadastro() {
+    const [cookies, setCookies, removeCookies] = useCookies(['consent', 'login', 'theme'])
     const [dados, setDados] = useState<any>({})
     const [colaborador, setColaborador] = useState<boolean>(false)
     const [aluno, setAluno] = useState<boolean>(false)
@@ -64,6 +66,7 @@ export default function Cadastro() {
     })
     const {cpf} = useParams()
     const navigate = useNavigate()
+    let consent = document.getElementById('consent-btn')
 
     useEffect(()=>{
         if(cpf) {
@@ -82,19 +85,41 @@ export default function Cadastro() {
             delete val.colaborador
 
             if(aluno){
+                //VERIFICA SE EH ALUNO
                 delete val.password_old
                 delete val.password_confirmation
                 if(!senha){
-                    let res = await api.get(`/cadastro/confirm?campo=${val.campo}&cpf=${val.cpf}&valor=${val.valor}&email=${val.email}`)
-                    validateRequest(res)
-                    if(res.status === 200) {
-                        setSenha(true)
+                    //SE NAO TIVER OS CAMPOS DE SENHA, CONFIRMA USUARIO
+                    try {
+                        let res = await api.get(`/cadastro/confirm?campo=${val.campo}&cpf=${val.cpf}&valor=${val.valor}&email=${val.email}`)
+                        validateRequest(res)
+                        if(res.status === 200) {
+                            setSenha(true)
+                        }
+                        
+                    } catch (error) {
+                        validateRequest(error)
                     }
                 } else {
+                    //CRIA USUARIO DPS DE COLOCAR SENHA
                     delete val.senha_atual
-                    let res = await api.post('/cadastro/createuser', {...val, nome: dados.nome, password: values.password_old})
-                    validateRequest(res)
-                    navigate(`/${val.cpf}`)
+                    try {
+                        let res = await api.post('/cadastro/createuser', {...val, nome: dados.nome, password: values.password_old})
+                        validateRequest(res)
+                        //LOGA COM O USUARIO DPS DE CADASTRAR
+                        if(!consent || cookies.consent === 'true' && res.status === 200){
+                            let value = {user: val.cpf, password:values.password_old}
+                            let res = await api.post('/auth/login', value)
+                            setCookies('login', res.data.content, {path:'/acesso-unificado'})
+                            navigate('/painel')
+                            validateRequest(res)
+                        } else {
+                            toast.error('Não é possivel acessar nosso portal sem aceitar os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
+                        }
+                        
+                    } catch (error) {
+                        validateRequest(error)
+                    }
                 }
             } else if(colaborador) {
                 val = {...val, nome:dados.nome, usuario:dados.e_mail, password:val.password_old}
@@ -106,7 +131,16 @@ export default function Cadastro() {
                 try {
                     let res = await api.post('/cadastro/updatepassAD', val)
                     validateRequest(res)
-                    navigate(`/${val.cpf}`)
+                    //LOGA COM O USUARIO DPS DE CADASTRAR
+                    if(!consent || cookies.consent === 'false' && res.status === 200){
+                        let value = {user: val.cpf, password:val.password_old}
+                        let res = await api.post('/auth/login', value)
+                        setCookies('login', res.data.content, {path:'/acesso-unificado'})
+                        navigate('/painel')
+                        validateRequest(res)
+                    } else {
+                        toast.error('Não é possivel acessar nosso portal sem aceitar os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
+                    }
                     
                 } catch (error) {
                     console.log(error);
@@ -198,8 +232,7 @@ export default function Cadastro() {
                                             <CpfField autoFocus={false} onChange={(t:any)=>handleChange(t.target.value, props.setFieldValue)} type="text" value={cpfVal} placeholder="CPF" name="cpf" autoComplete='off' className={`form-control form-control-lg bg-transparent ${props.errors.cpf && props.touched.cpf ? 'is-invalid' : ''}`}/> 
                                             <ErrorMessage name='cpf' component={'small'} className='invalid-feedback' />
                                         </div>
-
-
+                                        <div className='visually-hidden'>{props.values.campo}</div>
                                         {aluno &&
                                             <>
                                                 <Cadastro_FormAluno
@@ -216,13 +249,13 @@ export default function Cadastro() {
                                                             <ChangePassword 
                                                                 name='password_old'
                                                                 placeholder='Senha nova'
-                                                                errors={props.errors.senha_atual}
-                                                                touched={props.touched.senha_atual}
+                                                                errors={props.errors.password_old}
+                                                                touched={props.touched.password_old}
                                                             />
-                                                            <ErrorMessage name='senha_atual' component={'small'} className='invalid-feedback' />
-                                                            {props.values.senha_atual &&
+                                                            <ErrorMessage name='password_old' component={'small'} className='invalid-feedback' />
+                                                            {props.values.password_old &&
                                                                 <PasswordStrengthBar 
-                                                                    password={props.values.senha_atual} 
+                                                                    password={props.values.password_old} 
                                                                     className='w-100'
                                                                     scoreWords={['Ruim', 'Fraca', 'Boa', 'Ótima', 'Excelente']}
                                                                     minLength={5}
