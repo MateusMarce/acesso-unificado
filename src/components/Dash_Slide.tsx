@@ -36,8 +36,8 @@ export default function Dash_Slide() {
 									<h4>{i.dt_publicacao}</h4>
 									<a href={i.url} target={"_blank"} className="fs-1 fw-bold text-white text-hover-primary">
 										<p style={{textOverflow:'ellipsis', overflow:'hidden', whiteSpace:'nowrap'}} title={i.titulo}>{i.titulo}</p>
+										<p className=" fs-6">{i.resumo}</p>
 									</a>
-									<h6>{i.resumo}</h6>
 								</div>
 							</div>
 						))}

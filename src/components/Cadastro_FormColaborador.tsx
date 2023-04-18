@@ -13,7 +13,7 @@ export default function Cadastro_FormAluno(props:any) {
                     <div className="fv-row mb-3 login-password position-relative">
                         <ChangePassword 
                             name='senha_atual'
-                            placeholder='Senha antiga'
+                            placeholder='Senha atual'
                             errors={props.errors_old}
                             touched={props.touched_old}
                         />
@@ -22,7 +22,7 @@ export default function Cadastro_FormAluno(props:any) {
                     <div className="fv-row mb-3 login-password position-relative">
                         <ChangePassword 
                             name='password_old'
-                            placeholder='Senha nova'
+                            placeholder='Nova senha'
                             errors={props.errors}
                             touched={props.touched}
                         />
