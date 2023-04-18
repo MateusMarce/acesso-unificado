@@ -105,6 +105,7 @@ export type SlidesType = {
     usuario: string
     publico_alvo: string
     dt_sistema: string
+    dt_publicacao:string
 }
 
 export type AlumniDadosType = 
