@@ -14,7 +14,7 @@
    version="1.1"
    id="svg7308"
    inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
-   sodipodi:docname="logo_satc_unificado_white.svg">
+   sodipodi:docname="logo_satc_uni_white.svg">
   <defs
      id="defs7302">
     <clipPath
@@ -289,9 +289,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="116.46904"
-     inkscape:cy="17.092807"
+     inkscape:zoom="11.2"
+     inkscape:cx="123.11512"
+     inkscape:cy="34.53573"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -313,7 +313,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -404,17 +404,15 @@
              style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
              d="m 72.783203,40.322266 c -0.383024,0 -0.693359,0.310335 -0.693359,0.693359 0,0.383024 0.310335,0.693359 0.693359,0.693359 0.383024,0 0.695313,-0.310335 0.695313,-0.693359 0,-0.383024 -0.312289,-0.693359 -0.695313,-0.693359 z m 0,0.03906 c 0.361242,0 0.654297,0.293055 0.654297,0.654297 0,0.361242 -0.293055,0.654297 -0.654297,0.654297 -0.361242,0 -0.652344,-0.293055 -0.652344,-0.654297 0,-0.361242 0.291102,-0.654297 0.652344,-0.654297 z"
              id="circle11010-95-8" />
-          <text
-             xml:space="preserve"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.980154px;line-height:1.25;font-family:Raleway;-inkscape-font-specification:'Raleway, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0231305"
-             x="72.759048"
-             y="41.363567"
-             id="text11014-5-5"><tspan
-               sodipodi:role="line"
-               id="tspan11012-33-0"
-               x="72.759048"
-               y="41.363567"
-               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.980154px;font-family:Raleway;-inkscape-font-specification:'Raleway, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.0231305">R</tspan></text>
+          <g
+             aria-label="R"
+             id="text11014-5-5"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.980154px;line-height:1.25;font-family:Raleway;-inkscape-font-specification:'Raleway, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0231305">
+            <path
+               d="m 72.526262,41.363567 v -0.695909 h 0.294046 q 0.04509,0 0.08233,0.0196 0.03823,0.01862 0.06567,0.04999 0.02745,0.03039 0.04215,0.06959 0.01568,0.03921 0.01568,0.07939 0,0.03823 -0.01176,0.07351 -0.01078,0.0343 -0.03137,0.06273 -0.0196,0.02744 -0.04803,0.04705 -0.02842,0.01862 -0.06371,0.02548 l 0.170547,0.268562 h -0.07743 l -0.163686,-0.2568 h -0.205832 v 0.2568 z m 0.06861,-0.31757 h 0.227395 q 0.03039,0 0.05489,-0.01274 0.02548,-0.01372 0.04313,-0.03627 0.01764,-0.02254 0.02744,-0.05097 0.0098,-0.02842 0.0098,-0.05979 0,-0.03137 -0.01176,-0.05979 -0.01078,-0.0294 -0.03038,-0.05097 -0.01862,-0.02156 -0.04509,-0.03431 -0.02548,-0.01274 -0.05391,-0.01274 h -0.221515 z"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.980154px;font-family:Raleway;-inkscape-font-specification:'Raleway, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.0231305"
+               id="path902" />
+          </g>
         </g>
         <g
            id="g59689"
