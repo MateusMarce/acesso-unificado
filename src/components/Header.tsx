@@ -1,4 +1,4 @@
-import LogoSatc2 from '../assets/images/logo_satc_2.svg'
+import LogoSatc2 from '../assets/images/logo_satc_uni_white.svg'
 import { useTheme } from '../helpers/ThemeContext'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'

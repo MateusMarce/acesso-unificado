@@ -1,4 +1,4 @@
-import LogoSatc from '../assets/images/logo_satc_2.svg'
+import LogoSatc from '../assets/images/logo_satc_uni_white.svg'
 import AuthBg from '../assets/images/auth-bg.png'
 import Illustration from '../assets/images/design_page1.svg'
 
