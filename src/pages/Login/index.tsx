@@ -111,8 +111,8 @@ export default function Login() {
                                                 <>
                                                     <div className="text-center mb-11">
                                                         <h1 className="text-dark fw-bolder mb-3">Acesso Unificado</h1>
-                                                        <div className="text-gray-700 fw-semibold fs-6">
-                                                            Primeiro acesso? <Link to='cadastro' className="link-success">Faça o seu cadastro</Link>
+                                                        <div className="text-gray-700 fw-semibold fs-5">
+                                                            Primeiro acesso? <Link to='cadastro' className="hover-scale link-success fw-bold fw-bold">Faça o seu cadastro.</Link>
                                                         </div>
                                                     </div>
                                                     <div className="separator separator-content border-dark my-14">

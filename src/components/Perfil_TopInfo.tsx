@@ -68,7 +68,7 @@ export const Perfil_TopInfo = ({dep}:any) => {
                         </span>
                     </div>
 
-                    <div className="d-flex flex-stack flex-wrap align-items-start">
+                    <div className="d-flex flex-stack flex-wrap align-items-end">
                         <div className="d-flex flex-column">
                             <div className="d-flex align-items-center mb-2">
                                 <div className="text-gray-800 fs-2 fw-bolder me-1">{FixName(cookies.user.nome)}</div> 
@@ -99,7 +99,10 @@ export const Perfil_TopInfo = ({dep}:any) => {
                         </div>
                         {dep > 0 &&
                             <div className="d-flex flex-column">
-                                <div className="text-gray-800 fs-5 fw-bolder me-1">Total de <Link to={'/perfil#dependentes'}>dependentes</Link>: {dep}</div>
+                                <Link to={'/perfil#dependentes'} className="btn btn-outline btn-outline-dashed btn-outline-info btn-active-light-info  btn-active-light-info fs-8 py-1 px-2 ms-3">
+                                    <div className="fs-6 fw-semibold me-1">Total de dependentes:  
+                                    <span className="badge badge-square badge-info ms-2">{dep}</span></div>
+                                </Link>
                             </div>
                         }
                     </div>
