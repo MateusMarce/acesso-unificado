@@ -33,7 +33,7 @@ export const Perfil_PasswordForm = () => {
                         <Form>
                             <div className="card-body border-top p-9">
                                 <div className="row mb-6 me-1">
-                                    <label className="col-lg-4 col-form-label fw-semibold fs-6">Senha antiga</label>
+                                    <label className="col-lg-4 col-form-label fw-semibold fs-6">Senha atual</label>
                                     <div className="pe-0 col-lg-8 position-relative login-password">
                                         <ChangePassword
                                             name='senha_antiga'

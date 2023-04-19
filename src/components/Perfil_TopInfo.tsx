@@ -6,6 +6,7 @@ import { useState } from "react"
 import api from "../services/api"
 import validateRequest from "../helpers/validateRequest"
 import { toast } from "react-toastify"
+import { HashLink as Link } from 'react-router-hash-link';
 
 export const Perfil_TopInfo = ({dep}:any) => {
     const [cookies, setCookies] = useCookies(['user', 'image'])
@@ -98,7 +99,7 @@ export const Perfil_TopInfo = ({dep}:any) => {
                         </div>
                         {dep > 0 &&
                             <div className="d-flex flex-column">
-                                <div className="text-gray-800 fs-5 fw-bolder me-1">Total de dependentes: {dep}</div>
+                                <div className="text-gray-800 fs-5 fw-bolder me-1">Total de <Link to={'/perfil#dependentes'}>dependentes</Link>: {dep}</div>
                             </div>
                         }
                     </div>

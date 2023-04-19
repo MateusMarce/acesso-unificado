@@ -136,8 +136,8 @@ export default function Cadastro() {
                     let res = await api.post('/cadastro/updatepassAD', val)
                     validateRequest(res)
                     //LOGA COM O USUARIO DPS DE CADASTRAR
-                    if(!consent || cookies.consent === 'false' && res.status === 200){
-                        let value = {user: val.cpf, password:val.password_old}
+                    if(!consent || cookies.consent === 'true' && res.status === 200){
+                        let value = {user: val.cpf, password:values.password_old}
                         let res = await api.post('/auth/login', value)
                         setCookies('login', res.data.content, {path:'/acesso-unificado'})
                         navigate('/painel')

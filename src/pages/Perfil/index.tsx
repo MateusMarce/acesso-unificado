@@ -106,26 +106,28 @@ export default function Perfil() {
 
                                     {/* LISTA DEPENDENTES */}
                                     {dep.length > 0 &&
-                                        <div className="card mb-5 mb-xl-10">
-                                            <div className="card-header border-0">
-                                                <div className="card-title m-0">
-                                                    <h3 className="fw-bold m-0">Dependentes</h3>
-                                                </div>
-                                            </div>
-                                            <div className="card-body border-top p-9">
-                                                <div className="row mb-6">
-                                                    <div className="table-responsive">
-                                                        <table className="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
-                                                            <tbody className="fw-semibold text-gray-600">  
-                                                                {dep.map((i, k)=>(
-                                                                    <Perfil_Dependentes key={k} item={i} />
-                                                                ))}
-                                                            </tbody>
-                                                        </table>
+                                        <section id="dependentes" >
+                                            <div className="card mb-5 mb-xl-10">
+                                                <div className="card-header border-0">
+                                                    <div className="card-title m-0">
+                                                        <h3 className="fw-bold m-0">Dependentes</h3>
                                                     </div>
                                                 </div>
-                                            </div>    
-                                        </div>
+                                                <div className="card-body border-top p-9">
+                                                    <div className="row mb-6">
+                                                        <div className="table-responsive">
+                                                            <table className="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                                <tbody className="fw-semibold text-gray-600">  
+                                                                    {dep.map((i, k)=>(
+                                                                        <Perfil_Dependentes key={k} item={i} />
+                                                                    ))}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                        </section>
                                     }
 
                                 </div>
