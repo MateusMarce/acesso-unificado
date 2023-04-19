@@ -14,7 +14,7 @@ function AppRoutes() {
 	}
 	useEffect(()=>{
 		api.interceptors.response.use(res => res, (err) => {
-			if (err.response.status == 401 && (err.response.config.url != '/auth/login' || err.response.config.url != '/user/me' || err.response.config.url != '/user/acessos')) {
+			if (err.response.status == 401 && (err.response.config.url === '/auth/login' || err.response.config.url === '/user/me' || err.response.config.url === '/user/acessos')) {
 				removeCookie('login')
 				removeCookie('user')
 				toast.error('Sua sessão expirou.', {autoClose:2000})

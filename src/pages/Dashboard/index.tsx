@@ -8,17 +8,21 @@ import { useCookies } from "react-cookie"
 import { useEffect, useState } from "react"
 import api from "../../services/api"
 import { AcessosCardType } from "../../assets/types/type"
+import { toast } from "react-toastify"
 
 export default function Dashboard() {
-    const [cookies, setCookies] = useCookies(['user', 'image'])
+    const [cookies, setCookies, removeCookie] = useCookies(['user', 'image', 'login'])
     const [acessos, setAcessos] = useState([] as AcessosCardType[])
 
     const getCards = async () => {
         try {
             let res = await api.get('/user/acessos')
             setAcessos(res.data)
-        } catch (error) {
-            
+        } catch (error:any) {
+            removeCookie('login')
+            removeCookie('user')
+            toast.error('Sua sessão expirou.', {autoClose:2000})
+            window.location.href = '/acesso-unificado/#/'
         }
     }
 
@@ -38,8 +42,24 @@ export default function Dashboard() {
         
         // GET CARDS
         getCards()
-
     },[])
+    
+    useEffect(()=>{
+        
+        console.log('Fora');
+        api.interceptors.response.use(res => res, (err) => {
+            console.log(err.response.config.url);
+            console.log('Dentro');
+			if (err.response.status == 401 && (err.response.config.url === '/auth/login' || err.response.config.url === '/user/me' || err.response.config.url === '/user/acessos')) {
+				removeCookie('login')
+				removeCookie('user')
+				toast.error('Sua sessão expirou.', {autoClose:2000})
+				window.location.href = '/acesso-unificado/#/'
+			}
+			return Promise.reject(err);
+		});
+	},[location.pathname])
+
 
     return cookies.user && (
         <div className="d-flex flex-column flex-root app-root h-100" id="kt_app_root" >
