@@ -35,19 +35,12 @@ export default function Perfil() {
         
                     }
                 } catch (error) {
-                    
-                }
-            })()
-        } else {
-            api.interceptors.response.use(res => res, (err) => {
-                if (err.response.status == 401 && (err.response.config.url == '/user/leitura-comunicado')) {
                     removeCookies('login')
                     removeCookies('user')
                     toast.error('Sua sessão expirou.', {autoClose:2000})
                     window.location.href = '/acesso-unificado/#/'
                 }
-                return Promise.reject(err);
-            });
+            })()
         }
         
         // GET CARDS E DEPENDENTES
@@ -56,7 +49,10 @@ export default function Perfil() {
                 let resDep = await api.get('/user/dependentes')
                 setDep(resDep.data)
             } catch (error) {
-                
+                removeCookies('login')
+                removeCookies('user')
+                toast.error('Sua sessão expirou.', {autoClose:2000})
+                window.location.href = '/acesso-unificado/#/'
             }
         })()
 

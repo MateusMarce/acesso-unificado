@@ -21,7 +21,7 @@ const Schema = Yup.object().shape({
 })
 
 export default function Login() {
-    const [cookies, setCookies, removeCookies] = useCookies(['login', 'user', 'consent', 'theme'])
+    const [cookies, setCookies, removeCookies] = useCookies(['login', 'user', 'consent', 'theme', 'image'])
     const [cookie, setCookie] = useState<boolean>()
     const navigate = useNavigate()
     const {cpf} = useParams()    
@@ -61,9 +61,11 @@ export default function Login() {
         
         action.setSubmitting(false)
     }
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        await api.post('/auth/logout')
         removeCookies('user')
         removeCookies('login')
+        removeCookies('image')
     }
     const handleNavigate = () => {
         if(cookies.consent && cookies.consent !== 'false') {

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 export default function Dash_HeaderSecondary() {
     const [cookies] = useCookies(['user'])
 
-    return (
+    return cookies.user && (
         <section>
             <div className="app-header-secondary">
                 <div className="app-container container-xxl d-flex align-items-stretch">

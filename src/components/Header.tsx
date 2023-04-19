@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import Dash_ModalAjuda from './Dash_ModalAjuda'
 import { useEffect } from 'react'
 import api from '../services/api'
+import { toast } from 'react-toastify'
 
 export default function Dash_Header() {
     const {mode, setMode} = useTheme()
@@ -16,10 +17,30 @@ export default function Dash_Header() {
 
     useEffect(()=>{
         (async () => {
-            let res = await api.get('/user/leitura-comunicado')
-            setCookie('comunicados', res.data)
+            try {
+                let res = await api.get('/user/leitura-comunicado')
+                setCookie('comunicados', res.data)
+                
+            } catch (error) {
+                removeCookie('login')
+                removeCookie('user')
+                toast.error('Sua sessão expirou.', {autoClose:2000})
+                window.location.href = '/acesso-unificado/#/'
+            }
         })()
     },[])
+
+    useEffect(()=>{
+        api.interceptors.response.use(res => res, (err) => {
+			if (err.response.status == 401 ) {
+				removeCookie('login')
+				removeCookie('user')
+				window.location.href = '/acesso-unificado/#/'
+				toast.error('Sua sessão expirou.', {autoClose:2000})
+			}
+			return Promise.reject(err);
+		});
+	},[location.pathname])
 
     const handleTheme = (theme:string) => {
         document.body.setAttribute('data-theme', theme)
@@ -28,14 +49,14 @@ export default function Dash_Header() {
     }
 
     const handleLogout = async () => {
-        // await api.post('/auth/logout')
+        await api.post('/auth/logout')
         removeCookie('login')
         removeCookie('user')
         removeCookie('image')
         navigate('/')
     }
 
-    return (
+    return  cookie.user && (
         <section>
             <div className="app-header-primary w-100" data-kt-sticky="true" data-kt-sticky-name="app-header-primary-sticky" data-kt-sticky-offset="{default: 'false', lg: '300px'}">
                 <div className="app-container container-xxl d-flex align-items-stretch justify-content-between">
@@ -116,17 +137,17 @@ export default function Dash_Header() {
                         <div className="app-navbar-item ms-3 dropdown position-relative avatarPerfil">
                             {/* USER */}
                             <div className="text-end d-none d-sm-flex flex-column justify-content-center me-3">
-                                <Link to='/perfil' className="text-white text-hover-primary fs-6 fw-bold">{FixName(cookie.user.nome)}</Link>
-                                <span className="text-gray-600 fs-7 fw-semibold d-block">{cookie.user.email || 'usuario@satc.edu.br'}</span>
+                                <Link to='/perfil' className="text-white text-hover-primary fs-6 fw-bold">{cookie.user && FixName(cookie.user.nome)}</Link>
+                                <span className="text-gray-600 fs-7 fw-semibold d-block">{cookie.user?.email || 'usuario@satc.edu.br'}</span>
                             </div>
                                 <button type='button' className="cursor-pointer med-3 p-0 border-0" id="dropdownMenuButton1" aria-expanded="false">
                                     {cookie.comunicados &&
                                         <span className="comuniki">{cookie.comunicados}</span>
                                     }
                                     <div className="avatarComuniki round-container w-35px h-35px w-md-40px h-md-40px">
-                                        <span className="inicialNome">{cookie.user.nome.charAt(0)}</span>
+                                        <span className="inicialNome">{cookie.user?.nome.charAt(0)}</span>
                                         {cookie.image === "true" &&
-                                            <img src={cookie.user.avatar} alt="user" />
+                                            <img src={cookie.user?.avatar} alt="user" />
                                         }
                                     </div>
                                 </button>
@@ -136,14 +157,14 @@ export default function Dash_Header() {
                                 <div className="menu-item px-3">
                                     <div className="menu-content d-flex align-items-center px-3 avatarPerfil">
                                         <div className="round-container med-4 me-5">
-                                            <span className="inicialNome fs-md-2x">{cookie.user.nome.charAt(0)}</span>
+                                            <span className="inicialNome fs-md-2x">{cookie.user?.nome.charAt(0)}</span>
                                             {cookie.image === "true" &&
-                                                <img src={cookie.user.avatar} alt="user" />
+                                                <img src={cookie.user?.avatar} alt="user" />
                                             }
                                         </div>
                                         <div className="d-flex flex-column">
-                                            <div className="fw-bold d-flex align-items-center fs-5">{cookie.user.first_name}</div>
-                                            <span className="fw-semibold text-muted fs-7">{cookie.user.email || 'usuario@satc.edu.br'}</span>
+                                            <div className="fw-bold d-flex align-items-center fs-5">{cookie.user?.first_name}</div>
+                                            <span className="fw-semibold text-muted fs-7">{cookie.user?.email || 'usuario@satc.edu.br'}</span>
                                         </div>
                                     </div>
                                 </div>

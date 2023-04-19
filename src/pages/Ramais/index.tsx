@@ -6,8 +6,11 @@ import { useEffect, useState } from "react"
 import api from "../../services/api"
 import { RamaisType } from "../../assets/types/type"
 import { Link } from "react-router-dom"
+import { toast } from "react-toastify"
+import { useCookies } from "react-cookie"
 
 export default function Ramais() {
+    const [cookies, , removeCookie] = useCookies(['login', 'user', 'consent', 'theme', 'image'])
     const [ramaisLista, setRamaisLista] = useState([] as RamaisType[])
     const [filterList, setFilterList] = useState([] as RamaisType[])
 
@@ -24,6 +27,8 @@ export default function Ramais() {
         })()
 
     },[])
+
+    
 
     const handleSearch = (value: string) => {
         let search = value ? value.toLowerCase().trim().replaceAll('.','').replaceAll('-','') : ''
@@ -108,8 +113,9 @@ export default function Ramais() {
                                                                             {i.ramais && i.ramais.map((item:any, j:number)=>(
                                                                                 <tr key={j} className="odd">
                                                                                     <td className="text-primary">{item.ramal}</td>
-                                                                                    <td>{item.nome_ramal}
-                                                                                        <span className="text-gray-800"> ({item.lista_usuarios})</span>
+                                                                                    <td>
+                                                                                        <span className="text-gray-800">{item.nome_ramal}</span>
+                                                                                        <span className=""> ({item.lista_usuarios})</span>
                                                                                     </td>
                                                                                     {item.ativo === 'S' ?
                                                                                         <td className="pe-0 text-end"><span className="badge badge-light-success text-end">Ativo</span></td>
