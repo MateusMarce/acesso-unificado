@@ -140,7 +140,7 @@ const ValidationSchema = Yup.object().shape({
   })
 
 export default function Perfil() {
-    const [cookies] = useCookies(['user'])
+    const [cookies, , removeCookie] = useCookies(['user', 'login'])
     const [dados, setDados] = useState({} as AlumniDadosType)
     const [salarios, setSalarios] = useState([] as AlumniSalariosType[])
 
@@ -166,7 +166,10 @@ export default function Perfil() {
                 setSalarios(resSalarios.data)
                 
             } catch (error) {
-                
+                removeCookie('login')
+                removeCookie('user')
+                toast.error('Sua sessão expirou.', {autoClose:2000})
+                window.location.href = '/acesso-unificado/#/'
             }
         })()
 
