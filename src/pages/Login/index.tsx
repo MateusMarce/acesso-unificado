@@ -197,6 +197,7 @@ export default function Login() {
                     </div>
                 </div>
             </div>
+            {!cookies.consent &&
             <CookieConsent
                 location="bottom"
                 buttonWrapperClasses="w-100 d-flex justify-content-center"
@@ -224,6 +225,7 @@ export default function Login() {
                     <small><a href="https://unisatc.com.br/politica-de-privacidade/" target={"_blank"}>[ Leia nossa Política de Privacidade ]</a></small>
                 </div>
             </CookieConsent>
+            }
         </div>
     )
 }

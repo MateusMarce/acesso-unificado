@@ -15,9 +15,11 @@ import { toast } from 'react-toastify'
 import ChangePassword from '../../components/Buttons/ChangePassword'
 import PasswordStrengthBar from 'react-password-strength-bar'
 import { useCookies } from 'react-cookie'
+import CookieConsent from 'react-cookie-consent'
 
 
 export default function Cadastro() {
+    const [cookie, setCookie] = useState<boolean>()
     const [cookies, setCookies] = useCookies(['consent', 'login', 'theme'])
     const [dados, setDados] = useState<any>({})
     const [colaborador, setColaborador] = useState<boolean>(false)
@@ -109,7 +111,7 @@ export default function Cadastro() {
                         let res = await api.post('/cadastro/createuser', {...val, nome: dados.nome, password: values.password_old})
                         validateRequest(res)
                         //LOGA COM O USUARIO DPS DE CADASTRAR
-                        if(!consent || cookies.consent === 'true' && res.status === 200){
+                        if(cookie && res.status === 200){
                             let value = {user: val.cpf, password:values.password_old}
                             let res = await api.post('/auth/login', value)
                             setCookies('login', res.data.content, {path:'/acesso-unificado'})
@@ -136,7 +138,7 @@ export default function Cadastro() {
                     let res = await api.post('/cadastro/updatepassAD', val)
                     validateRequest(res)
                     //LOGA COM O USUARIO DPS DE CADASTRAR
-                    if(!consent || cookies.consent === 'true' && res.status === 200){
+                    if(cookie && res.status === 200){
                         let value = {user: val.cpf, password:values.password_old}
                         let res = await api.post('/auth/login', value)
                         setCookies('login', res.data.content, {path:'/acesso-unificado'})
@@ -332,6 +334,35 @@ export default function Cadastro() {
                     </div>
                 </div>
             </div>
+            {!cookies.consent &&
+            <CookieConsent
+                location="bottom"
+                buttonWrapperClasses="w-100 d-flex justify-content-center"
+                style={{position:'absolute', right:0, left:'auto'}}
+                containerClasses="w-500px rounded-4 mb-3 me-3"
+                buttonText="Aceitar cookies"
+                buttonClasses='btn btn-success bg-success text-white rounded'
+                hideOnAccept
+                hideOnDecline
+                enableDeclineButton
+                declineButtonText="Negar cookies"
+                declineButtonClasses="btn btn-dark border border-dark bg-transparent text-white rounded"
+                declineCookieValue='false'
+                onDecline={()=>setCookie(false)}
+                onAccept={()=>setCookie(true)}
+                cookieName="consent"
+                expires={150}
+            >
+                <div id="consent-btn" className="w-100 d-flex flex-column align-items-center">
+                    <i className="bi bi-shield-check text-success mb-5" style={{fontSize:50}}></i>
+                    <h3 className="text-light">
+                        Usamos cookies para validar sua autenticação.
+                    </h3>
+                    <small>Não usamos seus dados para fins comerciais.</small>
+                    <small><a href="https://unisatc.com.br/politica-de-privacidade/" target={"_blank"}>[ Leia nossa Política de Privacidade ]</a></small>
+                </div>
+            </CookieConsent>
+            }
         </div>
     )
 }
