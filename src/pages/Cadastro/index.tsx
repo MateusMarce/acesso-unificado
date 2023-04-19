@@ -19,8 +19,8 @@ import CookieConsent from 'react-cookie-consent'
 
 
 export default function Cadastro() {
-    const [cookie, setCookie] = useState<boolean>()
     const [cookies, setCookies] = useCookies(['consent', 'login', 'theme'])
+    const [cookie, setCookie] = useState<boolean>(cookies.consent && cookies.consent === 'true' ? true : false)
     const [dados, setDados] = useState<any>({})
     const [colaborador, setColaborador] = useState<boolean>(false)
     const [aluno, setAluno] = useState<boolean>(false)
@@ -133,7 +133,6 @@ export default function Cadastro() {
                 delete val.password_confirmation
                 delete val.email
                 try {
-                    console.log(val);
                     
                     let res = await api.post('/cadastro/updatepassAD', val)
                     validateRequest(res)

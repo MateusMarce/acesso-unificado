@@ -26,7 +26,6 @@ export default function Perfil() {
             (async()=>{
                 try {
                     let res = await api.get('/user/me')
-                    console.log(cookies.login);
                     if(!cookies.login.access_token){
                         removeCookies('user')
                         removeCookies('login')

@@ -202,7 +202,6 @@ export default function Perfil() {
     }
 
     const handleSubmit = async (values: FormikValues, action: any) => {
-        console.log(values);
         try {
             let res = await api.post('alumni/saveQuestionario', {
                 ...values, 

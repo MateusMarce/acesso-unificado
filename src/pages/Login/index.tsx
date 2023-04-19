@@ -42,8 +42,6 @@ export default function Login() {
 
         //requisiçao
         try {
-            console.log(cookies.consent);
-            
             if(cookie || cookies.consent === 'true'){
                 let res = await api.post('/auth/login', value)
                 setCookies('login', res.data.content, {path:'/acesso-unificado'})
