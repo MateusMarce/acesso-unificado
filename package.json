@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build --base=/acesso-unificado/",
+    "build-dev": "tsc && vite build --base=/acesso-unificado-dev/",
     "preview": "vite preview",
     "homepage": "https://app.satc.edu.br"
   },
