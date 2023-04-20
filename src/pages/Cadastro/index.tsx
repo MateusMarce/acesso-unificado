@@ -175,10 +175,10 @@ export default function Cadastro() {
                 if(res.data.tipo === "colaborador") {
                     setColaborador(true)
                     setAluno(false)
-                    toast.success(`Identificamos que você é um ${res.data.tipo}. Preencha os campos seguintes.`)
+                    toast.success(`Identificamos que você é um ${res.data.tipo}. Preencha os campos seguintes.`, {autoClose:4000,theme:cookies.theme==='light'?'light':'dark'})
                 }
                 if(res.data.tipo === "aluno" || res.data.tipo === "responsavel") {
-                    toast.success(`Identificamos que você é um ${res.data.tipo}. Preencha os campos seguintes.`)
+                    toast.success(`Identificamos que você é um ${res.data.tipo}. Preencha os campos seguintes.`, {autoClose:4000,theme:cookies.theme==='light'?'light':'dark'})
                     setAluno(true)
                     setColaborador(false)
                     setAlunoEmail(res.data.email_verificar)

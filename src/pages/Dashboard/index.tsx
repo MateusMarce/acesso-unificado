@@ -11,7 +11,7 @@ import { AcessosCardType } from "../../assets/types/type"
 import { toast } from "react-toastify"
 
 export default function Dashboard() {
-    const [cookies, setCookies, removeCookie] = useCookies(['user', 'image', 'login'])
+    const [cookies, setCookies, removeCookie] = useCookies(['user', 'image', 'login', 'theme'])
     const [acessos, setAcessos] = useState([] as AcessosCardType[])
 
     const getCards = async () => {
@@ -21,7 +21,7 @@ export default function Dashboard() {
         } catch (error:any) {
             removeCookie('login')
             removeCookie('user')
-            toast.error('Sua sessão expirou.', {autoClose:2000})
+            toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
             window.location.href = '/acesso-unificado/#/'
         }
     }

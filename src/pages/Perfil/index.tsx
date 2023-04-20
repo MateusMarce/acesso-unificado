@@ -16,7 +16,7 @@ import { Perfil_Dependentes } from "../../components/Perfil_Dependentes"
 import { toast } from "react-toastify"
 
 export default function Perfil() {
-    const [cookies, setCookies, removeCookies] = useCookies(['user', 'login'])
+    const [cookies, setCookies, removeCookies] = useCookies(['user', 'login', 'theme'])
     const [dep, setDep] = useState([] as DependentesType[])
     const navigate = useNavigate()
 
@@ -37,7 +37,7 @@ export default function Perfil() {
                 } catch (error) {
                     removeCookies('login')
                     removeCookies('user')
-                    toast.error('Sua sessão expirou.', {autoClose:2000})
+                    toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
                     window.location.href = '/acesso-unificado/#/'
                 }
             })()
@@ -51,7 +51,7 @@ export default function Perfil() {
             } catch (error) {
                 removeCookies('login')
                 removeCookies('user')
-                toast.error('Sua sessão expirou.', {autoClose:2000})
+                toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
                 window.location.href = '/acesso-unificado/#/'
             }
         })()

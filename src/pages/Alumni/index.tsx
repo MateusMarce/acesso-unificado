@@ -140,7 +140,7 @@ const ValidationSchema = Yup.object().shape({
   })
 
 export default function Perfil() {
-    const [cookies, , removeCookie] = useCookies(['user', 'login'])
+    const [cookies, , removeCookie] = useCookies(['user', 'login', 'theme'])
     const [dados, setDados] = useState({} as AlumniDadosType)
     const [salarios, setSalarios] = useState([] as AlumniSalariosType[])
 
@@ -168,7 +168,7 @@ export default function Perfil() {
             } catch (error) {
                 removeCookie('login')
                 removeCookie('user')
-                toast.error('Sua sessão expirou.', {autoClose:2000})
+                toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
                 window.location.href = '/acesso-unificado/#/'
             }
         })()
@@ -214,7 +214,7 @@ export default function Perfil() {
             if(res.data.retorno === 1) {
                 location.reload()
             } else {
-                toast.error('Você não possui nenhuma matrícula nesse nível.', {autoClose:2000})
+                toast.error('Você não possui nenhuma matrícula nesse nível.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
             }
         } catch (error) {
             

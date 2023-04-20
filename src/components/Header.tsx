@@ -24,7 +24,7 @@ export default function Dash_Header() {
             } catch (error) {
                 removeCookie('login')
                 removeCookie('user')
-                toast.error('Sua sessão expirou.', {autoClose:2000})
+                toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookie.theme==='light'?'light':'dark'})
                 window.location.href = '/acesso-unificado/#/'
             }
         })()
@@ -36,7 +36,7 @@ export default function Dash_Header() {
 				removeCookie('login')
 				removeCookie('user')
 				window.location.href = '/acesso-unificado/#/'
-				toast.error('Sua sessão expirou.', {autoClose:2000})
+				toast.error('Sua sessão expirou.', {autoClose:2000, theme:cookie.theme==='light'?'light':'dark'})
 			}
 			return Promise.reject(err);
 		});
@@ -54,6 +54,7 @@ export default function Dash_Header() {
         removeCookie('user')
         removeCookie('image')
         navigate('/')
+        toast.success('Você saiu com sucesso.', {autoClose: 2000, theme:cookie.theme==='light'?'light':'dark'})
     }
 
     return  cookie.user && (

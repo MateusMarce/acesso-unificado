@@ -9,7 +9,7 @@ import { toast } from "react-toastify"
 import { HashLink as Link } from 'react-router-hash-link';
 
 export const Perfil_TopInfo = ({dep}:any) => {
-    const [cookies, setCookies] = useCookies(['user', 'image'])
+    const [cookies, setCookies] = useCookies(['user', 'image', 'theme'])
     const [showImage, setShowImage] = useState<boolean>(cookies.image === 'true'? true : false)
     const [edit, setEdit] = useState<boolean>(false)
     const [text, setText] = useState<string>(cookies.user.bio || '')
@@ -40,7 +40,7 @@ export const Perfil_TopInfo = ({dep}:any) => {
                 validateRequest(error)
             }
         } else {
-            toast.warning('Sua bio deve conter no máximo 300 caractéres.', {autoClose:2000})
+            toast.warning('Sua bio deve conter no máximo 300 caractéres.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
             setText('')
         }
         

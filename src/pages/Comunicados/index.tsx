@@ -30,8 +30,9 @@ export default function Comunicados() {
         (async () => {
             getCom()
         })()
-
+        
     },[])
+
     
     const handleOpen = async (item:ComunicadosType) => {
         setItem(item)
@@ -46,6 +47,7 @@ export default function Comunicados() {
         }
         getCom()
     }
+
 
     return (
         <div className="d-flex flex-column flex-root app-root h-100" id="kt_app_root" >
@@ -111,6 +113,15 @@ export default function Comunicados() {
                                             </div>
                                         )
                                     })}
+
+                                    {comunicados && comunicados.length === 0 &&
+                                        <div className="h-100 d-flex justify-content-center align-items-center">
+                                            <div className="d-flex flex-column justify-content-center px-10 py-6 bg-light-warning rounded border border-2 border-warning">
+                                                <h2 className="mb-1">Não há comunicados no momento!</h2>
+                                                <span className="fs-5 text-center text-gray-700">Volte outra hora...</span>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
 
                             </div>
