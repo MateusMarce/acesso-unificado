@@ -15,6 +15,11 @@
 
 /*ATUALIZAÇÃO = 21/03/2023*/
 
+#kt_app_header_logo_wrapper .logoTop {width: 75px;margin: 10px 0;}
+
+@media (min-width: 991px) {
+  #kt_app_header_logo_wrapper .logoTop {width: 135px;}
+}
 
 .modal-body .stepper.stepper-pills img {width: 100%!important; display: block; height: auto!important;}
 

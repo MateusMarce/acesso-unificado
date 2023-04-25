@@ -73,7 +73,7 @@ export default function Dash_Header() {
                                 </span>
                             </button>
                             <Link to='/painel' className="d-flex align-items-center" title="Página inicial">
-                                <img alt="Logo" src={LogoSatc2} className="h-45px" />
+                                <img alt="Logo" src={LogoSatc2} className="logoTop" />
                             </Link>
                         </div>
 
