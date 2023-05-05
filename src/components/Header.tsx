@@ -14,29 +14,30 @@ export default function Dash_Header() {
     const [cookie, setCookie, removeCookie] = useCookies(['theme', 'login', 'user', 'image', 'comunicados'])
     const navigate = useNavigate()
 
+    const getComunicados = async () => {
+        try {
+            let res = await api.get('/user/leitura-comunicado')
+            setCookie('comunicados', res.data)
+            
+        } catch (error) {
+            removeCookie('login')
+            removeCookie('user')
+            toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookie.theme==='light'?'light':'dark'})
+            window.location.href = '/acesso-unificado/#/'
+        }
+    }
 
     useEffect(()=>{
-        (async () => {
-            try {
-                let res = await api.get('/user/leitura-comunicado')
-                setCookie('comunicados', res.data)
-                
-            } catch (error) {
-                removeCookie('login')
-                removeCookie('user')
-                toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookie.theme==='light'?'light':'dark'})
-                window.location.href = '/acesso-unificado/#/'
-            }
-        })()
+        if(cookie && cookie.login && cookie.user) getComunicados()
     },[])
 
     useEffect(()=>{
         api.interceptors.response.use(res => res, (err) => {
 			if (err.response.status == 401 ) {
-				removeCookie('login')
-				removeCookie('user')
-				window.location.href = '/acesso-unificado/#/'
-				toast.error('Sua sessão expirou.', {autoClose:2000, theme:cookie.theme==='light'?'light':'dark'})
+				// removeCookie('login')
+				// removeCookie('user')
+				// window.location.href = '/acesso-unificado/#/'
+				// toast.error('Sua sessão expirou.', {autoClose:2000, theme:cookie.theme==='light'?'light':'dark'})
 			}
 			return Promise.reject(err);
 		});

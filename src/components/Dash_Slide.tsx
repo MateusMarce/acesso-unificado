@@ -11,8 +11,8 @@ export default function Dash_Slide() {
 			try {
 				let res = await api.get('/user/noticias')
 				setSlides(res.data)
-			} catch (error) {
-				validateRequest(error)
+			} catch (error:any) {
+				if(error.response.status != 401) validateRequest(error)
 			}
 		})()
 	},[])

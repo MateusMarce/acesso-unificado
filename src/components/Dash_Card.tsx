@@ -28,8 +28,8 @@ export default function Dash_Card({item, k, getCards}:Function) {
                     setLoading(false)
                 }, 1000)
             }
-        } catch (error) {
-            validateRequest(error)
+        } catch (error:any) {
+            if(error.response.status != 401) validateRequest(error)
         }
     }
     

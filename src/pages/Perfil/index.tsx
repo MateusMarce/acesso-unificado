@@ -35,10 +35,10 @@ export default function Perfil() {
         
                     }
                 } catch (error) {
-                    removeCookies('login')
-                    removeCookies('user')
-                    toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
-                    window.location.href = '/acesso-unificado/#/'
+                    // removeCookies('login')
+                    // removeCookies('user')
+                    // toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
+                    // window.location.href = '/acesso-unificado/#/'
                 }
             })()
         }
@@ -49,10 +49,10 @@ export default function Perfil() {
                 let resDep = await api.get('/user/dependentes')
                 setDep(resDep.data)
             } catch (error) {
-                removeCookies('login')
-                removeCookies('user')
-                toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
-                window.location.href = '/acesso-unificado/#/'
+                // removeCookies('login')
+                // removeCookies('user')
+                // toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
+                // window.location.href = '/acesso-unificado/#/'
             }
         })()
 
