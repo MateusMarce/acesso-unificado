@@ -162,9 +162,9 @@ export default function Cadastro() {
         action.setSubmitting(false)
     }
     const handleChange = async (value:any, setFieldValue?:any) => {
+        setCpfVal(value)
         let cpf = value.replaceAll('.','').replace('-','')
         
-        setCpfVal(cpf)
         if(setFieldValue) setFieldValue('cpf', cpf)
         setSenha(false)
         try {

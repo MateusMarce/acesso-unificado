@@ -6,10 +6,11 @@ export default function Cadastro_FormAluno(props:any) {
     return (
         <>
             <div className="fv-row mb-3">
+                <span className="text-gray-500">Digite seu {props.value} de nascimento</span>
                 <Field
                     className={`form-control form-control-lg bg-transparent mt-1 ${(props.errors && props.touched) && 'is-invalid'}`}
                     name='valor'
-                    placeholder={`Digite seu ${props.value} de nascimento, exemplo: ${props.value != 'ano' ? '01' : new Date().getFullYear()}`}
+                    placeholder={`Exemplo: ${props.value != 'ano' ? '01' : new Date().getFullYear()}`}
                     maxLength={props.value != 'ano' ? 2 : 4}
                     minLength={props.value === 'ano' ? 3 : 0}
                 />
