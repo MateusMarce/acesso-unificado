@@ -9,10 +9,12 @@ import { useEffect, useState } from "react"
 import api from "../../services/api"
 import { AcessosCardType } from "../../assets/types/type"
 import { toast } from "react-toastify"
+import { useTheme } from "../../helpers/ThemeContext"
 
 export default function Dashboard() {
     const [cookies, setCookies, removeCookie] = useCookies(['user', 'image', 'login', 'theme'])
     const [acessos, setAcessos] = useState([] as AcessosCardType[])
+    const {mode, setMode} = useTheme()
 
     const getCards = async () => {
         try {
@@ -34,6 +36,9 @@ export default function Dashboard() {
                     let res = await api.get('/user/me')
                     setCookies('user', res.data)
                     setCookies('image', res.data.ocultar_foto === "S" ? 'false' : 'true')
+                    setCookies('theme', res.data.tema)
+                    document.body.setAttribute('data-theme', res.data.tema)
+                    if(setMode) setMode(res.data.tema)
                 } catch (error) {
                     
                 }

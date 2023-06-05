@@ -8,6 +8,8 @@ import Dash_ModalAjuda from './Dash_ModalAjuda'
 import { useEffect } from 'react'
 import api from '../services/api'
 import { toast } from 'react-toastify'
+import validateRequest from '../helpers/validateRequest'
+import {version} from '../../package.json'
 
 export default function Dash_Header() {
     const {mode, setMode} = useTheme()
@@ -17,6 +19,10 @@ export default function Dash_Header() {
     const getComunicados = async () => {
         try {
             let res = await api.get('/user/leitura-comunicado')
+            let res2 = await api.get(`/version/versao/${version}`)            
+            if(res2.data.status){
+                toast.error('Há uma nova versão disponível, dê CTRL+F5 para recarregar a página.', {autoClose:false,theme:cookie.theme==='light'?'light':'dark'})
+            }
             setCookie('comunicados', res.data)
             
         } catch (error) {
@@ -31,21 +37,17 @@ export default function Dash_Header() {
         if(cookie && cookie.login && cookie.user) getComunicados()
     },[])
 
-    useEffect(()=>{
-        api.interceptors.response.use(res => res, (err) => {
-			if (err.response.status == 401 ) {
-				// removeCookie('login')
-				// removeCookie('user')
-				// window.location.href = '/acesso-unificado/#/'
-				// toast.error('Sua sessão expirou.', {autoClose:2000, theme:cookie.theme==='light'?'light':'dark'})
-			}
-			return Promise.reject(err);
-		});
-	},[location.pathname])
-
-    const handleTheme = (theme:string) => {
+    const handleTheme = async (theme:string) => {
         document.body.setAttribute('data-theme', theme)
-        setCookie('theme', theme)
+        try {
+            await api.post('/user/updateBio', {
+                tema:theme
+            })
+            setCookie('theme', theme)
+            setCookie('user', {...cookie.user, tema:theme})
+        } catch (error) {
+            validateRequest(error)
+        }
         if(setMode) setMode(theme)
     }
 
@@ -157,7 +159,10 @@ export default function Dash_Header() {
                             <div className=" fw-semibold py-4 fs-6 w-auto dropdown-menu dropdown-menu-end top-100 end-0" aria-labelledby="dropdownMenuButton1">
                                 <div className="arrow"><i></i></div>{/*seta*/}
                                 <div className="menu-item px-3">
-                                    <div className="menu-content d-flex align-items-center px-3 avatarPerfil">
+                                    {/* <div className='menu-item px-5 fs-8 text-muted'>
+                                        Ver. {version}
+                                    </div> */}
+                                    <div className="menu-content d-flex align-items-center px-3 pt-0 avatarPerfil">
                                         <div className="round-container med-4 me-5">
                                             <span className="inicialNome fs-md-2x">{cookie.user?.nome.charAt(0)}</span>
                                             {cookie.image === "true" &&
@@ -173,7 +178,7 @@ export default function Dash_Header() {
                                 <div className="separator my-2"></div>
                                 <div className="menu-item px-5">
                                     <Link to='/comunicados' className="menu-link px-5 d-flex gap-3">
-                                        Meus Comunicados
+                                        Comunicados
                                         {cookie.comunicados &&
                                             <div className='badge badge-danger border border-danger rounded-pill p-1 px-2' style={{outline:'3px solid #f1416c69'}}>{cookie.comunicados}</div>
                                         }
@@ -183,6 +188,14 @@ export default function Dash_Header() {
                                 <div className="menu-item px-5">
                                     <Link to='/perfil' className="menu-link px-5">Meu Perfil</Link>
                                 </div>
+
+
+                                <div className='separator my-2' />
+                                <div className='menu-item px-5 mt-4 fs-8 text-center text-muted'>
+                                        Versão {version}
+                                </div>
+
+
                                 {/* NOTIFICACAO */}
                                 {/* <div className="menu-item px-5">
                                     <a href="#" className="menu-link px-5">

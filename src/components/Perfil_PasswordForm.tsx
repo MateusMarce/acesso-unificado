@@ -1,7 +1,9 @@
-import { ErrorMessage, Field, Form, Formik } from "formik"
+import { ErrorMessage, Field, Form, Formik, FormikHelpers, FormikValues } from "formik"
 import { toast } from "react-toastify"
 import * as Yup from 'yup'
 import ChangePassword from "./Buttons/ChangePassword"
+import api from "../services/api"
+import validateRequest from "../helpers/validateRequest"
 
 const FormSchema = Yup.object().shape({
     senha_antiga:Yup.string().required('Este campo é obrigatório.'),
@@ -11,11 +13,24 @@ const FormSchema = Yup.object().shape({
 
 export const Perfil_PasswordForm = () => {
 
+    const handleSubmit = async (values: FormikValues, action:any) => {
+        try {
+            let res = await api.post('/cadastro/updatepass', {
+                old_password:values.senha_antiga,
+                password:values.senha_nova
+            })
+            validateRequest(res)
+        } catch (error) {
+            validateRequest(error)
+        }
+        action.resetForm()
+    }
+
     return (
         <div className="card mb-5 mb-xl-10 shadow-sm">
             <div className="card-header border-0">
                 <div className="card-title m-0">
-                    <h3 className="fw-bold m-0">Alterar senha <small>| Em desenvolvimento</small></h3>
+                    <h3 className="fw-bold m-0">Alterar senha</h3>
                 </div>
             </div>
             <div>
@@ -27,7 +42,7 @@ export const Perfil_PasswordForm = () => {
                     }}
                     validationSchema={FormSchema}
                     enableReinitialize
-                    onSubmit={()=>{toast.warning('Ainda estamos desenvolvendo, desculpe o transtorno.', {autoClose:3000})}}
+                    onSubmit={handleSubmit}
                 >
                     {(props)=>(
                         <Form>
@@ -36,6 +51,7 @@ export const Perfil_PasswordForm = () => {
                                     <label className="col-lg-4 col-form-label fw-semibold fs-6">Senha atual</label>
                                     <div className="pe-0 col-lg-8 position-relative login-password">
                                         <ChangePassword
+                                            tabIndex="1"
                                             name='senha_antiga'
                                             placeholder=''
                                             errors={props.errors.senha_antiga}
@@ -48,6 +64,7 @@ export const Perfil_PasswordForm = () => {
                                     <label className="col-lg-4 col-form-label fw-semibold fs-6">Nova senha</label>
                                     <div className="pe-0 col-lg-8 position-relative login-password">
                                         <ChangePassword
+                                            tabIndex="2"
                                             name='senha_nova'
                                             placeholder=''
                                             errors={props.errors.senha_nova}
@@ -60,6 +77,7 @@ export const Perfil_PasswordForm = () => {
                                     <label className="col-lg-4 col-form-label  fw-semibold fs-6">Confirmar senha</label>
                                     <div className="pe-0 col-lg-8 position-relative login-password">
                                         <ChangePassword
+                                            tabIndex="3"
                                             name='senha_nova_confirmar'
                                             placeholder=''
                                             errors={props.errors.senha_nova_confirmar}

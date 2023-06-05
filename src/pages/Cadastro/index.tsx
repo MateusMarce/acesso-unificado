@@ -16,6 +16,7 @@ import ChangePassword from '../../components/Buttons/ChangePassword'
 import PasswordStrengthBar from 'react-password-strength-bar'
 import { useCookies } from 'react-cookie'
 import CookieConsent from 'react-cookie-consent'
+import Cadastro_FormExterno from '../../components/Cadastro_FormExterno'
 
 
 export default function Cadastro() {
@@ -24,6 +25,7 @@ export default function Cadastro() {
     const [dados, setDados] = useState<any>({})
     const [colaborador, setColaborador] = useState<boolean>(false)
     const [aluno, setAluno] = useState<boolean>(false)
+    const [externo, setExterno] = useState<boolean>(false)
     const [senha, setSenha] = useState<boolean>(false)
     const [alunoEmail, setAlunoEmail] = useState<string>('')
     const [cpfVal, setCpfVal] = useState<string>('')
@@ -152,6 +154,35 @@ export default function Cadastro() {
                     validateRequest(error)
                     
                 }
+            } else if(externo) {
+                val = {...val, password:val.password_old, cpf:val.cpf.replaceAll('.','').replace('-','')}
+                delete val.valor
+                delete val.campo
+                delete val.senha_atual
+                delete val.password_confirmation
+                delete val.password_old
+                console.log(val);
+                
+                try {
+                    
+                    let res = await api.post('/cadastro/createuser', val)
+                    validateRequest(res)
+                    // LOGA COM O USUARIO DPS DE CADASTRAR
+                    if(cookie && res.status === 200){
+                        let value = {user: val.cpf, password:values.password_old}
+                        let res = await api.post('/auth/login', value)
+                        setCookies('login', res.data.content, {path:'/acesso-unificado'})
+                        navigate('/painel')
+                        validateRequest(res)
+                    } else {
+                        toast.error('Não é possivel acessar nosso portal sem aceitar os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
+                    }
+                    
+                } catch (error) {
+                    console.log(error);
+                    validateRequest(error)
+                    
+                }
             }
             
             
@@ -176,6 +207,12 @@ export default function Cadastro() {
                     setColaborador(true)
                     setAluno(false)
                     toast.success(`Identificamos que você é um ${res.data.tipo}. Preencha os campos seguintes.`, {autoClose:4000,theme:cookies.theme==='light'?'light':'dark'})
+                }
+                if(res.data.tipo === "externo") {
+                    setColaborador(false)
+                    setAluno(false)
+                    setExterno(true)
+                    toast.success(`Identificamos que você não tem relação com a Satc. Preencha os campos seguintes.`, {autoClose:4000,theme:cookies.theme==='light'?'light':'dark'})
                 }
                 if(res.data.tipo === "aluno" || res.data.tipo === "responsavel") {
                     toast.success(`Identificamos que você é um ${res.data.tipo}. Preencha os campos seguintes.`, {autoClose:4000,theme:cookies.theme==='light'?'light':'dark'})
@@ -246,7 +283,7 @@ export default function Cadastro() {
                                             </div>
                                         </div>
                                         <div className="separator separator-content border-dark my-14">
-                                            <span className="w-175px text-gray-700 fw-semibold fs-7">Ou insira os dados</span>
+                                            <span className="w-175px text-gray-700 fw-semibold fs-7">Faça seu <b>Cadastro</b></span>
                                         </div>
 
                                         <div className="fv-row mb-3">
@@ -268,6 +305,7 @@ export default function Cadastro() {
                                                     <>
                                                         <div className="fv-row mb-3 login-password position-relative">
                                                             <ChangePassword 
+                                                                tabIndex={4}
                                                                 name='password_old'
                                                                 placeholder='Senha nova'
                                                                 errors={props.errors.password_old}
@@ -285,7 +323,8 @@ export default function Cadastro() {
                                                             }
                                                         </div>
                                                         <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-8 login-password position-relative">
-                                                            <ChangePassword 
+                                                            <ChangePassword
+                                                                tabIndex={5}
                                                                 name='password_confirmation'
                                                                 placeholder='Confirmar senha'
                                                                 errors={props.errors.password_confirmation}
@@ -308,9 +347,22 @@ export default function Cadastro() {
                                                 touched_old={props.touched.senha_atual} 
                                             />
                                         }
+                                        {externo &&
+                                            <Cadastro_FormExterno
+                                                values={props.values.password_old} 
+                                                errors={props.errors.password_old} 
+                                                touched={props.touched.password_old}
+                                                errors_conf={props.errors.password_confirmation} 
+                                                touched_conf={props.touched.password_confirmation}
+                                                errors_nome={props.errors.nome} 
+                                                touched_nome={props.touched.nome} 
+                                                errors_email={props.errors.email} 
+                                                touched_email={props.touched.email} 
+                                            />
+                                        }
 
                                         
-                                        {(aluno || colaborador) &&
+                                        {(aluno || colaborador || externo) &&
                                             <div className="d-grid mt-8">
                                                 <button type={'button'} onClick={()=>props.submitForm()} id="kt_sign_in_submit" className="btn btn-success">
                                                     {props.isSubmitting ?
@@ -334,33 +386,35 @@ export default function Cadastro() {
                 </div>
             </div>
             {!cookies.consent &&
-            <CookieConsent
-                location="bottom"
-                buttonWrapperClasses="w-100 d-flex justify-content-center"
-                style={{position:'absolute', right:0, left:'auto'}}
-                containerClasses="w-500px rounded-4 mb-3 me-3"
-                buttonText="Aceitar cookies"
-                buttonClasses='btn btn-success bg-success text-white rounded'
-                hideOnAccept
-                hideOnDecline
-                enableDeclineButton
-                declineButtonText="Negar cookies"
-                declineButtonClasses="btn btn-dark border border-dark bg-transparent text-white rounded"
-                declineCookieValue='false'
-                onDecline={()=>setCookie(false)}
-                onAccept={()=>setCookie(true)}
-                cookieName="consent"
-                expires={150}
-            >
-                <div id="consent-btn" className="w-100 d-flex flex-column align-items-center">
-                    <i className="bi bi-shield-check text-success mb-5" style={{fontSize:50}}></i>
-                    <h3 className="text-light">
-                        Usamos cookies para validar sua autenticação.
-                    </h3>
-                    <small>Não usamos seus dados para fins comerciais.</small>
-                    <small><a href="https://unisatc.com.br/politica-de-privacidade/" target={"_blank"}>[ Leia nossa Política de Privacidade ]</a></small>
-                </div>
-            </CookieConsent>
+                <CookieConsent
+                    location="bottom"
+                    buttonWrapperClasses="w-100 d-flex justify-content-center align-self-center"
+                    style={{position:'absolute', right:0, left:'auto'}}
+                    containerClasses="w-50 mb-5 h-300px align-items-center"
+                    buttonText="Aceitar cookies"
+                    buttonClasses='btn btn-success bg-success text-white rounded'
+                    hideOnAccept
+                    hideOnDecline
+                    enableDeclineButton
+                    declineButtonText="Negar cookies"
+                    declineButtonClasses="btn btn-dark border border-dark bg-transparent text-white rounded"
+                    declineCookieValue='false'
+                    onDecline={()=>setCookie(false)}
+                    onAccept={()=>setCookie(true)}
+                    cookieName="consent"
+                    expires={150}
+                >
+                    <div id="consent-btn" className="w-100 d-flex flex-column align-items-center">
+                        <i className="bi bi-shield-check text-success mb-5 mt-5" style={{fontSize:60}}></i>
+                        <div className='d-flex flex-column text-center mt-6'>
+                            <h3 className="text-light">
+                                Usamos cookies para validar sua autenticação.
+                            </h3>
+                            <small>Não usamos seus dados para fins comerciais.</small>
+                            <small><a href="https://unisatc.com.br/politica-de-privacidade/" target={"_blank"}>[ Leia nossa Política de Privacidade ]</a></small>
+                        </div>
+                    </div>
+                </CookieConsent>
             }
         </div>
     )

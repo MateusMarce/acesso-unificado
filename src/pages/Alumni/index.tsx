@@ -85,7 +85,15 @@ const ValidationSchema = Yup.object().shape({
             return schema.notRequired()
         }
     }),
-    fora_do_pais_empresa:Yup.string().required('Preencha o campo.'),
+    fora_do_pais_empresa:Yup.string().when('forma_trabalho', 
+    (val, schema)=> {
+        
+        if(val[0] === 'N'){
+            return schema.notRequired()
+        } else {
+            return schema.required('Preencha o campo.')
+        }
+    }),
     cep_empresa:Yup.string().when('fora_do_pais_empresa', 
     (val, schema)=> {
         if(val[0] === 'N'){
@@ -205,6 +213,7 @@ export default function Perfil() {
     }
 
     const handleSubmit = async (values: FormikValues, action: any) => {
+        
         try {
             let res = await api.post('alumni/saveQuestionario', {
                 ...values, 
@@ -242,7 +251,7 @@ export default function Perfil() {
                         <div className="app-main flex-column flex-row-fluid" id="kt_app_main">
 
                             <div id="kt_app_toolbar" className="app-toolbar  py-3 py-lg-6 ">
-                                <div className="d-flex flex-grow-1 flex-stack flex-wrap gap-2 mb-n10" id="kt_toolbar">
+                                <div className="d-flex flex-grow-1 flex-stack flex-wrap gap-2" id="kt_toolbar">
                                     <div className="page-title d-flex flex-column justify-content-center flex-wrap me-3 ">
                                         <h1 className="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Formulário Alumni</h1>
                                     </div>
@@ -290,7 +299,7 @@ export default function Perfil() {
                                             enableReinitialize
                                         >
                                             {(props)=>{
-                                                // console.log(props.errors);
+                                                console.log(props.errors);
                                                 
                                                 return(
                                                 <Form>
@@ -324,7 +333,7 @@ export default function Perfil() {
                                                         </div>
                                                     </div>
                                                     <div className="row mb-3">
-                                                        <div className={`col-sm-12 d-flex gap-3 ${(props.touched.id_nivel && props.errors.id_nivel) && 'is-invalid'}`}>
+                                                        <div className={`col-sm-12 d-flex gap-3 ${(props.touched.fora_do_pais && props.errors.fora_do_pais) && 'is-invalid'}`}>
                                                             <div className="d-flex gap-1">
                                                                 <Field type="radio" style={{width:16}} value="S" name="fora_do_pais" id="fora_do_pais_S" /><label htmlFor="fora_do_pais_S">Sim</label>
                                                             </div>

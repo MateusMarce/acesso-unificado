@@ -54351,3 +54351,17 @@ input[type='file'] {
 .alert-form-alumni h3{
     margin-bottom: 0rem !important;
 }
+
+
+.app-footer-new {
+  height: var(--kt-app-header-secondary-height);
+  transition: none;
+  display: flex;
+  align-items: stretch;
+}
+[data-theme='light'] .app-footer-new {
+  background: #dbdfe3;
+}
+[data-theme='dark'] .app-footer-new {
+  background: #181827;
+}

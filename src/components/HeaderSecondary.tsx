@@ -1,5 +1,6 @@
 import FoneSvg from '../assets/images/fone-icon.svg'
 import EmailSvg from '../assets/images/email-icon.svg'
+import MegafoneSvg from '../assets/images/megafone-icon.svg'
 import MsnSVG from '../assets/images/icon-book.svg'
 import Nercu from '../assets/images/nercu-icon.svg'
 import Treinas from '../assets/images/treinas-icon.svg'
@@ -7,7 +8,7 @@ import { useCookies } from 'react-cookie'
 import { Link } from 'react-router-dom'
 
 export default function Dash_HeaderSecondary() {
-    const [cookies] = useCookies(['user'])
+    const [cookies] = useCookies(['user','comunicados'])
 
     return cookies.user && (
         <section>
@@ -35,13 +36,26 @@ export default function Dash_HeaderSecondary() {
                                     <img src={MsnSVG} className="w-20px" alt="" />
                                     <span className="d-none d-lg-inline text-gray-600 fw-bold text-hover-primary fs-5 ps-3">Biblioteca</span>
                                 </a>
+
+                                {cookies.comunicados &&
+                                    <Link to='/comunicados' className=" custom-link rounded px-lg-4 py-lg-2 d-flex flex-center cursor-pointer">
+                                        <div className='position-relative avatarPerfil'>
+                                            <span className="comuniki" style={{top:-10}}>{cookies.comunicados}</span>
+                                            <img src={MegafoneSvg} className="" alt="" />
+                                        </div>
+                                        <div className="avatarComuniki text-gray-600 fw-bold text-hover-primary fs-5 ps-3">Comunicados</div>
+                                    </Link>
+                                }
+
                             </div>
                         </div>
                         <div className="d-flex flex-stack">
-                            {(cookies.user.link_nercu != '' || cookies.user.link_treinas != '') &&
-                                <a href={cookies.user.link_nercu} target='_blank' className="buti buticolor_1 icoN" title="Nercu"><img src={Nercu} alt="" /></a>
+                            {(cookies.user.link_nercu != '' || cookies.user.link_treinas != '') && 
+                                <>
+                                    <a href={cookies.user.link_nercu} target='_blank' className="buti buticolor_1 icoN" title="Nercu"><img src={Nercu} alt="" /></a>
+                                    <a href={cookies.user.link_treinas} target='_blank' className="buti buticolor_1 icoT" title="Treinas"><img src={Treinas} alt="" /></a>
+                                </>
                             }
-                            <a href={cookies.user.link_treinas} target='_blank' className="buti buticolor_1 icoT" title="Treinas"><img src={Treinas} alt="" /></a>
                         </div>
                     </div>
                 </div>

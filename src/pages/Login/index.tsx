@@ -116,7 +116,7 @@ export default function Login() {
                                                         </div>
                                                     </div>
                                                     <div className="separator separator-content border-dark my-14">
-                                                        <span className="w-175px text-gray-700 fw-semibold fs-7">Ou {!cookies.login && !cookies.user ? "insira os dados" : "acesse o painel"}</span>
+                                                        <span className="w-175px text-gray-700 fw-semibold fs-7">Faça seu <b>Login</b></span>
                                                     </div>
                                                 </>
 
@@ -138,7 +138,8 @@ export default function Login() {
                                                         </div>
                                                         <div className="fv-row mb-3 position-relative login-password">
                                                             {/* <Field type={passwordType} placeholder="Senha" name="password" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`} /> */}
-                                                            <ChangePassword 
+                                                            <ChangePassword
+                                                                tabIndex={0}
                                                                 name='password'
                                                                 placeholder='Senha'
                                                                 errors={props.errors.password}
@@ -198,33 +199,35 @@ export default function Login() {
                 </div>
             </div>
             {!cookies.consent &&
-            <CookieConsent
-                location="bottom"
-                buttonWrapperClasses="w-100 d-flex justify-content-center"
-                style={{position:'absolute', right:0, left:'auto'}}
-                containerClasses="w-500px rounded-4 mb-3 me-3"
-                buttonText="Aceitar cookies"
-                buttonClasses='btn btn-success bg-success text-white rounded'
-                hideOnAccept
-                hideOnDecline
-                enableDeclineButton
-                declineButtonText="Negar cookies"
-                declineButtonClasses="btn btn-dark border border-dark bg-transparent text-white rounded"
-                declineCookieValue='false'
-                onDecline={()=>setCookie(false)}
-                onAccept={()=>setCookie(true)}
-                cookieName="consent"
-                expires={150}
-            >
-                <div id="consent-btn" className="w-100 d-flex flex-column align-items-center">
-                    <i className="bi bi-shield-check text-success mb-5" style={{fontSize:50}}></i>
-                    <h3 className="text-light">
-                        Usamos cookies para validar sua autenticação.
-                    </h3>
-                    <small>Não usamos seus dados para fins comerciais.</small>
-                    <small><a href="https://unisatc.com.br/politica-de-privacidade/" target={"_blank"}>[ Leia nossa Política de Privacidade ]</a></small>
-                </div>
-            </CookieConsent>
+                <CookieConsent
+                    location="bottom"
+                    buttonWrapperClasses="w-100 d-flex justify-content-center align-self-center"
+                    style={{position:'absolute', right:0, left:'auto'}}
+                    containerClasses="w-50 mb-5 h-300px align-items-center"
+                    buttonText="Aceitar cookies"
+                    buttonClasses='btn btn-success bg-success text-white rounded'
+                    hideOnAccept
+                    hideOnDecline
+                    enableDeclineButton
+                    declineButtonText="Negar cookies"
+                    declineButtonClasses="btn btn-dark border border-dark bg-transparent text-white rounded"
+                    declineCookieValue='false'
+                    onDecline={()=>setCookie(false)}
+                    onAccept={()=>setCookie(true)}
+                    cookieName="consent"
+                    expires={150}
+                >
+                    <div id="consent-btn" className="w-100 d-flex flex-column align-items-center">
+                        <i className="bi bi-shield-check text-success mb-5 mt-5" style={{fontSize:60}}></i>
+                        <div className='d-flex flex-column text-center mt-6'>
+                            <h3 className="text-light">
+                                Usamos cookies para validar sua autenticação.
+                            </h3>
+                            <small>Não usamos seus dados para fins comerciais.</small>
+                            <small><a href="https://unisatc.com.br/politica-de-privacidade/" target={"_blank"}>[ Leia nossa Política de Privacidade ]</a></small>
+                        </div>
+                    </div>
+                </CookieConsent>
             }
         </div>
     )

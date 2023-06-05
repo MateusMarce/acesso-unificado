@@ -24,6 +24,7 @@ export type ChangePasswordType = {
     errors:string | undefined
     touched:boolean | undefined
     placeholder: string
+    tabIndex:number | string
 }
 
 export type ThemeContextType = {
