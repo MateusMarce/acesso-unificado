@@ -102,7 +102,7 @@ export default function Perfil() {
                                     {/* LISTA DEPENDENTES */}
                                     {dep.length > 0 &&
                                         <section id="dependentes" >
-                                            <div className="card mb-5 mb-xl-10">
+                                            <div className="card mb-5 mb-xl-10 depCapa">
                                                 <div className="card-header border-0">
                                                     <div className="card-title m-0">
                                                         <h3 className="fw-bold m-0">Dependentes</h3>

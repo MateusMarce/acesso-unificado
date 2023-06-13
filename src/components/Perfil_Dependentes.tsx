@@ -18,7 +18,7 @@ export const Perfil_Dependentes = ({ item }: DependentesPropsType) => {
                         </div>
                     </div>
                     <div className="d-flex flex-column">
-                        <div className="text-gray-800  mb-1">{FixName(item?.nome)}</div>
+                        <div className="text-gray-800">{FixName(item?.nome)}</div>
                         <span>{item?.email}</span>
                     </div>
                 </div>
