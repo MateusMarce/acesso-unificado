@@ -15,6 +15,30 @@
 
 /*ATUALIZAÇÃO = 21/03/2023*/
 
+/*ATUALIZAÇÃO = 13/06/2023*/
+
+/* ::: DEPENDENTES ::: */
+.depCapa .odd .d-flex {flex-wrap: wrap;gap: 0.3rem 0.6rem !important}
+.depCapa .card .card-header {min-height: 43px}
+.depCapa .card .card-header h3 {font-size: 13px;}
+.depCapa .card .card-body {padding: 0.6rem 2rem;}
+.depCapa .table.gy-5 th, .table.gy-5 td {padding-top: 0.6rem!important;padding-bottom: 0.6rem!important;}
+.depCapa .gap-3 {gap: 0.75rem !important;}
+.depCapa .symbol.symbol-50px .symbol-label {width: 50px;height: 50px;}
+.depCapa .table tr, .depCapa .table th, .depCapa .table td {font-size: 14px;}
+/*::: COLOURS ::: */
+.depCapa .odd .d-flex .h-100 span {border: solid 1px;padding: 1px 6px;border-radius: 4px;}
+.depCapa .odd .d-flex .h-100 span:nth-child(1) {color: #2D9E60;background-color: #e8fff3;}
+.depCapa .odd .d-flex .h-100 span:nth-child(2) {color: #7239ea;background-color: #f8f5ff;}
+.depCapa .odd .d-flex .h-100 span:nth-child(3) {color: #009ef7;background-color: #f1faff;}
+.depCapa .odd .d-flex .h-100 span:nth-child(4) {color: #f1416c;background-color: #fff5f8;}
+.depCapa .odd .d-flex .h-100 span:nth-child(5) {color: #ffc700;background-color: #fff8dd;}
+/* :: depMin :: */
+.depMin .table tr, .depMin .table th, .depMin .table td {font-size: 11px;}
+.depMin .symbol.symbol-50px .symbol-label {width: 30px;height: 30px;}
+/* ::: FIM DEPENDENTES ::: */
+
+
 #kt_app_header_logo_wrapper .logoTop {width: 75px;margin: 10px 0;}
 
 @media (min-width: 991px) {

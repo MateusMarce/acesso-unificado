@@ -96,8 +96,8 @@ export default function Dashboard() {
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* SLIDER */}
-                                        <div className="col-xxl-6 mb-5 mb-xl-10">
+                                        {/* DEPENDENTES CAPA */}
+                                        <div className="col-xxl-6 mb-5 mb-xl-10 depCapa depMin">
                                             <div className="card mb-5">
                                                 <div className="card-header border-0">
                                                     <div className="card-title m-0">
@@ -105,7 +105,7 @@ export default function Dashboard() {
                                                     </div>
                                                 </div>
                                                 <div className="card-body border-top">
-                                                    <div className="row mb-6">
+                                                    <div className="row">
                                                         <div className="table-responsive">
                                                             <table className="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
                                                                 <tbody className="fw-semibold text-gray-600">  
