@@ -113,7 +113,7 @@ export default function Perfil() {
                                                         <div className="table-responsive">
                                                             <table className="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
                                                                 <tbody className="fw-semibold text-gray-600">  
-                                                                    {dep.map((i, k)=>(
+                                                                    {dep.map((i:DependentesType, k)=>(
                                                                         <Perfil_Dependentes key={k} item={i} />
                                                                     ))}
                                                                 </tbody>

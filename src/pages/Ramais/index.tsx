@@ -6,11 +6,8 @@ import { useEffect, useState } from "react"
 import api from "../../services/api"
 import { RamaisType } from "../../assets/types/type"
 import { Link } from "react-router-dom"
-import { toast } from "react-toastify"
-import { useCookies } from "react-cookie"
 
 export default function Ramais() {
-    const [cookies, , removeCookie] = useCookies(['login', 'user', 'consent', 'theme', 'image'])
     const [ramaisLista, setRamaisLista] = useState([] as RamaisType[])
     const [filterList, setFilterList] = useState([] as RamaisType[])
 
@@ -106,7 +103,7 @@ export default function Ramais() {
                                                                             <tr className="text-start text-gray-900 text-uppercase gs-0">
                                                                                 <th className="max-w-100px sorting">{i.i_unidade}</th>
                                                                                 <th className="sorting">{i.nome_unidade}</th>
-                                                                                <th className="text-end min-w-100px pe-4 sorting_disabled">Status</th>
+                                                                                <th className="text-end min-w-100px sorting_disabled">Status</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody className="fs-6 fw-semibold text-gray-600">

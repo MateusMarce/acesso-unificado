@@ -43,7 +43,7 @@ export default function Dash_HeaderSecondary() {
                                             <span className="comuniki" style={{top:-10}}>{cookies.comunicados}</span>
                                             <img src={MegafoneSvg} className="" alt="" />
                                         </div>
-                                        <div className="avatarComuniki text-gray-600 fw-bold text-hover-primary fs-5 ps-3">Comunicados</div>
+                                        <div className="d-none d-lg-inline avatarComuniki text-gray-600 fw-bold text-hover-primary fs-5 ps-3">Comunicados</div>
                                     </Link>
                                 }
 

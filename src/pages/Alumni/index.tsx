@@ -591,8 +591,8 @@ export default function Perfil() {
 
                             {/* AVISO APOS ENVIAR FORM */}
                             {dados.retorno != 1 &&
-                                <div className="flex-lg-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden py-20 px-10 p-lg-7 mx-auto mw-750px w-100" ng-show="dados.retorno!=1">
-                                    <div className="d-flex flex-column-fluid flex-center py-10">
+                                <div className="flex-lg-row-fluid d-flex flex-column justify-content-center overflow-hidden py-20 px-10 mx-auto  w-100">
+                                    <div className="d-flex flex-column-fluid flex-center py-10 mw-750px m-auto">
                                         <div className={`avisoCenter text-center alert ${dados.dados_retorno?.alert}`}>
                                             <div className="text-dark fs-2 fw-bold" dangerouslySetInnerHTML={{__html: dados.dados_retorno?.txt}}></div>
                                             {dados.retorno==2 &&
@@ -600,6 +600,34 @@ export default function Perfil() {
                                             }
                                         </div>
                                     </div>
+
+                                    <div
+                                        className={`card mb-6 mb-xl-9`} 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#modalComunicados"
+                                        // onClick={()=>handleOpen(i)}
+                                    >     
+                                                <div className="btn btn-light card-body py-6">
+                                                    <div className="d-flex flex-column flex-xl-row">
+                                                        <div className="flex-lg-row-fluid mb-10 mb-xl-0">
+                                                            <div className="d-flex justify-content-between align-items-center">
+                                                                <div className="d-flex flex-column">
+                                                                    {/* <small className="text-start">{date} | {i.usuario}</small> */}
+                                                                    {/* <h2 className="text-start">{i.titulo}</h2> */}
+                                                                </div>
+                                                                    {/* {i.leitura === 'S' ?
+                                                                        <small>Abrir comunicado</small>
+                                                                        :
+                                                                        <div>
+                                                                            <i className="bi bi-exclamation-circle fs-2 text-danger me-1"></i>
+                                                                            <small className="text-danger">Novo comunicado</small>
+                                                                        </div>
+                                                                    } */}
+                                                            </div>
+                                                        </div>  
+                                                    </div>       
+                                                </div>
+                                            </div>
                                 </div>
                             }
 

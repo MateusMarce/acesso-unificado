@@ -98,9 +98,9 @@ export const Perfil_TopInfo = ({dep}:any) => {
                         </div>
                         {dep > 0 &&
                             <div className="d-flex flex-column">
-                                <Link to={'/perfil#dependentes'} className="btn btn-outline btn-outline-dashed btn-outline-info btn-active-light-info  btn-active-light-info fs-8 py-1 px-2 ms-3">
+                                <Link to={'/perfil#dependentes'} className="btn btn-outline btn-outline-dashed btn-outline-info btn-active-light-info  btn-active-light-info fs-8 py-0 pe-0 ps-2">
                                     <div className="fs-6 fw-semibold me-1">Total de dependentes:  
-                                    <span className="badge badge-square badge-info ms-2">{dep}</span></div>
+                                    <span className="badge badge-square badge-info ms-2 me-1 my-1">{dep}</span></div>
                                 </Link>
                             </div>
                         }

@@ -7,13 +7,15 @@ import Dash_Slide from "../../components/Dash_Slide"
 import { useCookies } from "react-cookie"
 import { useEffect, useState } from "react"
 import api from "../../services/api"
-import { AcessosCardType } from "../../assets/types/type"
+import { AcessosCardType, DependentesType } from "../../assets/types/type"
 import { toast } from "react-toastify"
 import { useTheme } from "../../helpers/ThemeContext"
+import { Perfil_Dependentes } from "../../components/Perfil_Dependentes"
 
 export default function Dashboard() {
     const [cookies, setCookies, removeCookie] = useCookies(['user', 'image', 'login', 'theme'])
     const [acessos, setAcessos] = useState([] as AcessosCardType[])
+    const [dep, setDep] = useState([] as DependentesType[])
     const {mode, setMode} = useTheme()
 
     const getCards = async () => {
@@ -44,6 +46,18 @@ export default function Dashboard() {
                 }
             })()
         }
+
+        (async()=>{
+            try {
+                let resDep = await api.get('/user/dependentes')
+                setDep(resDep.data)
+            } catch (error) {
+                // removeCookies('login')
+                // removeCookies('user')
+                // toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
+                // window.location.href = '/acesso-unificado/#/'
+            }
+        })()
         
         // GET CARDS
         getCards()
@@ -84,6 +98,26 @@ export default function Dashboard() {
                                         </div>
                                         {/* SLIDER */}
                                         <div className="col-xxl-6 mb-5 mb-xl-10">
+                                            <div className="card mb-5">
+                                                <div className="card-header border-0">
+                                                    <div className="card-title m-0">
+                                                        <h3 className="fw-bold m-0">Dependentes</h3>
+                                                    </div>
+                                                </div>
+                                                <div className="card-body border-top">
+                                                    <div className="row mb-6">
+                                                        <div className="table-responsive">
+                                                            <table className="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                                <tbody className="fw-semibold text-gray-600">  
+                                                                    {dep.map((i:DependentesType, k)=>(
+                                                                        <Perfil_Dependentes key={k} item={i} />
+                                                                    ))}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>    
+                                            </div> 
                                             <Dash_Slide />
                                         </div>
                                     </div>

@@ -63,10 +63,6 @@ export type AcessosCardType = {
     }]
 }
 
-export type DependentesType = {
-    i_aluno:number
-    nome:string
-}
 
 export type RamaisType = {
     ramais: [
@@ -159,3 +155,20 @@ export type AlumniSalariosType = [
         string
     ]
 ]
+
+export type DependentesType = 
+    {
+        i_aluno: number,
+        nome: string
+        cpf: string
+        i_empresa: number,
+        email: string
+        url: string
+        cursos: [
+            {
+                i_empresa: number,
+                nome: string
+                turma: string
+            }
+        ]
+    }
