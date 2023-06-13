@@ -98,6 +98,7 @@ export default function Dashboard() {
                                         </div>
                                         {/* DEPENDENTES CAPA */}
                                         <div className="col-xxl-6 mb-5 mb-xl-10 depCapa depMin">
+                                            {dep.length > 0 && 
                                             <div className="card mb-5">
                                                 <div className="card-header border-0">
                                                     <div className="card-title m-0">
@@ -118,6 +119,7 @@ export default function Dashboard() {
                                                     </div>
                                                 </div>    
                                             </div>
+                                            }
                                             <Dash_Slide />
                                         </div>
                                     </div>
