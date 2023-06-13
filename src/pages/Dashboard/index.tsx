@@ -98,7 +98,7 @@ export default function Dashboard() {
                                         </div>
                                         {/* SLIDER */}
                                         <div className="col-xxl-6 mb-5 mb-xl-10">
-                                            <div className="card mb-5">
+                                            {/* <div className="card mb-5">
                                                 <div className="card-header border-0">
                                                     <div className="card-title m-0">
                                                         <h3 className="fw-bold m-0">Dependentes</h3>
@@ -117,7 +117,7 @@ export default function Dashboard() {
                                                         </div>
                                                     </div>
                                                 </div>    
-                                            </div> 
+                                            </div>  */}
                                             <Dash_Slide />
                                         </div>
                                     </div>

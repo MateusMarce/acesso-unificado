@@ -147,7 +147,16 @@ export type AlumniDadosType =
             alert: string
             icon: string
             txt: string
-        }
+        },
+        eventos_alumni: [
+            {
+                post_title: string
+                post_content: string
+                guid: string
+                dt_inicio: string
+                dt_fim: string
+            }
+        ]
 }
 
 export type AlumniSalariosType = [
