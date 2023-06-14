@@ -594,36 +594,44 @@ export default function Perfil() {
                                 <div className="flex-lg-row-fluid d-flex flex-column justify-content-center overflow-hidden mx-auto w-100">
                                     <div className="d-flex flex-column-fluid flex-center py-10 mw-750px m-auto">
                                         <div className={`avisoCenter text-center alert ${dados.dados_retorno?.alert}`}>
-                                            <div className="text-dark fs-2 fw-bold" dangerouslySetInnerHTML={{__html: dados.dados_retorno?.txt}}></div>
+                                            <i className={`fa-solid text-dark fs-1 mb-3 ${dados.dados_retorno?.icon}`} />
+                                            <div className="text-dark fs-2" dangerouslySetInnerHTML={{__html: dados.dados_retorno?.txt}}></div>
                                             {dados.retorno==2 &&
                                                 <h2 ng-show="dados.retorno==2">{dados.justificativa}</h2>
                                             }
                                         </div>
                                     </div>
                                     
-                                    <div className="mt-6 mb-5 ">
-                                        {dados.eventos_alumni && dados.eventos_alumni.length > 0 && <h2 className="mb-8">Eventos:</h2> }
-                                        {dados.eventos_alumni && dados.eventos_alumni.map((i, k)=>(
-                                            <a href={i.guid} target="_blank" className={`card mb-5 mb-xl-9`}>     
-                                                <div className="btn btn-light card-body py-3 px-4 px-xl-6 py-xl-6">
-                                                    <div className="d-flex flex-column flex-xl-row">
-                                                        <div className="flex-lg-row-fluid">
-                                                            <div className="d-flex justify-content-between align-items-center">
-                                                                <div className="d-flex flex-column">
-                                                                    <small className="text-start mb-2">De {i.dt_inicio} até {i.dt_fim}</small>
-                                                                    <h2 className="text-start">{i.post_title}</h2>
-                                                                    {i.post_content && 
-                                                                        <div className="text-gray text-start" dangerouslySetInnerHTML={{__html: i.post_content}} />
-                                                                    }
+
+                                    {dados.eventos_alumni &&
+                                        <div className="mt-6 mb-5 ">
+                                            {dados.eventos_alumni.length > 0 && 
+                                            <div className="mb-8">
+                                                <h2>Você ainda faz parte da nossa comunidade acadêmica.</h2>
+                                                <p>Convidamos você a participar dos nossos eventos! Veja a lista de eventos agendados:</p>
+                                            </div> }
+                                            {dados.eventos_alumni.map((i, k)=>(
+                                                <a href={i.guid} key={k} target="_blank" className={`card mb-5 mb-xl-9`}>     
+                                                    <div className="btn btn-light card-body py-3 px-4 px-xl-6 py-xl-6">
+                                                        <div className="d-flex flex-column flex-xl-row">
+                                                            <div className="flex-lg-row-fluid">
+                                                                <div className="d-flex justify-content-between align-items-center">
+                                                                    <div className="d-flex flex-column">
+                                                                        <small className="text-start mb-2">De {i.dt_inicio} até {i.dt_fim}</small>
+                                                                        <h2 className="text-start">{i.post_title}</h2>
+                                                                        {i.post_content && 
+                                                                            <div className="text-gray text-start" dangerouslySetInnerHTML={{__html: i.post_content}} />
+                                                                        }
+                                                                    </div>
+                                                                    <small>Abrir evento</small>
                                                                 </div>
-                                                                <small>Abrir evento</small>
-                                                            </div>
-                                                        </div>  
-                                                    </div>       
-                                                </div>
-                                            </a>
-                                        ))}
-                                    </div>
+                                                            </div>  
+                                                        </div>       
+                                                    </div>
+                                                </a>
+                                            ))}
+                                        </div>
+                                    }
                                 </div>
                             }
 
