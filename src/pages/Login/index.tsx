@@ -81,154 +81,155 @@ export default function Login() {
         <div className="d-flex flex-column flex-root h-100" id="kt_app_root">
             <div className="d-flex flex-column flex-lg-row flex-column-fluid">
                 <Login_LeftBanner />
-                <div className="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10">
-                    <div className="d-flex flex-center flex-column flex-lg-row-fluid">
-                        <div className="w-lg-500px p-10">
-                            <Formik
-                                initialValues={{
-                                    user:cpf||'',
-                                    password:''
-                                }}
-                                validationSchema={Schema}
-                                onSubmit={handleSubmit}
-                                enableReinitialize
-                            >
-                                
-                                {(props:FormikProps<LoginType>) => (
-                                    <Form className='form w-100'>
-                                            {cookies.login && cookies.user ? 
-                                                <>
-                                                    <div className="text-center mb-11">
-                                                        <h1 className="text-dark fw-bolder mb-3">
-                                                            Você já está conectado
-                                                        </h1>
-                                                    </div>
-                                                    <div className="separator separator-content border-dark my-14">
-                                                        <span className="w-175px text-gray-700 fw-semibold fs-7">{cookies.user.email}</span>
-                                                    </div>
-                                                </>
-                                                :
-                                                <>
-                                                    <div className="text-center mb-11">
-                                                        <h1 className="text-dark fw-bolder mb-3">Acesso Unificado</h1>
-                                                        <div className="text-gray-700 fw-semibold fs-5">
-                                                            Primeiro acesso? <Link to='cadastro' className="hover-scale link-success fw-bold fw-bold">Faça o seu cadastro.</Link>
-                                                        </div>
-                                                    </div>
-                                                    <div className="separator separator-content border-dark my-14">
-                                                        <span className="w-175px text-gray-700 fw-semibold fs-7">Faça seu <b>Login</b></span>
-                                                    </div>
-                                                </>
-
-                                            }
-
-                                        {/* LOGIN FORM */}
-                                        {cookie !== false &&
-                                            <>
-                                                {!cookies.login && !cookies.user  &&
+                {cookies.consent || cookie ?
+                    <div className="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10">
+                        <div className="d-flex flex-center flex-column flex-lg-row-fluid">
+                            <div className="w-lg-500px p-10">
+                                <Formik
+                                    initialValues={{
+                                        user:cpf||'',
+                                        password:''
+                                    }}
+                                    validationSchema={Schema}
+                                    onSubmit={handleSubmit}
+                                    enableReinitialize
+                                >
+                                    
+                                    {(props:FormikProps<LoginType>) => (
+                                        <Form className='form w-100'>
+                                                {cookies.login && cookies.user ? 
                                                     <>
-                                                        <div className="fv-row mb-8">
-                                                            {props.values.user && props.values.user.match(/[0-9]+/) ?
-                                                                <CpfField autoFocus={true} type="text" value={props.values.user} placeholder="Email ou CPF" name="user" className={`form-control form-control-lg bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
-                                                                :
-                                                                // <Field type="text" placeholder="Email ou CPF" name="user" autoComplete='off' className={`form-control bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
-                                                                <EmailField name='user' placeholder='E-mail ou CPF' onChange={(newValue:string)=>props.setFieldValue('user', newValue)}  values={props.values} errors={props.errors.user} touched={props.touched.user} setFieldValue={props.setFieldValue} />
-                                                            }
-                                                            <ErrorMessage name='user' component={'small'} className='invalid-feedback' />
+                                                        <div className="text-center mb-11">
+                                                            <h1 className="text-dark fw-bolder mb-3">
+                                                                Você já está conectado
+                                                            </h1>
                                                         </div>
-                                                        <div className="fv-row mb-3 position-relative login-password">
-                                                            {/* <Field type={passwordType} placeholder="Senha" name="password" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`} /> */}
-                                                            <ChangePassword
-                                                                tabIndex={0}
-                                                                name='password'
-                                                                placeholder='Senha'
-                                                                errors={props.errors.password}
-                                                                touched={props.touched.password}
-                                                            />
-                                                            <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
-                                                        </div>
-                                                        <div className="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
-                                                            {/* <div></div><Link to='/esqueceu-senha' className="link-success">Esqueceu a senha?</Link> */}
+                                                        <div className="separator separator-content border-dark my-14">
+                                                            <span className="w-175px text-gray-700 fw-semibold fs-7">{cookies.user.email}</span>
                                                         </div>
                                                     </>
-                                                }
-                                            </>
-                                        }
-                                        <div className="d-grid mb-10">
-                                            {/* BUTTON */}
-                                            {cookie !== false ?
-                                                <>
-                                                    {cookies.login && cookies.user ?
-                                                        <>
-                                                            <button onClick={handleNavigate} className="btn btn-success mb-4">
-                                                                Entrar como {cookies.user.first_name} 
-                                                            </button>
-                                                            <button type='button' onClick={handleLogout} className="btn btn-light">
-                                                                Sair da conta
-                                                            </button>
-                                                        </>
                                                     :
-                                                        <button type="submit" id="kt_sign_in_submit" className="btn btn-success">
-                                                            {props.isSubmitting ?
-                                                                <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                                                :
-                                                                <span className="indicator-label">Entrar</span>
-                                                            }
-                                                        </button>
+                                                    <>
+                                                        <div className="text-center mb-11">
+                                                            <h1 className="text-dark fw-bolder mb-3">Acesso Unificado</h1>
+                                                            <div className="text-gray-700 fw-semibold fs-5">
+                                                                Primeiro acesso? <Link to='cadastro' className="hover-scale link-success fw-bold fw-bold">Faça o seu cadastro.</Link>
+                                                            </div>
+                                                        </div>
+                                                        <div className="separator separator-content border-dark my-14">
+                                                            <span className="w-175px text-gray-700 fw-semibold fs-7">Faça seu <b>Login</b></span>
+                                                        </div>
+                                                    </>
+
+                                                }
+
+                                            {/* LOGIN FORM */}
+                                            {cookie !== false &&
+                                                <>
+                                                    {!cookies.login && !cookies.user  &&
+                                                        <>
+                                                            <div className="fv-row mb-8">
+                                                                {props.values.user && props.values.user.match(/[0-9]+/) ?
+                                                                    <CpfField autoFocus={true} type="text" value={props.values.user} placeholder="Email ou CPF" name="user" className={`form-control form-control-lg bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
+                                                                    :
+                                                                    // <Field type="text" placeholder="Email ou CPF" name="user" autoComplete='off' className={`form-control bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
+                                                                    <EmailField name='user' placeholder='E-mail ou CPF' onChange={(newValue:string)=>props.setFieldValue('user', newValue)}  values={props.values} errors={props.errors.user} touched={props.touched.user} setFieldValue={props.setFieldValue} />
+                                                                }
+                                                                <ErrorMessage name='user' component={'small'} className='invalid-feedback' />
+                                                            </div>
+                                                            <div className="fv-row mb-3 position-relative login-password">
+                                                                {/* <Field type={passwordType} placeholder="Senha" name="password" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`} /> */}
+                                                                <ChangePassword
+                                                                    tabIndex={0}
+                                                                    name='password'
+                                                                    placeholder='Senha'
+                                                                    errors={props.errors.password}
+                                                                    touched={props.touched.password}
+                                                                />
+                                                                <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
+                                                            </div>
+                                                            <div className="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
+                                                                {/* <div></div><Link to='/esqueceu-senha' className="link-success">Esqueceu a senha?</Link> */}
+                                                            </div>
+                                                        </>
                                                     }
                                                 </>
-                                                :
-                                                <>
-                                                    <h4 className='w-100 text-center mb-5'>Você precisa aceitar os cookies para continuar.</h4>
-                                                    <button type='button' onClick={()=>{setCookies('consent','true', {path:'/'}); setCookie(true)}} className="btn btn-success">
-                                                        Aceitar
-                                                    </button>
-                                                </>
                                             }
-                                        </div>
-                                        <div className="text-gray-700 text-center fw-semibold fs-6"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
-                                    </Form>
-                                )} 
+                                            <div className="d-grid mb-10">
+                                                {/* BUTTON */}
+                                                {cookie !== false ?
+                                                    <>
+                                                        {cookies.login && cookies.user ?
+                                                            <>
+                                                                <button onClick={handleNavigate} className="btn btn-success mb-4">
+                                                                    Entrar como {cookies.user.first_name} 
+                                                                </button>
+                                                                <button type='button' onClick={handleLogout} className="btn btn-light">
+                                                                    Sair da conta
+                                                                </button>
+                                                            </>
+                                                        :
+                                                            <button type="submit" id="kt_sign_in_submit" className="btn btn-success">
+                                                                {props.isSubmitting ?
+                                                                    <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                                    :
+                                                                    <span className="indicator-label">Entrar</span>
+                                                                }
+                                                            </button>
+                                                        }
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <h4 className='w-100 text-center mb-5'>Você precisa aceitar os cookies para continuar.</h4>
+                                                        <button type='button' onClick={()=>{setCookies('consent','true', {path:'/'}); setCookie(true)}} className="btn btn-success">
+                                                            Aceitar
+                                                        </button>
+                                                    </>
+                                                }
+                                            </div>
+                                            <div className="text-gray-700 text-center fw-semibold fs-6"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
+                                        </Form>
+                                    )} 
 
-                            </Formik>
+                                </Formik>
+                            </div>
+                        </div>      
+                        <div className="d-flex flex-center flex-wrap px-5">
+                            <div className="text-gray-700 text-center fw-semibold fs-6 d-flex gap-1">{new Date().getFullYear()} &copy; <div className="link-success m-0">TI SATC</div></div>
                         </div>
-                    </div>      
-                    <div className="d-flex flex-center flex-wrap px-5">
-                        <div className="text-gray-700 text-center fw-semibold fs-6 d-flex gap-1">{new Date().getFullYear()} &copy; <div className="link-success m-0">TI SATC</div></div>
                     </div>
-                </div>
+                :
+                    <CookieConsent
+                        location="bottom"
+                        containerClasses="d-flex flex-column w-100 w-lg-50 h-100 align-items-center justify-content-center gap-10 bg-dark"
+                        disableStyles
+                        hideOnAccept
+                        hideOnDecline
+                        enableDeclineButton
+                        buttonWrapperClasses="w-100 d-flex justify-content-center align-self-center gap-5"
+                        buttonText="Aceitar cookies"
+                        buttonClasses='btn btn-success bg-success text-white rounded'
+                        declineButtonText="Negar cookies"
+                        declineButtonClasses="btn btn-dark bg-transparent text-white rounded"
+                        declineCookieValue='false'
+                        onDecline={()=>setCookie(false)}
+                        onAccept={()=>setCookie(true)}
+                        cookieName="consent"
+                        expires={150}
+                    >
+                        <div id="consent-btn" className="w-100 d-flex flex-column align-items-center">
+                            <i className="bi bi-shield-check text-success mb-5 mt-5" style={{fontSize:80}}></i>
+                            <div className='d-flex flex-column text-center gap-5 mt-6'>
+                                <h3 className="text-light">
+                                    Usamos cookies para validar sua autenticação.
+                                </h3>
+                                <small className='text-light'>Não usamos seus dados para fins comerciais.</small>
+                                <small><a href="https://unisatc.com.br/politica-de-privacidade/" target={"_blank"}>[ Leia nossa Política de Privacidade ]</a></small>
+                            </div>
+                        </div>
+                    </CookieConsent>
+                }
             </div>
-            {!cookies.consent &&
-                <CookieConsent
-                    location="bottom"
-                    buttonWrapperClasses="w-100 d-flex justify-content-center align-self-center"
-                    style={{position:'absolute', right:0, left:'auto'}}
-                    containerClasses="w-50 mb-5 h-300px align-items-center"
-                    buttonText="Aceitar cookies"
-                    buttonClasses='btn btn-success bg-success text-white rounded'
-                    hideOnAccept
-                    hideOnDecline
-                    enableDeclineButton
-                    declineButtonText="Negar cookies"
-                    declineButtonClasses="btn btn-dark border border-dark bg-transparent text-white rounded"
-                    declineCookieValue='false'
-                    onDecline={()=>setCookie(false)}
-                    onAccept={()=>setCookie(true)}
-                    cookieName="consent"
-                    expires={150}
-                >
-                    <div id="consent-btn" className="w-100 d-flex flex-column align-items-center">
-                        <i className="bi bi-shield-check text-success mb-5 mt-5" style={{fontSize:60}}></i>
-                        <div className='d-flex flex-column text-center mt-6'>
-                            <h3 className="text-light">
-                                Usamos cookies para validar sua autenticação.
-                            </h3>
-                            <small>Não usamos seus dados para fins comerciais.</small>
-                            <small><a href="https://unisatc.com.br/politica-de-privacidade/" target={"_blank"}>[ Leia nossa Política de Privacidade ]</a></small>
-                        </div>
-                    </div>
-                </CookieConsent>
-            }
         </div>
     )
 }

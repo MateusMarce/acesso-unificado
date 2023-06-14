@@ -87,6 +87,7 @@ export default function Cadastro() {
         //requisiçao
         try {
             let val = {...values}
+            val = {...val, cpf:val.cpf.replaceAll('.','').replace('-','')}
             delete val.aluno
             delete val.colaborador
 
@@ -155,7 +156,7 @@ export default function Cadastro() {
                     
                 }
             } else if(externo) {
-                val = {...val, password:val.password_old, cpf:val.cpf.replaceAll('.','').replace('-','')}
+                val = {...val, password:val.password_old}
                 delete val.valor
                 delete val.campo
                 delete val.senha_atual
@@ -250,6 +251,7 @@ export default function Cadastro() {
         <div className="d-flex flex-column flex-root h-100" id="kt_app_root">
             <div className="d-flex flex-column flex-lg-row flex-column-fluid">
                 <Login_LeftBanner />
+                {cookies.consent || cookie ?
                 <div className="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10">
                     <div className="d-flex flex-center flex-column flex-lg-row-fluid">
                         <div className="w-lg-500px p-10">
@@ -384,20 +386,19 @@ export default function Cadastro() {
                         <div className="text-gray-700 text-center fw-semibold fs-6">{new Date().getFullYear()} &copy; <a href="#" className="link-success">TI SATC</a></div>
                     </div>
                 </div>
-            </div>
-            {!cookies.consent &&
+                :
                 <CookieConsent
                     location="bottom"
-                    buttonWrapperClasses="w-100 d-flex justify-content-center align-self-center"
-                    style={{position:'absolute', right:0, left:'auto'}}
-                    containerClasses="w-50 mb-5 h-300px align-items-center"
-                    buttonText="Aceitar cookies"
-                    buttonClasses='btn btn-success bg-success text-white rounded'
+                    containerClasses="d-flex flex-column w-100 w-lg-50 h-100 align-items-center justify-content-center gap-10 bg-dark"
+                    disableStyles
                     hideOnAccept
                     hideOnDecline
                     enableDeclineButton
+                    buttonWrapperClasses="w-100 d-flex justify-content-center align-self-center gap-5"
+                    buttonText="Aceitar cookies"
+                    buttonClasses='btn btn-success bg-success text-white rounded'
                     declineButtonText="Negar cookies"
-                    declineButtonClasses="btn btn-dark border border-dark bg-transparent text-white rounded"
+                    declineButtonClasses="btn btn-dark bg-transparent text-white rounded"
                     declineCookieValue='false'
                     onDecline={()=>setCookie(false)}
                     onAccept={()=>setCookie(true)}
@@ -405,17 +406,18 @@ export default function Cadastro() {
                     expires={150}
                 >
                     <div id="consent-btn" className="w-100 d-flex flex-column align-items-center">
-                        <i className="bi bi-shield-check text-success mb-5 mt-5" style={{fontSize:60}}></i>
-                        <div className='d-flex flex-column text-center mt-6'>
+                        <i className="bi bi-shield-check text-success mb-5 mt-5" style={{fontSize:80}}></i>
+                        <div className='d-flex flex-column text-center gap-5 mt-6'>
                             <h3 className="text-light">
                                 Usamos cookies para validar sua autenticação.
                             </h3>
-                            <small>Não usamos seus dados para fins comerciais.</small>
+                            <small className='text-light'>Não usamos seus dados para fins comerciais.</small>
                             <small><a href="https://unisatc.com.br/politica-de-privacidade/" target={"_blank"}>[ Leia nossa Política de Privacidade ]</a></small>
                         </div>
                     </div>
-                </CookieConsent>
-            }
+            </CookieConsent>
+                }
+            </div>
         </div>
     )
 }
