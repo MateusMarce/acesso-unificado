@@ -129,7 +129,7 @@ export default function Login() {
                                                     {!cookies.login && !cookies.user  &&
                                                         <>
                                                             <div className="fv-row mb-8">
-                                                                {props.values.user && props.values.user.match(/[0-9]+/) ?
+                                                                {props.values.user && props.values.user.match(/([0-9]+(\.[0-9])+)/) ?
                                                                     <CpfField autoFocus={true} type="text" value={props.values.user} placeholder="Email ou CPF" name="user" className={`form-control form-control-lg bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
                                                                     :
                                                                     // <Field type="text" placeholder="Email ou CPF" name="user" autoComplete='off' className={`form-control bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
