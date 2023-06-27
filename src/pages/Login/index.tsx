@@ -1,4 +1,4 @@
-import { Formik, Form, ErrorMessage } from 'formik'
+import { Formik, Form, ErrorMessage, Field } from 'formik'
 import * as Yup from 'yup'
 import { FormikHelpers, FormikProps, FormikValues } from 'formik/dist/types'
 import { Login_LeftBanner } from '../../components/Login_LeftBanner'
@@ -129,11 +129,11 @@ export default function Login() {
                                                     {!cookies.login && !cookies.user  &&
                                                         <>
                                                             <div className="fv-row mb-8">
-                                                                {props.values.user && props.values.user.match(/([0-9]+(\.[0-9])+)/) ?
-                                                                    <CpfField autoFocus={true} type="text" value={props.values.user} placeholder="Email ou CPF" name="user" className={`form-control form-control-lg bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
+                                                                {props.values.user && props.values.user.match(/([0-9][0-9][0-9]+(\.[0-9][0-9][0-9])+)/) ?
+                                                                    <CpfField maxLength={14} autoFocus={true} type="text" value={props.values.user} placeholder="E-mail ou CPF" name="user" className={`form-control form-control-lg bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
                                                                     :
+                                                                    <EmailField name='user' autoFocus placeholder='E-mail ou CPF' onChange={(newValue:string)=>props.setFieldValue('user', newValue)}  values={props.values} errors={props.errors.user} touched={props.touched.user} setFieldValue={props.setFieldValue} />
                                                                     // <Field type="text" placeholder="Email ou CPF" name="user" autoComplete='off' className={`form-control bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
-                                                                    <EmailField name='user' placeholder='E-mail ou CPF' onChange={(newValue:string)=>props.setFieldValue('user', newValue)}  values={props.values} errors={props.errors.user} touched={props.touched.user} setFieldValue={props.setFieldValue} />
                                                                 }
                                                                 <ErrorMessage name='user' component={'small'} className='invalid-feedback' />
                                                             </div>
