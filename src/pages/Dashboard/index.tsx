@@ -23,10 +23,10 @@ export default function Dashboard() {
             let res = await api.get('/user/acessos')
             setAcessos(res.data)
         } catch (error:any) {
-            // removeCookie('login')
-            // removeCookie('user')
-            // toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
-            // window.location.href = '/acesso-unificado/#/'
+            removeCookie('login')
+            removeCookie('user')
+            toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
+            window.location.href = '/acesso-unificado/#/'
         }
     }
 

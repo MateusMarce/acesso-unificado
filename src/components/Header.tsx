@@ -32,11 +32,11 @@ export default function Dash_Header() {
             window.location.href = '/acesso-unificado/#/'
         }
     }
-
+    
     useEffect(()=>{
         if(cookie && cookie.login && cookie.user) getComunicados()
     },[])
-
+    
     const handleTheme = async (theme:string) => {
         document.body.setAttribute('data-theme', theme)
         try {
@@ -50,16 +50,23 @@ export default function Dash_Header() {
         }
         if(setMode) setMode(theme)
     }
-
+    
     const handleLogout = async () => {
-        await api.post('/auth/logout')
-        removeCookie('login')
-        removeCookie('user')
-        removeCookie('image')
-        navigate('/')
-        toast.success('Você saiu com sucesso.', {autoClose: 2000, theme:cookie.theme==='light'?'light':'dark'})
+        try {
+            await api.post('/auth/logout')
+            removeCookie('login')
+            removeCookie('user')
+            removeCookie('image')
+            navigate('/')
+            toast.success('Você saiu com sucesso.', {autoClose: 2000, theme:cookie.theme==='light'?'light':'dark'})
+        } catch (error) {
+            removeCookie('login')
+            removeCookie('user')
+            toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookie.theme==='light'?'light':'dark'})
+            window.location.href = '/acesso-unificado/#/'
+        }
     }
-
+    
     return  cookie.user && (
         <section>
             <div className="app-header-primary w-100" data-kt-sticky="true" data-kt-sticky-name="app-header-primary-sticky" data-kt-sticky-offset="{default: 'false', lg: '300px'}">
