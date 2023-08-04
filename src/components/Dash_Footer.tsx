@@ -9,9 +9,7 @@ export default function Dash_Footer() {
 			        <div id="kt_app_footer" className="d-flex h-100 align-items-center justify-content-center justify-content-md-between flex-column flex-md-row">
 			            <div className=" order-2 order-md-1 d-flex gap-1">
 			                <span className="text-gray-600 fw-semibold me-1">{new Date().getFullYear()} &copy;</span>
-			                <div onClick={()=>alert(`Mateus, o Deus do React. 
-João, o guerreiro do design. 
-Thiago, o fanfarrão do back.`)} className="text-dark">TI SATC</div>
+			                <div className="text-dark">TI SATC</div>
 			            </div>
 			            <ul className="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
 			                <li className="menu-item">

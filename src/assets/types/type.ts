@@ -156,6 +156,25 @@ export type AlumniDadosType =
                 dt_inicio: string
                 dt_fim: string
             }
+        ],
+        agenda_alumni: [
+            {
+                comunicados: [
+                    {
+                        id: number,
+                        titulo: string
+                        conteudo: string
+                        link: string
+                        dt_evento_br: string
+                        ano_evento: string
+                        dia_evento: number,
+                        dia_semana_evento: string
+                        mes_evento_desc: string
+                        mes_evento: string
+                    }
+                ],
+                titulo: string
+            }
         ]
 }
 

@@ -47,6 +47,10 @@ export default function Dash_Header() {
             setCookie('user', {...cookie.user, tema:theme})
         } catch (error) {
             validateRequest(error)
+            removeCookie('login')
+            removeCookie('user')
+            toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookie.theme==='light'?'light':'dark'})
+            window.location.href = '/acesso-unificado/#/'
         }
         if(setMode) setMode(theme)
     }

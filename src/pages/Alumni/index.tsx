@@ -603,32 +603,45 @@ export default function Perfil() {
                                     </div>
                                     
 
-                                    {dados.eventos_alumni &&
+                                    {dados.agenda_alumni &&
                                         <div className="mt-6 mb-5 ">
-                                            {dados.eventos_alumni.length > 0 && 
+                                            {dados.agenda_alumni.length > 0 && 
                                             <div className="mb-8">
                                                 <h2>Você ainda faz parte da nossa comunidade acadêmica.</h2>
                                                 <p>Convidamos você a participar dos nossos eventos! Veja a lista de eventos agendados:</p>
                                             </div> }
-                                            {dados.eventos_alumni.map((i, k)=>(
-                                                <a href={i.guid} key={k} target="_blank" className={`card mb-5 mb-xl-9`}>     
-                                                    <div className="btn btn-light card-body py-3 px-4 px-xl-6 py-xl-6">
-                                                        <div className="d-flex flex-column flex-xl-row">
-                                                            <div className="flex-lg-row-fluid">
-                                                                <div className="d-flex justify-content-between align-items-center">
-                                                                    <div className="d-flex flex-column">
-                                                                        <small className="text-start mb-2">De {i.dt_inicio} até {i.dt_fim}</small>
-                                                                        <h2 className="text-start">{i.post_title}</h2>
-                                                                        {i.post_content && 
-                                                                            <div className="text-gray text-start" dangerouslySetInnerHTML={{__html: i.post_content}} />
-                                                                        }
-                                                                    </div>
-                                                                    <small>Abrir evento</small>
-                                                                </div>
-                                                            </div>  
-                                                        </div>       
+                                            {dados.agenda_alumni.map((i, k)=>(
+                                                <div className="mt-8">
+                                                    <div className="d-flex gap-5 mb-3">
+                                                        <h5 className="w-auto">
+                                                            {i.titulo}
+                                                        </h5>
+                                                        <hr className="col my-2" />
                                                     </div>
-                                                </a>
+                                                    {i.comunicados.map((j, l)=>(
+                                                        <a href={j.link} key={k} target="_blank" className={`card mb-3 mb-xl-5`}>     
+                                                            <div className="btn btn-light card-body py-3 px-4 px-xl-6 py-xl-6">
+                                                                <div className="d-flex flex-column flex-xl-row">
+                                                                    <div className="flex-lg-row-fluid">
+                                                                        <div className="d-flex justify-content-between align-items-center">
+                                                                            <div className="d-flex flex-row gap-5">
+                                                                                <div className="d-flex flex-column justify-content-center">
+                                                                                    <p className="m-0">{j.dia_semana_evento} </p>
+                                                                                    <h2>{j.dia_evento}</h2>
+                                                                                </div>
+                                                                                {j.conteudo && 
+                                                                                    <div className="text-gray text-start" dangerouslySetInnerHTML={{__html: j.conteudo}} />
+                                                                                }
+                                                                            </div>
+                                                                            <small>Abrir evento</small>
+                                                                        </div>
+                                                                    </div>  
+                                                                </div>       
+                                                            </div>
+                                                        </a>
+                                                    ))}
+                                                </div>
+                                                
                                             ))}
                                         </div>
                                     }
