@@ -19,6 +19,10 @@ export default function Cadastro_FormExterno(props:any) {
                         <Field name='email' type='email' placeholder='E-mail' className={`form-control form-control-lg bg-transparent ${props.errors_email && props.touched_email && 'is-invalid'}`} />
                         <ErrorMessage name='email' component={'small'} className='invalid-feedback' />
                     </div>
+                    <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-3 login-password position-relative">
+                        <FoneField name='telefone' placeholder='Telefone' className={`form-control form-control-lg bg-transparent ${props.errors_fone && props.touched_fone && 'is-invalid'}`} />
+                        <ErrorMessage name='telefone' component={'small'} className='invalid-feedback' />
+                    </div>
                     <div className="fv-row mb-3 login-password position-relative">
                         <ChangePassword
                             tabIndex={0}

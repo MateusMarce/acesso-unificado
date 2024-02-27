@@ -13,6 +13,7 @@ import CepField from "../../components/Fields/CepField"
 import axios from "axios"
 import * as Yup from 'yup'
 import { toast } from "react-toastify"
+import FaleConosco from "../../components/Buttons/FaleConosco"
 
 
 const ValidationSchema = Yup.object().shape({
@@ -654,6 +655,7 @@ export default function Perfil() {
                 </div>
 
             </div>
+            <FaleConosco />
             <Dash_Footer />
 		</div>
     )

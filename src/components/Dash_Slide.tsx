@@ -17,6 +17,17 @@ export default function Dash_Slide() {
 		})()
 	},[])
 
+	const handleClick = async (url:string) => {
+		try {
+			let res = await api.post('/user/clicknoticias', {
+				url
+			})
+			if(res.status == 200) window.open(url)
+		} catch (error) {
+			validateRequest(error)
+		}
+	}
+
     return (
         <div className="card-slide card border-0 mb-5 mb-xl-11" data-theme="light">
 			<div className="py-0">
@@ -34,7 +45,7 @@ export default function Dash_Slide() {
 								<div className="gradientPhoto"></div>
 								<div className="carousel-caption d-md-block">
 									<h4>{i.dt_publicacao}</h4>
-									<a href={i.url} target={"_blank"} className="fs-1 fw-bold text-white text-hover-primary">
+									<a onClick={()=>handleClick(i.url)} target={"_blank"} className="fs-1 fw-bold text-white text-hover-primary cursor-pointer">
 										<p style={{textOverflow:'ellipsis', overflow:'hidden', whiteSpace:'nowrap'}} title={i.titulo}>{i.titulo}</p>
 										<p className=" fs-6">{i.resumo}</p>
 									</a>

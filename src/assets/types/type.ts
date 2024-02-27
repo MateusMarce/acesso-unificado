@@ -11,6 +11,7 @@ export type CadastroType = {
     cpf:string,
     nome:string,
     email:string,
+    telefone:string,
     password_old:string
     senha_atual:string,
     password_confirmation:string
@@ -18,6 +19,12 @@ export type CadastroType = {
     campo:number
     aluno:boolean
     colaborador:boolean
+}
+export type TrocaSenhaType = {
+    email:string,
+    password_old:string
+    senha_atual:string,
+    password_confirmation:string
 }
 export type ChangePasswordType = {
     name:string
@@ -200,3 +207,8 @@ export type DependentesType =
             }
         ]
     }
+
+export type EmailType = {
+    assunto:string
+    conteudo:string
+}

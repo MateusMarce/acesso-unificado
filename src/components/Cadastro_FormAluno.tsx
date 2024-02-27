@@ -1,4 +1,5 @@
 import { ErrorMessage, Field } from "formik";
+import FoneField from "./Fields/FoneField";
 
 
 export default function Cadastro_FormAluno(props:any) {
@@ -24,6 +25,10 @@ export default function Cadastro_FormAluno(props:any) {
                     placeholder='E-mail'
                 />
                 <ErrorMessage name='email' component={'small'} className='invalid-feedback' />
+            </div>
+            <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-3 login-password position-relative">
+                <FoneField name='telefone' placeholder='Telefone' className={`form-control form-control-lg bg-transparent ${props.errors_fone && props.touched_fone && 'is-invalid'}`} />
+                <ErrorMessage name='telefone' component={'small'} className='invalid-feedback' />
             </div>
         </>
     )

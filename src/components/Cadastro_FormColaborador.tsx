@@ -1,6 +1,7 @@
 import PasswordStrengthBar from "react-password-strength-bar";
 import ChangePassword from "./Buttons/ChangePassword";
 import { ErrorMessage } from "formik";
+import FoneField from "./Fields/FoneField";
 
 
 
@@ -10,6 +11,10 @@ export default function Cadastro_FormColaborador(props:any) {
         <div>
             {(props) &&
                 <>
+                    <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-3 login-password position-relative">
+                        <FoneField name='telefone' placeholder='Telefone' className={`form-control form-control-lg bg-transparent ${props.errors_fone && props.touched_fone && 'is-invalid'}`} />
+                        <ErrorMessage name='telefone' component={'small'} className='invalid-feedback' />
+                    </div>
                     <div className="fv-row mb-3 login-password position-relative">
                         <ChangePassword
                             tabIndex={6}

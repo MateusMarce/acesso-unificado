@@ -12,7 +12,8 @@ import ChangePassword from '../../components/Buttons/ChangePassword'
 import { useCookies } from 'react-cookie'
 import { toast } from 'react-toastify'
 import CookieConsent from 'react-cookie-consent'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import {encode as base64_encode} from 'base-64';
 
 
 const Schema = Yup.object().shape({
@@ -27,6 +28,12 @@ export default function Login() {
     const {cpf} = useParams()    
     let consent = document.getElementById('consent-btn')
 
+    useEffect(()=>{
+        if(cookies.consent == 'false') {
+            removeCookies('consent', {path: '/'})
+            // setCookies('consent', '', {path:'/'})
+        }
+    },[])
 
     const handleSubmit = async (values:FormikValues, action:FormikHelpers<LoginType>) => {
         action.setSubmitting(true)
@@ -55,6 +62,10 @@ export default function Login() {
             validateRequest(error)
             if(error.response.status == 406){
                 navigate(`/cadastro/${user_new}`)
+            } else if (error.response.status == 401) {
+                console.log(error);
+                
+                navigate(`/troca-senha/${base64_encode(error.response.data.email)}`)
             }
             
         }
@@ -75,13 +86,16 @@ export default function Login() {
             removeCookies('consent')
         }
     }
+
+    
     
     
     return (
         <div className="d-flex flex-column flex-root h-100" id="kt_app_root">
             <div className="d-flex flex-column flex-lg-row flex-column-fluid">
                 <Login_LeftBanner />
-                {cookies.consent || cookie ?
+                
+                {cookies.consent == 'true' || cookie == true ?
                     <div className="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10">
                         <div className="d-flex flex-center flex-column flex-lg-row-fluid">
                             <div className="w-lg-500px p-10">
@@ -199,20 +213,20 @@ export default function Login() {
                         </div>
                     </div>
                 :
+                <>
+                {cookies.consent}
                     <CookieConsent
                         location="bottom"
-                        containerClasses="d-flex flex-column w-100 w-lg-50 h-100 align-items-center justify-content-center gap-10 bg-dark"
+                        containerClasses={`d-flex flex-column w-100 w-lg-50 h-100 align-items-center justify-content-center gap-10 ${cookies.theme == 'dark' ? 'bg-light' : 'bg-dark'}`}
                         disableStyles
                         hideOnAccept
-                        hideOnDecline
                         enableDeclineButton
                         buttonWrapperClasses="w-100 d-flex justify-content-center align-self-center gap-5"
                         buttonText="Aceitar cookies"
                         buttonClasses='btn btn-success bg-success text-white rounded'
                         declineButtonText="Negar cookies"
                         declineButtonClasses="btn btn-dark bg-transparent text-white rounded"
-                        declineCookieValue='false'
-                        onDecline={()=>setCookie(false)}
+                        onDecline={()=>{location.reload(); setCookie(false)}}
                         onAccept={()=>setCookie(true)}
                         cookieName="consent"
                         expires={150}
@@ -228,6 +242,7 @@ export default function Login() {
                             </div>
                         </div>
                     </CookieConsent>
+                    </>
                 }
             </div>
         </div>
