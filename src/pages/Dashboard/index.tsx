@@ -12,6 +12,11 @@ import { toast } from "react-toastify"
 import { useTheme } from "../../helpers/ThemeContext"
 import { Perfil_Dependentes } from "../../components/Perfil_Dependentes"
 
+import LogoSatc from '../../assets/images/baloes.png' 
+import Logoavatar from '../../assets/images/avat_jota.jpg'
+import ico_aniver from '../../assets/images/ico_aniver2.png'
+// import ico_aniver from '../../assets/images/ico_aniver.webm' 
+
 export default function Dashboard() {
     const [cookies, setCookies, removeCookie] = useCookies(['user', 'image', 'login', 'theme'])
     const [acessos, setAcessos] = useState([] as AcessosCardType[])
@@ -123,6 +128,296 @@ export default function Dashboard() {
                                             <Dash_Slide />
                                         </div>
                                     </div>
+
+                                    {/*comunicados*/}
+                                    <div className="row g-3 g-xxl-12 ori-j">
+                                        <div className="col-xxl-4 mb-5 mb-xl-10">
+                                            <div className="titulo page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center">Comunicados</div>
+                                            <div className="box">
+                                                <div className="lista">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="" className="naolido">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" className="naolido">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" className="naolido">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-xxl-4 mb-5 mb-xl-10">
+                                            <div className="titulo page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center">Eventos</div>
+                                            <div className="box">
+                                                <div className="lista">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="" className="naolido2">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" className="naolido2">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">
+                                                                <span>
+                                                                    <h1>Reunião de pais</h1>
+                                                                    <h2 className="text-gray-800">Hoje, a partir das 18h30 terrenos...</h2>
+                                                                </span>
+                                                                <span>
+                                                                    <h3>sex 23/02</h3>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-xxl-4 mb-5 mb-xl-10">
+                                            <div className="titulo page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center">Aniversariantes</div>
+                                            <div className="box">
+                                                <span className="baloes"><img alt="Logo" src={LogoSatc} /></span>
+                                                <div className="lista aniver">
+                                                    <ul>
+                                                        <li>
+                                                            <span className="hoje">Hoje</span>
+                                                            <img src={ico_aniver} className="ico" />
+                                                            <span className="data-hoje">01 Mar 2024</span>
+                                                        </li>
+
+                                                        <li className="parabens">
+                                                            <span class="bolo">•</span>
+                                                            <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
+                                                            <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
+                                                        </li>
+                                                        <li className="parabens">
+                                                            <span class="bolo">•</span>
+                                                            <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
+                                                            <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
+                                                        </li>
+                                                        <li className="parabens">
+                                                            <span class="bolo">•</span>
+                                                            <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
+                                                            <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
+                                                        </li>
+
+                                                        <li className="separa-dia">
+                                                            <span class="dia color-1">Amanhã</span>
+                                                            <span className="data text-gray-600">02 Mar 2024</span>
+                                                        </li>
+
+                                                        <li>
+                                                            <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
+                                                            <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
+                                                        </li>
+                                                        <li>
+                                                            <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
+                                                            <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
+                                                        </li>
+
+                                                        <li className="separa-dia">
+                                                            <span class="dia color-2">Domingo</span>
+                                                            <span className="data text-gray-600">03 Mar 2024</span>
+                                                        </li>
+
+                                                        <li>
+                                                            <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
+                                                            <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
+                                                        </li>
+                                                        <li>
+                                                            <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
+                                                            <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
+                                                        </li>
+                                                        <li>
+                                                            <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
+                                                            <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
+                                                        </li>
+                                                        <li>
+                                                            <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
+                                                            <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* fim ori */}
+
                                 </div>
                             </div>
                         </div>

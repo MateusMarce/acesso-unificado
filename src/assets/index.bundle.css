@@ -13,7 +13,83 @@
 :::::                                                 ::::: /*Atualização data: 21/03/2023
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 
-/*ATUALIZAÇÃO = 21/03/2023*/
+/*ATUALIZAÇÃO = 27/02/2024*/
+
+.ori-j {}
+.ori-j .titulo {
+    padding: 0 0px 10px 0;
+}
+.ori-j .box {
+    border-radius: 4px;
+    padding: 15px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: var(--kt-card-box-shadow);
+    background-color: var(--kt-card-bg);
+}
+.ori-j .box .baloes {
+    position: absolute;
+    top: -130px;
+    right: -30px;
+    animation-name: example;
+    animation-duration: 1s;
+}
+@keyframes example {
+  from {top: -60px;opacity: 0.5;}
+  to {top: -120px;opacity: 1;}
+}
+.ori-j .lista {font-size: 15px;font-weight: 700;}
+.ori-j .lista ul {
+    padding: 0;
+    margin: 0;
+    height: 400px;
+    overflow: auto;
+}
+.ori-j .lista ul li {
+    display: initial;
+}
+.ori-j .lista ul li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: solid;
+    padding: 12px;
+    margin: 3px 0px;
+    background-color: var(--kt-light-active);
+    color: var(--kt-text-gray-300);
+}
+.ori-j .lista ul li a:hover {opacity: 0.8;}
+.ori-j .lista ul li span {}
+.ori-j .lista ul li span h1 {font-size: 13px;font-weight: 700;}
+.ori-j .lista ul li span h2 {font-size: 11px;margin: 0;}
+.ori-j .lista ul li span h3 {font-size: 10px;font-weight: 700;}
+
+/*não lido*/
+.ori-j a.naolido {background-color: var(--kt-danger-light)!important;color: var(--kt-text-danger)!important;}
+.ori-j .naolido h1 {color: var(--kt-danger);}
+.ori-j .naolido h2 {}
+.ori-j .naolido h3 {color: var(--kt-danger);}
+
+/*não lido 2*/
+.ori-j a.naolido2 {background-color: var(--kt-primary-light)!important;color: var(--kt-text-primary)!important;}
+.ori-j .naolido2 h1 {color: var(--kt-primary);}
+.ori-j .naolido2 h2 {}
+.ori-j .naolido2 h3 {color: var(--kt-primary);}
+
+/*aniversariantes*/
+.ori-j .aniver ul li {display: flex;align-items: center;margin: 3px 0;}
+.ori-j .aniver ul li .hoje {background-color: var(--kt-success)!important;text-transform: uppercase;color: #fff;padding: 5px 13px;border-radius: 6px 6px 0px 0px;}
+.ori-j .aniver ul li .data-hoje {color: var(--kt-success);margin-left:8px ;}
+.ori-j .aniver ul li .bolo {color: var(--kt-success);margin: 0 2px 0 7px;}
+.ori-j .aniver ul li .foto {}
+.ori-j .aniver ul li.parabens {background-color: var(--kt-success-light);}
+.ori-j .aniver ul li .ico {width: 33px;margin: 0 0px 0 6px;}
+.ori-j .aniver ul li .nome {font-size: 12px;color: var(--kt-text-gray-600);}
+.ori-j .aniver ul li.separa-dia {display: flex;justify-content: space-between;}
+.ori-j .aniver ul li.separa-dia .dia {font-size: 12px;padding: 3px 10px;border-radius: 5px 5px 0 0;}
+.ori-j .aniver ul li.separa-dia .data {color: var(--kt-text-gray-400);font-size: 11px;font-weight: 300;}
+.ori-j .aniver ul li.separa-dia .color-1 {background-color: var(--kt-primary-light)!important;color: var(--kt-text-primary)!important;}
+.ori-j .aniver ul li.separa-dia .color-2 {background-color: var(--kt-warning-light)!important;color: var(--kt-text-warning)!important;}
 
 /*ATUALIZAÇÃO = 13/06/2023*/
 
