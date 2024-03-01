@@ -1,0 +1,22 @@
+Olá ${user},
+
+Esse é um projeto feito com React-TS, portanto verifique se você possui o NODE instalado.
+O React pode vir de duas formas, JS ou TS, só se preocupe com o TS, que seria TypeScript,
+deve-se usar sempre uma tipagem em qualquer variável para minimizar os erros.
+
+Rodando o projeto pela primeira vez:
+
+1- abra o console com o caminho do projeto;
+2- verifique se possui o npm instalado rodando o comando "npm -v";
+3- se estiver instalado, rode o comnado "npm i";
+4- depois de instalar o package, o projeto está pronto para ser mexido ou iniciar;
+5- para iniciar, rode o comando "npm run dev" (esse comando pode variar dependedo da biblioteca
+usada para criar o projeto, nesse caso foi o Vite);
+6- agora o projeto está pronto para ser mexido :)
+
+Dica de profissional:
+Ao adicionar páginas/componentes/modais/helpers, crie uma pasta específica para deixar o projeto
+organizado. Sempre que puder, crie componentes, pois é mais fácil para achar quando se der erro.
+
+Agora você está pronto para começar seus códigos do Front-end.
+Boa sorte :P

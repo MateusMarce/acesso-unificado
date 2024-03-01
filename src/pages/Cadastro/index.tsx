@@ -53,6 +53,7 @@ export default function Cadastro() {
                 return schema.notRequired()
             }
         }),
+        telefone: Yup.string().min(15, 'Preencha um número válido.').required('Este campo é obrigatório.'),
         valor: Yup.string().when('aluno', 
         (val, schema) => {
             if(val[0] === true){
@@ -83,35 +84,64 @@ export default function Cadastro() {
 
     const handleSubmit = async (values:FormikValues, action:FormikHelpers<CadastroType>) => {
         action.setSubmitting(true)
-
+        console.log(values.telefone.replace('(','').replace(')','').replace('-','').replace(' ','').replaceAll('_','').length);
+        
+        
         //requisiçao
-        try {
-            let val = {...values}
-            val = {...val, cpf:val.cpf.replaceAll('.','').replace('-','')}
-            delete val.aluno
-            delete val.colaborador
+        if(values.telefone.replace('(','').replace(')','').replace('-','').replace(' ','').replaceAll('_','').length >= 10) {
+            try {
+                let val = {...values}
+                val = {...val, cpf:val.cpf.replaceAll('.','').replace('-',''), telefone: val.telefone.replace('(','').replace(')','').replace('-','').replace(' ','')}
+                delete val.aluno
+                delete val.colaborador
 
-            if(aluno){
-                //VERIFICA SE EH ALUNO
-                delete val.password_old
-                delete val.password_confirmation
-                if(!senha){
-                    //SE NAO TIVER OS CAMPOS DE SENHA, CONFIRMA USUARIO
-                    try {
-                        let res = await api.get(`/cadastro/confirm?campo=${val.campo}&cpf=${val.cpf}&valor=${val.valor}&email=${val.email}`)
-                        validateRequest(res)
-                        if(res.status === 200) {
-                            setSenha(true)
+                if(aluno){
+                    //VERIFICA SE EH ALUNO
+                    delete val.password_old
+                    delete val.password_confirmation
+                    if(!senha){
+                        //SE NAO TIVER OS CAMPOS DE SENHA, CONFIRMA USUARIO
+                        try {
+                            let res = await api.get(`/cadastro/confirm?campo=${val.campo}&cpf=${val.cpf}&valor=${val.valor}&email=${val.email}`)
+                            validateRequest(res)
+                            if(res.status === 200) {
+                                setSenha(true)
+                            }
+                            
+                        } catch (error) {
+                            validateRequest(error)
                         }
-                        
-                    } catch (error) {
-                        validateRequest(error)
+                    } else {
+                        //CRIA USUARIO DPS DE COLOCAR SENHA
+                        delete val.senha_atual
+                        try {
+                            let res = await api.post('/cadastro/createuser', {...val, nome: dados.nome, password: values.password_old})
+                            validateRequest(res)
+                            //LOGA COM O USUARIO DPS DE CADASTRAR
+                            if(cookie && res.status === 200){
+                                let value = {user: val.cpf, password:values.password_old}
+                                let res = await api.post('/auth/login', value)
+                                setCookies('login', res.data.content, {path:'/acesso-unificado'})
+                                navigate('/painel')
+                                validateRequest(res)
+                            } else {
+                                toast.error('Não é possivel acessar nosso portal sem aceitar os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
+                            }
+                            
+                        } catch (error) {
+                            validateRequest(error)
+                        }
                     }
-                } else {
-                    //CRIA USUARIO DPS DE COLOCAR SENHA
-                    delete val.senha_atual
+                } else if(colaborador) {
+                    val = {...val, nome:dados.nome, usuario:dados.e_mail, password:val.password_old}
+                    delete val.valor
+                    delete val.campo
+                    delete val.password_old
+                    delete val.password_confirmation
+                    delete val.email
                     try {
-                        let res = await api.post('/cadastro/createuser', {...val, nome: dados.nome, password: values.password_old})
+                        
+                        let res = await api.post('/cadastro/updatepassAD', val)
                         validateRequest(res)
                         //LOGA COM O USUARIO DPS DE CADASTRAR
                         if(cookie && res.status === 200){
@@ -125,71 +155,48 @@ export default function Cadastro() {
                         }
                         
                     } catch (error) {
+                        console.log(error);
                         validateRequest(error)
+                        
                     }
-                }
-            } else if(colaborador) {
-                val = {...val, nome:dados.nome, usuario:dados.e_mail, password:val.password_old}
-                delete val.valor
-                delete val.campo
-                delete val.password_old
-                delete val.password_confirmation
-                delete val.email
-                try {
+                } else if(externo) {
+                    val = {...val, password:val.password_old}
+                    delete val.valor
+                    delete val.campo
+                    delete val.senha_atual
+                    delete val.password_confirmation
+                    delete val.password_old
+                    console.log(val);
                     
-                    let res = await api.post('/cadastro/updatepassAD', val)
-                    validateRequest(res)
-                    //LOGA COM O USUARIO DPS DE CADASTRAR
-                    if(cookie && res.status === 200){
-                        let value = {user: val.cpf, password:values.password_old}
-                        let res = await api.post('/auth/login', value)
-                        setCookies('login', res.data.content, {path:'/acesso-unificado'})
-                        navigate('/painel')
+                    try {
+                        
+                        let res = await api.post('/cadastro/createuser', val)
                         validateRequest(res)
-                    } else {
-                        toast.error('Não é possivel acessar nosso portal sem aceitar os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
+                        // LOGA COM O USUARIO DPS DE CADASTRAR
+                        if(cookie && res.status === 200){
+                            let value = {user: val.cpf, password:values.password_old}
+                            let res = await api.post('/auth/login', value)
+                            setCookies('login', res.data.content, {path:'/acesso-unificado'})
+                            navigate('/painel')
+                            validateRequest(res)
+                        } else {
+                            toast.error('Não é possivel acessar nosso portal sem aceitar os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
+                        }
+                        
+                    } catch (error) {
+                        console.log(error);
+                        validateRequest(error)
+                        
                     }
-                    
-                } catch (error) {
-                    console.log(error);
-                    validateRequest(error)
-                    
                 }
-            } else if(externo) {
-                val = {...val, password:val.password_old}
-                delete val.valor
-                delete val.campo
-                delete val.senha_atual
-                delete val.password_confirmation
-                delete val.password_old
-                console.log(val);
                 
-                try {
-                    
-                    let res = await api.post('/cadastro/createuser', val)
-                    validateRequest(res)
-                    // LOGA COM O USUARIO DPS DE CADASTRAR
-                    if(cookie && res.status === 200){
-                        let value = {user: val.cpf, password:values.password_old}
-                        let res = await api.post('/auth/login', value)
-                        setCookies('login', res.data.content, {path:'/acesso-unificado'})
-                        navigate('/painel')
-                        validateRequest(res)
-                    } else {
-                        toast.error('Não é possivel acessar nosso portal sem aceitar os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
-                    }
-                    
-                } catch (error) {
-                    console.log(error);
-                    validateRequest(error)
-                    
-                }
+                
+            } catch (error) {
+                validateRequest(error)
+                
             }
-            
-            
-        } catch (error) {
-            validateRequest(error)
-            
+        } else {
+            toast.error('Preencha um telefone válido.', {autoClose:3000, pauseOnFocusLoss:false, pauseOnHover:false, theme:cookies.theme==='light'?'light':'dark'})
         }
         action.setSubmitting(false)
     }
@@ -262,6 +269,7 @@ export default function Cadastro() {
                                     cpf: cpfVal || '',
                                     nome:'',
                                     email:'',
+                                    telefone:'',
                                     password_old:'',
                                     senha_atual:'',
                                     password_confirmation:'',
@@ -299,6 +307,8 @@ export default function Cadastro() {
                                                     touched={props.touched.valor}
                                                     errors_email={props.errors.email} 
                                                     touched_email={props.touched.email}
+                                                    errors_fone={props.errors.telefone} 
+                                                    touched_fone={props.touched.telefone} 
                                                     email={alunoEmail}
                                                     setFieldValue={props.setFieldValue}
                                                     value={value}
@@ -347,6 +357,8 @@ export default function Cadastro() {
                                                 touched_conf={props.touched.password_confirmation}
                                                 errors_old={props.errors.senha_atual} 
                                                 touched_old={props.touched.senha_atual} 
+                                                errors_fone={props.errors.telefone} 
+                                                touched_fone={props.touched.telefone} 
                                             />
                                         }
                                         {externo &&
@@ -360,6 +372,8 @@ export default function Cadastro() {
                                                 touched_nome={props.touched.nome} 
                                                 errors_email={props.errors.email} 
                                                 touched_email={props.touched.email} 
+                                                errors_fone={props.errors.telefone} 
+                                                touched_fone={props.touched.telefone} 
                                             />
                                         }
 
