@@ -4,6 +4,11 @@ export type LoginType = {
     user: string
     password: string
 }
+export type QrType = {
+    user: string
+    password: string
+    codigo2fa:string
+}
 export type EsqueceuSenhaType = {
     email: string
 }

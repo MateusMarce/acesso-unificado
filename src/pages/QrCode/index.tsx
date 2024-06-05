@@ -7,23 +7,25 @@ import EmailField from '../../components/Fields/EmailField'
 import api from '../../services/api'
 import validateRequest from '../../helpers/validateRequest'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { LoginType } from '../../assets/types/type'
+import { LoginType, QrType } from '../../assets/types/type'
 import ChangePassword from '../../components/Buttons/ChangePassword'
 import { useCookies } from 'react-cookie'
 import { toast } from 'react-toastify'
 import CookieConsent from 'react-cookie-consent'
 import { useEffect, useState } from 'react'
-import {encode as base64_encode} from 'base-64';
+import {decode as base64_decode} from 'base-64';
+import AuthCode from 'react-auth-code-input'
 
 
 const Schema = Yup.object().shape({
-    user: Yup.string().required('Este campo é obrigatório.'),
-    password: Yup.string().required('Este campo é obrigatório.').min(5, 'A senha deve conter 5 caractéres.'),
+    codigo2fa:Yup.number().required('Preencha o código!')
 })
 
-export default function Login() {
+export default function QrCode() {
     const [cookies, setCookies, removeCookies] = useCookies(['login', 'user', 'consent', 'theme', 'image'])
     const [cookie, setCookie] = useState<boolean>()
+    const user = localStorage.getItem('user')
+    const password = localStorage.getItem('password')
     const navigate = useNavigate()
     const {cpf} = useParams()    
     let consent = document.getElementById('consent-btn')
@@ -35,43 +37,29 @@ export default function Login() {
         }
     },[])
 
-    const handleSubmit = async (values:FormikValues, action:FormikHelpers<LoginType>) => {
+    const handleSubmit = async (values:FormikValues, action:FormikHelpers<QrType>) => {
         action.setSubmitting(true)
 
-        //verifica se é e-mail ou cpf
-        let user_new;
-        if(values.user.match(/[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-A-Za-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[-A-Za-z0-9]*[A-Za-z0-9])?/)){
-            user_new = values.user
-        } else {
-            user_new = values.user.replaceAll('.','').replace('-','')
-        }
-        const value = {user: user_new, password:values.password}
 
         //requisiçao
         try {
             if(cookie || cookies.consent === 'true'){
-                let res = await api.post('/auth/login', value)
-                setCookies('login', res.data.content, {path:'/acesso-unificado'})
-                navigate('/painel')
-                validateRequest(res)
+                if(user && password) {
+                    let res = await api.post('/auth/login', {...values, user, password:base64_decode(password)})
+                    setCookies('login', res.data.content, {path:'/acesso-unificado'})
+                    navigate('/painel')
+                    validateRequest(res)
+                    localStorage.removeItem('user')
+                    localStorage.removeItem('password')
+                } else {
+                    navigate('/')
+                }
             } else {
                 toast.error('Não é possivel acessar nosso portal sem aceitar os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
             }
             
         } catch (error:any) {
-            validateRequest(error)
-            if(error.response.status == 406){
-                navigate(`/cadastro/${user_new}`)
-            } else if (error.response.status == 401) {
-                console.log(error);
-                
-                navigate(`/troca-senha/${base64_encode(error.response.data.email)}`)
-            } else if (error.response.status == 402) {
-                localStorage.setItem('user', value.user)
-                localStorage.setItem('password', base64_encode(value.password))
-                navigate('/qrcode')
-            }
-            
+            validateRequest(error)           
         }
         
         action.setSubmitting(false)
@@ -106,14 +94,15 @@ export default function Login() {
                                 <Formik
                                     initialValues={{
                                         user:cpf||'',
-                                        password:''
+                                        password:'',
+                                        codigo2fa:''
                                     }}
                                     validationSchema={Schema}
                                     onSubmit={handleSubmit}
                                     enableReinitialize
                                 >
                                     
-                                    {(props:FormikProps<LoginType>) => (
+                                    {(props) => (
                                         <Form className='form w-100'>
                                                 {cookies.login && cookies.user ? 
                                                     <>
@@ -131,11 +120,11 @@ export default function Login() {
                                                         <div className="text-center mb-11">
                                                             <h1 className="text-dark fw-bolder mb-3">Acesso Unificado</h1>
                                                             <div className="text-gray-700 fw-semibold fs-5">
-                                                                Primeiro acesso? <Link to='cadastro' className="hover-scale link-success fw-bold fw-bold">Faça o seu cadastro.</Link>
+                                                                Não deu certo? <Link to='/' className="hover-scale link-success fw-bold fw-bold">Volte para o Login.</Link>
                                                             </div>
                                                         </div>
                                                         <div className="separator separator-content border-dark my-14">
-                                                            <span className="w-175px text-gray-700 fw-semibold fs-7">Faça seu <b>Login</b></span>
+                                                            <span className="w-200px text-gray-700 fw-semibold fs-7">Preencha os <b>Códigos</b></span>
                                                         </div>
                                                     </>
 
@@ -147,27 +136,14 @@ export default function Login() {
                                                     {!cookies.login && !cookies.user  &&
                                                         <>
                                                             <div className="fv-row mb-8">
-                                                                {props.values.user && props.values.user.match(/([0-9][0-9][0-9]+(\.[0-9][0-9][0-9])+)/) ?
-                                                                    <CpfField maxLength={14} autoFocus={true} type="text" value={props.values.user} placeholder="E-mail ou CPF" name="user" className={`form-control form-control-lg bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
-                                                                    :
-                                                                    <EmailField name='user' autoFocus placeholder='E-mail ou CPF' onChange={(newValue:string)=>props.setFieldValue('user', newValue)}  values={props.values} errors={props.errors.user} touched={props.touched.user} setFieldValue={props.setFieldValue} />
-                                                                    // <Field type="text" placeholder="Email ou CPF" name="user" autoComplete='off' className={`form-control bg-transparent ${props.errors.user && props.touched.user ? 'is-invalid' : ''}`}/> 
-                                                                }
-                                                                <ErrorMessage name='user' component={'small'} className='invalid-feedback' />
-                                                            </div>
-                                                            <div className="fv-row mb-3 position-relative login-password">
-                                                                {/* <Field type={passwordType} placeholder="Senha" name="password" autoComplete='off' className={`form-control bg-transparent ${props.errors.password && props.touched.password && 'is-invalid'}`} /> */}
-                                                                <ChangePassword
-                                                                    tabIndex={0}
-                                                                    name='password'
-                                                                    placeholder='Senha'
-                                                                    errors={props.errors.password}
-                                                                    touched={props.touched.password}
+                                                                <AuthCode
+                                                                    allowedCharacters={"numeric"}
+                                                                    containerClassName="d-flex gap-3"
+                                                                    inputClassName="form-control text-center w-100"
+                                                                    onChange={t=>props.setFieldValue('codigo2fa', t)}
+                                                                    length={6}
                                                                 />
-                                                                <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
-                                                            </div>
-                                                            <div className="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
-                                                                {/* <div></div><Link to='/esqueceu-senha' className="link-success">Esqueceu a senha?</Link> */}
+                                                                <ErrorMessage name='codigo2fa' component={'small'} className='invalid-feedback' />
                                                             </div>
                                                         </>
                                                     }

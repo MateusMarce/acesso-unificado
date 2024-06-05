@@ -53,7 +53,14 @@ export default function Cadastro() {
                 return schema.notRequired()
             }
         }),
-        telefone: Yup.string().min(15, 'Preencha um número válido.').required('Este campo é obrigatório.'),
+        telefone: Yup.string().min(15, 'Preencha um número válido.').when('colaborador', 
+        (val, schema) => {
+            if(val[0] === true){
+                return schema.notRequired()
+            } else {
+                return schema.required('Este campo é obrigatório.')
+            }
+        }),
         valor: Yup.string().when('aluno', 
         (val, schema) => {
             if(val[0] === true){
@@ -82,13 +89,12 @@ export default function Cadastro() {
         }
     },[])
 
-    const handleSubmit = async (values:FormikValues, action:FormikHelpers<CadastroType>) => {
+    const handleSubmit = async (values:FormikValues, action:FormikHelpers<CadastroType>) => {        
         action.setSubmitting(true)
         console.log(values.telefone.replace('(','').replace(')','').replace('-','').replace(' ','').replaceAll('_','').length);
         
         
         //requisiçao
-        if(values.telefone.replace('(','').replace(')','').replace('-','').replace(' ','').replaceAll('_','').length >= 10) {
             try {
                 let val = {...values}
                 val = {...val, cpf:val.cpf.replaceAll('.','').replace('-',''), telefone: val.telefone.replace('(','').replace(')','').replace('-','').replace(' ','')}
@@ -195,9 +201,6 @@ export default function Cadastro() {
                 validateRequest(error)
                 
             }
-        } else {
-            toast.error('Preencha um telefone válido.', {autoClose:3000, pauseOnFocusLoss:false, pauseOnHover:false, theme:cookies.theme==='light'?'light':'dark'})
-        }
         action.setSubmitting(false)
     }
     const handleChange = async (value:any, setFieldValue?:any) => {
@@ -356,9 +359,7 @@ export default function Cadastro() {
                                                 errors_conf={props.errors.password_confirmation} 
                                                 touched_conf={props.touched.password_confirmation}
                                                 errors_old={props.errors.senha_atual} 
-                                                touched_old={props.touched.senha_atual} 
-                                                errors_fone={props.errors.telefone} 
-                                                touched_fone={props.touched.telefone} 
+                                                touched_old={props.touched.senha_atual}
                                             />
                                         }
                                         {externo &&

@@ -54515,3 +54515,42 @@ i.spinner {
     transform: rotate(360deg);
   }
 }
+
+.btn-toggle {
+  width:40px;
+  height:20px;
+  border:0;
+  border-radius: 10px;
+  padding: 0 2.5px;
+  transition: all ease-in-out 0.2s;
+  position: relative;
+}
+.btn-toggle.toggle-true {
+  background-color: #50cd8942;
+}
+.btn-toggle.toggle-false {
+  background-color: #01160bf2 ;
+}
+
+.btn-toggle .check-toggle {
+  width: 15px;
+  height:15px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  transition: all ease-in-out .2s;
+  position: relative;
+}
+.btn-toggle .check-toggle.toggle-true {
+  background-color: var(--kt-success);
+  left: calc(100% - 15px);
+}
+.btn-toggle .check-toggle.toggle-false {
+  background-color: #537664f2;
+  left: 0;
+}
+
+.qrcode * {
+width: 100%;
+height: 100%;
+}

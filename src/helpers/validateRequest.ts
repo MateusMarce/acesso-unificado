@@ -9,6 +9,9 @@ export default function validateRequest(props:any) {
             case 400:
                 toast.error('Ocorreu um erro inesperado!', {autoClose:3000, pauseOnFocusLoss:false, pauseOnHover:false, theme:theme==='light'?'light':'dark'})
                 break;
+            case 402:
+                toast.warning(props.response.data.error || props.response.data.message, {autoClose:3000, pauseOnFocusLoss:false, pauseOnHover:false, theme:theme==='light'?'light':'dark'})
+                break;
             case 401:
                 toast.error(props.response.data.error || props.response.data.message, {autoClose:3000, pauseOnFocusLoss:false, pauseOnHover:false, theme:theme==='light'?'light':'dark'})
                 break;

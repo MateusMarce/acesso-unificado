@@ -130,7 +130,7 @@ export default function Dashboard() {
                                     </div>
 
                                     {/*comunicados*/}
-                                    <div className="row g-3 g-xxl-12 ori-j">
+                                    {/* <div className="row g-3 g-xxl-12 ori-j">
                                         <div className="col-xxl-4 mb-5 mb-xl-10">
                                             <div className="titulo page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center">Comunicados</div>
                                             <div className="box">
@@ -360,23 +360,23 @@ export default function Dashboard() {
                                                         </li>
 
                                                         <li className="parabens">
-                                                            <span class="bolo">•</span>
+                                                            <span className="bolo">•</span>
                                                             <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
                                                             <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
                                                         </li>
                                                         <li className="parabens">
-                                                            <span class="bolo">•</span>
+                                                            <span className="bolo">•</span>
                                                             <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
                                                             <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
                                                         </li>
                                                         <li className="parabens">
-                                                            <span class="bolo">•</span>
+                                                            <span className="bolo">•</span>
                                                             <span className="foto avatarComuniki round-container w-30px h-30px"><img src={Logoavatar} /></span>
                                                             <span className="nome text-gray-800">João Carlos Braga Rodrigues</span>
                                                         </li>
 
                                                         <li className="separa-dia">
-                                                            <span class="dia color-1">Amanhã</span>
+                                                            <span className="dia color-1">Amanhã</span>
                                                             <span className="data text-gray-600">02 Mar 2024</span>
                                                         </li>
 
@@ -390,7 +390,7 @@ export default function Dashboard() {
                                                         </li>
 
                                                         <li className="separa-dia">
-                                                            <span class="dia color-2">Domingo</span>
+                                                            <span className="dia color-2">Domingo</span>
                                                             <span className="data text-gray-600">03 Mar 2024</span>
                                                         </li>
 
@@ -415,7 +415,7 @@ export default function Dashboard() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/* fim ori */}
 
                                 </div>

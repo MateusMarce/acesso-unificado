@@ -14,6 +14,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { Perfil_PasswordForm } from "../../components/Perfil_PasswordForm"
 import { Perfil_Dependentes } from "../../components/Perfil_Dependentes"
 import { toast } from "react-toastify"
+import { Perfil_Auth } from "../../components/Perfil_Auth"
 
 export default function Perfil() {
     const [cookies, setCookies, removeCookies] = useCookies(['user', 'login', 'theme'])
@@ -95,6 +96,9 @@ export default function Perfil() {
 
                                     {/* FORM DO USUARIO */}
                                     <Perfil_InfoForm />
+
+                                    {/* TWO-FACTOR AUTHENTICATOR */}
+                                    <Perfil_Auth />
 
                                     {/* FORM DA SENHA */}
                                     <Perfil_PasswordForm />
