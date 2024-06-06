@@ -199,6 +199,11 @@ export default function Dash_Header() {
                                 <div className="menu-item px-5">
                                     <Link to='/perfil' className="menu-link px-5">Meu Perfil</Link>
                                 </div>
+                                {cookie.user?.acesso_folha &&
+                                    <div className="menu-item px-5">
+                                        <Link to='/contracheque' className="menu-link px-5">Contracheque</Link>
+                                    </div>
+                                }
 
 
                                 <div className='separator my-2' />

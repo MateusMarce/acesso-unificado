@@ -89,6 +89,13 @@ export type RamaisType = {
     nome_unidade:string
 } | any
 
+export type ChequeType = {
+    competencia:string,
+    dt_pgto:string,
+    tipo_folha_desc:string,
+    url:string
+}
+
 export type ComunicadosType = {
     id: number,
     titulo: string

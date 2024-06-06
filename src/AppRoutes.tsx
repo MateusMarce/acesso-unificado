@@ -37,6 +37,7 @@ function AppRoutes() {
 						<Route path="painel" element={<Page.Dashboard />} />
 						<Route path="perfil" element={<Page.Perfil />} />
 						<Route path="ramais" element={<Page.Ramais />} />
+						<Route path="contracheque" element={<Page.Contracheque />} />
 						<Route path="alumni" element={<Page.Alumni />} />
 						<Route path="comunicados" element={<Page.Comunicados />} />
 					</Route>
