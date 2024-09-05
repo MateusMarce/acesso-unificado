@@ -42,14 +42,13 @@ export default function Dashboard() {
         try {
             if(anotacoes == '' || exames){
                 let res = await api.get(`/user/exames/${i_usuario}/${i_empresa}`)
-                if(!res.data.exame){
+                if(res.data.exame == true){
                     setExames(true)
                     setCookies('exames', true)
                 }
                 validateRequest(res)
                 return res.data
             } else {
-                console.log(anotacoes);
                 let res = await api.post(`/user/createagendamento`, {anotacoes})
                 validateRequest(res)
                 setExames(false)
@@ -109,7 +108,7 @@ export default function Dashboard() {
             {/*</div>*/}
 
                 {/* BODY */}
-                {exames ?
+                {!exames ?
                     <div className="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
                         <div className="app-container container-xxl d-flex flex-row flex-column-fluid">
                             <div className="app-main flex-column flex-row-fluid" id="kt_app_main">
