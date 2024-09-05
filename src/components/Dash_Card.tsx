@@ -2,6 +2,7 @@ import { useState } from "react"
 import { AcessosCardType } from "../assets/types/type"
 import api from "../services/api"
 import validateRequest from "../helpers/validateRequest"
+import Cadeado from "../assets/images/ico_bloqueado.png"
 
 type Function = {
     item: AcessosCardType
@@ -37,7 +38,7 @@ export default function Dash_Card({item, k, getCards}:Function) {
         <div className={`${item.classe} col-J cardAuto-1`}>
             <div className="card card-shadow h-100">
                 <div className="card-body p-0 ">
-                    <a onClick={()=>handleOpenLink(item.access_token, item.logs_acesso)} style={item.titulo1 != '' ? {} : {pointerEvents:"none"}} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
+                    <a onClick={()=>item.access_token != '' && handleOpenLink(item.access_token, item.logs_acesso)} style={item.titulo1 != '' ? (item.access_token == "" ? {filter:'saturate(0)', pointerEvents:"none"} : {}) : {pointerEvents:"none"}} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
                         {loading && item.titulo1 != '' && 
                             <div className="d-flex justify-content-center" style={{zIndex:1}}>
                                 <div className="boxLoading"><span className="loader-18"></span></div>
@@ -47,6 +48,11 @@ export default function Dash_Card({item, k, getCards}:Function) {
                             <span className="fig-card">
                                 <img src={item.icone} alt="" />
                             </span>
+                            {item.access_token == "" &&
+                                <span className="fig-card float-end">
+                                    <img src={Cadeado} className="w-40px" alt="" />
+                                </span>
+                            }
                             <div className="tit-card">
                                 <h3>{item.titulo1}</h3>
                                 <h4>{item.titulo2}</h4>

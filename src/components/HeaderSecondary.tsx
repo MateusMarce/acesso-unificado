@@ -8,7 +8,7 @@ import { useCookies } from 'react-cookie'
 import { Link } from 'react-router-dom'
 
 export default function Dash_HeaderSecondary() {
-    const [cookies] = useCookies(['user','comunicados'])
+    const [cookies] = useCookies(['user','comunicados', 'exames'])
 
     return cookies.user && (
         <section>
@@ -52,7 +52,9 @@ export default function Dash_HeaderSecondary() {
                         <div className="d-flex flex-stack">
                             {(cookies.user.link_nercu != '' || cookies.user.link_treinas != '') && 
                                 <>
-                                    <a href={cookies.user.link_nercu} target='_blank' className="buti buticolor_1 icoN" title="Nercu"><img src={Nercu} alt="" /></a>
+                                    {!cookies.exames &&
+                                        <a href={cookies.user.link_nercu} target='_blank' className="buti buticolor_1 icoN" title="Nercu"><img src={Nercu} alt="" /></a>
+                                    }
                                     <a href={cookies.user.link_treinas} target='_blank' className="buti buticolor_1 icoT" title="Treinas"><img src={Treinas} alt="" /></a>
                                 </>
                             }
