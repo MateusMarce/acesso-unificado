@@ -14,6 +14,7 @@ import { toast } from 'react-toastify'
 import CookieConsent from 'react-cookie-consent'
 import { useEffect, useState } from 'react'
 import {encode as base64_encode} from 'base-64';
+import { BASE_URL } from '../../services/url'
 
 
 const Schema = Yup.object().shape({
@@ -22,7 +23,7 @@ const Schema = Yup.object().shape({
 })
 
 export default function Login() {
-    const [cookies, setCookies, removeCookies] = useCookies(['login', 'user', 'consent', 'theme', 'image'])
+    const [cookies, setCookies, removeCookies] = useCookies(['login', 'user', 'consent', 'theme', 'image', 'exames'])
     const [cookie, setCookie] = useState<boolean>()
     const navigate = useNavigate()
     const {cpf} = useParams()    
@@ -33,6 +34,7 @@ export default function Login() {
             removeCookies('consent', {path: '/'})
             // setCookies('consent', '', {path:'/'})
         }
+        removeCookies('exames')
     },[])
 
 
@@ -52,7 +54,7 @@ export default function Login() {
         try {
             if(cookie || cookies.consent === 'true'){
                 let res = await api.post('/auth/login', value)
-                setCookies('login', res.data.content, {path:'/acesso-unificado'})
+                setCookies('login', res.data.content)
                 navigate('/painel')
                 validateRequest(res)
             } else {
@@ -82,6 +84,7 @@ export default function Login() {
         removeCookies('user')
         removeCookies('login')
         removeCookies('image')
+        removeCookies('exames')
     }
     const handleNavigate = () => {
         if(cookies.consent && cookies.consent !== 'false') {

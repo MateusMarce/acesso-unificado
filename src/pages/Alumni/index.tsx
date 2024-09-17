@@ -14,6 +14,7 @@ import axios from "axios"
 import * as Yup from 'yup'
 import { toast } from "react-toastify"
 import FaleConosco from "../../components/Buttons/FaleConosco"
+import { BASE_URL } from "../../services/url"
 
 
 const ValidationSchema = Yup.object().shape({
@@ -178,7 +179,7 @@ export default function Perfil() {
                 removeCookie('login')
                 removeCookie('user')
                 toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
-                window.location.href = '/acesso-unificado/#/'
+                window.location.href = BASE_URL
             }
         })()
 

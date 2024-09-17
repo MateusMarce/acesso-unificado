@@ -17,6 +17,7 @@ import Logoavatar from '../../assets/images/avat_jota.jpg'
 import ico_aniver from '../../assets/images/ico_aniver2.png'
 import validateRequest from "../../helpers/validateRequest"
 import Dash_Exames from "../../components/Dash_Exames"
+import { BASE_URL } from "../../services/url"
 // import ico_aniver from '../../assets/images/ico_aniver.webm' 
 
 export default function Dashboard() {
@@ -34,7 +35,7 @@ export default function Dashboard() {
             removeCookie('login')
             removeCookie('user')
             toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
-            window.location.href = '/acesso-unificado/#/'
+            window.location.href = BASE_URL
         }
     }
 
@@ -83,10 +84,6 @@ export default function Dashboard() {
                 let resDep = await api.get('/user/dependentes')
                 setDep(resDep.data)
             } catch (error) {
-                // removeCookies('login')
-                // removeCookies('user')
-                // toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookies.theme==='light'?'light':'dark'})
-                // window.location.href = '/acesso-unificado/#/'
             }
         })()
         

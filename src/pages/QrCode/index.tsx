@@ -15,6 +15,7 @@ import CookieConsent from 'react-cookie-consent'
 import { useEffect, useState } from 'react'
 import {decode as base64_decode} from 'base-64';
 import AuthCode from 'react-auth-code-input'
+import { BASE_URL } from '../../services/url'
 
 
 const Schema = Yup.object().shape({
@@ -46,7 +47,7 @@ export default function QrCode() {
             if(cookie || cookies.consent === 'true'){
                 if(user && password) {
                     let res = await api.post('/auth/login', {...values, user, password:base64_decode(password)})
-                    setCookies('login', res.data.content, {path:'/acesso-unificado'})
+                    setCookies('login', res.data.content, {path:BASE_URL})
                     navigate('/painel')
                     validateRequest(res)
                     localStorage.removeItem('user')

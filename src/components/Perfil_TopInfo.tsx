@@ -7,6 +7,7 @@ import api from "../services/api"
 import validateRequest from "../helpers/validateRequest"
 import { toast } from "react-toastify"
 import { HashLink as Link } from 'react-router-hash-link';
+import { BASE_URL } from "../services/url"
 
 export const Perfil_TopInfo = ({dep}:any) => {
     const [cookies, setCookies] = useCookies(['user', 'image', 'theme'])
@@ -18,7 +19,7 @@ export const Perfil_TopInfo = ({dep}:any) => {
     const handleHideImage = async () => {
         
         setShowImage(!showImage)
-        setCookies('image', !showImage, {path:'/acesso-unificado'})
+        setCookies('image', !showImage, {path:BASE_URL})
         try {
             await api.post('/user/updateBio', {
                 ocultar_foto:showImage?'S':'N'

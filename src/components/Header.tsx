@@ -10,6 +10,7 @@ import api from '../services/api'
 import { toast } from 'react-toastify'
 import validateRequest from '../helpers/validateRequest'
 import {version} from '../../package.json'
+import { BASE_URL } from '../services/url'
 
 export default function Dash_Header() {
     const {mode, setMode} = useTheme()
@@ -29,7 +30,7 @@ export default function Dash_Header() {
             removeCookie('login')
             removeCookie('user')
             toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookie.theme==='light'?'light':'dark'})
-            window.location.href = '/acesso-unificado/#/'
+            window.location.href = BASE_URL
         }
     }
     
@@ -50,7 +51,7 @@ export default function Dash_Header() {
             removeCookie('login')
             removeCookie('user')
             toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookie.theme==='light'?'light':'dark'})
-            window.location.href = '/acesso-unificado/#/'
+            window.location.href = BASE_URL
         }
         if(setMode) setMode(theme)
     }
@@ -67,7 +68,7 @@ export default function Dash_Header() {
             removeCookie('login')
             removeCookie('user')
             toast.error('Sua sessão expirou.', {autoClose:2000,theme:cookie.theme==='light'?'light':'dark'})
-            window.location.href = '/acesso-unificado/#/'
+            window.location.href = BASE_URL
         }
     }
     

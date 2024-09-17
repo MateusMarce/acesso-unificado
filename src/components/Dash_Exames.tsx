@@ -7,13 +7,13 @@ export default function Dash_Exames(props:any) {
 
     return (
 		<div className="h-100 py-10 d-flex align-items-center justify-content-center">
-			<div className="p-10 rounded-3 row w-50" style={{backgroundColor: 'var(--kt-app-header-secondary-base-bg-color)'}}>
+			<div className="p-10 rounded-3 row w-50">
 				<div className="mb-10"><h3 className="text-center">Exames Periódicos</h3></div>
 				{/* <div className="row" dangerouslySetInnerHTML={{__html: text}}></div> */}
 				<div>
 					<p>Informamos a necessidade de realização de seu exame periódico.</p>
 					<b>ATENDIMENTOS NA CLINIMET</b>
-					<p>A partir de Setembro/2023 os atendimentos serão realizados pela CLINIMET que está localizada na Av. Rui Barbosa, n. 160, Centro Comercial Coan, Centro, Criciúma/SC (podendo adentrar na galeria também pela Rua Seis de Janeiro, n. 135), segue localização a seguir https://goo.gl/maps/NVZ5MLC1zBgDEuSf8</p>
+					<p>A partir de Setembro/2023 os atendimentos serão realizados pela CLINIMET que está localizada na Av. Rui Barbosa, n. 160, Centro Comercial Coan, Centro, Criciúma/SC (podendo adentrar na galeria também pela Rua Seis de Janeiro, n. 135), segue localização a seguir <a target="_blank" href="https://goo.gl/maps/NVZ5MLC1zBgDEuSf8">https://goo.gl/maps/NVZ5MLC1zBgDEuSf8</a></p>
 					<b>IMPORTANTE!</b>
 					<p>Solicitamos a sua colaboração para realização do exame periódico, evitando, assim, que o não atendimento seja reportado ao seu coordenador e o acesso aos serviços da Instituição seja bloqueado após o decurso do prazo de 30 (trinta) dias.</p>
 					<p>Qualquer dúvida entre em contato pelo e-mail e telefone abaixo.</p>

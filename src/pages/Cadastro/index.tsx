@@ -17,6 +17,7 @@ import PasswordStrengthBar from 'react-password-strength-bar'
 import { useCookies } from 'react-cookie'
 import CookieConsent from 'react-cookie-consent'
 import Cadastro_FormExterno from '../../components/Cadastro_FormExterno'
+import { BASE_URL } from '../../services/url'
 
 
 export default function Cadastro() {
@@ -127,7 +128,7 @@ export default function Cadastro() {
                             if(cookie && res.status === 200){
                                 let value = {user: val.cpf, password:values.password_old}
                                 let res = await api.post('/auth/login', value)
-                                setCookies('login', res.data.content, {path:'/acesso-unificado'})
+                                setCookies('login', res.data.content, {path:BASE_URL})
                                 navigate('/painel')
                                 validateRequest(res)
                             } else {
@@ -153,7 +154,7 @@ export default function Cadastro() {
                         if(cookie && res.status === 200){
                             let value = {user: val.cpf, password:values.password_old}
                             let res = await api.post('/auth/login', value)
-                            setCookies('login', res.data.content, {path:'/acesso-unificado'})
+                            setCookies('login', res.data.content, {path:BASE_URL})
                             navigate('/painel')
                             validateRequest(res)
                         } else {
@@ -182,7 +183,7 @@ export default function Cadastro() {
                         if(cookie && res.status === 200){
                             let value = {user: val.cpf, password:values.password_old}
                             let res = await api.post('/auth/login', value)
-                            setCookies('login', res.data.content, {path:'/acesso-unificado'})
+                            setCookies('login', res.data.content, {path:BASE_URL})
                             navigate('/painel')
                             validateRequest(res)
                         } else {
