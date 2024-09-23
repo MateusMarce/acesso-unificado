@@ -36,15 +36,11 @@ export default function Cadastro() {
         aluno:Yup.boolean(),
         colaborador:Yup.boolean(),
         cpf: Yup.string().required('Este campo é obrigatório.'),
-        password_old: Yup.string().min(5, 'A senha deve conter 5 caractéres.'),
-        senha_atual: Yup.string().min(5, 'A senha deve conter 5 caractéres.').when('colaborador', 
-        (val, schema) => {
-            if(val[0] === true){
-                return schema.required('Este campo é obrigatório.')
-            } else {
-                return schema.notRequired()
-            }
-        }),
+        password_old: Yup.string().min(5, 'A senha deve conter 5 caractéres.').matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/,
+            "Digite uma senha mais forte. Deve conter letras maiúsculas e números."
+          ),
+        senha_atual: Yup.string().optional(),
         password_confirmation: Yup.string().min(5, 'A senha deve conter 5 caractéres.').oneOf([Yup.ref('password_old')], 'As senhas não são iguais.'),
         email: Yup.string().email('Digite um e-mail válido.').when('aluno', 
         (val, schema)=> {
@@ -92,7 +88,6 @@ export default function Cadastro() {
 
     const handleSubmit = async (values:FormikValues, action:FormikHelpers<CadastroType>) => {        
         action.setSubmitting(true)
-        console.log(values.telefone.replace('(','').replace(')','').replace('-','').replace(' ','').replaceAll('_','').length);
         
         
         //requisiçao
@@ -101,6 +96,11 @@ export default function Cadastro() {
                 val = {...val, cpf:val.cpf.replaceAll('.','').replace('-',''), telefone: val.telefone.replace('(','').replace(')','').replace('-','').replace(' ','')}
                 delete val.aluno
                 delete val.colaborador
+                if(val.login == '' && val.email == '') {
+                    action.setFieldError('email', 'Este campo é obrigatório.')
+                    return
+                }
+                
 
                 if(aluno){
                     //VERIFICA SE EH ALUNO
@@ -143,22 +143,42 @@ export default function Cadastro() {
                     val = {...val, nome:dados.nome, usuario:dados.e_mail, password:val.password_old}
                     delete val.valor
                     delete val.campo
-                    delete val.password_old
-                    delete val.password_confirmation
                     delete val.email
+                    delete val.password_old
+                    
+                    
                     try {
-                        
-                        let res = await api.post('/cadastro/updatepassAD', val)
-                        validateRequest(res)
-                        //LOGA COM O USUARIO DPS DE CADASTRAR
-                        if(cookie && res.status === 200){
-                            let value = {user: val.cpf, password:values.password_old}
-                            let res = await api.post('/auth/login', value)
-                            setCookies('login', res.data.content, {path:BASE_URL})
-                            navigate('/painel')
+                        if(val.usuario != ''){
+                            delete val.password_confirmation
+                            
+                            let res = await api.post('/cadastro/updatepassAD', val)
                             validateRequest(res)
+                            //LOGA COM O USUARIO DPS DE CADASTRAR
+                            if(cookie && res.status === 200){
+                                let value = {user: val.cpf, password:values.password_old}
+                                let res = await api.post('/auth/login', value)
+                                setCookies('login', res.data.content)
+                                navigate('/painel')
+                                validateRequest(res)
+                            } else {
+                                toast.error('Não é possivel acessar nosso portal sem aceitar os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
+                                }
                         } else {
-                            toast.error('Não é possivel acessar nosso portal sem aceitar os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
+                            delete val.senha_atual
+                            delete val.usuario
+                            console.log('sem email');
+                            let res = await api.post('/cadastro/createuserAD', val)
+                            validateRequest(res)
+                            //LOGA COM O USUARIO DPS DE CADASTRAR
+                            if(cookie && res.status === 200){
+                                let value = {user: val.cpf, password:values.password_old}
+                                let res = await api.post('/auth/login', value)
+                                setCookies('login', res.data.content, {path:BASE_URL})
+                                navigate('/painel')
+                                validateRequest(res)
+                            } else {
+                                toast.error('Não é possivel acessar nosso portal sem aceitar os cookies.', {autoClose:2000, theme: cookies.theme ==='light'?'light':'dark'})
+                            }
                         }
                         
                     } catch (error) {
@@ -271,14 +291,21 @@ export default function Cadastro() {
                                     aluno:aluno,
                                     colaborador:colaborador,
                                     cpf: cpfVal || '',
-                                    nome:'',
+                                    nome: dados.nome ||'',
                                     email:'',
                                     telefone:'',
                                     password_old:'',
                                     senha_atual:'',
                                     password_confirmation:'',
                                     valor:'',
-                                    campo:campo
+                                    campo:campo,
+                                    login:'',
+                                    tipo:dados.tipo_func || '',
+                                    usuario_unico: dados.usuario_unico || 0,
+                                    unidade:dados.unidade || '',
+                                    unidade_nivel:dados.unidade_nivel || '',
+                                    i_empresa:dados.i_empresa || 0,
+                                    i_func: dados.i_func || 0
                                 }}
                                 validationSchema={Schema}
                                 onSubmit={handleSubmit}
@@ -286,7 +313,8 @@ export default function Cadastro() {
                             >
                                 
                                 {(props:FormikProps<CadastroType>) => {
-                                    // console.log(props.values.campo);
+                                    // console.log(props.errors);
+                                    // console.log(props.values.email);
                                     
                                     return(
                                     <Form className='form w-100'>
@@ -354,6 +382,7 @@ export default function Cadastro() {
                                         }
                                         {colaborador &&
                                             <Cadastro_FormColaborador
+                                                dados={dados}
                                                 values={props.values.password_old} 
                                                 errors={props.errors.password_old} 
                                                 touched={props.touched.password_old}
@@ -376,6 +405,7 @@ export default function Cadastro() {
                                                 touched_email={props.touched.email} 
                                                 errors_fone={props.errors.telefone} 
                                                 touched_fone={props.touched.telefone} 
+                                                setFieldError={props.setFieldError}
                                             />
                                         }
 

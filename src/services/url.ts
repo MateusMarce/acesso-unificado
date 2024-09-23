@@ -3,4 +3,4 @@ export const isProductionDev = import.meta.env.VITE_MODE === 'development' && im
 export const isDevelopment = import.meta.env.MODE === 'development' //desenvolvendo
 
 export const API_BASE_URL = isProductionDev ? 'https://app.satc.edu.br/auth-desenv/public/api' : isDevelopment ? 'https://app.satc.edu.br/auth-desenv/public/api' : 'https://app.satc.edu.br/auth/public/api'
-export const BASE_URL = isProductionDev ? '/acesso-unificado-dev/' : isDevelopment ? '/acesso-unificado-dev/' : '/acesso-unificado/'
+export const BASE_URL = isProductionDev ? '/acesso-unificado-dev' : isDevelopment ? '/acesso-unificado-dev' : '/acesso-unificado'

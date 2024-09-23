@@ -21,6 +21,13 @@ export type CadastroType = {
     senha_atual:string,
     password_confirmation:string
     valor:string
+    login:string
+    tipo:string
+    usuario_unico:number
+    unidade:string
+    unidade_nivel:string
+    i_empresa:number
+    i_func:number
     campo:number
     aluno:boolean
     colaborador:boolean

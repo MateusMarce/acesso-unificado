@@ -26,6 +26,7 @@ export default function Dashboard() {
     const [dep, setDep] = useState([] as DependentesType[])
     const {mode, setMode} = useTheme()
     const [exames, setExames] = useState<boolean>(cookies.exames || false)
+    const [exameModelo, setExameModelo] = useState<boolean>(cookies.exames || false)
 
     const getCards = async () => {
         try {
@@ -40,11 +41,12 @@ export default function Dashboard() {
     }
 
     const handleExame = async (i_usuario:string = cookies.user.id, i_empresa:number = 1, anotacoes:string = '') => {
-        try {
-            if(anotacoes == '' || exames){
-                let res = await api.get(`/user/exames/${i_usuario}/${i_empresa}`)
+        try {            
+            if(anotacoes == '' || !exames){
+                let res = await api.get(`/user/exames`)
                 if(res.data.exame == true){
                     setExames(true)
+                    setExameModelo(res.data.modelo)
                     setCookies('exames', true)
                 }
                 validateRequest(res)
@@ -448,7 +450,7 @@ export default function Dashboard() {
                         </div>
                     </div>
                     :
-                    <Dash_Exames onSubmit={(t:string)=>handleExame(cookies.user.id, 1, t)} />
+                    <Dash_Exames modelo={exameModelo} onSubmit={(t:string)=>handleExame(cookies.user.id, 1, t)} />
                 }
             </div>
             <Dash_Footer />

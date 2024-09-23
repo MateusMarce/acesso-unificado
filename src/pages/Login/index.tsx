@@ -34,6 +34,14 @@ export default function Login() {
             removeCookies('consent', {path: '/'})
             // setCookies('consent', '', {path:'/'})
         }
+        if(!cookies.user || !cookies.login) {
+            removeCookies('login', {path:'/'})
+            removeCookies('login', {path: BASE_URL})
+            removeCookies('login')
+            removeCookies('user', {path:'/'})
+            removeCookies('user', {path: BASE_URL})
+            removeCookies('user')
+        }
         removeCookies('exames')
     },[])
 
@@ -80,11 +88,13 @@ export default function Login() {
         action.setSubmitting(false)
     }
     const handleLogout = async () => {
-        await api.post('/auth/logout')
+        const theme = document.body.getAttribute('data-theme')
         removeCookies('user')
         removeCookies('login')
         removeCookies('image')
         removeCookies('exames')
+        toast.success('Você saiu com sucesso.', {autoClose:3000, pauseOnFocusLoss:false, pauseOnHover:false, theme:theme==='light'?'light':'dark'})
+        await api.post('/auth/logout')
     }
     const handleNavigate = () => {
         if(cookies.consent && cookies.consent !== 'false') {
@@ -191,13 +201,22 @@ export default function Login() {
                                                                 </button>
                                                             </>
                                                         :
-                                                            <button type="submit" id="kt_sign_in_submit" className="btn btn-success">
-                                                                {props.isSubmitting ?
-                                                                    <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                                                    :
-                                                                    <span className="indicator-label">Entrar</span>
-                                                                }
-                                                            </button>
+                                                        <>
+                                                            {(cookies.login && !cookies.user) || (!cookies.login && cookies.user) ?
+                                                                <button type='button' onClick={handleLogout} className="btn btn-light">
+                                                                    Sair da conta
+                                                                </button>
+                                                                :
+                                                                <button type="submit" id="kt_sign_in_submit" className="btn btn-success">
+                                                                    {props.isSubmitting ?
+                                                                        <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                                        :
+                                                                        <span className="indicator-label">Entrar</span>
+                                                                    }
+                                                                </button>
+
+                                                            }
+                                                        </>
                                                         }
                                                     </>
                                                     :
