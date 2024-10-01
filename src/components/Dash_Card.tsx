@@ -16,8 +16,11 @@ export default function Dash_Card({item, k, getCards}:Function) {
     const [loading, setLoading] = useState<boolean>(false)
 
     const handleOpenLink = async (link:string, acesso:string) => {
+        console.log(link);
+        
         setLoading(true)
         getCards()
+        
         try {
             if(link){
                 await api.post('/user/acesso', {
@@ -38,7 +41,7 @@ export default function Dash_Card({item, k, getCards}:Function) {
         <div className={`${item.classe} col-J cardAuto-1`}>
             <div className="card card-shadow h-100">
                 <div className="card-body p-0 ">
-                    <a onClick={()=>item.access_token != '' && handleOpenLink(item.access_token, item.logs_acesso)} style={item.titulo1 != '' ? (item.access_token == "" ? {filter:'saturate(0)', pointerEvents:"none"} : {}) : {pointerEvents:"none"}} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
+                    <button type="button" onClick={()=>item.access_token != '' && handleOpenLink(item.access_token, item.logs_acesso)} style={item.titulo1 != '' ? (item.access_token == "" ? {filter:'saturate(0)', pointerEvents:"none"} : {}) : {pointerEvents:"none"}} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
                         {loading && item.titulo1 != '' && 
                             <div className="d-flex justify-content-center" style={{zIndex:1}}>
                                 <div className="boxLoading"><span className="loader-18"></span></div>
@@ -58,7 +61,7 @@ export default function Dash_Card({item, k, getCards}:Function) {
                                 <h4>{item.titulo2}</h4>
                             </div>
                         </div>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

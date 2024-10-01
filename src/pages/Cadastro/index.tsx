@@ -37,7 +37,7 @@ export default function Cadastro() {
         colaborador:Yup.boolean(),
         cpf: Yup.string().required('Este campo é obrigatório.'),
         password_old: Yup.string().min(5, 'A senha deve conter 5 caractéres.').matches(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/,
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
             "Digite uma senha mais forte. Deve conter letras maiúsculas e números."
           ),
         senha_atual: Yup.string().optional(),
@@ -96,6 +96,7 @@ export default function Cadastro() {
                 val = {...val, cpf:val.cpf.replaceAll('.','').replace('-',''), telefone: val.telefone.replace('(','').replace(')','').replace('-','').replace(' ','')}
                 delete val.aluno
                 delete val.colaborador
+                
                 if(val.login == '' && val.email == '') {
                     action.setFieldError('email', 'Este campo é obrigatório.')
                     return
@@ -140,7 +141,7 @@ export default function Cadastro() {
                         }
                     }
                 } else if(colaborador) {
-                    val = {...val, nome:dados.nome, usuario:dados.e_mail, password:val.password_old}
+                    val = {...val, nome:dados.nome, usuario:dados.e_mail, password:val.password_old, dt_expira:dados.dt_expira}
                     delete val.valor
                     delete val.campo
                     delete val.email
@@ -233,6 +234,8 @@ export default function Cadastro() {
         try {
             if(cpf.length === 11){
                 let res = await api.get(`/cadastro/checkcpf?cpf=${cpf}`)
+                console.log(res.data);
+                
                 setDados(res.data)
                 validateRequest(res.data)
                 if(res.data.tipo === "colaborador") {
@@ -292,7 +295,7 @@ export default function Cadastro() {
                                     colaborador:colaborador,
                                     cpf: cpfVal || '',
                                     nome: dados.nome ||'',
-                                    email:'',
+                                    email: dados.e_mail || '',
                                     telefone:'',
                                     password_old:'',
                                     senha_atual:'',

@@ -30,18 +30,34 @@ export default function Login() {
     let consent = document.getElementById('consent-btn')
 
     useEffect(()=>{
-        if(cookies.consent == 'false') {
-            removeCookies('consent', {path: '/'})
-            // setCookies('consent', '', {path:'/'})
-        }
-        if(!cookies.user || !cookies.login) {
-            removeCookies('login', {path:'/'})
-            removeCookies('login', {path: BASE_URL})
-            removeCookies('login')
-            removeCookies('user', {path:'/'})
-            removeCookies('user', {path: BASE_URL})
-            removeCookies('user')
-        }
+        (async ()=>{
+            try {
+                let res = await api.get('user/me')
+                if(res.status == 200){
+                    if(cookies.consent == 'false') {
+                        removeCookies('consent', {path: '/'})
+                        // setCookies('consent', '', {path:'/'})
+                    }
+                    if(!cookies.user || !cookies.login) {
+                        removeCookies('login', {path:'/'})
+                        removeCookies('login', {path: BASE_URL})
+                        removeCookies('login')
+                        removeCookies('user', {path:'/'})
+                        removeCookies('user', {path: BASE_URL})
+                        removeCookies('user')
+                    }
+                }
+            } catch (error) {
+                removeCookies('login', {path:'/'})
+                removeCookies('login', {path: BASE_URL})
+                removeCookies('login')
+                removeCookies('user', {path:'/'})
+                removeCookies('user', {path: BASE_URL})
+                removeCookies('user')
+                
+            }
+            
+        })()
         removeCookies('exames')
     },[])
 
@@ -97,9 +113,9 @@ export default function Login() {
         await api.post('/auth/logout')
     }
     const handleNavigate = () => {
-        if(cookies.consent && cookies.consent !== 'false') {
+        if((cookies.consent && cookies.consent !== 'false') || cookie) {
             navigate('/painel')
-        } else {
+        } else {            
             handleLogout()
             removeCookies('consent')
         }
@@ -240,8 +256,6 @@ export default function Login() {
                         </div>
                     </div>
                 :
-                <>
-                {cookies.consent}
                     <CookieConsent
                         location="bottom"
                         containerClasses={`d-flex flex-column w-100 w-lg-50 h-100 align-items-center justify-content-center gap-10 ${cookies.theme == 'dark' ? 'bg-light' : 'bg-dark'}`}
@@ -269,7 +283,6 @@ export default function Login() {
                             </div>
                         </div>
                     </CookieConsent>
-                    </>
                 }
             </div>
         </div>

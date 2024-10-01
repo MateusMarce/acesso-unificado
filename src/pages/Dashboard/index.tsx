@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 import api from "../../services/api"
 import { AcessosCardType, DependentesType } from "../../assets/types/type"
 import { toast } from "react-toastify"
+import * as Device from 'react-device-detect';
 import { useTheme } from "../../helpers/ThemeContext"
 import { Perfil_Dependentes } from "../../components/Perfil_Dependentes"
 
@@ -27,6 +28,7 @@ export default function Dashboard() {
     const {mode, setMode} = useTheme()
     const [exames, setExames] = useState<boolean>(cookies.exames || false)
     const [exameModelo, setExameModelo] = useState<boolean>(cookies.exames || false)
+    
 
     const getCards = async () => {
         try {
@@ -39,7 +41,6 @@ export default function Dashboard() {
             window.location.href = BASE_URL
         }
     }
-
     const handleExame = async (i_usuario:string = cookies.user.id, i_empresa:number = 1, anotacoes:string = '') => {
         try {            
             if(anotacoes == '' || !exames){
@@ -118,10 +119,35 @@ export default function Dashboard() {
                                                 <div className="card card-reset mb-5 mb-xl-10">
                                                     <div className="card-body p-0">
                                                         <div className="row g-3 g-lg-3">
-                                                            {/* CARD */}
-                                                            {acessos.map((i:AcessosCardType, k:number)=>(
-                                                                <Dash_Card item={i} k={k} key={k} getCards={()=>getCards()} />
-                                                            ))}
+                                                            {Device.isFirefox ?
+                                                                <div className="card" style={{height:366}}>
+                                                                    <div className="card-header text-white d-flex align-items-center gap-4 justify-content-center">
+                                                                        <i className="bi bi-exclamation-circle-fill text-gray-800" style={{fontSize:42}}></i>
+                                                                        <p className="m-0 fs-1 text-gray-800">
+                                                                            Identificamos um problema!
+                                                                        </p>
+                                                                    </div>
+                                                                    <div className="card-body align-items-center d-flex justify-content-center">
+                                                                        <div className="fs-4">
+                                                                            <p className="text-gray-800 text-center m-0">
+                                                                                O acesso aos portais estão indisponíveis no navegador Mozilla Firefox. <br />
+                                                                                Estamos trabalhando para encontrar soluções.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="card-footer">
+                                                                        <p className="m-0 text-gray-800 text-center fs-4">Pedimos desculpa pelo transtorno.</p>
+                                                                    </div>
+                                                                </div>
+                                                        
+                                                            :
+                                                                <>
+                                                                    {/* CARD */}
+                                                                    {acessos.map((i:AcessosCardType, k:number)=>(
+                                                                        <Dash_Card item={i} k={k} key={k} getCards={()=>getCards()} />
+                                                                    ))}
+                                                                </>
+                                                            }
 
                                                         </div>
                                                     </div>
