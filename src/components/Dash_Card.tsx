@@ -3,6 +3,7 @@ import { AcessosCardType } from "../assets/types/type"
 import api from "../services/api"
 import validateRequest from "../helpers/validateRequest"
 import Cadeado from "../assets/images/ico_bloqueado.png"
+import * as Device from 'react-device-detect';
 
 type Function = {
     item: AcessosCardType
@@ -16,7 +17,6 @@ export default function Dash_Card({item, k, getCards}:Function) {
     const [loading, setLoading] = useState<boolean>(false)
 
     const handleOpenLink = async (link:string, acesso:string) => {
-        console.log(link);
         
         setLoading(true)
         getCards()
@@ -26,11 +26,17 @@ export default function Dash_Card({item, k, getCards}:Function) {
                 await api.post('/user/acesso', {
                     logs_acesso:acesso
                 })
-                window.open(link, '_self')
-                
-                setTimeout(async()=>{
-                    setLoading(false)
-                }, 1000)
+                if(Device.isFirefox){
+                    setTimeout(async()=>{
+                        window.open(link, '_self')
+                        setLoading(false)
+                    }, 1000)
+                } else {
+                    window.open(link, '_self')
+                    setTimeout(async()=>{
+                        setLoading(false)
+                    }, 1000)
+                }
             }
         } catch (error:any) {
             if(error.response.status != 401) validateRequest(error)

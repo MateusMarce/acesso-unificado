@@ -24,7 +24,7 @@ import { BASE_URL } from "../../services/url"
 export default function Dashboard() {
     const [cookies, setCookies, removeCookie] = useCookies(['user', 'image', 'login', 'theme', 'exames'])
     const [acessos, setAcessos] = useState([] as AcessosCardType[])
-    const [dep, setDep] = useState([] as DependentesType[])
+    // const [dep, setDep] = useState([] as DependentesType[])
     const {mode, setMode} = useTheme()
     const [exames, setExames] = useState<boolean>(cookies.exames || false)
     const [exameModelo, setExameModelo] = useState<boolean>(cookies.exames || false)
@@ -82,13 +82,13 @@ export default function Dashboard() {
             })()
         }
 
-        (async()=>{
-            try {
-                let resDep = await api.get('/user/dependentes')
-                setDep(resDep.data)
-            } catch (error) {
-            }
-        })()
+        // (async()=>{
+        //     try {
+        //         let resDep = await api.get('/user/dependentes')
+        //         setDep(resDep.data)
+        //     } catch (error) {
+        //     }
+        // })()
         
         // GET CARDS
         getCards()
@@ -119,7 +119,7 @@ export default function Dashboard() {
                                                 <div className="card card-reset mb-5 mb-xl-10">
                                                     <div className="card-body p-0">
                                                         <div className="row g-3 g-lg-3">
-                                                            {Device.isFirefox ?
+                                                            {/* {Device.isFirefox ?
                                                                 <div className="card" style={{height:366}}>
                                                                     <div className="card-header text-white d-flex align-items-center gap-4 justify-content-center">
                                                                         <i className="bi bi-exclamation-circle-fill text-gray-800" style={{fontSize:42}}></i>
@@ -140,14 +140,14 @@ export default function Dashboard() {
                                                                     </div>
                                                                 </div>
                                                         
-                                                            :
+                                                            : */}
                                                                 <>
                                                                     {/* CARD */}
                                                                     {acessos.map((i:AcessosCardType, k:number)=>(
                                                                         <Dash_Card item={i} k={k} key={k} getCards={()=>getCards()} />
                                                                     ))}
                                                                 </>
-                                                            }
+                                                            {/* } */}
 
                                                         </div>
                                                     </div>
@@ -155,7 +155,7 @@ export default function Dashboard() {
                                             </div>
                                             {/* DEPENDENTES CAPA */}
                                             <div className="col-xxl-6 mb-5 mb-xl-10 depCapa depMin">
-                                                {dep.length > 0 && 
+                                                {/* {dep.length > 0 && 
                                                 <div className="card mb-5">
                                                     <div className="card-header border-0">
                                                         <div className="card-title m-0">
@@ -176,7 +176,7 @@ export default function Dashboard() {
                                                         </div>
                                                     </div>    
                                                 </div>
-                                                }
+                                                } */}
                                                 <Dash_Slide />
                                             </div>
                                         </div>

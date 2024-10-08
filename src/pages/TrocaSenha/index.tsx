@@ -25,7 +25,10 @@ export default function TrocaSenha() {
     const [senha, setSenha] = useState<boolean>(false)
     const Schema = Yup.object().shape({
         senha_atual: Yup.string().min(5, 'A senha deve conter 5 caractéres.').required('Este campo é obrigatório.'),
-        password_old: Yup.string().min(5, 'A senha deve conter 5 caractéres.'),
+        password_old: Yup.string().min(5, 'A senha deve conter 5 caractéres.').matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
+            "Digite uma senha mais forte. Deve conter letras maiúsculas e números."
+          ),
         password_confirmation: Yup.string().min(5, 'A senha deve conter 5 caractéres.').oneOf([Yup.ref('password_old')], 'As senhas não são iguais.'),
         email: Yup.string().email('Digite um e-mail válido.').required('Este campo é obrigatório.'),
     })
@@ -37,7 +40,6 @@ export default function TrocaSenha() {
 
         //requisiçao
         try {
-            console.log(values);
             let res = await api.post('cadastro/passexpire',{
                 email:values.email,
                 senha_atual:values.senha_atual,
@@ -74,7 +76,7 @@ export default function TrocaSenha() {
                             >
                                 
                                 {(props:FormikProps<TrocaSenhaType>) => {
-                                    // console.log(props.values.campo);
+                                    // console.log(props.errors);
                                     
                                     return(
                                     <Form className='form w-100'>
@@ -96,6 +98,7 @@ export default function TrocaSenha() {
                                                 touched_conf={props.touched.password_confirmation}
                                                 errors_old={props.errors.senha_atual} 
                                                 touched_old={props.touched.senha_atual} 
+                                                dados={dados}
                                             />
 
                                         

@@ -6,12 +6,12 @@ import FoneField from "./Fields/FoneField";
 
 
 export default function Cadastro_FormColaborador(props:any) {
-
+    
     return (
         <div>
             {(props) &&
                 <>
-                    {props.dados.sugestoes_usuarios && 
+                    {props.dados && props.dados.sugestoes_usuarios && 
                         <div>
                             <Field as="select" className="form-select bg-transparent mb-3" style={{border:" 1px solid #92929254"}} name="login" id="login">
                             <option value=''>Selecione um usuário para sua conta</option>
@@ -21,7 +21,7 @@ export default function Cadastro_FormColaborador(props:any) {
                             </Field>
                         </div>
                     }
-                    {(!props.dados.sugestoes_usuarios || props.dados.sugestoes_usuarios.length == 0) && 
+                    {props.dados && (!props.dados.sugestoes_usuarios || props.dados.sugestoes_usuarios.length == 0) && 
                         <div className="fv-row mb-3 login-password position-relative">
                             <ChangePassword
                                 tabIndex={6}
