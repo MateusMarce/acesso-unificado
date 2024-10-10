@@ -12,6 +12,7 @@ import { toast } from "react-toastify"
 import * as Device from 'react-device-detect';
 import { useTheme } from "../../helpers/ThemeContext"
 import { Perfil_Dependentes } from "../../components/Perfil_Dependentes"
+import Carousel from 'react-multi-carousel';
 
 import ImgDemo from '../../assets/images/img_slide_01.jpg'
 import LogoSatc from '../../assets/images/baloes.png' 
@@ -29,7 +30,25 @@ export default function Dashboard() {
     const {mode, setMode} = useTheme()
     const [exames, setExames] = useState<boolean>(cookies.exames || false)
     const [exameModelo, setExameModelo] = useState<boolean>(cookies.exames || false)
-    
+    const responsive = {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 5
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 3
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 2
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 1
+        }
+      };
 
     const getCards = async () => {
         try {
@@ -189,7 +208,7 @@ export default function Dashboard() {
 
                                             <div className="col-xxl-12 mb-xxl-12">
                                                 <div className="text-center mb-12">
-                                                    <h3 class="fs-2hx text-gray-900 mb-5">Área do Cliente</h3>   
+                                                    <h3 className="fs-2hx text-gray-900 mb-5">Área do Cliente</h3>   
                                                 </div>
 
                                                 <div className="card">
@@ -202,12 +221,12 @@ export default function Dashboard() {
                                                                     </div>
                                                                 </div>
                                                                 <div className="py-1">
-                                                                    <a href="#" class="fs-1 text-gray-800 text-hover-primary fw-light">IND CARBONIFERA RIO DESERTO LTDS - UNIDADE 101</a>
+                                                                    <a href="#" className="fs-1 text-gray-800 text-hover-primary fw-light">IND CARBONIFERA RIO DESERTO LTDS - UNIDADE 101</a>
                                                                     {/*<div className="fs-7 text-muted fw-semibold mt-1">KT.com</div>*/}
                                                                 </div>
                                                             </div>
                                                             <div className="me-4">
-                                                                <select class="form-select" aria-label="Select example">
+                                                                <select className="form-select" aria-label="Select example">
                                                                     <option>Trocar de Empresa</option>
                                                                     <option value="1">Um</option>
                                                                     <option value="2">Dois</option>
@@ -267,58 +286,58 @@ export default function Dashboard() {
                                                     <div className="card-body border-top">
                                                         <div className="overflow-auto cardAuto">
                                                             <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-success"></span>
+                                                                <span className="bullet bullet-vertical h-40px bg-success"></span>
                                                                 <span className="fw-light fs-5 mx-5">001</span>
                                                                 <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
+                                                                    <a href="#" className="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
+                                                                    <span className="text-muted fw-semibold d-block fs-7">07/10/2024</span>
                                                                 </div>
-                                                                <span class="badge badge-light-success fs-8 fw-bold">Concluído</span>
+                                                                <span className="badge badge-light-success fs-8 fw-bold">Concluído</span>
                                                             </div>
                                                             <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-warning"></span>
+                                                                <span className="bullet bullet-vertical h-40px bg-warning"></span>
                                                                 <span className="fw-light fs-5 mx-5">002</span>
                                                                 <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
+                                                                    <a href="#" className="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
+                                                                    <span className="text-muted fw-semibold d-block fs-7">07/10/2024</span>
                                                                 </div>
-                                                                <span class="badge badge-light-warning fs-8 fw-bold">Pendente</span>
+                                                                <span className="badge badge-light-warning fs-8 fw-bold">Pendente</span>
                                                             </div>
                                                             <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-danger"></span>
+                                                                <span className="bullet bullet-vertical h-40px bg-danger"></span>
                                                                 <span className="fw-light fs-5 mx-5">003</span>
                                                                 <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
+                                                                    <a href="#" className="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
+                                                                    <span className="text-muted fw-semibold d-block fs-7">07/10/2024</span>
                                                                 </div>
-                                                                <span class="badge badge-light-danger fs-8 fw-bold">Recusada</span>
+                                                                <span className="badge badge-light-danger fs-8 fw-bold">Recusada</span>
                                                             </div>
                                                             <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-success"></span>
+                                                                <span className="bullet bullet-vertical h-40px bg-success"></span>
                                                                 <span className="fw-light fs-5 mx-5">004</span>
                                                                 <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
+                                                                    <a href="#" className="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
+                                                                    <span className="text-muted fw-semibold d-block fs-7">07/10/2024</span>
                                                                 </div>
-                                                                <span class="badge badge-light-success fs-8 fw-bold">Concluído</span>
+                                                                <span className="badge badge-light-success fs-8 fw-bold">Concluído</span>
                                                             </div>
                                                             <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-warning"></span>
+                                                                <span className="bullet bullet-vertical h-40px bg-warning"></span>
                                                                 <span className="fw-light fs-5 mx-5">005</span>
                                                                 <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
+                                                                    <a href="#" className="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
+                                                                    <span className="text-muted fw-semibold d-block fs-7">07/10/2024</span>
                                                                 </div>
-                                                                <span class="badge badge-light-warning fs-8 fw-bold">Pendente</span>
+                                                                <span className="badge badge-light-warning fs-8 fw-bold">Pendente</span>
                                                             </div>
                                                             <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-danger"></span>
+                                                                <span className="bullet bullet-vertical h-40px bg-danger"></span>
                                                                 <span className="fw-light fs-5 mx-5">006</span>
                                                                 <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
+                                                                    <a href="#" className="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
+                                                                    <span className="text-muted fw-semibold d-block fs-7">07/10/2024</span>
                                                                 </div>
-                                                                <span class="badge badge-light-danger fs-8 fw-bold">Recusada</span>
+                                                                <span className="badge badge-light-danger fs-8 fw-bold">Recusada</span>
                                                             </div>
                                                         </div>
                                                     </div>    
@@ -334,7 +353,24 @@ export default function Dashboard() {
                                                     </div>   
                                                 </div>
                                                 
-                                                carrossel aqui
+                                                <Carousel responsive={responsive} itemClass="px-3" >
+                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
+                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
+                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+                                                    </div>
+                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
+                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
+                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+                                                    </div>
+                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
+                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
+                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+                                                    </div>
+                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
+                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
+                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+                                                    </div>
+                                                </Carousel>
                             
                                             </div>{/* Fim - col-xxl-12 */}
 
