@@ -38,7 +38,7 @@ export default function Dashboard() {
         },
         desktop: {
           breakpoint: { max: 3000, min: 1024 },
-          items: 3
+          items: 4
         },
         tablet: {
           breakpoint: { max: 1024, min: 464 },
@@ -114,8 +114,6 @@ export default function Dashboard() {
         getCards()
     },[])
     
-
-
     return cookies.user && (
         <div className="d-flex flex-column flex-root app-root h-100" id="kt_app_root" >
 
@@ -125,7 +123,6 @@ export default function Dashboard() {
                     <Dash_Header />  
                     <Dash_HeaderSecondary />
                 </div>
-            {/*</div>*/}
 
                 {/* BODY */}
                 {!exames ?
@@ -217,7 +214,7 @@ export default function Dashboard() {
                                                             <div className="d-flex align-items-center me-2">
                                                                 <div className="symbol symbol-50px me-3">
                                                                     <div className="symbol-label bg-light">
-                                                                        logo
+                                                                        <span className="fa fa-industry fs-2x"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div className="py-1">
@@ -352,25 +349,136 @@ export default function Dashboard() {
                                                         Lorem ipsum dolor sit amet. Vel quia eligendi eum provident quod ea repellat consequuntur.
                                                     </div>   
                                                 </div>
-                                                
+
                                                 <Carousel responsive={responsive} itemClass="px-3" >
-                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
-                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
-                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+
+                                                    {/* :: CARD ::: */}
+                                                    <div className="card-xl-stretch me-md-6">  
+                                                        <a className="d-block overlay">       
+                                                            <div className="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px"
+                                                            style={{ backgroundImage: `url(${ImgDemo})` }}>                 
+                                                            </div>      
+                                                        </a>
+                                                        <div className="mt-5">    
+                                                            <div className="fs-4 text-gray-900 fw-bold">Instalação de Ar Condicionado</div>       
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-0">Criciúma</div>
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-3">19/09/2024 a 18/11/2024</div>
+                                                            <div className="d-flex flex-stack flex-wrap pt-4 gap-2">
+                                                                <span className="rounded border border-dashed fs-2 fw-bold text-gray-900 py-1 px-2">
+                                                                    <span className="fs-6 fw-semibold text-gray-500">R$ </span>188,00</span>                 
+                                                            </div>    
+                                                        </div>                   
                                                     </div>
-                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
-                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
-                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+
+                                                    {/* :: CARD ::: */}
+                                                    <div className="card-xl-stretch me-md-6">  
+                                                        <a className="d-block overlay">       
+                                                            <div className="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px"
+                                                            style={{ backgroundImage: `url(${ImgDemo})` }}>                 
+                                                            </div>      
+                                                        </a>
+                                                        <div className="mt-5">    
+                                                            <div className="fs-4 text-gray-900 fw-bold">Instalação de Ar Condicionado</div>       
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-0">Criciúma</div>
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-3">19/09/2024 a 18/11/2024</div>
+                                                            <div className="d-flex flex-stack flex-wrap pt-4 gap-2">
+                                                                <span className="rounded border border-dashed fs-2 fw-bold text-gray-900 py-1 px-2">
+                                                                    <span className="fs-6 fw-semibold text-gray-500">R$ </span>188,00</span>                 
+                                                            </div>    
+                                                        </div>                   
                                                     </div>
-                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
-                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
-                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+
+                                                    {/* :: CARD ::: */}
+                                                    <div className="card-xl-stretch me-md-6">  
+                                                        <a className="d-block overlay">       
+                                                            <div className="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px"
+                                                            style={{ backgroundImage: `url(${ImgDemo})` }}>                 
+                                                            </div>      
+                                                        </a>
+                                                        <div className="mt-5">    
+                                                            <div className="fs-4 text-gray-900 fw-bold">Instalação de Ar Condicionado</div>       
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-0">Criciúma</div>
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-3">19/09/2024 a 18/11/2024</div>
+                                                            <div className="d-flex flex-stack flex-wrap pt-4 gap-2">
+                                                                <span className="rounded border border-dashed fs-2 fw-bold text-gray-900 py-1 px-2">
+                                                                    <span className="fs-6 fw-semibold text-gray-500">R$ </span>188,00</span>                 
+                                                            </div>    
+                                                        </div>                   
                                                     </div>
-                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
-                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
-                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+
+                                                    {/* :: CARD ::: */}
+                                                    <div className="card-xl-stretch me-md-6">  
+                                                        <a className="d-block overlay">       
+                                                            <div className="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px"
+                                                            style={{ backgroundImage: `url(${ImgDemo})` }}>                 
+                                                            </div>      
+                                                        </a>
+                                                        <div className="mt-5">    
+                                                            <div className="fs-4 text-gray-900 fw-bold">Instalação de Ar Condicionado</div>       
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-0">Criciúma</div>
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-3">19/09/2024 a 18/11/2024</div>
+                                                            <div className="d-flex flex-stack flex-wrap pt-4 gap-2">
+                                                                <span className="rounded border border-dashed fs-2 fw-bold text-gray-900 py-1 px-2">
+                                                                    <span className="fs-6 fw-semibold text-gray-500">R$ </span>188,00</span>                 
+                                                            </div>    
+                                                        </div>                   
+                                                    </div>
+
+                                                    {/* :: CARD ::: */}
+                                                    <div className="card-xl-stretch me-md-6">  
+                                                        <a className="d-block overlay">       
+                                                            <div className="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px"
+                                                            style={{ backgroundImage: `url(${ImgDemo})` }}>                 
+                                                            </div>      
+                                                        </a>
+                                                        <div className="mt-5">    
+                                                            <div className="fs-4 text-gray-900 fw-bold">Instalação de Ar Condicionado</div>       
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-0">Criciúma</div>
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-3">19/09/2024 a 18/11/2024</div>
+                                                            <div className="d-flex flex-stack flex-wrap pt-4 gap-2">
+                                                                <span className="rounded border border-dashed fs-2 fw-bold text-gray-900 py-1 px-2">
+                                                                    <span className="fs-6 fw-semibold text-gray-500">R$ </span>188,00</span>                 
+                                                            </div>    
+                                                        </div>                   
+                                                    </div>
+
+                                                    {/* :: CARD ::: */}
+                                                    <div className="card-xl-stretch me-md-6">  
+                                                        <a className="d-block overlay">       
+                                                            <div className="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px"
+                                                            style={{ backgroundImage: `url(${ImgDemo})` }}>                 
+                                                            </div>      
+                                                        </a>
+                                                        <div className="mt-5">    
+                                                            <div className="fs-4 text-gray-900 fw-bold">Instalação de Ar Condicionado</div>       
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-0">Criciúma</div>
+                                                            <div className="fw-semibold fs-5 text-gray-600 pt-3">19/09/2024 a 18/11/2024</div>
+                                                            <div className="d-flex flex-stack flex-wrap pt-4 gap-2">
+                                                                <span className="rounded border border-dashed fs-2 fw-bold text-gray-900 py-1 px-2">
+                                                                    <span className="fs-6 fw-semibold text-gray-500">R$ </span>188,00</span>                 
+                                                            </div>    
+                                                        </div>                   
                                                     </div>
                                                 </Carousel>
+                                                
+                                                {/* <Carousel responsive={responsive} itemClass="px-3" >
+                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
+                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
+                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+                                                    </div>
+                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
+                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
+                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+                                                    </div>
+                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
+                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
+                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+                                                    </div>
+                                                    <div className="card-body p-0 "><button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-07 cardButHover"><div className="loading-card"><span className="fig-card">
+                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_colaborador.svg" alt="" />
+                                                        </span><div className="tit-card"><h3>portal do</h3><h4>colaborador</h4></div></div></button>
+                                                    </div>
+                                                </Carousel>*/}
                             
                                             </div>{/* Fim - col-xxl-12 */}
 
