@@ -38,7 +38,7 @@ export default function Cadastro() {
         cpf: Yup.string().required('Este campo é obrigatório.'),
         password_old: Yup.string().min(5, 'A senha deve conter 5 caractéres.').matches(
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
-            "Digite uma senha mais forte. Deve conter letras maiúsculas e números."
+            "Digite uma senha mais forte. Deve conter letras maiúsculas, números e catactéres especiais."
           ),
         senha_atual: Yup.string().optional(),
         password_confirmation: Yup.string().min(5, 'A senha deve conter 5 caractéres.').oneOf([Yup.ref('password_old')], 'As senhas não são iguais.'),
