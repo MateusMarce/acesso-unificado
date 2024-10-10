@@ -13,6 +13,138 @@
 :::::                                                 ::::: /*Atualização data: 21/03/2023
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 
+.tns {
+    position: relative;
+    overflow: hidden
+}
+
+.tns [data-tns=true] {
+    display: none
+}
+
+.tns .tns-item {
+    opacity: 0;
+    transition: all .3s ease
+}
+
+.tns .tns-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.tns .tns-controls button {
+    outline: 0;
+    border: 0;
+    margin: 0 .25rem;
+    border-radius: .475rem;
+    padding: .5rem .75rem;
+    background-color: var(--bs-primary);
+    color: var(--bs-primary-inverse)
+}
+
+.tns .tns-controls button:hover {
+    background-color: var(--bs-primary-active)
+}
+
+.tns .tns-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem
+}
+
+.tns .tns-nav button {
+    display: block;
+    outline: 0;
+    width: 1.25rem;
+    height: .75rem;
+    background-color: var(--bs-gray-200);
+    margin: 0 .25rem;
+    border: 0;
+    border-radius: .35rem
+}
+
+.tns .tns-nav button.tns-nav-active {
+    background-color: var(--bs-primary)
+}
+
+.tns.tns-initiazlied [data-tns=true] {
+    display: flex
+}
+
+.tns.tns-initiazlied .tns-item {
+    opacity: 1;
+    transition: all .3s ease
+}
+
+.tns.tns-default {
+    position: relative
+}
+
+.tns.tns-default [data-controls=next],.tns.tns-default [data-controls=prev] {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.tns.tns-default [data-controls=prev] {
+    left: 0
+}
+
+.tns.tns-default [data-controls=next] {
+    right: 0
+}
+
+.tns.tns-default .tns-outer {
+    margin: 0 4rem
+}
+
+@media (max-width: 767.98px) {
+    .tns.tns-default .tns-outer {
+        margin:0 2rem
+    }
+}
+
+.tns.tns-flush .tns-outer {
+    margin: 0
+}
+
+.tns.tns-circle-nav .tns-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem
+}
+
+.tns.tns-circle-nav .tns-nav button {
+    display: block;
+    outline: 0;
+    width: 1.15rem;
+    height: 1.15rem;
+    background-color: var(--bs-gray-200);
+    margin: 0 .55rem;
+    border: 0;
+    border-radius: 50%
+}
+
+.tns.tns-circle-nav .tns-nav button.tns-nav-active {
+    background-color: var(--bs-gray-400)
+}
+
+.tns-hide-disabled-nav [disabled] {
+    display: none!important
+}
+/*fim tns*/
+
+
+.cardAuto {
+    height: 292px;
+    padding: 0px 10px 0px 10px;
+}
+
 /*ATUALIZAÇÃO = 27/02/2024*/
 
 .ori-j {}
@@ -97,7 +229,7 @@
 .depCapa .odd .d-flex {flex-wrap: wrap;gap: 0.3rem 0.6rem !important}
 .depCapa .card .card-header {min-height: 43px}
 .depCapa .card .card-header h3 {font-size: 13px;}
-.depCapa .card .card-body {padding: 0.6rem 2rem;}
+.depCapa .card .card-body {padding: 1.3rem 1rem;}
 .depCapa .table.gy-5 th, .table.gy-5 td {padding-top: 0.6rem!important;padding-bottom: 0.6rem!important;}
 .depCapa .gap-3 {gap: 0.75rem !important;}
 .depCapa .symbol.symbol-50px .symbol-label {width: 50px;height: 50px;}

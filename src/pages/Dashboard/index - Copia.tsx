@@ -13,7 +13,6 @@ import * as Device from 'react-device-detect';
 import { useTheme } from "../../helpers/ThemeContext"
 import { Perfil_Dependentes } from "../../components/Perfil_Dependentes"
 
-import ImgDemo from '../../assets/images/img_slide_01.jpg'
 import LogoSatc from '../../assets/images/baloes.png' 
 import Logoavatar from '../../assets/images/avat_jota.jpg'
 import ico_aniver from '../../assets/images/ico_aniver2.png'
@@ -25,7 +24,7 @@ import { BASE_URL } from "../../services/url"
 export default function Dashboard() {
     const [cookies, setCookies, removeCookie] = useCookies(['user', 'image', 'login', 'theme', 'exames'])
     const [acessos, setAcessos] = useState([] as AcessosCardType[])
-    // const [dep, setDep] = useState([] as DependentesType[])
+    const [dep, setDep] = useState([] as DependentesType[])
     const {mode, setMode} = useTheme()
     const [exames, setExames] = useState<boolean>(cookies.exames || false)
     const [exameModelo, setExameModelo] = useState<boolean>(cookies.exames || false)
@@ -83,13 +82,13 @@ export default function Dashboard() {
             })()
         }
 
-        // (async()=>{
-        //     try {
-        //         let resDep = await api.get('/user/dependentes')
-        //         setDep(resDep.data)
-        //     } catch (error) {
-        //     }
-        // })()
+        (async()=>{
+            try {
+                let resDep = await api.get('/user/dependentes')
+                setDep(resDep.data)
+            } catch (error) {
+            }
+        })()
         
         // GET CARDS
         getCards()
@@ -116,108 +115,6 @@ export default function Dashboard() {
                                 <div className="d-flex flex-column flex-column-fluid">
                                     <div id="kt_app_content" className="app-content flex-column-fluid separaMoldeCards">
                                         <div className="row g-3 g-xxl-12 123">
-                                            <div className="col-xxl-6 mb-xxl-10">
-                                                <div className="card card-reset mb-5 mb-xl-10">
-                                                    <div className="card-body p-0">
-                                                        <div className="row g-3 g-lg-3">
-                                                            {/* {Device.isFirefox ?
-                                                                <div className="card" style={{height:366}}>
-                                                                    <div className="card-header text-white d-flex align-items-center gap-4 justify-content-center">
-                                                                        <i className="bi bi-exclamation-circle-fill text-gray-800" style={{fontSize:42}}></i>
-                                                                        <p className="m-0 fs-1 text-gray-800">
-                                                                            Identificamos um problema!
-                                                                        </p>
-                                                                    </div>
-                                                                    <div className="card-body align-items-center d-flex justify-content-center">
-                                                                        <div className="fs-4">
-                                                                            <p className="text-gray-800 text-center m-0">
-                                                                                O acesso aos portais estão indisponíveis no navegador Mozilla Firefox. <br />
-                                                                                Estamos trabalhando para encontrar soluções.
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="card-footer">
-                                                                        <p className="m-0 text-gray-800 text-center fs-4">Pedimos desculpa pelo transtorno.</p>
-                                                                    </div>
-                                                                </div>
-                                                        
-                                                            : */}
-                                                                <>
-                                                                    {/* CARD */}
-                                                                    {acessos.map((i:AcessosCardType, k:number)=>(
-                                                                        <Dash_Card item={i} k={k} key={k} getCards={()=>getCards()} />
-                                                                    ))}
-                                                                </>
-                                                            {/* } */}
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {/* DEPENDENTES CAPA */}
-                                            <div className="col-xxl-6 mb-5 mb-xl-10 depCapa depMin">
-                                                {/* {dep.length > 0 && 
-                                                <div className="card mb-5">
-                                                    <div className="card-header border-0">
-                                                        <div className="card-title m-0">
-                                                            <h3 className="fw-bold m-0">Dependentes</h3>
-                                                        </div>
-                                                    </div>
-                                                    <div className="card-body border-top">
-                                                        <div className="row">
-                                                            <div className="table-responsive">
-                                                                <table className="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
-                                                                    <tbody className="fw-semibold text-gray-600">  
-                                                                        {dep.map((i:DependentesType, k)=>(
-                                                                            <Perfil_Dependentes key={k} item={i} />
-                                                                        ))}
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>    
-                                                </div>
-                                                } */}
-                                                <Dash_Slide />
-                                            </div>
-                                        </div>
-
-
-
-                                        {/*::: 07/10/2024 - FrontEnd Jota :::*/}
-                                        <div className="row g-3 g-xxl-12 123">
-
-                                            <div className="col-xxl-12 mb-xxl-12">
-                                                <div className="text-center mb-12">
-                                                    <h3 class="fs-2hx text-gray-900 mb-5">Área do Cliente</h3>   
-                                                </div>
-
-                                                <div className="card">
-                                                    <div className="card-body p-lg-10">
-                                                        <div className="d-flex flex-stack">
-                                                            <div className="d-flex align-items-center me-2">
-                                                                <div className="symbol symbol-50px me-3">
-                                                                    <div className="symbol-label bg-light">
-                                                                        logo
-                                                                    </div>
-                                                                </div>
-                                                                <div className="py-1">
-                                                                    <a href="#" class="fs-1 text-gray-800 text-hover-primary fw-light">IND CARBONIFERA RIO DESERTO LTDS - UNIDADE 101</a>
-                                                                    {/*<div className="fs-7 text-muted fw-semibold mt-1">KT.com</div>*/}
-                                                                </div>
-                                                            </div>
-                                                            <div className="me-4">
-                                                                <select class="form-select" aria-label="Select example">
-                                                                    <option>Trocar de Empresa</option>
-                                                                    <option value="1">Um</option>
-                                                                    <option value="2">Dois</option>
-                                                                    <option value="3">Três</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div className="col-xxl-6 mb-xxl-10">
                                                 <div className="card card-reset mb-5 mb-xl-10">
                                                     <div className="card-body p-0">
@@ -258,91 +155,31 @@ export default function Dashboard() {
                                             </div>
                                             {/* DEPENDENTES CAPA */}
                                             <div className="col-xxl-6 mb-5 mb-xl-10 depCapa depMin">
+                                                {dep.length > 0 && 
                                                 <div className="card mb-5">
                                                     <div className="card-header border-0">
                                                         <div className="card-title m-0">
-                                                            <h3 className="fw-bold m-0">Propostas</h3>
+                                                            <h3 className="fw-bold m-0">Dependentes</h3>
                                                         </div>
                                                     </div>
                                                     <div className="card-body border-top">
-                                                        <div className="overflow-auto cardAuto">
-                                                            <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-success"></span>
-                                                                <span className="fw-light fs-5 mx-5">001</span>
-                                                                <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
-                                                                </div>
-                                                                <span class="badge badge-light-success fs-8 fw-bold">Concluído</span>
-                                                            </div>
-                                                            <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-warning"></span>
-                                                                <span className="fw-light fs-5 mx-5">002</span>
-                                                                <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
-                                                                </div>
-                                                                <span class="badge badge-light-warning fs-8 fw-bold">Pendente</span>
-                                                            </div>
-                                                            <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-danger"></span>
-                                                                <span className="fw-light fs-5 mx-5">003</span>
-                                                                <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
-                                                                </div>
-                                                                <span class="badge badge-light-danger fs-8 fw-bold">Recusada</span>
-                                                            </div>
-                                                            <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-success"></span>
-                                                                <span className="fw-light fs-5 mx-5">004</span>
-                                                                <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
-                                                                </div>
-                                                                <span class="badge badge-light-success fs-8 fw-bold">Concluído</span>
-                                                            </div>
-                                                            <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-warning"></span>
-                                                                <span className="fw-light fs-5 mx-5">005</span>
-                                                                <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
-                                                                </div>
-                                                                <span class="badge badge-light-warning fs-8 fw-bold">Pendente</span>
-                                                            </div>
-                                                            <div className="d-flex align-items-center mb-4">
-                                                                <span class="bullet bullet-vertical h-40px bg-danger"></span>
-                                                                <span className="fw-light fs-5 mx-5">006</span>
-                                                                <div className="flex-grow-1">
-                                                                    <a href="#" class="text-gray-800 text-hover-primary fw-bold fs-7">NR-109 In Company</a>
-                                                                    <span class="text-muted fw-semibold d-block fs-7">07/10/2024</span>
-                                                                </div>
-                                                                <span class="badge badge-light-danger fs-8 fw-bold">Recusada</span>
+                                                        <div className="row">
+                                                            <div className="table-responsive">
+                                                                <table className="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                                    <tbody className="fw-semibold text-gray-600">  
+                                                                        {dep.map((i:DependentesType, k)=>(
+                                                                            <Perfil_Dependentes key={k} item={i} />
+                                                                        ))}
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
                                                     </div>    
-                                                </div>   
-                                            </div>
-
-                                            <div className="col-xxl-12">
-                                                {/* CARROSSEL <img alt="Logo" src={LogoSatc} /> */}      
-                                                <div className="text-center mb-12">
-                                                    <h3 className="fs-2hx text-gray-900 mb-5">Cursos para sua empresa</h3>        
-                                                    <div className="fs-5 text-muted fw-semibold">
-                                                        Lorem ipsum dolor sit amet. Vel quia eligendi eum provident quod ea repellat consequuntur.
-                                                    </div>   
                                                 </div>
-                                                
-                                                carrossel aqui
-                            
-                                            </div>{/* Fim - col-xxl-12 */}
-
+                                                }
+                                                <Dash_Slide />
+                                            </div>
                                         </div>
-
-                                        {/*::: Fim - FrontEnd Jota :::*/}
-
-
 
                                         {/*comunicados*/}
                                         {/* <div className="row g-3 g-xxl-12 ori-j">
