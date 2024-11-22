@@ -16,7 +16,7 @@ type Function = {
 export default function Dash_Card({item, k, getCards}:Function) {
     const [loading, setLoading] = useState<boolean>(false)
 
-    const handleOpenLink = async (link:string, acesso:string) => {
+    const handleOpenLink = async (link:string, acesso:string, id_empresa?:string) => {
         
         setLoading(true)
         getCards()
@@ -24,7 +24,8 @@ export default function Dash_Card({item, k, getCards}:Function) {
         try {
             if(link){
                 await api.post('/user/acesso', {
-                    logs_acesso:acesso
+                    logs_acesso:acesso,
+                    id_empresa: id_empresa
                 })
                 if(Device.isFirefox){
                     setTimeout(async()=>{
@@ -43,11 +44,11 @@ export default function Dash_Card({item, k, getCards}:Function) {
         }
     }
     
-    if(item.dropdown === 'false') {return (
+    if(item.dropdown == 'false' || item.dropdown == false ) {return (
         <div className={`${item.classe} col-J cardAuto-1`}>
             <div className="card card-shadow h-100">
                 <div className="card-body p-0 ">
-                    <button type="button" onClick={()=>item.access_token != '' && handleOpenLink(item.access_token, item.logs_acesso)} style={item.titulo1 != '' ? (item.access_token == "" ? {filter:'saturate(0)', pointerEvents:"none"} : {}) : {pointerEvents:"none"}} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
+                    <button type="button" onClick={()=>item.access_token != '' && handleOpenLink(item.access_token, item.logs_acesso, item.id_empresa)} style={item.titulo1 != '' ? (item.access_token == "" ? {filter:'saturate(0)', pointerEvents:"none"} : {}) : {pointerEvents:"none"}} className={`btn btn-active-color-primary p-9 text-start w-100 ${item.background_color}`}>
                         {loading && item.titulo1 != '' && 
                             <div className="d-flex justify-content-center" style={{zIndex:1}}>
                                 <div className="boxLoading"><span className="loader-18"></span></div>

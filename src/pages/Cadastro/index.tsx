@@ -247,7 +247,7 @@ export default function Cadastro() {
                     setColaborador(false)
                     setAluno(false)
                     setExterno(true)
-                    toast.success(`Identificamos que você não tem relação com a Satc. Preencha os campos seguintes.`, {autoClose:4000,theme:cookies.theme==='light'?'light':'dark'})
+                    toast.success(`Preencha os campos seguintes.`, {autoClose:4000,theme:cookies.theme==='light'?'light':'dark'})
                 }
                 if(res.data.tipo === "aluno" || res.data.tipo === "responsavel") {
                     toast.success(`Identificamos que você é um ${res.data.tipo}. Preencha os campos seguintes.`, {autoClose:4000,theme:cookies.theme==='light'?'light':'dark'})

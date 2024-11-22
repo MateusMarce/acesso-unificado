@@ -244,14 +244,20 @@ export default function Login() {
                                                     </>
                                                 }
                                             </div>
-                                            <div className="text-gray-700 text-center fw-semibold fs-6"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
+                                            <div className="text-gray-700 text-center fw-semibold fs-6">
+                                                Esqueceu sua senha?
+                                                <Link to='/troca-senha' className="ms-1 hover-scale link-success fw-bold fw-bold">
+                                                    Redefina aqui.
+                                                </Link>
+                                            </div>
                                         </Form>
                                     )} 
 
                                 </Formik>
                             </div>
                         </div>      
-                        <div className="d-flex flex-center flex-wrap px-5">
+                        <div className="d-flex flex-column flex-center flex-wrap px-5">
+                            <div className="text-gray-700 text-center fw-semibold fs-6"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
                             <div className="text-gray-700 text-center fw-semibold fs-6 d-flex gap-1">{new Date().getFullYear()} &copy; <div className="link-success m-0">TI SATC</div></div>
                         </div>
                     </div>

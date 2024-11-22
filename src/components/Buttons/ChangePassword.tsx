@@ -11,8 +11,8 @@ export default function ChangePassword({tabIndex, name, errors, touched, placeho
 
     return (
         <>
-            <Field tabIndex={tabIndex} type={passwordType} placeholder={placeholder} name={name} autoComplete='off' className={`form-control form-control-lg bg-transparent ${errors && touched && 'is-invalid'}`} />
-            <button onClick={handleChangePasswordVisibility} type='button' className={`password-control ${passwordType === 'text' && 'view'}`}></button>
+            <Field type={passwordType} placeholder={placeholder} name={name} autoComplete='off' className={`form-control form-control-lg bg-transparent ${errors && touched && 'is-invalid'}`} />
+            <button onClick={handleChangePasswordVisibility} tabIndex={-1} type='button' className={`password-control ${passwordType === 'text' && 'view'}`}></button>
         </>
     )
 }

@@ -33,10 +33,23 @@ export type CadastroType = {
     colaborador:boolean
 }
 export type TrocaSenhaType = {
-    email:string,
-    password_old:string
-    senha_atual:string,
+    tipo: 'C' | 'E' | string
+    cpf: string
+    nome_mae: string
+    codigo: string
+    dt_nascimento: string
+    cidade_natal: string
+    id_user: string
+    token: string
+    password: string
     password_confirmation:string
+}
+export type TrocaSenhaCpfType = {
+    colaborador: boolean,
+    id_user: string
+    token: string
+    sugestoesCidades: [string],
+    message: string
 }
 export type ChangePasswordType = {
     name:string
@@ -57,6 +70,7 @@ export type ModalContextType = {
 
 export type AcessosCardType = {
     i_usuario: number,
+    id_empresa:string
     nome: string
     e_mail: string
     cpf: string
@@ -72,7 +86,7 @@ export type AcessosCardType = {
     logs_acesso:string
     liberar_acesso: boolean
     qtde_acessos:number
-    dropdown:string
+    dropdown:string | boolean
     logins:[{
         i_empresa: string
         nome_empresa: string
@@ -80,6 +94,39 @@ export type AcessosCardType = {
         logs_acesso: string
         access_token: string
     }]
+}
+export type AcessosEmpresaCardType = {
+    acessos: [
+        {
+            tipo: string
+            status: string
+            access_token: string
+            id_empresa: number,
+            nome_empresa: string
+            nome_sistema: string
+            classe: string
+            background_color: string
+            icone: string
+            titulo1: string
+            titulo2: string
+            liberar_acesso: boolean,
+            logs_acesso: string
+        }
+    ],
+    propostas: [
+        {
+            proposta_id: number,
+            status: string
+            tipo_proposta: string
+            dt_proposta: string
+            token_proposta: string
+            produtos: string
+            link_proposta: string
+        }
+    ]
+    nome_empresa:string
+    ultimo_acesso:boolean
+    id_empresa:number
 }
 
 

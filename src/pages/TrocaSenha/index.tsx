@@ -1,9 +1,10 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { Formik, Form } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { FormikHelpers, FormikProps, FormikValues } from 'formik/dist/types'
 import * as Yup from 'yup'
+import { Tooltip } from 'react-tooltip'
 
-import { TrocaSenhaType } from '../../assets/types/type'
+import { TrocaSenhaCpfType, TrocaSenhaType } from '../../assets/types/type'
 import { Login_LeftBanner } from '../../components/Login_LeftBanner'
 import validateRequest from '../../helpers/validateRequest'
 import api from '../../services/api'
@@ -13,46 +14,97 @@ import { toast } from 'react-toastify'
 import { useCookies } from 'react-cookie'
 import CookieConsent from 'react-cookie-consent'
 import {decode as base64_decode} from 'base-64';
+import CpfField from '../../components/Fields/CpfField'
+import DataField from '../../components/Fields/DataField'
+import ChangePassword from '../../components/Buttons/ChangePassword'
 
 
 export default function TrocaSenha() {
     const [cookies, setCookies] = useCookies(['consent', 'login', 'theme'])
     const [cookie, setCookie] = useState<boolean>(cookies.consent && cookies.consent === 'true' ? true : false)
-    const [dados, setDados] = useState<any>({})
-    const [colaborador, setColaborador] = useState<boolean>(false)
-    const [aluno, setAluno] = useState<boolean>(false)
+    const [dados, setDados] = useState<TrocaSenhaCpfType>({} as TrocaSenhaCpfType)
+    const [cpf, setCpf] = useState<string>('')
+    const [loading, setLoading] = useState<boolean>(false)
     const [externo, setExterno] = useState<boolean>(false)
     const [senha, setSenha] = useState<boolean>(false)
     const Schema = Yup.object().shape({
-        senha_atual: Yup.string().min(5, 'A senha deve conter 5 caractéres.').required('Este campo é obrigatório.'),
-        password_old: Yup.string().min(5, 'A senha deve conter 5 caractéres.').matches(
+        tipo: Yup.string(),
+        cidade_natal: Yup.string().when('tipo',
+            (val, schema)=> {
+                if(val[0] === 'C'){
+                    return schema.required('Este campo é obrigatório.')
+                } else {
+                    return schema.notRequired()
+                }
+            }
+        ),
+        nome_mae: Yup.string().when('tipo',
+            (val, schema)=> {
+                if(val[0] === 'C'){
+                    return schema.required('Este campo é obrigatório.')
+                } else {
+                    return schema.notRequired()
+                }
+            }
+        ),
+        codigo: Yup.string().when('tipo',
+            (val, schema)=> {
+                if(val[0] === 'C'){
+                    return schema.required('Este campo é obrigatório.')
+                } else {
+                    return schema.notRequired()
+                }
+            }
+        ),
+        dt_nascimento: Yup.string().when('tipo',
+            (val, schema)=> {
+                if(val[0] === 'C'){
+                    return schema.required('Este campo é obrigatório.')
+                } else {
+                    return schema.notRequired()
+                }
+            }
+        ),
+        password: Yup.string().min(5, 'A senha deve conter 5 caractéres.').matches(
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
-            "Digite uma senha mais forte. Deve conter letras maiúsculas e números."
-          ),
-        password_confirmation: Yup.string().min(5, 'A senha deve conter 5 caractéres.').oneOf([Yup.ref('password_old')], 'As senhas não são iguais.'),
-        email: Yup.string().email('Digite um e-mail válido.').required('Este campo é obrigatório.'),
+            "Digite uma senha mais forte. Deve conter letras maiúsculas, números e caracteres especiais."
+          ).required('Este campo é obrigatório.'),
+        password_confirmation: Yup.string().min(5, 'A senha deve conter 5 caractéres.').oneOf([Yup.ref('password')], 'As senhas não são iguais.').required('Este campo é obrigatório.'),
     })
-    const {email} = useParams()
+    const {token, id} = useParams()
     const navigate = useNavigate()
 
     const handleSubmit = async (values:FormikValues, action:FormikHelpers<TrocaSenhaType>) => {
         action.setSubmitting(true)
-
+        
         //requisiçao
         try {
-            let res = await api.post('cadastro/passexpire',{
-                email:values.email,
-                senha_atual:values.senha_atual,
-                password:values.password_old
-            })
+            let res = await api.post('cadastro/restorepass', values)
             validateRequest(res)
-            if(res.status == 200) navigate('/')
+            navigate('/')
             
         } catch (error) {
             validateRequest(error)
             
         }
         action.setSubmitting(false)
+    }
+    const handleCpf = async (cpf:string, setFieldValue:any) => {
+        if(cpf.length >= 14){
+            setLoading(true)
+            try {
+                let new_cpf = cpf.replaceAll('.','').replace('-','')
+                let res = await api.get(`cadastro/checkpass?cpf=${new_cpf}`)
+                validateRequest(res)
+                setCpf(new_cpf)
+                setDados(res.data)
+                setFieldValue('id_user', res.data.id_user)
+                setFieldValue('token', res.data.token)
+            } catch (error) {
+                validateRequest(error)
+            }
+            setLoading(false)
+        }
     }
     
     return (
@@ -65,10 +117,16 @@ export default function TrocaSenha() {
                         <div className="w-lg-500px p-10">
                             <Formik
                                 initialValues={{
-                                    email:base64_decode(email || ''),
-                                    password_old:'',
-                                    senha_atual:'',
-                                    password_confirmation:''
+                                    tipo: dados.colaborador ? 'C' : 'E',
+                                    cpf: cpf,
+                                    nome_mae: '',
+                                    codigo: '',
+                                    dt_nascimento: '',
+                                    cidade_natal: '',
+                                    id_user: id || dados.id_user,
+                                    token: token || dados.token,
+                                    password: '',
+                                    password_confirmation: ''
                                 }}
                                 validationSchema={Schema}
                                 onSubmit={handleSubmit}
@@ -89,37 +147,113 @@ export default function TrocaSenha() {
                                         <div className="separator separator-content border-dark my-14">
                                             <span className="w-175px text-gray-700 fw-semibold fs-7">Troque sua <b>Senha</b></span>
                                         </div>
-
-                                            <Cadastro_FormColaborador
-                                                values={props.values.password_old} 
-                                                errors={props.errors.password_old} 
-                                                touched={props.touched.password_old}
-                                                errors_conf={props.errors.password_confirmation} 
-                                                touched_conf={props.touched.password_confirmation}
-                                                errors_old={props.errors.senha_atual} 
-                                                touched_old={props.touched.senha_atual} 
-                                                dados={dados}
-                                            />
-
+                                        {!id && !token &&
+                                        <div className="fv-row mb-8 position-relative">
+                                            <CpfField onChange={(t:any)=>handleCpf(t.target.value, props.setFieldValue)} autoFocus={true} type="text" value={cpf} placeholder="CPF" name="cpf" className={`form-control form-control-lg bg-transparent ${props.errors.cpf && props.touched.cpf && 'is-invalid'}`}/> 
+                                            {loading &&
+                                                <div className='position-absolute end-0 top-25 me-4'>
+                                                    <span className="w-15px h-15px spinner-border spinner-border-sm align-middle ms-2"></span>
+                                                </div>
+                                            }
+                                        </div>
+                                        }
+                                        {dados && dados.colaborador &&
+                                            <>
+                                                <h4 className='text-center mb-4 text-gray-700 fw-normal'>Confirme sua identidade:</h4>
+                                                <div className="fv-row mb-3">
+                                                    <Field as="select" className={`form-select bg-transparent mb-3 ${props.errors.cidade_natal && props.touched.cidade_natal && 'is-invalid'}`} style={{border:" 1px solid #92929254"}} name="cidade_natal" id="cidade_natal">
+                                                        <option value='' disabled>Selecione a sua cidade natal</option>
+                                                        {dados.sugestoesCidades.length > 0 && dados.sugestoesCidades.map((i:string, k:number)=>(
+                                                            <option key={k} value={i}>{i}</option>
+                                                        ))}
+                                                    </Field>
+                                                    <ErrorMessage name='cidade_natal' component={'small'} className='invalid-feedback' />
+                                                </div>
+                                                <div className="fv-row mb-3">
+                                                    <Field type="text" placeholder="Primeiro nome da sua mãe" name="nome_mae" className={`form-control form-control-lg bg-transparent ${props.errors.nome_mae && props.touched.nome_mae && 'is-invalid'}`}/> 
+                                                    <ErrorMessage name='nome_mae' component={'small'} className='invalid-feedback' />
+                                                </div>
+                                                <div className="fv-row mb-3 position-relative">
+                                                    <Field type="text" placeholder="Código do crachá" name="codigo" className={`form-control form-control-lg bg-transparent ${props.errors.codigo && props.touched.codigo && 'is-invalid'}`}/> 
+                                                    <div className='position-absolute top-25 end-0 me-4'>
+                                                        <a className='px-2 rounded-circle text-gray-600' data-tooltip-id="my-tooltip" style={{border: '1px solid' ,borderColor:'#7E8299'}}>
+                                                            i
+                                                        </a>
+                                                        <Tooltip id="my-tooltip">O código fica no lado branco do crachá embaixo da código de barra. Ex.: '000C1234', usar '1234'</Tooltip>
+                                                    </div>
+                                                    <ErrorMessage name='codigo' component={'small'} className='invalid-feedback' />
+                                                </div>
+                                                <div className="fv-row mb-8">
+                                                    <DataField type="text" placeholder="Data de nascimento" name="dt_nascimento" className={`form-control form-control-lg bg-transparent ${props.errors.dt_nascimento && props.touched.dt_nascimento && 'is-invalid'}`}/> 
+                                                    <ErrorMessage name='dt_nascimento' component={'small'} className='invalid-feedback' />
+                                                </div>
+                                                <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-3 login-password position-relative">
+                                                    <ChangePassword
+                                                        tabIndex={0}
+                                                        name='password'
+                                                        placeholder='Nova senha'
+                                                        errors={props.errors.password}
+                                                        touched={props.touched.password}
+                                                    />
+                                                    <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
+                                                </div>
+                                                <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-8 login-password position-relative">
+                                                    <ChangePassword
+                                                        tabIndex={8}
+                                                        name='password_confirmation'
+                                                        placeholder='Confirmar senha'
+                                                        errors={props.errors.password_confirmation}
+                                                        touched={props.touched.password_confirmation}
+                                                    />
+                                                    <ErrorMessage name='password_confirmation' component={'small'} className='invalid-feedback' />
+                                                </div>
+                                            </>
+                                        }
+                                        {id && token &&
+                                            <>
+                                                <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-8 login-password position-relative">
+                                                    <ChangePassword
+                                                        tabIndex={1}
+                                                        name='password'
+                                                        placeholder='Nova senha'
+                                                        errors={props.errors.password}
+                                                        touched={props.touched.password}
+                                                    />
+                                                    <ErrorMessage name='password' component={'small'} className='invalid-feedback' />
+                                                </div>
+                                                <div className="fv-row d-flex flex-stack flex-wrap fs-base fw-semibold mb-8 login-password position-relative">
+                                                    <ChangePassword
+                                                        tabIndex={2}
+                                                        name='password_confirmation'
+                                                        placeholder='Confirmar senha'
+                                                        errors={props.errors.password_confirmation}
+                                                        touched={props.touched.password_confirmation}
+                                                    />
+                                                    <ErrorMessage name='password_confirmation' component={'small'} className='invalid-feedback' />
+                                                </div>
+                                            </>
+                                        }
                                         
-                                            <div className="d-grid mt-8">
-                                                <button type={'button'} onClick={()=>props.submitForm()} id="kt_sign_in_submit" className="btn btn-success">
-                                                    {props.isSubmitting ?
-                                                        <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                                        :
-                                                        <span className="indicator-label">Cadastrar</span>
-                                                    }
-                                                </button>
-                                            </div>
-                                        <div className="text-gray-700 text-center fw-semibold fs-6 mt-10"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
+                                        {(dados.colaborador || (id && token)) && 
+                                        <div className="d-grid mt-8">
+                                            <button type={'submit'} id="kt_sign_in_submit" className="btn btn-success">
+                                                {props.isSubmitting ?
+                                                    <span className="indicator-progress">Por favor, aguarde...<span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                    :
+                                                    <span className="indicator-label">Trocar Senha</span>
+                                                }
+                                            </button>
+                                        </div>
+                                        }
                                     </Form>
                                 )}}
 
                             </Formik>
                         </div>
                     </div>      
-                    <div className="d-flex flex-center flex-wrap px-5">
-                        <div className="text-gray-700 text-center fw-semibold fs-6">{new Date().getFullYear()} &copy; <a href="#" className="link-success">TI SATC</a></div>
+                    <div className="d-flex flex-column flex-center flex-wrap px-5">
+                        <div className="text-gray-700 text-center fw-semibold fs-6"><a href="https://unisatc.com.br/politica-de-privacidade/" target={'_blank'} className="link-success">Política de Privacidade</a></div>
+                        <div className="text-gray-700 text-center fw-semibold fs-6 d-flex gap-1">{new Date().getFullYear()} &copy; <div className="link-success m-0">TI SATC</div></div>
                     </div>
                 </div>
                 :
@@ -151,7 +285,7 @@ export default function TrocaSenha() {
                             <small><a href="https://unisatc.com.br/politica-de-privacidade/" target={"_blank"}>[ Leia nossa Política de Privacidade ]</a></small>
                         </div>
                     </div>
-            </CookieConsent>
+                </CookieConsent>
                 }
             </div>
         </div>

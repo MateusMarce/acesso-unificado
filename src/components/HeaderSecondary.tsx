@@ -50,13 +50,11 @@ export default function Dash_HeaderSecondary() {
                             </div>
                         </div>
                         <div className="d-flex flex-stack">
-                            {(cookies.user.link_nercu != '' || cookies.user.link_treinas != '') && 
-                                <>
-                                    {!cookies.exames &&
-                                        <a href={cookies.user.link_nercu} target='_blank' className="buti buticolor_1 icoN" title="Nercu"><img src={Nercu} alt="" /></a>
-                                    }
-                                    <a href={cookies.user.link_treinas} target='_blank' className="buti buticolor_1 icoT" title="Treinas"><img src={Treinas} alt="" /></a>
-                                </>
+                            {(!cookies.exames && cookies.user.link_nercu != '') &&
+                                <a href={cookies.user.link_nercu} target='_blank' className="buti buticolor_1 icoN" title="Nercu"><img src={Nercu} alt="" /></a>
+                            }
+                            {cookies.user.link_treinas != '' &&
+                                <a href={cookies.user.link_treinas} target='_blank' className="buti buticolor_1 icoT" title="Treinas"><img src={Treinas} alt="" /></a>
                             }
                         </div>
                     </div>
