@@ -45,6 +45,7 @@ export default function Dash_Card({item, k, getCards}:Function) {
     }
     
     if(item.dropdown == 'false' || item.dropdown == false ) {return (
+
         <div className={`${item.classe} col-J cardAuto-1`}>
             <div className="card card-shadow h-100">
                 <div className="card-body p-0 ">
@@ -72,6 +73,7 @@ export default function Dash_Card({item, k, getCards}:Function) {
                 </div>
             </div>
         </div>
+
     )} else return (
         <div className={`${item.classe} col-J cardAuto-1`}>
             <div className="card card-shadow btn-group dropup">

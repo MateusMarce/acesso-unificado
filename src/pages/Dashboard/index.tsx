@@ -157,7 +157,7 @@ export default function Dashboard() {
                                             <div className="col-xxl-6 mb-xxl-10">
                                                 <div className="card card-reset mb-5 mb-xl-10">
                                                     <div className="card-body p-0">
-                                                        <div className="row g-3 g-lg-3">
+                                                        <div className="row g-3 g-lg-3 456">
                                                             {/* {Device.isFirefox ?
                                                                 <div className="card" style={{height:366}}>
                                                                     <div className="card-header text-white d-flex align-items-center gap-4 justify-content-center">
@@ -221,7 +221,7 @@ export default function Dashboard() {
                                         </div>
 
                                         {cookies.user?.b2b == true && empresa.id_empresa != 0 &&
-                                            <div className="row g-3 g-xxl-12 123">
+                                            <div className="row g-3 g-xxl-12 789">
 
                                                 <div className="col-xxl-12 mb-xxl-12">
                                                     <div className="text-center mb-12">
@@ -258,10 +258,41 @@ export default function Dashboard() {
                                                 <div className="col-xxl-6 mb-xxl-10">
                                                     <div className="card card-reset mb-5 mb-xl-10">
                                                         <div className="card-body p-0">
-                                                            <div className="row g-3 g-lg-3">
+                                                            <div className="row g-3 g-lg-3 aqui"> 
+
+
+
+                                                                {/*  Teste card J - Aqui */}
+                                                                <div className="col-6 col-J cardAuto-1">
+                                                                    <div className="card card-shadow h-100 cardTest-J">
+                                                                        <div className="card-body p-0 ">
+                                                                            <button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-14 cardButHover">
+                                                                                <div className="loading-card">
+                                                                                    <span className="fig-card">
+                                                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_jovemaprendiz.svg" alt="" />
+                                                                                    </span>
+                                                                                    <div className="tit-card">
+                                                                                        <h3>jovem</h3>
+                                                                                        <h4>aprendiz</h4>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                {/*  Fim */}
+
+
+
+                                                                
                                                                 {empresa.acessos?.map((i:any, k:number)=>(
                                                                     <Dash_Card item={i} k={k} key={k} getCards={()=>getCards()} />
                                                                 ))}
+
+                                                                
+
+
+
                                                             </div>
                                                         </div>
                                                     </div>
