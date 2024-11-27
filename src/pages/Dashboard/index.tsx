@@ -262,7 +262,7 @@ export default function Dashboard() {
 
 
 
-                                                                {/*  Teste card J - Aqui */}
+                                                                {/*  Teste card J - Aqui
                                                                 <div className="col-6 col-J cardAuto-1">
                                                                     <div className="card card-shadow h-100 cardTest-J">
                                                                         <div className="card-body p-0 ">
@@ -333,16 +333,12 @@ export default function Dashboard() {
                                                                 </div>
                                                                 {/*  Fim */}
 
-
-
-                                                                
+                                                            
                                                                 {empresa.acessos?.map((i:any, k:number)=>(
                                                                     <Dash_Card item={i} k={k} key={k} getCards={()=>getCards()} />
                                                                 ))}
 
-                                                                
-
-
+                                                            
 
                                                             </div>
                                                         </div>
