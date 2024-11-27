@@ -280,6 +280,57 @@ export default function Dashboard() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <div className="col-6 col-J cardAuto-1">
+                                                                    <div className="card card-shadow h-100 cardTest-J">
+                                                                        <div className="card-body p-0 ">
+                                                                            <button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-06 cardButHover">
+                                                                                <div className="loading-card">
+                                                                                    <span className="fig-card">
+                                                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_cursosrapidos.svg" alt="" />
+                                                                                    </span>
+                                                                                    <div className="tit-card">
+                                                                                        <h3>cursos</h3>
+                                                                                        <h4>rápidos</h4>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col-6 col-J cardAuto-1">
+                                                                    <div className="card card-shadow h-100 cardTest-J">
+                                                                        <div className="card-body p-0 ">
+                                                                            <button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-01 cardButHover">
+                                                                                <div className="loading-card">
+                                                                                    <span className="fig-card">
+                                                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_financeiro.svg" alt="" />
+                                                                                    </span>
+                                                                                    <div className="tit-card">
+                                                                                        <h3>portal</h3>
+                                                                                        <h4>financeiro</h4>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col-6 col-J cardAuto-1">
+                                                                    <div className="card card-shadow h-100 cardTest-J">
+                                                                        <div className="card-body p-0 ">
+                                                                            <button type="button" className="btn btn-active-color-primary p-9 text-start w-100 cardlink-color-05 cardButHover">
+                                                                                <div className="loading-card">
+                                                                                    <span className="fig-card">
+                                                                                        <img src="https://storage.satc.edu.br/arquivos/acesso-unificado/icons/ico_propostas.svg" alt="" />
+                                                                                    </span>
+                                                                                    <div className="tit-card">
+                                                                                        <h3>portal</h3>
+                                                                                        <h4>propostas</h4>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                                 {/*  Fim */}
 
 

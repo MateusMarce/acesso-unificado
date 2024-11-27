@@ -81,31 +81,13 @@
              id="path142"
              sodipodi:nodetypes="ccccc"
              transform="matrix(1.2023255,0,0,1.2023255,-73.466761,-81.87717)" />
-          <circle
-             style="display:inline;fill:#00aac7;fill-opacity:1;stroke:none;stroke-width:1.08209;stroke-miterlimit:4;stroke-dasharray:none"
+          <path
              id="circle144"
-             sodipodi:type="arc"
-             sodipodi:cx="-224.42998"
-             sodipodi:cy="188.20712"
-             sodipodi:rx="4.1774845"
-             sodipodi:ry="4.1774845"
-             sodipodi:start="3.2577269"
-             sodipodi:end="3.251147"
-             sodipodi:open="true"
-             sodipodi:arc-type="arc"
+             style="display:inline;fill:#00aac7;fill-opacity:1;stroke:none;stroke-width:1.08209;stroke-miterlimit:4;stroke-dasharray:none"
              d="m -228.57932,187.72306 a 4.1774845,4.1774845 0 0 1 4.62658,-3.66607 4.1774845,4.1774845 0 0 1 3.67368,4.62054 4.1774845,4.1774845 0 0 1 -4.61449,3.68128 4.1774845,4.1774845 0 0 1 -3.68887,-4.60843" />
-          <circle
-             style="display:inline;fill:#9ddc04;fill-opacity:1;stroke:none;stroke-width:0.899999;stroke-miterlimit:4;stroke-dasharray:none"
+          <path
              id="circle146"
-             sodipodi:type="arc"
-             sodipodi:cx="-114.57821"
-             sodipodi:cy="227.0558"
-             sodipodi:rx="3.4745038"
-             sodipodi:ry="3.4745038"
-             sodipodi:start="3.2577269"
-             sodipodi:end="3.251147"
-             sodipodi:open="true"
-             sodipodi:arc-type="arc"
+             style="display:inline;fill:#9ddc04;fill-opacity:1;stroke:none;stroke-width:0.899999;stroke-miterlimit:4;stroke-dasharray:none"
              transform="matrix(1.2023255,0,0,1.2023255,-73.466761,-81.87717)"
              d="m -118.02931,226.6532 a 3.4745038,3.4745038 0 0 1 3.84803,-3.04916 3.4745038,3.4745038 0 0 1 3.05548,3.84301 3.4745038,3.4745038 0 0 1 -3.83798,3.0618 3.4745038,3.4745038 0 0 1 -3.0681,-3.83293" />
         </g>

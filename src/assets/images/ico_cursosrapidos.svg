@@ -13,7 +13,7 @@
    version="1.1"
    id="svg11267"
    inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
-   sodipodi:docname="ico_rapidos.svg">
+   sodipodi:docname="ico_cursosrapidos.svg">
   <defs
      id="defs11261" />
   <sodipodi:namedview
@@ -23,11 +23,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.18039216"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="102.94194"
-     inkscape:cy="107.78276"
+     inkscape:zoom="5.6"
+     inkscape:cx="100.52461"
+     inkscape:cy="55.711037"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g9555"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -82,10 +82,10 @@
            id="path9253"
            sodipodi:nodetypes="ccsccccc" />
         <path
-           style="fill:#ffffff;fill-opacity:0.5;stroke:none;stroke-width:0.284765px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           d="m -575.02356,422.64268 c -0.029,-0.3481 -1.04422,-10.8776 -1.04422,-10.8776 0.0444,-0.57455 0.29785,-1.05544 1.13125,-1.27631 h 19.37663 c 0.69502,0.0128 1.13396,0.35462 1.21828,1.07325 l -1.01525,10.76157 c 0.0252,0.67456 -0.44326,0.99658 -0.69616,0.95721 h -18.10031 c -0.61348,-0.12287 -0.73605,-0.38211 -0.87022,-0.63812 z"
            id="path9255"
-           sodipodi:nodetypes="ccccccccc" />
+           style="fill:#ffffff;fill-opacity:0.5;stroke:none;stroke-width:0.959252px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="M 65.650391 157.49219 C 62.843021 158.2362 61.989408 159.8556 61.839844 161.79102 C 61.839844 161.79102 65.259733 197.26099 65.357422 198.43359 C 65.809383 199.29598 66.22251 200.16813 68.289062 200.58203 L 129.25977 200.58203 C 130.11168 200.71465 131.69036 199.62973 131.60547 197.35742 L 135.02539 161.10742 C 134.74135 158.68666 133.2631 157.53531 130.92188 157.49219 L 65.650391 157.49219 z M 98.359375 169.46484 A 10.267857 4.1071429 0 0 1 98.431641 169.46484 A 10.267857 4.1071429 0 0 1 108.70117 173.57227 A 10.267857 4.1071429 0 0 1 98.431641 177.67773 A 10.267857 4.1071429 0 0 1 88.164062 173.57227 A 10.267857 4.1071429 0 0 1 98.359375 169.46484 z "
+           transform="matrix(0.2968615,0,0,0.2968615,-594.42554,363.73565)" />
         <path
            style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.284765px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
            d="m -558.95834,395.03637 -12.79885,0.45124 0.12308,-3.86017 -2.46134,-0.45124 v 1.18964 c 0.4511,0.4199 0.91331,0.83718 0.082,1.55883 l 0.082,0.94351 0.20511,0.98452 0.28716,10.58365 c 0,0 -1.96906,0.12309 -1.92803,-0.041 0.041,-0.16408 0.28716,-10.87082 0.28716,-10.87082 l 0.28715,-0.77943 0.0513,-0.76916 c -0.86924,-0.65877 -0.54898,-1.13268 -0.0108,-1.48703 l -0.082,-1.43578 -2.58438,-0.53328 12.3066,-2.21519 11.89636,2.17416 -5.78408,1.35374 z"
