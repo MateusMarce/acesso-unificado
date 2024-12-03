@@ -179,7 +179,7 @@ export default function TrocaSenha() {
                                                         <a className='px-2 rounded-circle text-gray-600' data-tooltip-id="my-tooltip" style={{border: '1px solid' ,borderColor:'#7E8299'}}>
                                                             i
                                                         </a>
-                                                        <Tooltip id="my-tooltip">O código fica no lado branco do crachá embaixo da código de barra. Ex.: '000C1234', usar '1234'</Tooltip>
+                                                        <Tooltip id="my-tooltip">O código fica no lado branco do crachá embaixo da código de barra. Ex.: O código é '000X1234', então usar '1234'</Tooltip>
                                                     </div>
                                                     <ErrorMessage name='codigo' component={'small'} className='invalid-feedback' />
                                                 </div>

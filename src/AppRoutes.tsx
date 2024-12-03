@@ -39,6 +39,8 @@ function AppRoutes() {
 						<Route path="ramais" element={<Page.Ramais />} />
 						<Route path="contracheque" element={<Page.Contracheque />} />
 						<Route path="alumni" element={<Page.Alumni />} />
+						<Route path="financeiro/:id_empresa?" element={<Page.Financeiro />} />
+						<Route path="propostas/:id_empresa?" element={<Page.Propostas />} />
 						<Route path="comunicados" element={<Page.Comunicados />} />
 					</Route>
 				</Routes>

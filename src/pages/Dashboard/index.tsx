@@ -379,9 +379,9 @@ export default function Dashboard() {
                                                                             break;
                                                                     }
                                                                     return(
-                                                                    <div className="d-flex align-items-center mb-4">
+                                                                    <div key={k} className="d-flex align-items-center mb-4">
                                                                         <span className={`bullet bullet-vertical h-40px bg-${classe}`}></span>
-                                                                        <span className="fw-light fs-5 mx-5">{k+1}</span>
+                                                                        <span className="fw-light fs-5 mx-5">{i.proposta_id}</span>
                                                                         <div className="flex-grow-1">
                                                                             <a href={i.link_proposta} target="_blank" className="text-gray-800 text-hover-primary fw-bold fs-7">{i.produtos}</a>
                                                                             <span className="text-muted fw-semibold d-block fs-7">Tipo: {i.tipo_proposta}</span>

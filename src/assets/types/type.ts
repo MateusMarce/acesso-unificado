@@ -278,3 +278,45 @@ export type EmailType = {
     assunto:string
     conteudo:string
 }
+
+export type propostaType = {
+    proposta_id: number,
+    status: string
+    tipo_proposta: string
+    dt_proposta: string
+    token_proposta: string
+    produtos: string
+    link_proposta: string
+}
+
+export type boletosType = {
+    i_empresa: number,
+    i_notas: number,
+    numero: null | number,
+    serie: string
+    dt_emissao: string
+    data_emissao: string
+    vl_nota: string
+    status: string
+    numero_boletos: number,
+    cnpj_cpf: string
+    nota_xml: null | number,
+    situacao: string
+}
+
+export type boletoType = {
+    parcela: number,
+    dt_vcto: string
+    vl_titulo: string
+    flag: string
+    status: string
+    i_empresa: number,
+    i_notas: number,
+    i_cliente: number,
+    numero: null | number,
+    serie: string
+    dt_pgto: null | string,
+    vl_pago: string
+    nosso_numero: string
+    usuario_senha: string
+}

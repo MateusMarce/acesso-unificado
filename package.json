@@ -1,6 +1,6 @@
 {
   "name": "acesso-unificado",
-  "version": "1.4.8",
+  "version": "1.5.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -23,6 +23,7 @@
     "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
     "react-auth-code-input": "^3.2.1",
+    "react-bootstrap": "^2.10.6",
     "react-cookie": "^4.1.1",
     "react-cookie-consent": "^8.0.1",
     "react-device-detect": "^2.2.3",
