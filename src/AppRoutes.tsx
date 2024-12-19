@@ -30,6 +30,7 @@ function AppRoutes() {
 				<Routes>
 					<Route path="/" element={<App />}>
 						<Route path=":cpf?" element={<Page.Login />} />
+						<Route path="reset" element={<Page.Reset />} />
 						<Route path="cadastro/:cpf?" element={<Page.Cadastro />} />
 						<Route path="qrcode" element={<Page.QrCode />} />
 						<Route path="troca-senha/:token?/:id?" element={<Page.TrocaSenha />} />

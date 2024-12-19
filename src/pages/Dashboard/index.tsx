@@ -126,7 +126,7 @@ export default function Dashboard() {
         //     }
         // })()
         
-        if(cookies.user.b2b == true){
+        if(cookies.user?.b2b == true){
             //GET EMPRESA
             getEmpresa()
         }

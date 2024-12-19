@@ -305,6 +305,7 @@ export type boletosType = {
 }
 
 export type boletoType = {
+    cnpj:string
     parcela: number,
     dt_vcto: string
     vl_titulo: string

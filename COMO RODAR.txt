@@ -20,3 +20,33 @@ organizado. Sempre que puder, crie componentes, pois é mais fácil para achar q
 
 Agora você está pronto para começar seus códigos do Front-end.
 Boa sorte :P
+
+Buildando o projeto:
+
+Dev:
+1- Verifique o VITE_MODE no arquivo .env.production, tem que estar "development";
+2- Altere a versão do projeto no package.json caso tenha feito alguma mudança importante;
+(Obs.: Se tu alterou a versão do projeto, é preciso alterar no postman tbm, perguntar pro Thiago sobre a rota)
+3- Abra o console no caminho do projeto e digite "npm run build-dev";
+4- Ao finalizar, abra a pasta do projeto, acesse a pasta "Dist" e copie tudo;
+5- Vá para a pasta do servidor .4 (Pedir pro Thiago, se n tiver acesso);
+6- Acesse a pasta acesso-unificado-dev;
+7- Cole os arquivos copiados;
+(Obs.: Vai pedir pra substituir, clique em sim)
+8- Acesse o site, dê CTRL+F5 e use o site como quiser :)
+
+Real:
+1- Verifique o VITE_MODE no arquivo .env.production, tem que estar "production";
+2- Altere a versão do projeto no package.json caso tenha feito alguma mudança importante;
+(Obs.: Se tu alterou a versão do projeto, é preciso alterar no postman tbm, perguntar pro Thiago sobre a rota)
+3- Abra o console no caminho do projeto e digite "npm run build";
+4- Ao finalizar, abra a pasta do projeto, acesse a pasta "Dist" e copie tudo;
+5- Vá para a pasta do servidor .4 (Pedir pro Thiago, se n tiver acesso);
+6- Acesse a pasta acesso-unificado;
+7- Cole os arquivos copiados;
+(Obs.: Vai pedir pra substituir, clique em sim)
+8- Acesse o site, dê CTRL+F5 e use o site como quiser :)
+
+OBSERVAÇÂO GERAL:
+Preste bastante atenção ao VITE_MODE!! 
+Não é ideal o projeto DEV ter as informações do projeto REAL

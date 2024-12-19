@@ -7,16 +7,17 @@ export default function ModalBoleto(props: ModalProps) {
   const data:boletoType[] = props.boleto
   
   const handleDownload = async (item:boletoType) => {
-    try {
-        console.log('abduihsabud');
+    // try {
+        // console.log('abduihsabud');
         
-    //   window.open(`https://www1.satc.edu.br/nfse/index.php/Nfse/gerarNfseDownload?cpf_cnpj=${cookies.user.empresa.cnpj}&codigo=${item.i_notas}`, '_blank')
+      window.open(`https://www1.satc.edu.br/nfse/index.php/Nfse/gerarNfseDownload?cpf_cnpj=${item.cnpj}&codigo=${item.i_notas}`, '_blank')
+      // window.open(`https://www1.satc.edu.br/nfse/index.php/Nfse/gerarNfseDownload?cpf_cnpj=75274316000847&codigo=47947`, '_blank')
       // let res = await api.get(`/api/painel/boletos/${item.i_notas}`)
       // setBoleto(res.data)
       // setShowBoleto(true)
-    } catch (error) {
+    // } catch (error) {
       
-    }
+    // }
   }
 
   return (
